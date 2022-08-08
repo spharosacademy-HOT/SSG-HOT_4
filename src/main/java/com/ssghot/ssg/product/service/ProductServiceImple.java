@@ -1,0 +1,92 @@
+package com.ssghot.ssg.product.service;
+
+import com.ssghot.ssg.product.domain.Product;
+import com.ssghot.ssg.product.dto.ProductDtoInputAll;
+import com.ssghot.ssg.product.dto.ProductDtoOutputAll;
+import com.ssghot.ssg.product.repository.IProductRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
+
+@Service
+@RequiredArgsConstructor
+public class ProductServiceImple implements IProductService{
+
+    private final IProductRepository iProductRepository;
+
+    /*
+        1. 상품 등록하기
+        2. 상품 수정하기
+        3. 상품 전체 조회하기
+        4. 상품 단일 조회하기
+     */
+
+    // 1. 상품 등록하기
+    @Override
+    public Product addProduct(ProductDtoInputAll productDtoInputAll) {
+
+        //return productDtoInputAll.toEntity();
+        return iProductRepository.save(
+                Product.builder()
+                        .name(productDtoInputAll.getName())
+                        .price(productDtoInputAll.getPrice())
+                        .stockQuantity(productDtoInputAll.getStockQuantity())
+                        .star(0)
+                        .detail(productDtoInputAll.getDetail())
+                        .deliveryCondition(productDtoInputAll.getDeliveryCondition())
+                        .viewCount(0)
+                        .sellCount(0)
+                        .brandName(productDtoInputAll.getBrandName())
+                        .optionList(productDtoInputAll.getOptionList())
+                        .titleImgUrl(productDtoInputAll.getTitleImgUrl())
+                        .titleImgTxt(productDtoInputAll.getTitleImgTxt())
+                        .build()
+        );
+    }
+
+    // 2. 상품 수정하기
+    @Override
+    public Product editProduct(ProductDtoInputAll productDtoInputAll) {
+        return null;
+    }
+
+    // 3. 상품 전체 조회하기
+    @Override
+    public List<ProductDtoOutputAll> getProductAll() {
+
+        List<Product> productList = iProductRepository.findAll();
+        List<ProductDtoOutputAll> productDtoOutputAllList = new ArrayList<>();
+
+        productList.forEach(
+                product -> {
+                    productDtoOutputAllList.add(
+                            ProductDtoOutputAll.builder()
+                                    .id(product.getId())
+                                    .name(product.getName())
+                                    .price(product.getPrice())
+                                    .stockQuantity(product.getStockQuantity())
+                                    .star(product.getStar())
+                                    .detail(product.getDetail())
+                                    .deliveryCondition(product.getDeliveryCondition())
+                                    .viewCount(product.getViewCount())
+                                    .sellCount(product.getSellCount())
+                                    .brandName(product.getBrandName())
+                                    .optionList(product.getOptionList())
+                                    .titleImgUrl(product.getTitleImgUrl())
+                                    .titleImgTxt(product.getTitleImgTxt())
+                                    .build()
+                    );
+                }
+        );
+        return productDtoOutputAllList;
+    }
+
+    // 4. 상품 단일 조회하기
+    @Override
+    public Product getProductOne(Long productId) {
+
+        return iProductRepository.findById(productId).get();
+    }
+}
