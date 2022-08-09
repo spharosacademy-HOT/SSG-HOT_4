@@ -1,12 +1,11 @@
 package com.ssghot.ssg.product.dto;
 
-import com.ssghot.ssg.product.domain.ProductSubImg;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
+import java.time.LocalDateTime;
 
 @Data
 @Builder
@@ -14,7 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 public class ProductDtoInputAll {
 
-    //=== Product ===///
+    private Long id;
     private String name; // 상품명
     private int price; // 가격
     private int stockQuantity; // 재고 개수
@@ -27,9 +26,10 @@ public class ProductDtoInputAll {
     private String optionList; // 옵션
     private String titleImgUrl; // 타이틀 이미지 url
     private String titleImgTxt; // 타이틀 이미지 txt
+    private LocalDateTime createdDate;
 
-    //=== ProductSubImg ===///
-    private List<ProductSubImg> productSubImgList;
+//    List<ProductSubImg> productSubImgList;
+
 
 //    public Product toEntity(){
 //        return Product.builder()

@@ -16,18 +16,29 @@ public class Product extends CommonDTO {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String name; // 상품명
+    @Column(nullable = true)
     private int price; // 가격
+    @Column(nullable = true)
     private int stockQuantity; // 재고 개수
+    @Column(nullable = true)
     private int star; // 별점
+    @Column(nullable = true)
     private String detail; // 상세설명
+    @Column(nullable = true)
     private int deliveryCondition; // 배송조건
+    @Column(nullable = true)
     private int viewCount; // 조회수
+    @Column(nullable = true)
     private int sellCount; // 판매 개수
+    @Column(nullable = true)
     private String brandName; // 브랜드 이름
+    @Column(nullable = true)
     private String optionList; // 옵션
+    @Column(nullable = true)
     private String titleImgUrl; // 타이틀 이미지 url
+    @Column(nullable = true)
     private String titleImgTxt; // 타이틀 이미지 txt
 
 //    @ManyToOne

@@ -1,10 +1,7 @@
 package com.ssghot.ssg.users.domain;
 
 import com.ssghot.ssg.common.CommonDTO;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -14,6 +11,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Entity
 @Builder
+@EqualsAndHashCode(callSuper=false)
 public class User extends CommonDTO {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)

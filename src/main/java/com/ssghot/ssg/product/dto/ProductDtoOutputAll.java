@@ -1,7 +1,10 @@
 package com.ssghot.ssg.product.dto;
 
+import com.ssghot.ssg.product.domain.ProductSubImg;
 import lombok.Builder;
 import lombok.Data;
+
+import java.util.List;
 
 @Data
 @Builder
@@ -20,4 +23,7 @@ public class ProductDtoOutputAll {
     private String optionList; // 옵션
     private String titleImgUrl; // 타이틀 이미지 url
     private String titleImgTxt; // 타이틀 이미지 txt
+
+    //=== ProductSubImg ===///
+    private List<ProductSubImg> productSubImgList;
 }

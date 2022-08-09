@@ -4,17 +4,20 @@ import com.ssghot.ssg.product.domain.Product;
 import com.ssghot.ssg.product.dto.ProductDtoInputAll;
 import com.ssghot.ssg.product.dto.ProductDtoOutputAll;
 import com.ssghot.ssg.product.repository.IProductRepository;
+import com.ssghot.ssg.product.repository.IProductSubImgRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class ProductServiceImple implements IProductService{
 
     private final IProductRepository iProductRepository;
+    private final IProductSubImgRepository iProductSubImgRepository;
 
     /*
         1. 상품 등록하기
@@ -27,7 +30,6 @@ public class ProductServiceImple implements IProductService{
     @Override
     public Product addProduct(ProductDtoInputAll productDtoInputAll) {
 
-        //return productDtoInputAll.toEntity();
         return iProductRepository.save(
                 Product.builder()
                         .name(productDtoInputAll.getName())
@@ -44,11 +46,54 @@ public class ProductServiceImple implements IProductService{
                         .titleImgTxt(productDtoInputAll.getTitleImgTxt())
                         .build()
         );
+
+//        Product product = iProductRepository.save(Product.builder()
+//                .name(productDtoInputAll.getName())
+//                .price(productDtoInputAll.getPrice())
+//                .stockQuantity(productDtoInputAll.getStockQuantity())
+//                .star(0)
+//                .detail(productDtoInputAll.getDetail())
+//                .deliveryCondition(productDtoInputAll.getDeliveryCondition())
+//                .viewCount(0)
+//                .sellCount(0)
+//                .brandName(productDtoInputAll.getBrandName())
+//                .optionList(productDtoInputAll.getOptionList())
+//                .titleImgUrl(productDtoInputAll.getTitleImgUrl())
+//                .titleImgTxt(productDtoInputAll.getTitleImgTxt())
+//                .build());
+//
+//        productDtoInputAll.getProductSubImgList().forEach(productSubImg -> {
+//            iProductSubImgRepository.save(ProductSubImg.builder()
+//                            .subImgTxt(productSubImg.getSubImgTxt())
+//                            .subImgUrl(productSubImg.getSubImgUrl())
+//                            .product(product)
+//                    .build()
+//            );
+//        });
+//
+//        return product;
     }
 
     // 2. 상품 수정하기
     @Override
-    public Product editProduct(ProductDtoInputAll productDtoInputAll) {
+    public Product editProduct(Long id, ProductDtoInputAll productDtoInputAll) {
+        Optional<Product> product = iProductRepository.findById(id);
+        if(product.isPresent()){
+            return iProductRepository.save(
+                    Product.builder()
+                            .id(id)
+                            .name(productDtoInputAll.getName())
+                            .price(productDtoInputAll.getPrice())
+                            .stockQuantity(productDtoInputAll.getStockQuantity())
+                            .detail(productDtoInputAll.getDetail())
+                            .deliveryCondition(productDtoInputAll.getDeliveryCondition())
+                            .brandName(productDtoInputAll.getBrandName())
+                            .optionList(productDtoInputAll.getOptionList())
+                            .titleImgUrl(productDtoInputAll.getTitleImgUrl())
+                            .titleImgTxt(productDtoInputAll.getTitleImgTxt())
+                            .build()
+            );
+        }
         return null;
     }
 
@@ -76,6 +121,7 @@ public class ProductServiceImple implements IProductService{
                                     .optionList(product.getOptionList())
                                     .titleImgUrl(product.getTitleImgUrl())
                                     .titleImgTxt(product.getTitleImgTxt())
+                                    .productSubImgList(iProductSubImgRepository.findAllByProductId(product.getId())) // 수정 필요
                                     .build()
                     );
                 }

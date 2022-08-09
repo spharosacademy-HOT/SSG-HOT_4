@@ -19,7 +19,7 @@ public interface IProductService {
     Product addProduct(ProductDtoInputAll productDtoInputAll);
 
     // 2. 상품 수정하기
-    Product editProduct(ProductDtoInputAll productDtoInputAll);
+    Product editProduct(Long id, ProductDtoInputAll productDtoInputAll);
 
     // 3. 상품 전체 조회하기
     List<ProductDtoOutputAll> getProductAll();
