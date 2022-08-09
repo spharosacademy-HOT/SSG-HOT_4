@@ -2,6 +2,7 @@ package com.ssghot.ssg.users.sevice;
 
 import com.ssghot.ssg.users.domain.User;
 import com.ssghot.ssg.users.dto.UserDtoInput;
+import com.ssghot.ssg.users.dto.UserDtoOutput;
 import com.ssghot.ssg.users.dto.UserEditDtoInput;
 import com.ssghot.ssg.users.dto.checkEmailDtoOutPut;
 
@@ -21,10 +22,10 @@ public interface IUserService {
     void validateDuplicateUser(User user);
 
     // 회원 추가하기
-    User addUser(UserDtoInput user) ;
+    UserDtoOutput addUser(UserDtoInput user) ;
 
     // 회원 수정하기
-    User editUser(UserEditDtoInput userEditDtoInput) ;
+    UserDtoOutput editUser(UserEditDtoInput userEditDtoInput) ;
 
     // 회원 삭제하기
     void deleteUser(Long id);

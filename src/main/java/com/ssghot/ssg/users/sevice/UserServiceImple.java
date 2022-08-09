@@ -2,6 +2,7 @@ package com.ssghot.ssg.users.sevice;
 
 import com.ssghot.ssg.users.domain.User;
 import com.ssghot.ssg.users.dto.UserDtoInput;
+import com.ssghot.ssg.users.dto.UserDtoOutput;
 import com.ssghot.ssg.users.dto.UserEditDtoInput;
 import com.ssghot.ssg.users.dto.checkEmailDtoOutPut;
 import com.ssghot.ssg.users.repository.IUserRepository;
@@ -27,30 +28,53 @@ public class UserServiceImple implements IUserService{
 
     // 회원 추가하기
     @Override
-        public User addUser(UserDtoInput userDtoInput){
+        public UserDtoOutput addUser(UserDtoInput userDtoInput){
 
         boolean ischecked = iUserRepository.existsByEmail(userDtoInput.getEmail());
-
         if(ischecked){
             throw new Error("유저 정보가 존재합니다.");
         }
+        User user = iUserRepository.save(userDtoInput.toEntity());
 
-        return iUserRepository.save(userDtoInput.toEntity());
+        return UserDtoOutput.builder()
+                .id(user.getId())
+                .email(user.getEmail())
+                .name(user.getName())
+                .phone(user.getPhone())
+                .memberLevel(user.getMemberLevel())
+                .createdDate(user.getCreatedDate())
+                .updatedDate(user.getUpdatedDate())
+                .build();
     }
 
     // 회원 수정하기
     @Override
-    public User editUser(UserEditDtoInput userEditDtoInput){
+    public UserDtoOutput editUser(UserEditDtoInput userEditDtoInput){
         Optional<User> user = iUserRepository.findById(userEditDtoInput.getId());
         if(user.isPresent()){
-            return iUserRepository.save(User.builder()
-                            .id(userEditDtoInput.getId())
-                            .name(userEditDtoInput.getName())
-                            .birthday(userEditDtoInput.getBirthday())
+            User updatedUser = iUserRepository.save(User.builder()
+                    .id(userEditDtoInput.getId())
+                    .name(userEditDtoInput.getName())
+                    .phone(userEditDtoInput.getPhone())
+                    .name(userEditDtoInput.getName())
+                    .password(user.get().getPassword())
+                    .email(user.get().getEmail())
+                            .memberLevel(user.get().getMemberLevel())
                             .isSlept(user.get().isSlept())
-                            .build());
+                    .build());
+
+            return UserDtoOutput.builder()
+                    .id(updatedUser.getId())
+                    .email(updatedUser.getEmail())
+                    .name(updatedUser.getName())
+                    .phone(updatedUser.getPhone())
+                    .memberLevel(updatedUser.getMemberLevel())
+                    .createdDate(updatedUser.getCreatedDate())
+                    .updatedDate(updatedUser.getUpdatedDate())
+                    .build();
+
         }
-        return null;
+        throw new Error("유저 정보가 존재하지 않습니다.");
     }
 
 
@@ -59,6 +83,8 @@ public class UserServiceImple implements IUserService{
     @Override
     public void deleteUser(Long id) {
         iUserRepository.deleteById(id);
+
+
     }
 
     // 회원 단일 조회

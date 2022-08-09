@@ -1,7 +1,11 @@
 package com.ssghot.ssg.users.domain;
 
 import com.ssghot.ssg.common.CommonDTO;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.hibernate.annotations.DynamicInsert;
 
 import javax.persistence.*;
 
@@ -11,7 +15,6 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Entity
 @Builder
-@EqualsAndHashCode(callSuper=false)
 public class User extends CommonDTO {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,10 +35,11 @@ public class User extends CommonDTO {
     @Column(columnDefinition = "boolean default false")
     private boolean isSlept;
 
-    private String birthday;
+    @Column(columnDefinition = "varchar(255) default 'FRIENDS'")
+    private String memberLevel;
 
-    @Enumerated(EnumType.STRING)
-    @Column(columnDefinition = "varchar(32) default 'FRIENDS'")
-    private MemberLevel memberLevel;
-
+    @PrePersist
+    public void prePersist() {
+        this.memberLevel = this.memberLevel == null ? "FRIENDS" : this.memberLevel;
+    }
 }
