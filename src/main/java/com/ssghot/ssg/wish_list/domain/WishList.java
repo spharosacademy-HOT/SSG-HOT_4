@@ -1,28 +1,28 @@
-package com.ssghot.ssg.users.domain;
+package com.ssghot.ssg.wish_list.domain;
 
-
+import com.ssghot.ssg.common.CommonDTO;
+import com.ssghot.ssg.product.domain.Product;
+import com.ssghot.ssg.users.domain.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-@Entity
-@Getter
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Entity
 @Builder
-public class Address {
-
+public class WishList extends CommonDTO{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String city;
-    private String street;
-    private String zipcode;
 
     @ManyToOne
     private User user;
 
+    @ManyToOne
+    private Product product;
 }
