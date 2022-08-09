@@ -2,10 +2,12 @@ package com.ssghot.ssg.users.controller;
 
 import com.ssghot.ssg.users.domain.User;
 import com.ssghot.ssg.users.dto.UserDtoInput;
+import com.ssghot.ssg.users.dto.UserDtoOutput;
 import com.ssghot.ssg.users.dto.UserEditDtoInput;
 import com.ssghot.ssg.users.dto.checkEmailDtoOutPut;
 import com.ssghot.ssg.users.sevice.IUserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,8 +26,7 @@ public class UserController {
     }
 
     @PostMapping("")
-    public User addUser(@RequestBody UserDtoInput user) {
-
+    public UserDtoOutput addUser(@RequestBody UserDtoInput user) {
         return iUserService.addUser(user);
     }
     @GetMapping("/{id}")
@@ -42,12 +43,13 @@ public class UserController {
     }
 
     @DeleteMapping("/{id}")
+    @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public void deleteUser(@PathVariable Long id){
         iUserService.deleteUser(id);
     }
 
-    @PutMapping("/edit")
-    public User editUser(@RequestBody UserEditDtoInput userEditDtoInput) {
+    @PutMapping("")
+    public UserDtoOutput editUser(@RequestBody UserEditDtoInput userEditDtoInput) {
         return iUserService.editUser(userEditDtoInput);
     }
 
