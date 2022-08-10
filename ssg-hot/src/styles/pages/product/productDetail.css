@@ -1,0 +1,105 @@
+/* 메인 이미지 */
+.product-main-image img{
+    width: 100%;
+}
+/* 제품 간단 소개(가격, 정보) */
+.product-info{
+    padding: 20px;
+}
+
+.product-store span{
+    font-size: 0.8rem;
+    color: #333;
+    text-decoration-color: #333;
+    font-weight: bold;
+}
+.product-made-in{
+    color: #666;
+    font-size: 0.8rem;
+}
+.original-price{
+    font-size: 1.75rem;
+    font-weight: bold;
+    padding: 20px 0 0 20px;
+}
+/* 스마일 클럽 */
+.smile-club{
+    padding: 20px;
+}
+.smile-club img{
+    width: 100%;
+}
+.smile-club-message{
+    margin: 0 20px 0 20px;
+    padding: 20px;
+    color: #5d30ff;
+    border-radius: 10px;
+    border: solid #5d30ff 2px;
+}
+
+/* 리뷰 */
+
+/* 토탈 리뷰 */
+.total-review{
+    padding: 20px;
+}
+.total-review-header{
+    display: flex;
+    justify-content: space-between;
+}
+.total-review-header .review-title{
+    font-weight: bold;
+}
+.total-review-header .review-more{
+    font-size: 0.8rem;
+    color:#777
+}
+.total-review-card{
+    margin: 10px 0 10px 0;
+}
+.total-review-card div ul{
+    display: flex;
+    padding: 0;
+    font-size: 0.8rem;
+}
+.total-review-card div ul li{
+    padding: 5px 5px 0 0;
+}
+.total-review-card div img{
+    width: 50px;
+    height: 50px;
+}
+.total-review-card div span{
+    font-size: 0.9rem;
+    letter-spacing: -0.5px;
+}
+
+/* Q&A 문의 */
+.product-qna{
+    margin: 0 20px 0 20px;
+}
+.qna-header{
+    display: flex;
+    justify-content: space-between;
+}
+.product-qna-card{
+    padding: 10px;
+    border: solid 1px #e5e5e5;
+    border-radius: 5px;
+}
+.product-qna-card div ul{
+    display: flex;
+    padding: 0;
+}
+.product-qna-card div ul li{
+    display: flex;
+}
+.qna-title{
+    display: flex;
+    justify-content: space-between;
+}
+
+/* 이벤트 배너 */
+.event-banner img{
+    width: 100%;
+}

@@ -1,0 +1,27 @@
+.mainImg {
+  width: 300px;
+  height: 292px;
+}
+.imgList img {
+  width: 70px;
+  height: 70px;
+  margin: 0px 5px 5px 5px;
+}
+.cardImg {
+  display: flex;
+}
+.cardSub {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.cardIcon {
+  display: flex;
+  width: 30px;
+  height: 30px;
+}
+.cardBottom {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+}

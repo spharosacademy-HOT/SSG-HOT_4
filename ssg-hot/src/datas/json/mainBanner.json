@@ -1,0 +1,35 @@
+[
+  {
+    "id": 1,
+    "blink": "https://event.ssg.com/m/eventDetail.ssg?nevntId=1000000001076",
+    "imgUrl": "https://simg.ssgcdn.com/trans.ssg?src=/cmpt/banner/202208/2022080521590310742378001337_342.jpg&amp;w=750&amp;t=a600dfd8201d5208a13df5b47f9945c39bcc163a",
+    "mTitle": [{ "id": 1, "content": "8월 쇼핑익스프레스" }],
+    "subTxt": [{ "id": 1, "content": "최대 12% 쿠폰팩 발급" }]
+  },
+  {
+    "id": 2,
+    "blink": "https://event.ssg.com/m/eventDetail.ssg?nevntId=1000000001344",
+    "imgUrl": "https://simg.ssgcdn.com/trans.ssg?src=/cmpt/banner/202208/2022080522030956918205208820_986.jpg&amp;w=750&amp;t=e08fdb3271f0144c9b93b7a437c11111fae2d3db",
+    "mTitle": [{ "id": 1, "content": "오늘은 프라다 타임딜+20% 쿠폰" }],
+    "subTxt": [
+      { "id": 1, "content": "스마일클럽 브랜드데이 럭셔리 명품브랜드" }
+    ]
+  },
+  {
+    "id": 3,
+    "blink": "https://event.ssg.com/m/eventDetail.ssg?nevntId=1000000001042",
+    "imgUrl": "https://simg.ssgcdn.com/trans.ssg?src=/cmpt/banner/202208/2022080521592384479525453062_963.jpg&amp;w=750&amp;t=ee9ddfef909b03a4555f3932c537bb6b4d468a26",
+    "mTitle": [{ "id": 1, "content": "메타버쓱 오픈런 한정상품 구매" }],
+    "subTxt": [{ "id": 1, "content": "달릴 준비되셨나요? 빠른 자가 갖는다!" }]
+  },
+  {
+    "id": 4,
+    "blink": "https://event.ssg.com/m/eventDetail.ssg?nevntId=1000000001041",
+    "imgUrl": "https://simg.ssgcdn.com/trans.ssg?src=/cmpt/banner/202208/2022080521593832127203240820_810.jpg&amp;w=750&amp;t=110dc0eebeaa220de26c3c741ba4aeb6ff3536ee",
+    "mTitle": [{ "id": 1, "content": "메타버쓱 재밌는 보물찾기" }],
+    "subTxt": [
+      { "id": 1, "content": "누구나 참여 시 골드바 경품" },
+      { "id": 2, "content": "+SSG머니 증정" }
+    ]
+  }
+]
