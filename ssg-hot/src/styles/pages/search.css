@@ -1,0 +1,35 @@
+.searchHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 5px;
+  height: 50px;
+}
+.searchHeader input {
+  width: 100%;
+  margin: 10px;
+}
+.searchItem {
+  min-height: calc(60vh - 114px);
+}
+.recentNoItem {
+  text-align: center;
+  color: #777;
+  position: absolute;
+  top: 30%;
+  left: 0;
+  width: 100%;
+  margin-top: -50px;
+  font-size: 18px;
+}
+
+.searchHeader svg {
+  margin: 5px;
+  /* color: red; */
+}
+.recommendItemList {
+  display: flex;
+  font-size: 12px;
+  justify-content: space-between;
+  text-align: center;
+}

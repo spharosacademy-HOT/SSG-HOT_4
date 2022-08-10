@@ -1,0 +1,91 @@
+.recentTitle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+}
+
+.recentTitle h1 {
+  font-size: 18px;
+  font-weight: normal;
+  letter-spacing: -1.13px;
+  color: #222;
+  text-transform: uppercase;
+}
+
+.recentHeader ul {
+  display: flex;
+  justify-content: center;
+}
+
+.recentHeader li {
+  list-style: none;
+}
+
+.recentUl {
+  overflow: hidden;
+  overflow-x: auto;
+  height: 45px;
+  padding: 0 13px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.editBtn {
+  position: absolute;
+
+  right: 10px;
+  border: none;
+  background-color: inherit;
+  padding-right: 15px;
+  font-size: 13px;
+  font-style: normal;
+  line-height: 54px;
+  letter-spacing: -0.5px;
+  color: #000;
+}
+.recentItem {
+  min-height: calc(100vh - 114px);
+}
+.recentNoItem {
+  text-align: center;
+  color: #777;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  margin-top: -50px;
+  font-size: 18px;
+}
+/* recentBtn */
+.default {
+  display: inline-block;
+  min-width: 45px;
+  height: 45px;
+  padding: 0 5px;
+  margin: 0 1.5px;
+  border: 1px solid #fff;
+  border-radius: 23px;
+  outline: 0;
+  background-color: #fff;
+  font-size: 12px;
+  line-height: 43px;
+  letter-spacing: -1px;
+  color: #777;
+}
+.isClicked {
+  display: inline-block;
+  min-width: 45px;
+  height: 45px;
+  padding: 0 5px;
+  margin: 0 1.5px;
+  border: 1px solid #fff;
+  border-radius: 23px;
+  outline: 0;
+  background-color: #fff;
+  font-size: 12px;
+  line-height: 43px;
+  letter-spacing: -1px;
+  border-color: #ff5b59;
+  color: #ff5b59;
+}

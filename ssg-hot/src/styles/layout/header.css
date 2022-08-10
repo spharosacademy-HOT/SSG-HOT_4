@@ -1,0 +1,60 @@
+.searchBox {
+  display: flex;
+  align-items: center;
+}
+.inputBox {
+  display: flex;
+  align-items: center;
+  background-color: #f5f5f5;
+}
+.inputBox input {
+  border: none;
+  background-color: inherit;
+  width: 100px;
+}
+.searchBtn {
+  background-color: #f5f5f5;
+  border: none;
+}
+
+.moreBtn {
+  margin-left: 3px;
+  width: 15px;
+  height: 15px;
+  border: solid 0.01px #f5f5f5;
+  border-radius: 100%;
+  margin-bottom: 3px;
+}
+.innerHeader {
+  display: flex;
+  height: 50px;
+  margin: 0px 10px;
+  justify-content: space-between;
+  align-items: center;
+}
+.cartBtn {
+  margin-left: 5px;
+}
+
+header {
+  width: 100%;
+  z-index: 999;
+  background-color: white;
+  position: fixed;
+  top: 0px;
+}
+.commonHeader {
+  display: flex;
+  height: 50px;
+  align-items: center;
+  width: 100%;
+  text-align: center;
+  padding: 0px 10px;
+  border-bottom: 1px solid #bcbcbc;
+}
+.commonHeader h2 {
+  font-size: 16px;
+  margin: 0;
+  width: 100%;
+  padding-right: 8px;
+}

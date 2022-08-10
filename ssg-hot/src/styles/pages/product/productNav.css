@@ -1,0 +1,11 @@
+.previous a{
+    text-decoration: none;
+}
+.mcom_tit_renew{
+    display: flex;
+    justify-content: space-between;
+}
+.current .btn_more{
+    display: flex;
+    align-items: center;
+}
