@@ -21,7 +21,7 @@ import Cart2 from "./pages/cart2/Cart2";
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter className="test">
       <Header />
       <Routes>
         <Route path="/" element={<Main />} />
