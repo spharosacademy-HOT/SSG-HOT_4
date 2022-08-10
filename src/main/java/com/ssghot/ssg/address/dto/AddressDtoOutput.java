@@ -1,4 +1,4 @@
-package com.ssghot.ssg.users.dto;
+package com.ssghot.ssg.address.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,18 +9,20 @@ import java.time.LocalDateTime;
 
 @Getter
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
-public class UserDtoOutput{
+@NoArgsConstructor
+public class AddressDtoOutput {
+
     private Long id;
-    private String email;
-    private String name;
+    private String alias;
+    private String taker;
     private String phone;
-    private String memberLevel;
+    private String homePhone;
+    private String city;
+    private String street;
+    private String zipcode;
+    private boolean existed;
     private LocalDateTime createdDate;
     private LocalDateTime updatedDate;
-
-
+    private Long userId;
 }
-
-

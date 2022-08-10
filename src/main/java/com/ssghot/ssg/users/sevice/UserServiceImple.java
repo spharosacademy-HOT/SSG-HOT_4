@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -59,8 +60,8 @@ public class UserServiceImple implements IUserService{
                     .name(userEditDtoInput.getName())
                     .password(user.get().getPassword())
                     .email(user.get().getEmail())
-                            .memberLevel(user.get().getMemberLevel())
-                            .isSlept(user.get().isSlept())
+                    .memberLevel(user.get().getMemberLevel())
+                    .isSlept(user.get().isSlept())
                     .build());
 
             return UserDtoOutput.builder()
@@ -89,15 +90,42 @@ public class UserServiceImple implements IUserService{
 
     // 회원 단일 조회
     @Override
-    public User getUserById(Long id) {
-        return iUserRepository.findById(id).get();
+    public UserDtoOutput getUserById(Long id) {
+        User user = iUserRepository.findById(id).get();
+
+        return UserDtoOutput.builder()
+                .id(user.getId())
+                .email(user.getEmail())
+                .name(user.getName())
+                .phone(user.getPhone())
+                .memberLevel(user.getMemberLevel())
+                .createdDate(user.getCreatedDate())
+                .updatedDate(user.getUpdatedDate())
+                .build();
     }
 
     // 회원 전체 조회
     @Override
-    public List<User> getAll() {
+    public List<UserDtoOutput> getAll() {
         log.info("getAll User");
-        return iUserRepository.findAll();
+        List<User> userList = iUserRepository.findAll();
+        List<UserDtoOutput> userDtoOutputs = new ArrayList<>();
+        userList.forEach(
+             user -> {
+                 userDtoOutputs.add(
+                         UserDtoOutput.builder()
+                         .id(user.getId())
+                         .email(user.getEmail())
+                         .name(user.getName())
+                         .phone(user.getPhone())
+                         .memberLevel(user.getMemberLevel())
+                         .createdDate(user.getCreatedDate())
+                         .updatedDate(user.getUpdatedDate())
+                         .build()
+                 );
+             }
+     );
+        return userDtoOutputs;
     }
 
     @Override
