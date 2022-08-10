@@ -4,6 +4,7 @@ import com.ssghot.ssg.product.domain.Product;
 import com.ssghot.ssg.product.domain.ProductSubImg;
 import com.ssghot.ssg.product.dto.ProductDtoInputAll;
 import com.ssghot.ssg.product.dto.ProductDtoOutputAll;
+import com.ssghot.ssg.product.dto.ProductSubImgDtoInput;
 import com.ssghot.ssg.product.service.IProductService;
 import com.ssghot.ssg.product.service.IProductSubImgService;
 import lombok.RequiredArgsConstructor;
@@ -38,11 +39,10 @@ public class ProductController {
     }
 
     // 2. 상품 수정하기
-    @PutMapping("/product/{productId}")
-    public Product editProduct(@PathVariable Long productId, @RequestBody ProductDtoInputAll productDtoInputAll){
-        return iProductService.editProduct(productId, productDtoInputAll);
+    @PutMapping("/product/{id}")
+    public Product editProduct(@PathVariable Long id, @RequestBody ProductDtoInputAll productDtoInputAll){
+        return iProductService.editProduct(id, productDtoInputAll);
     }
-
 
     // 3. 상품 전체 조회하기
     @GetMapping("/product")
@@ -58,8 +58,8 @@ public class ProductController {
 
     // 5. 서브 이미지 등록하기
     @PostMapping("/product/subimg")
-    public ProductSubImg addProductSubImg(@RequestBody ProductSubImg productSubImg){
-        return iProductSubImgService.addProductSubImg(productSubImg);
+    public ProductSubImg addProductSubImg(@RequestBody ProductSubImgDtoInput productSubImgDtoInput){
+        return iProductSubImgService.addProductSubImg(productSubImgDtoInput);
     }
 
     // 6. 서브 이미지 수정하기

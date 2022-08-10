@@ -7,7 +7,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -30,29 +29,29 @@ public class CategoryServiceImple implements ICategoryService{
                 Category.builder()
                         .name(categoryDtoInput.getName())
                         .build());
-
-        //        return iCategoryRepository.save(categoryDtoInput);
     }
 
     // 2. 카테고리 대분류 수정하기
     @Override
     public Category editCategory(Long categoryId, CategoryDtoInput categoryDtoInput) {
-        Optional<Category> category = iCategoryRepository.findById(categoryDtoInput.getId());
-        if(category.isPresent()){
+        Category category = iCategoryRepository.findById(categoryId).get();
+//        Optional<Category> category = iCategoryRepository.findById(categoryDtoInput.getId());
+        if(category != null){
             return iCategoryRepository.save(
                     Category.builder()
+                    .id(categoryId)
                     .name(categoryDtoInput.getName())
                     .build()
             );
         }
-
-        Category category1 = iCategoryRepository.findById(categoryId).get();
-        return iCategoryRepository.save(category1);
+        return null;
     }
 
     // 3. 카테고리 대분류 전체 조회하기
     @Override
     public List<Category> getAllCategory() {
+
+
         return iCategoryRepository.findAll();
     }
 

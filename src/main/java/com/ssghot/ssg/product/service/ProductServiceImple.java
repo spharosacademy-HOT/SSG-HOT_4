@@ -1,6 +1,10 @@
 package com.ssghot.ssg.product.service;
 
+import com.ssghot.ssg.category.domain.Category;
+import com.ssghot.ssg.category.repository.ICategoryMRepository;
+import com.ssghot.ssg.category.repository.ICategoryRepository;
 import com.ssghot.ssg.product.domain.Product;
+import com.ssghot.ssg.product.domain.ProductSubImg;
 import com.ssghot.ssg.product.dto.ProductDtoInputAll;
 import com.ssghot.ssg.product.dto.ProductDtoOutputAll;
 import com.ssghot.ssg.product.repository.IProductRepository;
@@ -19,6 +23,10 @@ public class ProductServiceImple implements IProductService{
     private final IProductRepository iProductRepository;
     private final IProductSubImgRepository iProductSubImgRepository;
 
+    private final ICategoryMRepository iCategoryMRepository;
+
+    private final ICategoryRepository iCategoryRepository;
+
     /*
         1. 상품 등록하기
         2. 상품 수정하기
@@ -30,48 +38,57 @@ public class ProductServiceImple implements IProductService{
     @Override
     public Product addProduct(ProductDtoInputAll productDtoInputAll) {
 
-        return iProductRepository.save(
-                Product.builder()
-                        .name(productDtoInputAll.getName())
-                        .price(productDtoInputAll.getPrice())
-                        .stockQuantity(productDtoInputAll.getStockQuantity())
-                        .star(0)
-                        .detail(productDtoInputAll.getDetail())
-                        .deliveryCondition(productDtoInputAll.getDeliveryCondition())
-                        .viewCount(0)
-                        .sellCount(0)
-                        .brandName(productDtoInputAll.getBrandName())
-                        .optionList(productDtoInputAll.getOptionList())
-                        .titleImgUrl(productDtoInputAll.getTitleImgUrl())
-                        .titleImgTxt(productDtoInputAll.getTitleImgTxt())
-                        .build()
-        );
+//        return iProductRepository.save(
+//                Product.builder()
+//                        .name(productDtoInputAll.getName())
+//                        .price(productDtoInputAll.getPrice())
+//                        .stockQuantity(productDtoInputAll.getStockQuantity())
+//                        .star(0)
+//                        .detail(productDtoInputAll.getDetail())
+//                        .deliveryCondition(productDtoInputAll.getDeliveryCondition())
+//                        .viewCount(0)
+//                        .sellCount(0)
+//                        .brandName(productDtoInputAll.getBrandName())
+//                        .optionList(productDtoInputAll.getOptionList())
+//                        .titleImgUrl(productDtoInputAll.getTitleImgUrl())
+//                        .titleImgTxt(productDtoInputAll.getTitleImgTxt())
+//                        .build()
+//        );
 
-//        Product product = iProductRepository.save(Product.builder()
-//                .name(productDtoInputAll.getName())
-//                .price(productDtoInputAll.getPrice())
-//                .stockQuantity(productDtoInputAll.getStockQuantity())
-//                .star(0)
-//                .detail(productDtoInputAll.getDetail())
-//                .deliveryCondition(productDtoInputAll.getDeliveryCondition())
-//                .viewCount(0)
-//                .sellCount(0)
-//                .brandName(productDtoInputAll.getBrandName())
-//                .optionList(productDtoInputAll.getOptionList())
-//                .titleImgUrl(productDtoInputAll.getTitleImgUrl())
-//                .titleImgTxt(productDtoInputAll.getTitleImgTxt())
-//                .build());
-//
-//        productDtoInputAll.getProductSubImgList().forEach(productSubImg -> {
-//            iProductSubImgRepository.save(ProductSubImg.builder()
-//                            .subImgTxt(productSubImg.getSubImgTxt())
-//                            .subImgUrl(productSubImg.getSubImgUrl())
-//                            .product(product)
-//                    .build()
-//            );
-//        });
-//
-//        return product;
+        iCategoryRepository.save(Category.builder()
+                        .id(productDtoInputAll.getId())
+                        .name(productDtoInputAll.getName())
+                .build());
+
+        Product product = iProductRepository.save(Product.builder()
+                .name(productDtoInputAll.getName())
+                .price(productDtoInputAll.getPrice())
+                .stockQuantity(productDtoInputAll.getStockQuantity())
+                .star(0)
+                .detail(productDtoInputAll.getDetail())
+                .deliveryCondition(productDtoInputAll.getDeliveryCondition())
+                .viewCount(0)
+                .sellCount(0)
+                .brandName(productDtoInputAll.getBrandName())
+                .optionList(productDtoInputAll.getOptionList())
+                .titleImgUrl(productDtoInputAll.getTitleImgUrl())
+                .titleImgTxt(productDtoInputAll.getTitleImgTxt())
+                .build());
+
+        // List라 forEach로 풀어서 넣는다.
+        productDtoInputAll.getProductSubImgList().forEach(productSubImg -> {
+            iProductSubImgRepository.save(ProductSubImg.builder()
+                            .id(productSubImg.getId())
+                            .subImgTxt(productSubImg.getSubImgTxt())
+                            .subImgUrl(productSubImg.getSubImgUrl())
+                            .product(product)
+                    .build()
+            );
+        });
+
+
+
+        return product;
     }
 
     // 2. 상품 수정하기

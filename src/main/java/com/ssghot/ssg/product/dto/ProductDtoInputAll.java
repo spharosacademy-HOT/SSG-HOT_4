@@ -1,11 +1,14 @@
 package com.ssghot.ssg.product.dto;
 
+import com.ssghot.ssg.category.domain.Category;
+import com.ssghot.ssg.category.domain.CategoryM;
+import com.ssghot.ssg.product.domain.ProductSubImg;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @Builder
@@ -26,9 +29,14 @@ public class ProductDtoInputAll {
     private String optionList; // 옵션
     private String titleImgUrl; // 타이틀 이미지 url
     private String titleImgTxt; // 타이틀 이미지 txt
-    private LocalDateTime createdDate;
 
-//    List<ProductSubImg> productSubImgList;
+    // 서브이미지 리스트
+    List<ProductSubImg> productSubImgList;
+
+    // 카테고리 대분류
+    private Category category;
+    // 카테고리 중분류
+    private CategoryM categoryM;
 
 
 //    public Product toEntity(){

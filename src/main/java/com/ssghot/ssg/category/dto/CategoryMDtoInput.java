@@ -1,7 +1,9 @@
 package com.ssghot.ssg.category.dto;
 
 import com.ssghot.ssg.category.domain.Category;
+import lombok.Data;
 
+@Data
 public class CategoryMDtoInput {
 
     private Long id;

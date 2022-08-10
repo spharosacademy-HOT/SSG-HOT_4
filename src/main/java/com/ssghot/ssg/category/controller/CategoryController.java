@@ -3,6 +3,7 @@ package com.ssghot.ssg.category.controller;
 import com.ssghot.ssg.category.domain.Category;
 import com.ssghot.ssg.category.domain.CategoryM;
 import com.ssghot.ssg.category.dto.CategoryDtoInput;
+import com.ssghot.ssg.category.dto.CategoryMDtoInput;
 import com.ssghot.ssg.category.service.ICategoryMService;
 import com.ssghot.ssg.category.service.ICategoryService;
 import lombok.RequiredArgsConstructor;
@@ -39,19 +40,19 @@ public class CategoryController {
     }
     // 1-2. 카테고리 중분류 등록하기
     @PostMapping("/categorym")
-    public CategoryM addCategoryM(@RequestBody CategoryM categoryM){
-        return iCategoryMService.addCategoryM(categoryM);
+    public CategoryM addCategoryM(@RequestBody CategoryMDtoInput categoryMDtoInput){
+        return iCategoryMService.addCategoryM(categoryMDtoInput);
     }
 
     // 2-1. 카테고리 대분류 수정하기
-    @PostMapping("/category/{id}")
+    @PutMapping("/category/{id}")
     public Category editCategory(@PathVariable Long id, @RequestBody CategoryDtoInput categoryDtoInput){
         return iCategoryService.editCategory(id, categoryDtoInput);
     }
     // 2-2. 카테고리 중분류 수정하기
-    @PostMapping("/categoryM/{id}")
-    public CategoryM editCategoryM(@PathVariable Long id, @RequestBody CategoryM categoryM){
-        return iCategoryMService.editCategoryM(id, categoryM);
+    @PutMapping("/categorym/{id}")
+    public CategoryM editCategoryM(@PathVariable Long id, @RequestBody CategoryMDtoInput categoryMDtoInput){
+        return iCategoryMService.editCategoryM(id, categoryMDtoInput);
     }
 
     // 3-1. 카테고리 대분류 전체 조회하기

@@ -1,11 +1,13 @@
 package com.ssghot.ssg.product.service;
 
 import com.ssghot.ssg.product.domain.ProductSubImg;
+import com.ssghot.ssg.product.dto.ProductSubImgDtoInput;
 import com.ssghot.ssg.product.repository.IProductSubImgRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -22,11 +24,35 @@ public class ProductSubImgServiceImple implements IProductSubImgService{
 
     // 1. 서브 이미지 등록하기
     @Override
-    public ProductSubImg addProductSubImg(ProductSubImg productSubImg) {
-        return iProductSubImgRepository.save(productSubImg);
+    public ProductSubImg addProductSubImg(ProductSubImgDtoInput productSubImgDtoInput) {
+
+        return iProductSubImgRepository.save(
+            ProductSubImg.builder()
+                    .subImgUrl(productSubImgDtoInput.getSubImgUrl())
+                    .subImgTxt(productSubImgDtoInput.getSubImgTxt())
+                    .product(productSubImgDtoInput.getProduct())
+                    .build()
+        );
     }
 
+
+
     // 2. 서브 이미지 수정하기
+    @Override
+    public ProductSubImg editProductSubImg(Long id, ProductSubImgDtoInput productSubImgDtoInput) {
+        Optional<ProductSubImg> productSubImg = iProductSubImgRepository.findById(id);
+        if(productSubImg.isPresent()){
+            iProductSubImgRepository.save(
+                ProductSubImg.builder()
+                        .subImgUrl(productSubImgDtoInput.getSubImgUrl())
+                        .subImgTxt(productSubImgDtoInput.getSubImgTxt())
+                        .product(productSubImgDtoInput.getProduct())
+                        .build()
+            );
+        }
+
+        return null;
+    }
 
     // 3. 서브 이미지 전체 조회하기
     @Override

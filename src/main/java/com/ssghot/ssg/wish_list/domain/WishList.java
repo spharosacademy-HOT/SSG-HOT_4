@@ -3,10 +3,7 @@ package com.ssghot.ssg.wish_list.domain;
 import com.ssghot.ssg.common.CommonDTO;
 import com.ssghot.ssg.product.domain.Product;
 import com.ssghot.ssg.users.domain.User;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -15,6 +12,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Entity
 @Builder
+@EqualsAndHashCode(callSuper=false)
 public class WishList extends CommonDTO{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

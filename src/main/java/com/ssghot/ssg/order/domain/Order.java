@@ -3,10 +3,7 @@ package com.ssghot.ssg.order.domain;
 import com.ssghot.ssg.common.CommonDTO;
 import com.ssghot.ssg.product.domain.Product;
 import com.ssghot.ssg.users.domain.User;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -15,7 +12,9 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Entity
 @Builder
-public class Order  extends CommonDTO{
+@Table(name = "orders")
+@EqualsAndHashCode(callSuper=false)
+public class Order extends CommonDTO{
     @Id  @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
