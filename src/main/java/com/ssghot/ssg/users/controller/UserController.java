@@ -1,6 +1,5 @@
 package com.ssghot.ssg.users.controller;
 
-import com.ssghot.ssg.users.domain.User;
 import com.ssghot.ssg.users.dto.UserDtoInput;
 import com.ssghot.ssg.users.dto.UserDtoOutput;
 import com.ssghot.ssg.users.dto.UserEditDtoInput;
@@ -30,7 +29,7 @@ public class UserController {
         return iUserService.addUser(user);
     }
     @GetMapping("/{id}")
-    public User getUser(@PathVariable Long id){
+    public UserDtoOutput getUser(@PathVariable Long id){
         return iUserService.getUserById(id);
     }
     @GetMapping("/mail/{email}")
@@ -38,7 +37,7 @@ public class UserController {
         return iUserService.checkUserEmail(email);
     }
     @GetMapping("")
-    public List<User> getAll(){
+    public List<UserDtoOutput> getAll(){
         return iUserService.getAll();
     }
 

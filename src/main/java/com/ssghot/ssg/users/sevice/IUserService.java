@@ -31,10 +31,10 @@ public interface IUserService {
     void deleteUser(Long id);
 
     // 회원 단일 조회
-    User getUserById(Long id);
+    UserDtoOutput getUserById(Long id);
 
     // 회원 전체 조회
-    List<User> getAll();
+    List<UserDtoOutput> getAll();
 
    checkEmailDtoOutPut checkUserEmail(String email);
 }
