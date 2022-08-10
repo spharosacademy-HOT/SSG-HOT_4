@@ -1,10 +1,7 @@
 package com.ssghot.ssg.users.sevice;
 
 import com.ssghot.ssg.users.domain.User;
-import com.ssghot.ssg.users.dto.UserDtoInput;
-import com.ssghot.ssg.users.dto.UserDtoOutput;
-import com.ssghot.ssg.users.dto.UserEditDtoInput;
-import com.ssghot.ssg.users.dto.checkEmailDtoOutPut;
+import com.ssghot.ssg.users.dto.*;
 import com.ssghot.ssg.users.repository.IUserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -13,6 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -91,41 +89,38 @@ public class UserServiceImple implements IUserService{
     // 회원 단일 조회
     @Override
     public UserDtoOutput getUserById(Long id) {
-        User user = iUserRepository.findById(id).get();
-
-        return UserDtoOutput.builder()
-                .id(user.getId())
-                .email(user.getEmail())
-                .name(user.getName())
-                .phone(user.getPhone())
-                .memberLevel(user.getMemberLevel())
-                .createdDate(user.getCreatedDate())
-                .updatedDate(user.getUpdatedDate())
-                .build();
+        Optional<User> user = iUserRepository.findById(id);
+        if(user.isPresent()){
+            return UserDtoOutput.builder()
+                    .id(user.get().getId())
+                    .email(user.get().getEmail())
+                    .name(user.get().getName())
+                    .phone(user.get().getPhone())
+                    .memberLevel(user.get().getMemberLevel())
+                    .createdDate(user.get().getCreatedDate())
+                    .updatedDate(user.get().getUpdatedDate())
+                    .build();
+        }
+        return null;
     }
 
     // 회원 전체 조회
     @Override
-    public List<UserDtoOutput> getAll() {
+    public ResultListDtoOutput<List<UserDtoOutput>> getAll() {
         log.info("getAll User");
         List<User> userList = iUserRepository.findAll();
-        List<UserDtoOutput> userDtoOutputs = new ArrayList<>();
-        userList.forEach(
-             user -> {
-                 userDtoOutputs.add(
-                         UserDtoOutput.builder()
-                         .id(user.getId())
-                         .email(user.getEmail())
-                         .name(user.getName())
-                         .phone(user.getPhone())
-                         .memberLevel(user.getMemberLevel())
-                         .createdDate(user.getCreatedDate())
-                         .updatedDate(user.getUpdatedDate())
-                         .build()
-                 );
-             }
-     );
-        return userDtoOutputs;
+        List<UserDtoOutput>  userDtoOutputs = userList.stream().map(user->
+                UserDtoOutput.builder()
+                        .id(user.getId())
+                        .email(user.getEmail())
+                        .name(user.getName())
+                        .phone(user.getPhone())
+                        .memberLevel(user.getMemberLevel())
+                        .createdDate(user.getCreatedDate())
+                        .updatedDate(user.getUpdatedDate())
+                        .build()
+        ).collect(Collectors.toList());
+        return new ResultListDtoOutput<>(userDtoOutputs.size(), userDtoOutputs);
     }
 
     @Override
@@ -137,4 +132,6 @@ public class UserServiceImple implements IUserService{
         }
         return s.checkFail();
     }
+
+
 }

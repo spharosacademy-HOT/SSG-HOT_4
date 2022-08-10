@@ -1,6 +1,7 @@
 package com.ssghot.ssg.address.service;
 
 import com.ssghot.ssg.address.dto.*;
+import com.ssghot.ssg.users.dto.ResultListDtoOutput;
 
 import java.util.List;
 
@@ -21,10 +22,9 @@ public interface IAddressService {
 
     AddressDtoExistedOutput changeExistedById(AddressDtoExistedInput addressDtoExistedInput);
 
-    List<AddressDtoOutput> getAddressByUserId(Long userId);
+    ResultListDtoOutput<List<AddressDtoOutput>> getAddressByUserId(Long userId);
 
-    List<AddressDtoOutput> getAll();
-
+    ResultListDtoOutput<List<AddressDtoOutput>> getAll();
 
 
 }

@@ -1,10 +1,7 @@
 package com.ssghot.ssg.users.sevice;
 
 import com.ssghot.ssg.users.domain.User;
-import com.ssghot.ssg.users.dto.UserDtoInput;
-import com.ssghot.ssg.users.dto.UserDtoOutput;
-import com.ssghot.ssg.users.dto.UserEditDtoInput;
-import com.ssghot.ssg.users.dto.checkEmailDtoOutPut;
+import com.ssghot.ssg.users.dto.*;
 
 import java.util.List;
 
@@ -34,7 +31,7 @@ public interface IUserService {
     UserDtoOutput getUserById(Long id);
 
     // 회원 전체 조회
-    List<UserDtoOutput> getAll();
+    ResultListDtoOutput<List<UserDtoOutput>> getAll();
 
    checkEmailDtoOutPut checkUserEmail(String email);
 }
