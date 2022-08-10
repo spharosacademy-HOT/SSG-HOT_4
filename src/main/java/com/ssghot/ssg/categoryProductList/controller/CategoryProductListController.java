@@ -11,6 +11,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/ssghot")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class CategoryProductListController {
 
     private final ICategoryProductListService iCategoryProductListService;

@@ -1,5 +1,6 @@
 package com.ssghot.ssg.categoryProductList.domain;
 
+import com.ssghot.ssg.category.domain.Category;
 import com.ssghot.ssg.category.domain.CategoryM;
 import com.ssghot.ssg.product.domain.Product;
 import lombok.AllArgsConstructor;
@@ -19,6 +20,9 @@ public class CategoryProductList {
 
     @ManyToOne
     private Product product;
+
+    @ManyToOne
+    private Category category;
 
     @ManyToOne
     private CategoryM categoryM;

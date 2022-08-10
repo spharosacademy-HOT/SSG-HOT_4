@@ -26,6 +26,7 @@ public class CategoryProductListServiceImple implements ICategoryProductListServ
     public CategoryProductList addCategoryProductList(CategoryProductListDtoInput categoryProductListDtoInput) {
         return iCategoryProductListRepository.save(CategoryProductList.builder()
                         .product(categoryProductListDtoInput.getProduct())
+                        .category(categoryProductListDtoInput.getCategory())
                         .categoryM(categoryProductListDtoInput.getCategoryM())
                 .build());
     }

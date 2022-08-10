@@ -15,6 +15,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/ssghot")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class ProductController {
 
     private final IProductService iProductService;
