@@ -1,9 +1,6 @@
 package com.ssghot.ssg.users.controller;
 
-import com.ssghot.ssg.users.dto.UserDtoInput;
-import com.ssghot.ssg.users.dto.UserDtoOutput;
-import com.ssghot.ssg.users.dto.UserEditDtoInput;
-import com.ssghot.ssg.users.dto.checkEmailDtoOutPut;
+import com.ssghot.ssg.users.dto.*;
 import com.ssghot.ssg.users.sevice.IUserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -37,7 +34,7 @@ public class UserController {
         return iUserService.checkUserEmail(email);
     }
     @GetMapping("")
-    public List<UserDtoOutput> getAll(){
+    public ResultListDtoOutput<List<UserDtoOutput>> getAll(){
         return iUserService.getAll();
     }
 

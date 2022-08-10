@@ -2,6 +2,7 @@ package com.ssghot.ssg.address.controller;
 
 import com.ssghot.ssg.address.dto.*;
 import com.ssghot.ssg.address.service.IAddressService;
+import com.ssghot.ssg.users.dto.ResultListDtoOutput;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -21,12 +22,12 @@ public class AddressController {
     }
 
     @GetMapping("")
-    public List<AddressDtoOutput> getAll() {
+    public ResultListDtoOutput<List<AddressDtoOutput>> getAll() {
         return iAddressService.getAll();
     }
 
     @GetMapping("/users/{userId}")
-    public List<AddressDtoOutput> getAddressByUserId(@PathVariable Long userId) {
+    public ResultListDtoOutput<List<AddressDtoOutput>> getAddressByUserId(@PathVariable Long userId) {
         return iAddressService.getAddressByUserId(userId);
     }
 

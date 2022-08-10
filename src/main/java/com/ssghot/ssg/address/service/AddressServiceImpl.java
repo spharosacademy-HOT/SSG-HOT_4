@@ -4,14 +4,15 @@ import com.ssghot.ssg.address.domain.Address;
 import com.ssghot.ssg.address.dto.*;
 import com.ssghot.ssg.address.repository.IAddressRepository;
 import com.ssghot.ssg.users.domain.User;
+import com.ssghot.ssg.users.dto.ResultListDtoOutput;
 import com.ssghot.ssg.users.repository.IUserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -66,7 +67,7 @@ public class AddressServiceImpl implements IAddressService{
     }
 
     @Override
-    public List<AddressDtoOutput> getAddressByUserId(Long userId) {
+    public ResultListDtoOutput<List<AddressDtoOutput>> getAddressByUserId(Long userId) {
         Optional<User> user = iUserRepository.findById(userId);
         if(user.isPresent()){
             List<Address> byUserId = iAddressRepository.findByUserIdOrderByExistedDesc(userId);
@@ -76,21 +77,22 @@ public class AddressServiceImpl implements IAddressService{
     }
 
     @Override
-    public List<AddressDtoOutput> getAll() {
+    public ResultListDtoOutput<List<AddressDtoOutput>> getAll() {
         List<Address> addresses = iAddressRepository.findAll();
+
         return getAddressDtoOutputs(addresses);
     }
     public AddressDtoExistedOutput getAddressDtoExistedOutput(int status, String result, String message){
-        AddressDtoExistedOutput build = AddressDtoExistedOutput.builder()
+        AddressDtoExistedOutput addressDtoExistedOutput = AddressDtoExistedOutput.builder()
                 .status(status)
                 .result(result)
                 .message(message)
                 .build();
-        return build;
+        return addressDtoExistedOutput;
     }
 
     public AddressDtoOutput getAddressDtoOutput(Address address){
-        AddressDtoOutput addressDtoOutput = AddressDtoOutput.builder()
+        return AddressDtoOutput.builder()
                 .id(address.getId())
                 .alias(address.getAlias())
                 .taker(address.getTaker())
@@ -104,30 +106,24 @@ public class AddressServiceImpl implements IAddressService{
                 .createdDate(address.getCreatedDate())
                 .updatedDate(address.getUpdatedDate())
                 .build();
-        return addressDtoOutput;
     }
-    private List<AddressDtoOutput> getAddressDtoOutputs(List<Address> addresses) {
-        List<AddressDtoOutput> addressDtoOutputs = new ArrayList<>();
-        addresses.forEach(
-                address -> {
-                    addressDtoOutputs.add(
-                            AddressDtoOutput.builder()
-                                    .id(address.getId())
-                                    .alias(address.getAlias())
-                                    .taker(address.getTaker())
-                                    .phone(address.getPhone())
-                                    .homePhone(address.getHomePhone())
-                                    .city(address.getCity())
-                                    .street(address.getStreet())
-                                    .zipcode(address.getZipcode())
-                                    .existed(address.isExisted())
-                                    .userId(address.getUser().getId())
-                                    .createdDate(address.getCreatedDate())
-                                    .updatedDate(address.getUpdatedDate())
-                                    .build()
-                    );
-                }
-        );
-        return addressDtoOutputs;
+    private ResultListDtoOutput<List<AddressDtoOutput>> getAddressDtoOutputs(List<Address> addresses) {
+        List<AddressDtoOutput> collect = addresses.stream().map(address ->
+                AddressDtoOutput.builder()
+                        .id(address.getId())
+                        .alias(address.getAlias())
+                        .taker(address.getTaker())
+                        .phone(address.getPhone())
+                        .homePhone(address.getHomePhone())
+                        .city(address.getCity())
+                        .street(address.getStreet())
+                        .zipcode(address.getZipcode())
+                        .existed(address.isExisted())
+                        .userId(address.getUser().getId())
+                        .createdDate(address.getCreatedDate())
+                        .updatedDate(address.getUpdatedDate())
+                        .build()
+        ).collect(Collectors.toList());
+        return new ResultListDtoOutput<>(collect.size(),collect);
     }
 }
