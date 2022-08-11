@@ -10,8 +10,11 @@ import java.util.List;
 
 public interface IAddressRepository extends JpaRepository<Address, Long> {
 
-    public List<Address> findByUserId(Long userId);
-    public List<Address> findByUserIdOrderByExistedDesc(Long userId);
+    boolean existsByUserId(Long userId);
+
+
+     List<Address> findByUserId(Long userId);
+     List<Address> findByUserIdOrderByExistedDesc(Long userId);
     @Transactional
     @Modifying
     @Query("update Address a set a.existed = false where a.user.id = :userId and a.existed = true")

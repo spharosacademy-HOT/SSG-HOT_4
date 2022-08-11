@@ -20,7 +20,7 @@ public class Cart extends CommonDTO {
     private Long id;
 
     @Column(nullable = false)
-    private int orderCount;
+    private int count;
 
     @ManyToOne
     private User user;
