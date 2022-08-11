@@ -1,7 +1,7 @@
 package com.ssghot.ssg.cart.domain;
 
 import com.ssghot.ssg.common.CommonDTO;
-import com.ssghot.ssg.product.domain.Product;
+import com.ssghot.ssg.optionList.domain.Stock;
 import com.ssghot.ssg.users.domain.User;
 import lombok.*;
 
@@ -20,12 +20,12 @@ public class Cart extends CommonDTO {
     private Long id;
 
     @Column(nullable = false)
-    private int orderCount;
+    private int count;
 
     @ManyToOne
     private User user;
 
     @ManyToOne
-    private Product product;
+    private Stock stock;
 
 }

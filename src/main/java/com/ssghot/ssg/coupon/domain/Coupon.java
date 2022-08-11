@@ -1,4 +1,4 @@
-package com.ssghot.ssg.order.domain;
+package com.ssghot.ssg.coupon.domain;
 
 import com.ssghot.ssg.common.CommonDTO;
 import lombok.*;
@@ -31,6 +31,10 @@ public class Coupon  extends CommonDTO{
     // 사용 조건
     @Column(nullable = false)
     private String TermsOfUse;
+
+    // 사용 여부
+    @Column(columnDefinition = "boolean default false")
+    private boolean isValid;
 
     // 사용기간
     @Column(nullable = false)

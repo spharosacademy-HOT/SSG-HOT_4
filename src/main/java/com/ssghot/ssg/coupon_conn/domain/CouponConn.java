@@ -2,7 +2,6 @@ package com.ssghot.ssg.coupon_conn.domain;
 
 
 import com.ssghot.ssg.common.CommonDTO;
-import com.ssghot.ssg.order.domain.Coupon;
 import com.ssghot.ssg.users.domain.User;
 import lombok.*;
 
@@ -19,8 +18,8 @@ public class CouponConn  extends CommonDTO {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    private Coupon coupon;
+//    @ManyToOne
+//    private Coupon coupon;
 
     @ManyToOne
     private User user;
