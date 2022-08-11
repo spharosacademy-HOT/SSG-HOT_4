@@ -1,5 +1,6 @@
 package com.ssghot.ssg.product.dto;
 
+import com.ssghot.ssg.optionList.domain.Stock;
 import com.ssghot.ssg.product.domain.ProductSubImg;
 import lombok.Builder;
 import lombok.Data;
@@ -26,4 +27,7 @@ public class ProductDtoOutputAll {
 
     //=== ProductSubImg ===///
     private List<ProductSubImg> productSubImgList;
+
+    //=== OptionList ===///
+    private List<Stock> stockList;
 }

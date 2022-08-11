@@ -23,7 +23,15 @@ public class StockServiceImple implements IStockService{
     public Stock editStock(Long id, Stock stock) {
         Optional<Stock> stockList = iStockRepository.findById(id);
         if(stockList.isPresent()){
-            return iStockRepository.save(stockList.get());
+            return iStockRepository.save(
+                    Stock.builder()
+                            .id(id)
+                            .qty(stock.getQty())
+                            .optionFirst(stock.getOptionFirst())
+                            .optionSecond(stock.getOptionSecond())
+                            .product(stock.getProduct())
+                            .build()
+            );
         }
 
         return null;

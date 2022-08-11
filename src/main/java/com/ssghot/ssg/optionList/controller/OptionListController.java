@@ -42,8 +42,8 @@ public class OptionListController {
 
     // 1-2. 옵션1 수정
     @PutMapping("/optionfirst/{id}")
-    public OptionFirst editOptionFirst(@PathVariable int id){
-        return iOptionFirstService.editOptionFirst(id);
+    public OptionFirst editOptionFirst(@PathVariable int id, @RequestBody OptionFirst optionFirst){
+        return iOptionFirstService.editOptionFirst(id, optionFirst);
     }
 
     // 1-3. 옵션1 조회
@@ -61,8 +61,8 @@ public class OptionListController {
 
     // 2-2. 옵션2 수정
     @PutMapping("/optionsecond/{id}")
-    public OptionSecond editOptionSecond(@PathVariable int id){
-        return iOptionSecondService.editOptionSecond(id);
+    public OptionSecond editOptionSecond(@PathVariable int id, @RequestBody OptionSecond optionSecond){
+        return iOptionSecondService.editOptionSecond(id, optionSecond);
     }
 
     // 2-3. 옵션2 조회

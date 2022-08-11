@@ -16,7 +16,7 @@ public interface IOptionFirstService {
     OptionFirst addOptionFirst(OptionFirst optionFirst);
 
     // 2. 옵션1 수정하기
-    OptionFirst editOptionFirst(int id);
+    OptionFirst editOptionFirst(int id, OptionFirst optionFirst);
 
     // 3. 옵션1 조회하기
     List<OptionFirst> getAllOptionFirst();

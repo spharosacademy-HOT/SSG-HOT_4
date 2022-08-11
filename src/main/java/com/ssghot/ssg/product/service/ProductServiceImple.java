@@ -3,10 +3,12 @@ package com.ssghot.ssg.product.service;
 import com.ssghot.ssg.category.domain.Category;
 import com.ssghot.ssg.category.repository.ICategoryMRepository;
 import com.ssghot.ssg.category.repository.ICategoryRepository;
+import com.ssghot.ssg.optionList.repository.IStockRepository;
 import com.ssghot.ssg.product.domain.Product;
 import com.ssghot.ssg.product.domain.ProductSubImg;
 import com.ssghot.ssg.product.dto.ProductDtoInputAll;
 import com.ssghot.ssg.product.dto.ProductDtoOutputAll;
+import com.ssghot.ssg.product.dto.ProductDtoOutputStockByProductId;
 import com.ssghot.ssg.product.repository.IProductRepository;
 import com.ssghot.ssg.product.repository.IProductSubImgRepository;
 import lombok.RequiredArgsConstructor;
@@ -27,11 +29,14 @@ public class ProductServiceImple implements IProductService{
 
     private final ICategoryRepository iCategoryRepository;
 
+    private final IStockRepository iStockRepository;
+
     /*
         1. 상품 등록하기
         2. 상품 수정하기
         3. 상품 전체 조회하기
         4. 상품 단일 조회하기
+        5. 상품-재고 현황 조회하기
      */
 
     // 1. 상품 등록하기
@@ -139,6 +144,7 @@ public class ProductServiceImple implements IProductService{
                                     .titleImgUrl(product.getTitleImgUrl())
                                     .titleImgTxt(product.getTitleImgTxt())
                                     .productSubImgList(iProductSubImgRepository.findAllByProductId(product.getId())) // 수정 필요
+                                    .stockList(iStockRepository.findAllByProductId(product.getId()))
                                     .build()
                     );
                 }
@@ -151,5 +157,12 @@ public class ProductServiceImple implements IProductService{
     public Product getProductOne(Long productId) {
 
         return iProductRepository.findById(productId).get();
+    }
+
+    // 5. 상품-재고 현황 조회하기
+
+    @Override
+    public ProductDtoOutputStockByProductId getStockByProductId(Long id) {
+        return null;
     }
 }

@@ -20,11 +20,16 @@ public class OptionFirstServiceImple implements IOptionFirstService{
     }
 
     @Override
-    public OptionFirst editOptionFirst(int id) {
+    public OptionFirst editOptionFirst(int id, OptionFirst optionFirst) {
 
         Optional<OptionFirst> optionFirstList = iOptionFirstRepository.findById(id);
         if(optionFirstList.isPresent()){
-            return iOptionFirstRepository.save(optionFirstList.get());
+            return iOptionFirstRepository.save(
+                    OptionFirst.builder()
+                            .id(id)
+                            .name(optionFirst.getName())
+                            .build()
+            );
         }
 
         return null;
