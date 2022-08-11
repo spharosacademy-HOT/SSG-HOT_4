@@ -2,10 +2,12 @@ package com.ssghot.ssg.cart.controller;
 
 import com.ssghot.ssg.cart.dto.CartDtoInput;
 import com.ssghot.ssg.cart.dto.CartDtoOutput;
+import com.ssghot.ssg.cart.dto.CartEditDtoInput;
 import com.ssghot.ssg.cart.service.ICartService;
 import com.ssghot.ssg.common.ResultDtoOutput;
 import com.ssghot.ssg.common.ResultsDtoOutput;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,12 +18,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CartController {
 
-//    private final IAddressService iAddressService;
-//
-//    @PostMapping("")
-//    public AddressDtoOutput addAddress(@RequestBody AddressDtoInput addressDtoInput) {
-//        return iAddressService.addAddress(addressDtoInput);
-//    }
     private final ICartService iCartService;
 
     @PostMapping("")
@@ -42,6 +38,14 @@ public class CartController {
     public ResultsDtoOutput<List<CartDtoOutput>> getCartByUserId(@PathVariable Long userId){
         return iCartService.getCartByUserId(userId);
     }
+    @PutMapping("/count")
+    public ResultDtoOutput<CartDtoOutput> editCountCart(@RequestBody CartEditDtoInput cartEditDtoInput){
+        return iCartService.editCountCart(cartEditDtoInput);
+    }
 
-
+    @DeleteMapping("/{id}")
+    @ResponseStatus(value = HttpStatus.NO_CONTENT)
+    public void deleteCart(@PathVariable Long id){
+        iCartService.deleteCart(id);
+    }
 }

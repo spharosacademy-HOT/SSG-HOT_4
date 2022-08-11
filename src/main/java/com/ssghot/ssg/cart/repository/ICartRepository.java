@@ -1,7 +1,7 @@
 package com.ssghot.ssg.cart.repository;
 
 import com.ssghot.ssg.cart.domain.Cart;
-import com.ssghot.ssg.product.domain.Product;
+import com.ssghot.ssg.optionList.domain.Stock;
 import com.ssghot.ssg.users.domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ICartRepository extends JpaRepository<Cart,Long> {
-    Optional<Cart> findByUserAndProduct(User user, Product product);
+    Optional<Cart> findByUserAndStock(User user, Stock Stock);
 
      List<Cart> findByUserId(Long userId);
 

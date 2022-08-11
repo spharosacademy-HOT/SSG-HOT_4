@@ -2,6 +2,7 @@ package com.ssghot.ssg.cart.service;
 
 import com.ssghot.ssg.cart.dto.CartDtoInput;
 import com.ssghot.ssg.cart.dto.CartDtoOutput;
+import com.ssghot.ssg.cart.dto.CartEditDtoInput;
 import com.ssghot.ssg.common.ResultDtoOutput;
 import com.ssghot.ssg.common.ResultsDtoOutput;
 
@@ -18,7 +19,7 @@ public interface ICartService {
      */
     ResultDtoOutput<CartDtoOutput> addCart(CartDtoInput cartDtoInput);
 
-    ResultDtoOutput<CartDtoOutput> editCart(CartDtoInput cartDtoInput);
+    ResultDtoOutput<CartDtoOutput> editCountCart(CartEditDtoInput cartEditDtoInput);
 
     ResultDtoOutput<CartDtoOutput> getCartById(Long id);
 
@@ -27,4 +28,6 @@ public interface ICartService {
     ResultsDtoOutput<List<CartDtoOutput>> getAll();
 
     void deleteCart(Long id);
+
+    ResultDtoOutput<CartDtoOutput> editStockCart(CartDtoInput cartDtoInput);
 }

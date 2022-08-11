@@ -3,11 +3,12 @@ package com.ssghot.ssg.cart.service;
 import com.ssghot.ssg.cart.domain.Cart;
 import com.ssghot.ssg.cart.dto.CartDtoInput;
 import com.ssghot.ssg.cart.dto.CartDtoOutput;
+import com.ssghot.ssg.cart.dto.CartEditDtoInput;
 import com.ssghot.ssg.cart.repository.ICartRepository;
 import com.ssghot.ssg.common.ResultDtoOutput;
 import com.ssghot.ssg.common.ResultsDtoOutput;
-import com.ssghot.ssg.product.domain.Product;
-import com.ssghot.ssg.product.repository.IProductRepository;
+import com.ssghot.ssg.optionList.domain.Stock;
+import com.ssghot.ssg.optionList.repository.IStockRepository;
 import com.ssghot.ssg.users.domain.User;
 import com.ssghot.ssg.users.repository.IUserRepository;
 import lombok.RequiredArgsConstructor;
@@ -23,17 +24,17 @@ import java.util.stream.Collectors;
 @Service
 public class CartServiceImpl implements ICartService{
     private final ICartRepository iCartRepository;
-    private final IProductRepository iProductRepository;
+    private final IStockRepository iStockRepository;
     private final IUserRepository iUserRepository;
 
     @Override
     public ResultDtoOutput<CartDtoOutput> addCart(CartDtoInput cartDtoInput) {
         Optional<User> user = iUserRepository.findById(cartDtoInput.getUserId());
-        Optional<Product> product = iProductRepository.findById(cartDtoInput.getProductId());
+        Optional<Stock> stock = iStockRepository.findById(cartDtoInput.getStockId());
 
         // 유저 정보와 제품 정보가 존재할 경우
-        if(user.isPresent() && product.isPresent()){
-            Optional<Cart> cart = iCartRepository.findByUserAndProduct(user.get(), product.get());
+        if(user.isPresent() && stock.isPresent()){
+            Optional<Cart> cart = iCartRepository.findByUserAndStock(user.get(), stock.get());
             // 사용자가 기존의 카트에 담겨 있을 경우
             if(cart.isPresent()){
                 int oldCount = cart.get().getCount();
@@ -46,7 +47,7 @@ public class CartServiceImpl implements ICartService{
             }
 
             // 아닌 경우
-            Cart saveCart = iCartRepository.save(cartDtoInput.toEntity(product.get(), user.get()));
+            Cart saveCart = iCartRepository.save(cartDtoInput.toEntity(stock.get(), user.get()));
             return getCartDtoOutput(200,"상품이 유저 카트에 추가되었습니다.",saveCart);
 
         }
@@ -54,9 +55,19 @@ public class CartServiceImpl implements ICartService{
     }
 
     @Override
-    public ResultDtoOutput<CartDtoOutput> editCart(CartDtoInput cartDtoInput) {
+    public ResultDtoOutput<CartDtoOutput> editCountCart(CartEditDtoInput cartEditDtoInput) {
+        // 유저 정보와 제품 정보가 존재할 경우
+            Optional<Cart> cart = iCartRepository.findById(cartEditDtoInput.getId());
+            // 사용자가 기존의 카트에 담겨 있을 경우
+            if(cart.isPresent()){
+                int replaceCount = iCartRepository.replaceCount(cartEditDtoInput.getId(), cartEditDtoInput.getCount());
+                if(replaceCount==1){
+                    return  new ResultDtoOutput<>(200,"상품의 개수가 수정되었습니다.",CartDtoOutput.builder().count(cartEditDtoInput.getCount()).build());
+                }
+                return  new ResultDtoOutput<>(204,"오류가 났습니다.",null);
+            }
 
-        return null;
+        return  getCartDtoOutput(204,"카트 정보가 없습니다.",null);
     }
 
     @Override
@@ -89,7 +100,12 @@ public class CartServiceImpl implements ICartService{
 
     @Override
     public void deleteCart(Long id) {
+        iCartRepository.deleteById(id);
+    }
 
+    @Override
+    public ResultDtoOutput<CartDtoOutput> editStockCart(CartDtoInput cartDtoInput) {
+        return null;
     }
 
     private ResultDtoOutput<CartDtoOutput> getCartDtoOutput(int status, String message, Cart cart){
@@ -99,7 +115,7 @@ public class CartServiceImpl implements ICartService{
                     .id(cart.getId())
                     .userId(cart.getUser().getId())
                     .count(cart.getCount())
-                    .product(cart.getProduct())
+                    .stock(cart.getStock())
                     .createdDate(cart.getCreatedDate())
                     .updatedDate(cart.getUpdatedDate())
                     .build());
@@ -113,7 +129,7 @@ public class CartServiceImpl implements ICartService{
                             .id(cart.getId())
                             .userId(cart.getUser().getId())
                             .count(cart.getCount())
-                            .product(cart.getProduct())
+                            .stock(cart.getStock())
                             .createdDate(cart.getCreatedDate())
                             .updatedDate(cart.getUpdatedDate())
                             .build()

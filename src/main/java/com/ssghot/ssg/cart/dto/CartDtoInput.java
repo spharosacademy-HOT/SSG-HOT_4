@@ -1,7 +1,7 @@
 package com.ssghot.ssg.cart.dto;
 
 import com.ssghot.ssg.cart.domain.Cart;
-import com.ssghot.ssg.product.domain.Product;
+import com.ssghot.ssg.optionList.domain.Stock;
 import com.ssghot.ssg.users.domain.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -13,12 +13,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CartDtoInput {
-    private Long productId;
+    private Long stockId;
     private Long userId;
     private int count;
-    public Cart toEntity(Product product, User user){
+    public Cart toEntity(Stock stock, User user){
         return Cart.builder()
-                .product(product)
+                .stock(stock)
                 .count(count)
                 .user(user)
                 .build();
