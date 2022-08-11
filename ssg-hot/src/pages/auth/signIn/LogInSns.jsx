@@ -2,7 +2,7 @@ import React from 'react'
 
 function LogInSns() {
     return ( 
-
+          
         <ul className="cmem_sns_login" style={{padding:"0px"}}>
             <li>
                 <span className="ico_area">
