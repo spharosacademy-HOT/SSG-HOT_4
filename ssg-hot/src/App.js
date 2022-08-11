@@ -10,6 +10,7 @@ import Recent from "./pages/recent/Recent";
 import "./styles/styles.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import LogIn from "./pages/auth/signIn/LogIn";
+import SignUp from "./pages/auth/signUp/SignUp";
 import Search from "./pages/search/Search";
 import Cart from "./pages/cart/Cart";
 import Footer from "./components/layout/footer/Footer";
@@ -18,6 +19,7 @@ import Product from "./pages/product/Product";
 import Header from "./components/layout/header/Header";
 import MyPage from "./pages/myPage/MyPage";
 import Cart2 from "./pages/cart2/Cart2";
+import EmailSignUp from "./pages/auth/signUp/emailSignUp/EmailSignUp";
 
 function App() {
   return (
@@ -36,6 +38,8 @@ function App() {
           <Route path=":productId" element={<Product/>}/>
         </Route>
         <Route path="/mypage" element={<MyPage />} />
+        <Route path="/signUp" element={<SignUp/>}/>
+        <Route path="/emailsignup" element={<EmailSignUp/>}/>
       </Routes>
       <ToolBar />
       <Footer />

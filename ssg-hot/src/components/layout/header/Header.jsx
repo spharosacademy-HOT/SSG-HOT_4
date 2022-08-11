@@ -24,7 +24,15 @@ export default function Header() {
         ""
       ) : pagePath === "/cart" ? (
         ""
-      ) : (
+      ) : pagePath === "/mypage" ? (
+        ""
+      ) : pagePath === "/signup" ? 
+       "" 
+       :  pagePath === "/emailsignup" ?
+       "" 
+        :
+       (
+      
         <header>
           <div className="innerHeader">
             <HomeLogo />
@@ -33,5 +41,5 @@ export default function Header() {
         </header>
       )}
     </>
-  );
-}
+ );
+       }

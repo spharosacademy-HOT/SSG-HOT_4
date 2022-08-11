@@ -8,7 +8,7 @@ export default function LogIn() {
   return (
     <div>
       <CommonHeader title="로그인" />
-      {/* <LoginTop /> */}
+      <LoginTop />
       <LogInInput />
       <LogInSns />
       <div>
