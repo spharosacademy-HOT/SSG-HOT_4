@@ -20,8 +20,8 @@ public class Product extends CommonDTO {
     private String name; // 상품명
     @Column(nullable = true)
     private int price; // 가격
-    @Column(nullable = true)
-    private int stockQuantity; // 재고 개수
+//    @Column(nullable = true)
+//    private int stockQuantity; // 재고 개수
     @Column(nullable = true)
     private int star; // 별점
     @Column(nullable = true)
@@ -34,8 +34,8 @@ public class Product extends CommonDTO {
     private int sellCount; // 판매 개수
     @Column(nullable = true)
     private String brandName; // 브랜드 이름
-    @Column(nullable = true)
-    private String optionList; // 옵션
+//    @Column(nullable = true)
+//    private String optionList; // 옵션
     @Column(nullable = true)
     private String titleImgUrl; // 타이틀 이미지 url
     @Column(nullable = true)

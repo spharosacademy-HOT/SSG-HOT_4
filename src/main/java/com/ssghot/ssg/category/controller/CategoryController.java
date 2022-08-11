@@ -3,7 +3,9 @@ package com.ssghot.ssg.category.controller;
 import com.ssghot.ssg.category.domain.Category;
 import com.ssghot.ssg.category.domain.CategoryM;
 import com.ssghot.ssg.category.dto.CategoryDtoInput;
+import com.ssghot.ssg.category.dto.CategoryDtoOutput;
 import com.ssghot.ssg.category.dto.CategoryMDtoInput;
+import com.ssghot.ssg.category.dto.CategoryMDtoOutput;
 import com.ssghot.ssg.category.service.ICategoryMService;
 import com.ssghot.ssg.category.service.ICategoryService;
 import lombok.RequiredArgsConstructor;
@@ -58,23 +60,23 @@ public class CategoryController {
 
     // 3-1. 카테고리 대분류 전체 조회하기
     @GetMapping("/category")
-    public List<Category> getAllCategory(){
+    public List<CategoryDtoOutput> getAllCategory(){
         return iCategoryService.getAllCategory();
     }
     // 3-2. 카테고리 중분류 전체 조회하기
     @GetMapping("/categorym")
-    public List<CategoryM> getAllCategoryM(){
+    public List<CategoryMDtoOutput> getAllCategoryM(){
         return iCategoryMService.getAllCategoryM();
     }
 
     // 4-1. 카테고리 대분류 단일 조회하기
     @GetMapping("/category/{id}")
-    public Category getOneCategory(@PathVariable Long id){
+    public CategoryDtoOutput getOneCategory(@PathVariable Long id){
         return iCategoryService.getOneCategory(id);
     }
     // 4-2. 카테고리 중분류 단일 조회하기
     @GetMapping("/categorym/{id}")
-    public CategoryM getOneCategoryM(@PathVariable Long id){
+    public CategoryMDtoOutput getOneCategoryM(@PathVariable Long id){
         return iCategoryMService.getOneCategoryM(id);
     }
 }
