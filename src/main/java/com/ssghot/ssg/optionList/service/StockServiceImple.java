@@ -20,7 +20,7 @@ public class StockServiceImple implements IStockService{
     }
 
     @Override
-    public Stock editStock(int id) {
+    public Stock editStock(Long id, Stock stock) {
         Optional<Stock> stockList = iStockRepository.findById(id);
         if(stockList.isPresent()){
             return iStockRepository.save(stockList.get());

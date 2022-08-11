@@ -16,7 +16,7 @@ public interface IStockService {
     Stock addStock(Stock stock);
 
     // 2. 옵션2 수정하기
-    Stock editStock(int id);
+    Stock editStock(Long id, Stock stock);
 
     // 3. 옵션2 조회하기
     List<Stock> getAllStock();
