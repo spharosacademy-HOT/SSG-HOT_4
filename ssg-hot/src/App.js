@@ -23,7 +23,7 @@ import EmailSignUp from "./pages/auth/signUp/emailSignUp/EmailSignUp";
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter className="test">
       <Header />
       <Routes>
         <Route path="/" element={<Main />} />
@@ -34,7 +34,9 @@ function App() {
         <Route path="/cart" element={<Cart />} />
         <Route path="/cart2" element={<Cart2 />} />
         <Route path="/productList" element={<ProductList />} />
-        <Route path="/product" element={<Product />} />
+        <Route path="/product" element={<Product />}>
+          <Route path=":productId" element={<Product/>}/>
+        </Route>
         <Route path="/mypage" element={<MyPage />} />
         <Route path="/signUp" element={<SignUp/>}/>
         <Route path="/emailsignup" element={<EmailSignUp/>}/>

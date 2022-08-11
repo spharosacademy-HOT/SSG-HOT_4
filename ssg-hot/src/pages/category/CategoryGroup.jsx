@@ -1,14 +1,7 @@
-import React, { useEffect, useState } from 'react'
-// import CategoryItem from './CategoryItem';
-// import CateogoryViewer from './CategoryViewer';
-// import cateDatas from '../../datas/cateDatas';
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 function CategoryGroup() {
-
-    // const [isTrue, setIsTrue] = useState(false)
-    // useEffect(() => {
-    //    console.log(cateDatas) 
-    // },[])
 
     return ( 
         <>
@@ -35,7 +28,8 @@ function CategoryGroup() {
                         <div class="clnb_lst_cate">
                             <div class="clnb_lst">
                                 <ul class="cate_view">
-                                    <li class=""><a href="https://m-shinsegaemall.ssg.com/page/llcategory/1000016177.ssg" class="clickable" data-react-tarea="카테고리_LNB|전시_카테고리|일반_선택|상품 전체보기">상품 전체보기</a></li>
+                                    {/* axios */}
+                                    <li class=""><Link to={'/productList'}>상품 전체보기</Link></li>
                                     <li class=""><a href="https://m-shinsegaemall.ssg.com/disp/category.ssg?dispCtgId=6000201547" class="clickable" data-react-tarea="카테고리_LNB|전시_카테고리|일반_선택|명품/수입의류">명품/수입의류</a></li>
                                     <li class=""><a href="https://m-shinsegaemall.ssg.com/disp/category.ssg?dispCtgId=6000189224" class="clickable" data-react-tarea="카테고리_LNB|전시_카테고리|일반_선택|여성브랜드패션">여성브랜드패션</a></li>
                                     <li class=""><a href="https://m-shinsegaemall.ssg.com/disp/category.ssg?dispCtgId=6000189308" class="clickable" data-react-tarea="카테고리_LNB|전시_카테고리|일반_선택|여성트렌드패션">여성트렌드패션</a></li>
