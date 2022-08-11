@@ -1,9 +1,9 @@
 import React from "react";
 
-export default function ItemImg() {
+export default function ItemImg({ imgUrl }) {
   return (
-    <div>
-      <img src="" alt="" />
+    <div className="recentImg">
+      <img src={imgUrl} alt="" />
     </div>
   );
 }
