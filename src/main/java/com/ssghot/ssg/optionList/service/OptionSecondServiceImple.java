@@ -20,10 +20,15 @@ public class OptionSecondServiceImple implements IOptionSecondService{
     }
 
     @Override
-    public OptionSecond editOptionSecond(int id) {
+    public OptionSecond editOptionSecond(int id, OptionSecond optionSecond) {
         Optional<OptionSecond> optionSecondList = iOptionSecondRepository.findById(id);
         if (optionSecondList.isPresent()){
-            return iOptionSecondRepository.save(optionSecondList.get());
+            return iOptionSecondRepository.save(
+                    OptionSecond.builder()
+                            .id(id)
+                            .name(optionSecond.getName())
+                            .build()
+            );
         }
 
         return null;

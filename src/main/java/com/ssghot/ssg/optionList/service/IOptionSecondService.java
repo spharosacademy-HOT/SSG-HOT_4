@@ -16,7 +16,7 @@ public interface IOptionSecondService {
     OptionSecond addOptionSecond(OptionSecond optionSecond);
 
     // 2. 옵션2 수정하기
-    OptionSecond editOptionSecond(int id);
+    OptionSecond editOptionSecond(int id, OptionSecond optionSecond);
 
     // 3. 옵션2 조회하기
     List<OptionSecond> getAllOptionSecond();
