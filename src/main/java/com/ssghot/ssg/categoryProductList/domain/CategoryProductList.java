@@ -5,6 +5,7 @@ import com.ssghot.ssg.category.domain.CategoryM;
 import com.ssghot.ssg.product.domain.Product;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -13,6 +14,7 @@ import javax.persistence.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Data
 public class CategoryProductList {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)

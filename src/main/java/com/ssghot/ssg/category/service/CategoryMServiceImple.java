@@ -2,12 +2,15 @@ package com.ssghot.ssg.category.service;
 
 import com.ssghot.ssg.category.domain.CategoryM;
 import com.ssghot.ssg.category.dto.CategoryMDtoInput;
+import com.ssghot.ssg.category.dto.CategoryMDtoOutput;
 import com.ssghot.ssg.category.repository.ICategoryMRepository;
 import com.ssghot.ssg.category.repository.ICategoryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -53,13 +56,40 @@ public class CategoryMServiceImple implements ICategoryMService{
 
     // 3. 카테고리 중분류 전체 조회하기
     @Override
-    public List<CategoryM> getAllCategoryM() {
-        return iCategoryMRepository.findAll();
+    public List<CategoryMDtoOutput> getAllCategoryM() {
+
+        List<CategoryM> categoryMList = iCategoryMRepository.findAll();
+        List<CategoryMDtoOutput> categoryMDtoOutputList = new ArrayList<>();
+
+        categoryMList.forEach(
+                categoryM -> {
+                    categoryMDtoOutputList.add(
+                            CategoryMDtoOutput.builder()
+                                    .id(categoryM.getId())
+                                    .name(categoryM.getName())
+                                    .build()
+                    );
+                }
+        );
+
+        return categoryMDtoOutputList;
     }
 
     // 4. 카테고리 중분류 단일 조회하기
     @Override
-    public CategoryM getOneCategoryM(Long categoryMId) {
-        return iCategoryMRepository.findById(categoryMId).get();
+    public CategoryMDtoOutput getOneCategoryM(Long categoryMId) {
+
+        Optional<CategoryM> categoryM = iCategoryMRepository.findById(categoryMId);
+
+        CategoryMDtoOutput categoryMDtoOutput = null;
+
+        if(categoryM.isPresent()){
+            categoryMDtoOutput = CategoryMDtoOutput.builder()
+                    .id(categoryM.get().getId())
+                    .name(categoryM.get().getName())
+                    .build();
+        }
+
+        return categoryMDtoOutput;
     }
 }
