@@ -1,5 +1,5 @@
 import React from "react";
 
-export default function ItemTitle() {
-  return <div>ItemTitle</div>;
+export default function ItemTitle({ name }) {
+  return <div className="recentName">{name}</div>;
 }
