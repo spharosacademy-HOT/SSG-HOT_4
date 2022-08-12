@@ -1,5 +1,6 @@
 import React from "react";
-import CartContents from "./CartContents";
+import CartContents from "./cartContent/CartContents";
+
 import CartFooter from "./CartFooter";
 import CartHeader from "./CartHeader";
 import CartNotice from "./CartNotice";
