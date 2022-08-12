@@ -21,8 +21,6 @@ public class Order extends CommonDTO{
     @OneToOne
     private Product product;
 
-    @ManyToOne
-    private Order order;
 
     // 상품 개수
     private int count;

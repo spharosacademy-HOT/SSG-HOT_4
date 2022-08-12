@@ -30,11 +30,7 @@ public class Coupon  extends CommonDTO{
 
     // 사용 조건
     @Column(nullable = false)
-    private String TermsOfUse;
-
-    // 사용 여부
-    @Column(columnDefinition = "boolean default false")
-    private boolean isValid;
+    private String termsOfUse;
 
     // 사용기간
     @Column(nullable = false)

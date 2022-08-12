@@ -43,7 +43,7 @@ public class CartServiceImpl implements ICartService{
                 if(replaceCount==1){
                 return  new ResultDtoOutput<>(200,"상품의 개수가 카트에 추가되었습니다.",CartDtoOutput.builder().count(newCount).build());
                 }
-                return  new ResultDtoOutput<>(204,"오류가 났습니다.",null);
+                return  new ResultDtoOutput<>(404,"오류가 났습니다.",null);
             }
 
             // 아닌 경우
@@ -51,7 +51,7 @@ public class CartServiceImpl implements ICartService{
             return getCartDtoOutput(200,"상품이 유저 카트에 추가되었습니다.",saveCart);
 
         }
-        return  getCartDtoOutput(204,"상품 혹은 유저 정보가 없습니다.",null);
+        return  getCartDtoOutput(404,"상품 혹은 유저 정보가 없습니다.",null);
     }
 
     @Override
@@ -64,10 +64,10 @@ public class CartServiceImpl implements ICartService{
                 if(replaceCount==1){
                     return  new ResultDtoOutput<>(200,"상품의 개수가 수정되었습니다.",CartDtoOutput.builder().count(cartEditDtoInput.getCount()).build());
                 }
-                return  new ResultDtoOutput<>(204,"오류가 났습니다.",null);
+                return  new ResultDtoOutput<>(404,"오류가 났습니다.",null);
             }
 
-        return  getCartDtoOutput(204,"카트 정보가 없습니다.",null);
+        return  getCartDtoOutput(404,"카트 정보가 없습니다.",null);
     }
 
     @Override
@@ -76,7 +76,7 @@ public class CartServiceImpl implements ICartService{
         if(cart.isPresent()){
           return getCartDtoOutput(200,"카트 정보를 가져왔습니다.",cart.get());
         }
-        return getCartDtoOutput(204,"카트 정보가 없습니다.",null);
+        return getCartDtoOutput(404,"카트 정보가 없습니다.",null);
     }
 
     @Override
@@ -86,14 +86,14 @@ public class CartServiceImpl implements ICartService{
             List<Cart> carts = iCartRepository.findByUserId(userId);
             return getCartsDtoOutputs(200,"유저별 카트 정보를 가져왔습니다.",carts);
         }
-        return getCartsDtoOutputs(204,"유저 정보가 없습니다",null);
+        return getCartsDtoOutputs(404,"유저 정보가 없습니다",null);
     }
 
     @Override
     public ResultsDtoOutput<List<CartDtoOutput>> getAll() {
         List<Cart> carts = iCartRepository.findAll();
         if(carts.isEmpty()) {
-            return getCartsDtoOutputs(204,"상품 목록을 가져오지 못했습니다.",null);
+            return getCartsDtoOutputs(404,"상품 목록을 가져오지 못했습니다.",null);
         }
         return getCartsDtoOutputs(200,"상품 목록을 가져왔습니다.",carts);
     }

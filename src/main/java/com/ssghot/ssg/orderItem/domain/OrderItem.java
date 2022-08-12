@@ -1,11 +1,8 @@
-package com.ssghot.ssg.orderDetail.domain;
+package com.ssghot.ssg.orderItem.domain;
 
 import com.ssghot.ssg.coupon.domain.Coupon;
 import com.ssghot.ssg.users.domain.User;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -14,7 +11,8 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Entity
 @Builder
-public class OrderDetail {
+@EqualsAndHashCode(callSuper=false)
+public class OrderItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

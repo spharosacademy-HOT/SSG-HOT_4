@@ -19,7 +19,7 @@ public class CartDtoInput {
     public Cart toEntity(Stock stock, User user){
         return Cart.builder()
                 .stock(stock)
-                .count(count)
+                .count(getCount())
                 .user(user)
                 .build();
     }
