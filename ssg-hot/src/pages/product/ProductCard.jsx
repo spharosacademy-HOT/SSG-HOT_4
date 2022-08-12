@@ -13,6 +13,7 @@ function ProductCard({item}) {
             <div className='product-thumbnail-card'>
             <Link to={`/product/${item.id}`}>
                 <div className='product-image'>
+                    <img src={item.titleImgUrl} alt="" />
                     <div>
                         <FontAwesomeIcon icon={faHeart} />
                     </div>

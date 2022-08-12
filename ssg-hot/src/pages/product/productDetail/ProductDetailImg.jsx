@@ -22,9 +22,11 @@ function ProductDetailImg() {
                 <button onClick={ImageFold}>
                     상세정보 접기
                 </button>
+                <button onClick={ImageFold}>
+                    상세정보 펼쳐보기
+                </button>
             </div>
-            <div className='product-gray-bosx'>
-
+            <div className='product-gray-box'>
             </div>
         </>
      );

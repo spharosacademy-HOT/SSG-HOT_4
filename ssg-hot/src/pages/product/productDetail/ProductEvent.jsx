@@ -42,6 +42,7 @@ function ProductEvent() {
                     </li>
                 </ul>
             </div>
+            <div className='product-gray-box'></div>
         </>
      );
 }

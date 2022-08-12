@@ -1,10 +1,10 @@
 import React from 'react';
 
-function ProductMainImg() {
+function ProductMainImg({productDatas}) {
     return ( 
         <>
             <div className='product-main-image'>
-                <img src="https://sitem.ssgcdn.com/85/67/10/item/1000042106785_i1_750.jpg" alt="" />
+                <img src={productDatas && productDatas} alt="" />
             </div>
         </>
      );

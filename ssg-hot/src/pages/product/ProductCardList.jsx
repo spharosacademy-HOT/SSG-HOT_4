@@ -9,7 +9,6 @@ function ProductCardList() {
 
     axios.get('http://10.10.10.125:8080/ssghot/product')
       .then(Response =>{
-        console.log(Response)
         setProductDatas(Response.data)
       })
   },[])
