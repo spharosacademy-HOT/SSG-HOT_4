@@ -1,5 +1,5 @@
 import React from "react";
-import RecentItem from "../../components/common/widgets/itemList/RecentItem";
+import RecentItem from "../../components/common/widgets/itemList/recent/RecentItem";
 import recentDatas from "../../datas/js/recentDatas";
 export default function RecentItemList() {
   console.log(recentDatas);

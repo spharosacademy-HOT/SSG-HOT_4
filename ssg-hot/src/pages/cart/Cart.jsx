@@ -1,6 +1,7 @@
+
+import CartContents from "./cartContent/CartContents";
 import React, {useEffect, useState} from "react";
 import { useLocation } from "react-router-dom";
-import CartContents from "./CartContents";
 import CartFooter from "./CartFooter";
 import CartHeader from "./CartHeader";
 import CartNotice from "./CartNotice";

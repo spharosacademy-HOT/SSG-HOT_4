@@ -1,5 +1,6 @@
 @import url("./card.css");
 @import url("./slider.css");
+@import url("./item.css");
 @import url("./button.css");
 body {
   margin: 0px;

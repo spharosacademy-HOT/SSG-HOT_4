@@ -2,7 +2,7 @@ import React from "react";
 import ItemButton from "./ItemButton";
 import ItemDesc from "./ItemDesc";
 import ItemImg from "./ItemImg";
-import recentDatas from "../../../../datas/js/recentDatas";
+import recentDatas from "../../../../../datas/js/recentDatas";
 export default function RecentItem() {
   return (
     <div>
