@@ -36,9 +36,144 @@
     border-radius: 10px;
     border: solid #5d30ff 2px;
 }
+/* 상품정보 */
+.product-detail-info{
+    padding: 20px;
+}
+.product-detail-info .caution{
+    text-align: center;
+    color: red;
+}
+
+.product-detail-info .caution :nth-child(1){
+    font-weight: bold;
+}
+.product-number{
+    color: #777;
+    margin: 10px 0
+}
+.product-notify{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.product-notify div{
+    display: flex;
+    align-items: center;
+}
+.product-notify div div{
+    border: solid #e5e5e5 0.8px;
+    border-radius: 100px;
+    width: 50px;
+    height: 50px;
+}
+.product-notify div p{
+    padding: 10px 0 0 10px;
+}
+.product-notify div div svg{
+    padding: 23px;
+}
+.product-notify div button{
+    border: solid 0.8px #e5e5e5;
+    border-radius: 50px;
+    padding: 10px 15px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+/* 이미지 리스트 */
+.open-product-image{
+    display: block;
+}
+.close-product-image{
+    height: 1000px;
+    overflow: hidden;
+}
+.non-shadow{
+    text-align: center;
+}
+.non-shadow :nth-child(1){
+    background-color: #fff;
+    padding: 20px;
+}
+.non-shadow :nth-child(2){
+    display: none;
+}
+.i-have-shadow{
+    text-align: center;
+}
+.i-have-shadow :nth-child(2){
+    padding: 20px;
+}
+.i-have-shadow :nth-child(1){
+    display: none;
+}
+.product-detail-img-card img{
+    width: 100%;
+}
 
 /* 리뷰 */
+.product-review-box{
+    padding: 20px;
+}
+.product-review-box div{
+    display: flex;
+}
+.review-image-list{
+    display: flex;
+    flex-wrap: wrap;
+}
+.review-image-list div{
+    width: 25%;
+}
+.review-image-list div img{
+    width: 100%;
+    padding: 0.5px;
+}
+.total-review-link{
+    justify-content: space-between;
+    padding: 20px 0 20px 0;
+}
+.total-review-link .more-button{
+    font-size: 0.8rem;
+}
+.product-consumer-review-title{
+    padding: 30px 0 0 0;
+    font-size: 1.2rem;
+}
+.product-review-cnt{
+    font-size: 1.5rem;
+}
 
+/* 이벤트 & 배송 */
+
+.product-event-detail ul{
+    padding: 0;
+}
+.product-event-detail ul li{
+    display: flex;
+    padding: 10px 20px 10px 20px;
+}
+.product-event-detail ul li div p{
+    margin: 0;
+}
+.product-event-title{
+    font-size: 0.9rem;
+    color: #777;
+    width: 20%;
+}
+.product-event-list div p{
+    margin: 0px;
+}
+.product-event-list button{
+    border: solid #eee;
+    border-radius: 3px;
+    padding: 3px;
+    font-size: 0.8rem;
+}
+.product-event-item-title{
+    color: #5d30ff;
+    font-weight: bold;
+}
 /* 토탈 리뷰 */
 .total-review{
     padding: 20px;
@@ -102,4 +237,28 @@
 /* 이벤트 배너 */
 .event-banner img{
     width: 100%;
+}
+/* 하단 구매 바 */
+.product-purchase-bar{
+    display: fixed;
+    height: 50px;
+}
+.product-purchase-bar ul{
+    display: flex;
+    height: 54px;
+    width: 100%;
+}
+.product-purchase-bar ul li{
+    text-align: center;
+}
+.product-choice{
+
+}
+.product-present{
+
+}
+.product-purchase{
+    background-color: red;
+    color: white;
+    width: 80%;
 }

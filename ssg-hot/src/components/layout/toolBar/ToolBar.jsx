@@ -17,7 +17,13 @@ export default function ToolBar() {
         ""
       ) : pagePath === "/mainsearch" ? (
         ""
-      ) : (
+      ) : pagePath === "/signup" ? 
+      ""
+       : pagePath === "/emailsignup" ? 
+            ""
+        :
+      (
+
         <div className="toolBar">
           <ul className="toolUl">
             {toolMenu &&

@@ -11,9 +11,9 @@ function ProductCard({item}) {
         <>
             
             <div className='product-thumbnail-card'>
-            <Link to="/product">
+            <Link to={`/product/${item.id}`}>
                 <div className='product-image'>
-                    <img src={item.imgUrl} alt="" />
+                    <img src={item.titleImgUrl} alt="" />
                     <div>
                         <FontAwesomeIcon icon={faHeart} />
                     </div>
@@ -21,7 +21,7 @@ function ProductCard({item}) {
                 <div className='product-info'>
 
                     <div className='product-name'>{item.name}</div>
-                    <div className='product-text'>{item.info}</div>
+                    <div className='product-text'>{item.detail}</div>
 
                     <div>
                         <div className='price'>{item.price}원</div>
@@ -31,7 +31,7 @@ function ProductCard({item}) {
                         <FontAwesomeIcon icon={faStar} />
                         </div>
                         <div>{item.star}</div>
-                        <div>{item.view}건</div>
+                        <div>{item.viewCount}건</div>
                     </div>
                     <div className='product-event'>
                         <div>해외직구</div>
