@@ -33,3 +33,68 @@
   justify-content: space-between;
   text-align: center;
 }
+.haveSearch {
+  overflow: hidden;
+  padding: 0 15px;
+  font-size: 14px;
+}
+.haveSearch h3 {
+  color: #222;
+  font-size: 14px;
+
+  line-height: 1.2;
+  padding: 15px 0 5px;
+}
+.haveSearch li {
+  position: relative;
+  float: left;
+  width: 50%;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.haveSearch li a {
+  position: relative;
+  display: block;
+  /* display: flex; */
+  align-items: center;
+  height: 40px;
+  padding-right: 25px;
+  line-height: 40px;
+  border-bottom: 1px solid #f0f0f0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #000;
+}
+.haveSearch li button {
+  position: absolute;
+  right: 12px;
+  top: 0;
+  width: 18px;
+  height: 40px;
+}
+.backBtn {
+  position: absolute;
+
+  left: 14px;
+}
+.backBtn button:before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  width: 11px;
+  height: 18px;
+  background: url("https://sui.ssgcdn.com/ui/m_ssg/img/com_v2/sp_global_search_set.png")
+    no-repeat;
+  background-size: 118px 160px;
+  background-position: -99px -40px;
+}
+.searchHeader input {
+  margin-left: 10px;
+  border-radius: 24px;
+  padding-left: 15px;
+  margin-left: 25px;
+}

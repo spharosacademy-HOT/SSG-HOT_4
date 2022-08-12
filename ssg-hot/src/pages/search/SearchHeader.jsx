@@ -1,21 +1,22 @@
 import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faMagnifyingGlass,
-  faCartShopping,
-  faAngleLeft,
-} from "@fortawesome/free-solid-svg-icons";
+import cartLogo2 from "../../assets/img/svg/cartLogo2.svg";
+import searchIcon from "../../assets/img/svg/searchIcon.svg";
+
 import { Link } from "react-router-dom";
 export default function SearchHeader() {
   return (
     <div className="searchHeader">
-      <FontAwesomeIcon icon={faAngleLeft} />
+      <div className="backBtn">
+        <button type="button"></button>
+      </div>
+
       <input type="text" placeholder="검색어를 입력하세요" />
+
       <Link to="/cart" style={{ color: "black" }}>
-        <FontAwesomeIcon icon={faMagnifyingGlass} />
+        <img src={searchIcon} alt="검색아이콘" />
       </Link>
       <Link to="/cart" style={{ color: "black" }}>
-        <FontAwesomeIcon icon={faCartShopping} />
+        <img src={cartLogo2} alt="장바구니" />
       </Link>
     </div>
   );
