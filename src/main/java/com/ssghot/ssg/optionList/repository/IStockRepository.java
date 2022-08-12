@@ -8,4 +8,5 @@ import java.util.List;
 public interface IStockRepository extends JpaRepository<Stock, Long> {
 
     List<Stock> findAllByProductId(Long productId);
+
 }

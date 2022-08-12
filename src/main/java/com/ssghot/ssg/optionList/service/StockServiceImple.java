@@ -1,10 +1,15 @@
 package com.ssghot.ssg.optionList.service;
 
 import com.ssghot.ssg.optionList.domain.Stock;
+import com.ssghot.ssg.optionList.dto.StockDtoOutputProductIdName;
 import com.ssghot.ssg.optionList.repository.IStockRepository;
+import com.ssghot.ssg.product.domain.Product;
+import com.ssghot.ssg.product.dto.ProductDtoOutputIdName;
+import com.ssghot.ssg.product.repository.IProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,6 +18,7 @@ import java.util.Optional;
 public class StockServiceImple implements IStockService{
 
     private final IStockRepository iStockRepository;
+    private final IProductRepository iProductRepository;
 
     @Override
     public Stock addStock(Stock stock) {
@@ -38,7 +44,38 @@ public class StockServiceImple implements IStockService{
     }
 
     @Override
-    public List<Stock> getAllStock() {
-        return iStockRepository.findAll();
+    public List<StockDtoOutputProductIdName> getAllStock() {
+        List<Stock> stockList = iStockRepository.findAll();
+        List<StockDtoOutputProductIdName> stockDtoOutputProductIdNameList = new ArrayList<>();
+
+        List<Product> productList = iProductRepository.findAll();
+        List<ProductDtoOutputIdName> productDtoOutputIdNameList = new ArrayList<>();
+
+        productList.forEach(
+                product -> {
+                    productDtoOutputIdNameList.add(
+                            ProductDtoOutputIdName.builder()
+                                    .id(product.getId())
+                                    .name(product.getName())
+                                    .build()
+                    );
+                }
+        );
+
+        stockList.forEach(
+                stock -> {
+                    stockDtoOutputProductIdNameList.add(
+                            StockDtoOutputProductIdName.builder()
+                                    .id(stock.getId())
+                                    .qty(stock.getQty())
+                                    .optionFirstId(stock.getOptionFirst().getId())
+                                    .optionSecondId(stock.getOptionSecond().getId())
+                                    .productId(stock.getId())
+                                    .build()
+                    );
+                }
+        );
+        return stockDtoOutputProductIdNameList;
+
     }
 }

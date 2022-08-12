@@ -3,6 +3,7 @@ package com.ssghot.ssg.optionList.controller;
 import com.ssghot.ssg.optionList.domain.OptionFirst;
 import com.ssghot.ssg.optionList.domain.OptionSecond;
 import com.ssghot.ssg.optionList.domain.Stock;
+import com.ssghot.ssg.optionList.dto.StockDtoOutputProductIdName;
 import com.ssghot.ssg.optionList.service.IOptionFirstService;
 import com.ssghot.ssg.optionList.service.IOptionSecondService;
 import com.ssghot.ssg.optionList.service.IStockService;
@@ -85,7 +86,7 @@ public class OptionListController {
 
     // 3-3. 재고 조회
     @GetMapping("/stock")
-    public List<Stock> getAllStock(){
+    public List<StockDtoOutputProductIdName> getAllStock(){
         return iStockService.getAllStock();
     }
 }

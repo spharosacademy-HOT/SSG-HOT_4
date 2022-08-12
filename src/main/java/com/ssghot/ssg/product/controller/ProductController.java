@@ -1,9 +1,11 @@
 package com.ssghot.ssg.product.controller;
 
+import com.ssghot.ssg.optionList.repository.IStockRepository;
 import com.ssghot.ssg.product.domain.Product;
 import com.ssghot.ssg.product.domain.ProductSubImg;
 import com.ssghot.ssg.product.dto.ProductDtoInputAll;
 import com.ssghot.ssg.product.dto.ProductDtoOutputAll;
+import com.ssghot.ssg.product.dto.ProductDtoOutputStockByProductId;
 import com.ssghot.ssg.product.dto.ProductSubImgDtoInput;
 import com.ssghot.ssg.product.service.IProductService;
 import com.ssghot.ssg.product.service.IProductSubImgService;
@@ -21,6 +23,8 @@ public class ProductController {
     private final IProductService iProductService;
     private final IProductSubImgService iProductSubImgService;
 
+    private final IStockRepository iStockRepository;
+
     /*
         1. 상품 등록하기
         2. 상품 수정하기
@@ -31,6 +35,8 @@ public class ProductController {
         6. 서브 이미지 수정하기
         7. 서브 이미지 전체 조회하기
         8. 서브 이미지 단일 조회하기
+
+        9. 상품-재고 조회하기
      */
 
     // 1. 상품 등록하기
@@ -81,4 +87,9 @@ public class ProductController {
         return iProductSubImgService.getOne(productSubImgId);
     }
 
+    // 9. 상품-재고 조회하기
+    @GetMapping("/product/stock/{id}")
+    public ProductDtoOutputStockByProductId getStockByProductId(@PathVariable Long id){
+        return iProductService.getStockByProductId(id);
+    }
 }

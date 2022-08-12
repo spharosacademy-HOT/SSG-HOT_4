@@ -8,6 +8,7 @@ import com.ssghot.ssg.product.domain.Product;
 import com.ssghot.ssg.product.domain.ProductSubImg;
 import com.ssghot.ssg.product.dto.ProductDtoInputAll;
 import com.ssghot.ssg.product.dto.ProductDtoOutputAll;
+import com.ssghot.ssg.product.dto.ProductDtoOutputIdName;
 import com.ssghot.ssg.product.dto.ProductDtoOutputStockByProductId;
 import com.ssghot.ssg.product.repository.IProductRepository;
 import com.ssghot.ssg.product.repository.IProductSubImgRepository;
@@ -67,7 +68,8 @@ public class ProductServiceImple implements IProductService{
 
         Product product = iProductRepository.save(Product.builder()
                 .name(productDtoInputAll.getName())
-                .price(productDtoInputAll.getPrice())
+                .regularPrice(productDtoInputAll.getRegularPrice())
+                .discountPrice(productDtoInputAll.getDiscountPrice())
 //                .stockQuantity(productDtoInputAll.getStockQuantity())
                 .star(0)
                 .detail(productDtoInputAll.getDetail())
@@ -105,7 +107,8 @@ public class ProductServiceImple implements IProductService{
                     Product.builder()
                             .id(id)
                             .name(productDtoInputAll.getName())
-                            .price(productDtoInputAll.getPrice())
+                            .regularPrice(productDtoInputAll.getRegularPrice())
+                            .discountPrice(productDtoInputAll.getDiscountPrice())
 //                            .stockQuantity(productDtoInputAll.getStockQuantity())
                             .detail(productDtoInputAll.getDetail())
                             .deliveryCondition(productDtoInputAll.getDeliveryCondition())
@@ -132,7 +135,8 @@ public class ProductServiceImple implements IProductService{
                             ProductDtoOutputAll.builder()
                                     .id(product.getId())
                                     .name(product.getName())
-                                    .price(product.getPrice())
+                                    .regularPrice(product.getRegularPrice())
+                                    .discountPrice(product.getDiscountPrice())
 //                                    .stockQuantity(product.getStockQuantity())
                                     .star(product.getStar())
                                     .detail(product.getDetail())
@@ -160,9 +164,31 @@ public class ProductServiceImple implements IProductService{
     }
 
     // 5. 상품-재고 현황 조회하기
-
     @Override
     public ProductDtoOutputStockByProductId getStockByProductId(Long id) {
-        return null;
+        Optional<Product> product = iProductRepository.findById(id);
+
+        ProductDtoOutputIdName productDtoOutputIdName = ProductDtoOutputIdName.builder()
+                .id(product.get().getId())
+                .name(product.get().getName())
+                .build();
+
+        ProductDtoOutputStockByProductId productDtoOutputStockByProductId = null;
+
+        return ProductDtoOutputStockByProductId.builder()
+                .id(product.get().getId())
+                .stock(iStockRepository.findAllByProductId(productDtoOutputIdName.getId()))
+                .build();
+    }
+
+    // 6. 상품 Id, Name 조회하기
+    @Override
+    public ProductDtoOutputIdName getProductIdName(Long productId) {
+        Product product = iProductRepository.findById(productId).get();
+
+        return ProductDtoOutputIdName.builder()
+                .id(product.getId())
+                .name(product.getName())
+                .build();
     }
 }

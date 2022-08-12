@@ -18,7 +18,8 @@ public class ProductDtoInputAll {
 
     private Long id;
     private String name; // 상품명
-    private int price; // 가격
+    private int regularPrice; // 정가
+    private int discountPrice; // 할인가
 //    private int stockQuantity; // 재고 개수
     //private int star; // 별점
     private String detail; // 상세설명
