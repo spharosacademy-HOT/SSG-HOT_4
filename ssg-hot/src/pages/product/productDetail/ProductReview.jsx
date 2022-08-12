@@ -15,7 +15,7 @@ function ProductReiew() {
                     <div>별점</div>
                     <div>4.9/5</div>
                 </div>
-                <div className='is-important-info'>
+                <div className='is-important-info product-review-cnt'>
                     1,385건 리뷰
                 </div>
             </div>
