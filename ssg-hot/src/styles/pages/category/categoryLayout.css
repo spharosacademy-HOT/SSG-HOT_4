@@ -25,16 +25,17 @@
 .category-align{
   position: relative;
   display: flex;
+  width: 100%;
 }
-.category-align div{
+.category-align li{
   /* flex-direction: column; */
   justify-content: center;
   width: 25%;
 }
-.category-align div li div{
+.category-align li div div{
   width: 100%;
 }
-.category-align div li img{
+.category-align li div div img{
   width: 100%;
 }
 .non-category-group{

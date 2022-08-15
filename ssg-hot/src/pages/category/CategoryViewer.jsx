@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 
-function CateogoryViewer({ isTrue, item }) {
+function CategoryViewer({ isTrue, item }) {
   useEffect(() => {
     console.log(item);
   }, []);
@@ -19,4 +19,4 @@ function CateogoryViewer({ isTrue, item }) {
   );
 }
 
-export default CateogoryViewer;
+export default CategoryViewer;

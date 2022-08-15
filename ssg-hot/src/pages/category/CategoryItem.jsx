@@ -1,8 +1,9 @@
 import React from "react";
 
-function CategoryItem({ isTrue, setIsTrue, item }) {
+function CategoryItem({ isTrue, setIsTrue ,item }) {
   const ImageClick = () => {
     setIsTrue(!isTrue);
+    console.log(isTrue)
   };
 
   return (

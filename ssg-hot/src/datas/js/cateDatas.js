@@ -25,13 +25,38 @@ const cateDatas = [
                 id : 3,
                 name : "여성브랜드패션",
                 url : "/productList"
-            }
+            },
+            {
+                id : 4,
+                name : "여성트렌드패션",
+                url : "/productList"
+            },
+            {
+                id : 5,
+                name : "남성패션",
+                url : "/productList"
+            },
+            {
+                id : 6,
+                name : "캐주얼/유니섹스",
+                url : "/productList"
+            },
+            {
+                id : 7,
+                name : "언더웨어",
+                url : "/productList"
+            },
+            {
+                id : 8,
+                name : "디자이너샵",
+                url : "/productList"
+            },
         ]
     },
     {
         id : 2,
         imgUrl : img02,
-        cateName : "패션잡화",
+        cateName : "명품/잡화/쥬얼리",
         content : [
             {
                 id : 1,
@@ -75,7 +100,7 @@ const cateDatas = [
     {
         id : 4,
         imgUrl : img04,
-        cateName : "스포츠/레져",
+        cateName : "유아동",
         content : [
             {
                 id : 1,
@@ -97,7 +122,7 @@ const cateDatas = [
     {
         id : 5,
         imgUrl : img05,
-        cateName : "생활/주방",
+        cateName : "스포츠/레저",
         content : [
             {
                 id : 1,
@@ -117,7 +142,51 @@ const cateDatas = [
         ]
     },
     {
-        id : 5,
+        id : 6,
+        imgUrl : img06,
+        cateName : "가구/인테리어",
+        content : [
+            {
+                id : 1,
+                name : "상품 전체보기",
+                url : "/productList"
+            },
+            {
+                id : 2,
+                name : "침구/커튼/카페트",
+                url : "/productList"
+            },
+            {
+                id : 3,
+                name : "침실/수납가구",
+                url : "/productList"
+            }
+        ]
+    },
+    {
+        id : 7,
+        imgUrl : img06,
+        cateName : "가구/인테리어",
+        content : [
+            {
+                id : 1,
+                name : "상품 전체보기",
+                url : "/productList"
+            },
+            {
+                id : 2,
+                name : "침구/커튼/카페트",
+                url : "/productList"
+            },
+            {
+                id : 3,
+                name : "침실/수납가구",
+                url : "/productList"
+            }
+        ]
+    },
+    {
+        id : 8,
         imgUrl : img06,
         cateName : "가구/인테리어",
         content : [
