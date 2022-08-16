@@ -14,7 +14,7 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class ProductDtoOutputAll {
+public class ProductDtoOutputAllDetail {
 
     private Long id; // 상품 id
     private String name; // 상품명

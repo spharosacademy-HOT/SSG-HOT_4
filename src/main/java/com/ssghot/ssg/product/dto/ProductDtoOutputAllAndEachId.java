@@ -1,8 +1,5 @@
 package com.ssghot.ssg.product.dto;
 
-import com.ssghot.ssg.categoryProductList.domain.CategoryProductList;
-import com.ssghot.ssg.optionList.domain.Stock;
-import com.ssghot.ssg.product.domain.ProductSubImg;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -14,7 +11,7 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class ProductDtoOutputAll {
+public class ProductDtoOutputAllAndEachId {
 
     private Long id; // 상품 id
     private String name; // 상품명
@@ -32,12 +29,12 @@ public class ProductDtoOutputAll {
     private String titleImgTxt; // 타이틀 이미지 txt
 
     //=== ProductSubImg ===///
-    private List<ProductSubImg> productSubImgList;
+    private List<Long> productSubImgList;
 
     //=== OptionList ===///
-    private List<Stock> stockList;
+    private List<Long> stockList;
 
-    //=== CategoryProductList ===///
-    private List<CategoryProductList> categoryProductList;
+    //=== Category ===///
+    private List<Long> categoryProductList;
 
 }

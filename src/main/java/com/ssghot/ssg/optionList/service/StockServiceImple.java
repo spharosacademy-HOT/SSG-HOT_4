@@ -45,8 +45,6 @@ public class StockServiceImple implements IStockService{
 
     @Override
     public List<StockDtoOutputProductIdName> getAllStock() {
-        List<Stock> stockList = iStockRepository.findAll();
-        List<StockDtoOutputProductIdName> stockDtoOutputProductIdNameList = new ArrayList<>();
 
         List<Product> productList = iProductRepository.findAll();
         List<ProductDtoOutputIdName> productDtoOutputIdNameList = new ArrayList<>();
@@ -61,6 +59,9 @@ public class StockServiceImple implements IStockService{
                     );
                 }
         );
+
+        List<Stock> stockList = iStockRepository.findAll();
+        List<StockDtoOutputProductIdName> stockDtoOutputProductIdNameList = new ArrayList<>();
 
         stockList.forEach(
                 stock -> {

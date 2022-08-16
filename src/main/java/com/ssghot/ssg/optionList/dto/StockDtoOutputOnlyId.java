@@ -1,16 +1,16 @@
-package com.ssghot.ssg.product.dto;
+package com.ssghot.ssg.optionList.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
 @Builder
-@AllArgsConstructor
+@Data
 @NoArgsConstructor
-public class ProductDtoOutputIdName {
+@AllArgsConstructor
+public class StockDtoOutputOnlyId {
 
     private Long id;
-    private String name;
+
 }

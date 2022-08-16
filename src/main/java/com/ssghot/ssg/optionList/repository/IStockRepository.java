@@ -9,4 +9,8 @@ public interface IStockRepository extends JpaRepository<Stock, Long> {
 
     List<Stock> findAllByProductId(Long productId);
 
+
+    Stock findByProductId(Long productId);
+
+
 }

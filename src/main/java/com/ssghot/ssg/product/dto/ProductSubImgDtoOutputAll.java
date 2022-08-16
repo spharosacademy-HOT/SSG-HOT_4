@@ -1,6 +1,5 @@
 package com.ssghot.ssg.product.dto;
 
-import com.ssghot.ssg.product.domain.Product;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,13 +9,12 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class ProductSubImgDtoInput {
+public class ProductSubImgDtoOutputAll {
 
     private Long id;
 
     private String subImgUrl;
     private String subImgTxt;
 
-    private Product product;
-
+    private Long productId;
 }

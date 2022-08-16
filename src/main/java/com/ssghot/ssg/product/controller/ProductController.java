@@ -3,10 +3,7 @@ package com.ssghot.ssg.product.controller;
 import com.ssghot.ssg.optionList.repository.IStockRepository;
 import com.ssghot.ssg.product.domain.Product;
 import com.ssghot.ssg.product.domain.ProductSubImg;
-import com.ssghot.ssg.product.dto.ProductDtoInputAll;
-import com.ssghot.ssg.product.dto.ProductDtoOutputAll;
-import com.ssghot.ssg.product.dto.ProductDtoOutputStockByProductId;
-import com.ssghot.ssg.product.dto.ProductSubImgDtoInput;
+import com.ssghot.ssg.product.dto.*;
 import com.ssghot.ssg.product.service.IProductService;
 import com.ssghot.ssg.product.service.IProductSubImgService;
 import lombok.RequiredArgsConstructor;
@@ -33,7 +30,8 @@ public class ProductController {
 
         5. 서브 이미지 등록하기
         6. 서브 이미지 수정하기
-        7. 서브 이미지 전체 조회하기
+        7-1. 서브 이미지 전체 조회하기 (아이디만)
+        7-2. 서브 이미지 전체 조회하기 (전체 컬럼)
         8. 서브 이미지 단일 조회하기
 
         9. 상품-재고 조회하기
@@ -51,15 +49,21 @@ public class ProductController {
         return iProductService.editProduct(id, productDtoInputAll);
     }
 
-    // 3. 상품 전체 조회하기
+    // 3-1. 상품 전체 조회하기
     @GetMapping("/product")
     public List<ProductDtoOutputAll> getAllProduct(){
         return iProductService.getProductAll();
     }
 
+    // 3-2. 상품 전체 조회하기 (각각의 아이디만)
+    @GetMapping("/productid")
+    public List<ProductDtoOutputAllAndEachId> getAllProductAndEachId(){
+        return iProductService.getProductAllAndEachId();
+    }
+
     // 4. 상품 단일 조회하기
     @GetMapping("/product/{id}")
-    public Product getOneProduct(@PathVariable Long id){
+    public ProductDtoOutputAllDetail getOneProduct(@PathVariable Long id){
         return iProductService.getProductOne(id);
     }
 
@@ -75,9 +79,15 @@ public class ProductController {
         return null;
     }
 
-    // 7. 서브 이미지 전체 조회하기
+    // 7-1. 서브 이미지 전체 조회하기 (아이디만)
+    @GetMapping("/product/subimgid")
+    public List<ProductSubImgDtoOutputOnlyId> getAllProductSubImgOnlyId(){
+        return iProductSubImgService.getAllOnlyId();
+    }
+
+    // 7-2. 서브 이미지 전체 조회하기 (전체 컬럼)
     @GetMapping("/product/subimg")
-    public List<ProductSubImg> getAllProductSubImg(){
+    public List<ProductSubImgDtoOutputAll> getAllProductSubImg(){
         return iProductSubImgService.getAll();
     }
 
@@ -91,5 +101,11 @@ public class ProductController {
     @GetMapping("/product/stock/{id}")
     public ProductDtoOutputStockByProductId getStockByProductId(@PathVariable Long id){
         return iProductService.getStockByProductId(id);
+    }
+
+    // 10. 상품 Id, Name 조회하기
+    @GetMapping("/product/id/{id}")
+    public ProductDtoOutputIdName getProductIdAndName(@PathVariable Long id){
+        return null;
     }
 }
