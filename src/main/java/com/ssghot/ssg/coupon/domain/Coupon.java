@@ -20,6 +20,10 @@ public class Coupon  extends CommonDTO{
     @Column(nullable = false)
     private String name;
 
+    // 쿠폰 이미지
+
+    private String imgUrl;
+
     // 할인율
     @Column(nullable = false)
     private int discount;

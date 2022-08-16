@@ -32,11 +32,17 @@ public class User extends CommonDTO {
     @Column(columnDefinition = "boolean default false")
     private boolean isSlept;
 
+    @Column(columnDefinition = "varchar(255) default 'user'")
+    private String role;
+
     @Column(columnDefinition = "varchar(255) default 'FRIENDS'")
     private String memberLevel;
 
     @PrePersist
     public void prePersist() {
         this.memberLevel = this.memberLevel == null ? "FRIENDS" : this.memberLevel;
+        this.role = this.role == null ? "user": this.role;
     }
+
+
 }

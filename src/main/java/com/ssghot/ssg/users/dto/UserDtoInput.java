@@ -16,10 +16,10 @@ public class UserDtoInput {
     private String name;
     private String phone;
 
-    public User toEntity() {
+    public User toEntity(String encode) {
         return User.builder()
                 .email(getEmail())
-                .password(getPassword())
+                .password(encode)
                 .name(getName())
                 .phone(getPhone())
                 .build();

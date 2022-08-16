@@ -27,7 +27,7 @@ public class UserCoupon extends CommonDTO {
 
     // 사용 여부
     @Column(columnDefinition = "boolean default false")
-    private boolean isValid;
+    private boolean valid;
 
 }
 

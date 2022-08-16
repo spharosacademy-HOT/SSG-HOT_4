@@ -22,7 +22,7 @@ public class CouponEditDtoInput {
     private LocalDateTime startDate;
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private LocalDateTime endDate;
-    public Coupon toEntity(Coupon coupon){
+    public Coupon toEntity(Coupon coupon,String imgUrl){
         return Coupon.builder()
                 .id((getId()))
                 .name((getName()!=null)?getName():coupon.getName())
@@ -31,6 +31,7 @@ public class CouponEditDtoInput {
                 .termsOfUse((getTermsOfUse()!=null)?getTermsOfUse():coupon.getTermsOfUse())
                 .startDate((getStartDate()!=null)?getStartDate():coupon.getStartDate())
                 .endDate((getEndDate()!=null)?getEndDate():coupon.getEndDate())
+                .imgUrl((imgUrl!=null)?imgUrl:coupon.getImgUrl())
                 .build();
     }
 }

@@ -23,8 +23,8 @@ public class CouponServiceImpl implements ICouponService{
 
     private final ICouponRepository iCouponRepository;
     @Override
-    public ResultDtoOutput<CouponDtoOutput> addCoupon(CouponDtoInput couponDtoInput) {
-        Coupon coupon = iCouponRepository.save(couponDtoInput.toEntity());
+    public ResultDtoOutput<CouponDtoOutput> addCoupon(CouponDtoInput couponDtoInput,String imgUrl) {
+        Coupon coupon = iCouponRepository.save(couponDtoInput.toEntity(imgUrl));
         return getCouponDtoOutput(200,"쿠폰이 추가되었습니다.",coupon);
     }
 
@@ -58,10 +58,10 @@ public class CouponServiceImpl implements ICouponService{
     }
 
     @Override
-    public ResultDtoOutput<CouponDtoOutput> editCoupon(CouponEditDtoInput couponEditDtoInput) {
+    public ResultDtoOutput<CouponDtoOutput> editCoupon(CouponEditDtoInput couponEditDtoInput,String imgUrl) {
         Optional<Coupon> oldCoupon = iCouponRepository.findById(couponEditDtoInput.getId());
         if(oldCoupon.isPresent()){
-            Coupon coupon = iCouponRepository.save(couponEditDtoInput.toEntity(oldCoupon.get()));
+            Coupon coupon = iCouponRepository.save(couponEditDtoInput.toEntity(oldCoupon.get(),imgUrl));
             return getCouponDtoOutput(200,"쿠폰이 수정되었습니다.",coupon);
         }
         return getCouponDtoOutput(404,"쿠폰이 없습니다.",null);
@@ -80,6 +80,7 @@ public class CouponServiceImpl implements ICouponService{
                     .discount(coupon.getDiscount())
                     .maxDiscount(coupon.getMaxDiscount())
                     .termsOfUse(coupon.getTermsOfUse())
+                    .imgUrl(coupon.getImgUrl())
                     .startDate(coupon.getStartDate())
                     .endDate(coupon.getEndDate())
                     .createdDate(coupon.getCreatedDate())
@@ -98,6 +99,7 @@ public class CouponServiceImpl implements ICouponService{
                             .maxDiscount(coupon.getMaxDiscount())
                             .termsOfUse(coupon.getTermsOfUse())
                             .startDate(coupon.getStartDate())
+                            .imgUrl(coupon.getImgUrl())
                             .endDate(coupon.getEndDate())
                             .createdDate(coupon.getCreatedDate())
                             .updatedDate(coupon.getUpdatedDate())

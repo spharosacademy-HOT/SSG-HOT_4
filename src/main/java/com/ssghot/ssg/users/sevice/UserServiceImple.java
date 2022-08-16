@@ -7,7 +7,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -16,10 +15,23 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 @Service
 
-public class UserServiceImple implements IUserService{
+public class UserServiceImple implements IUserService {
 
     private final IUserRepository iUserRepository;
-
+//    private final PasswordEncoder passwordEncoder;
+//    @Override
+//    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+//        Optional<User> user = iUserRepository.findByEmail(username);
+//        if(user==null){
+//            log.error("User not found in the database");
+//            throw new UsernameNotFoundException("User not found in the database");
+//        }else{
+//            log.info("User found in the database: {}",username);
+//        }
+//        Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
+//       authorities.add(new SimpleGrantedAuthority(user.get().getRole()));
+//        return new org.springframework.security.core.userdetails.User(user.get().getEmail(),user.get().getPassword(),authorities);
+//    }
     @Override
     public void validateDuplicateUser(User user) {
         List<User> findUsers;
@@ -33,7 +45,8 @@ public class UserServiceImple implements IUserService{
         if(ischecked){
             throw new Error("유저 정보가 존재합니다.");
         }
-        User user = iUserRepository.save(userDtoInput.toEntity());
+//        String encode = passwordEncoder.encode(userDtoInput.getPassword());
+        User user = iUserRepository.save(userDtoInput.toEntity(userDtoInput.getPassword()));
 
         return UserDtoOutput.builder()
                 .id(user.getId())
@@ -132,6 +145,7 @@ public class UserServiceImple implements IUserService{
         }
         return s.checkFail();
     }
+
 
 
 }

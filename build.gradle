@@ -30,6 +30,8 @@ dependencies {
 	//s3서버 의존성 추가
 	implementation('org.springframework.cloud:spring-cloud-starter-aws:2.0.1.RELEASE')
 //	testImplementation 'org.springframework.security:spring-security-test'
+	developmentOnly('org.springframework.boot:spring-boot-devtools')
+//	implementation 'com.auth0:java-jwt:3.18.1'
 }
 
 tasks.named('test') {
