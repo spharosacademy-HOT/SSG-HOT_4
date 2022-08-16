@@ -1,14 +1,15 @@
 import React, { useEffect } from "react";
 
-function CategoryViewer({ isTrue, item }) {
-  useEffect(() => {
-    console.log(item);
-  }, []);
+function CategoryViewer({ isTrue, item, differ }) {
+  // useEffect(() => {
+  //   console.log(item);
+  // }, []);
+  // console.log('비교',differ)
   return (
     <div className={isTrue ? "category-group" : "non-category-group"}>
       <ul className="category-detail-item">
-        {item.content &&
-          item.content.map((list) => (
+        {item &&
+          item.map((list) => (
             <li key={list.id}>
               <a href={list.url}>{list.name}</a>
             </li>

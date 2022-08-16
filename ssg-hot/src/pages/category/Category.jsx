@@ -4,16 +4,42 @@ import ThemeRecommend from "./ThemeRecommend";
 // import './Category.module.css'
 import "../../styles/styles.css";
 import CategoryGroup from "./CategoryGroup";
+import cateDatas from '../../datas/js/cateDatas';
+import { useState } from "react";
+import { useEffect } from "react";
 
 function Category() {
+
+  const [cateNumber , setCateNumber] = useState(0)
+  const [isClick, setIsClick] = useState(false)
+  
+
+  useEffect(()=>{
+    let setTrues = [ false, false ];
+    console.log(cateNumber)
+    setTrues[cateNumber-1]=true
+    console.log('상황',setTrues)
+  },[cateNumber])
+
   return (
     <div>
       {/* 카테고리 */}
       <div className="category">
         {/* 카테고리 하나하나 */}
-        <ul className="category-align">
-          <CategoryGroup />
-        </ul>
+        {
+          cateDatas.map(cateData => (
+            <CategoryGroup
+              key={cateData.id}
+              cateData={cateData.data}
+              viewIsTrue={false}
+              cateNumber = {cateNumber}
+              setCateNumber={setCateNumber}
+              isClick={isClick} 
+              setIsClick={setIsClick}
+              cateId = {cateData.id}
+            />
+          ))
+        }
       </div>
       {/* 테마추천 */}
       <div>
