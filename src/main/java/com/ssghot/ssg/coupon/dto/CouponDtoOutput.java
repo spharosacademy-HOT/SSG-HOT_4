@@ -18,6 +18,7 @@ public class CouponDtoOutput {
     private String name;
     private int discount;
     private int maxDiscount;
+    private String imgUrl;
     private String termsOfUse;
     private LocalDateTime startDate;
     private LocalDateTime endDate;
@@ -34,6 +35,7 @@ public class CouponDtoOutput {
                 .endDate(coupon.getEndDate())
                 .createdDate(coupon.getCreatedDate())
                 .updatedDate(coupon.getUpdatedDate())
+               .imgUrl(coupon.getImgUrl())
                 .build();
     }
 }

@@ -13,5 +13,6 @@ import lombok.NoArgsConstructor;
 public class UserCouponDtoOutput {
     private Long id;
     private Long userId;
-    private CouponDtoOutput couponDtoOutput;
+    private CouponDtoOutput coupon;
+    private boolean valid;
 }

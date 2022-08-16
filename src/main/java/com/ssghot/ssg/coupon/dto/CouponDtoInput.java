@@ -18,14 +18,17 @@ public class CouponDtoInput {
     private int discount;
     private int maxDiscount;
     private String termsOfUse;
+
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private LocalDateTime startDate;
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private LocalDateTime endDate;
-    public Coupon toEntity(){
+    public Coupon toEntity(String imgUrl){
+
         return Coupon.builder()
                 .name(getName())
                 .discount(getDiscount())
+                .imgUrl(imgUrl)
                 .maxDiscount(getMaxDiscount())
                 .termsOfUse(getTermsOfUse())
                 .startDate(getStartDate())

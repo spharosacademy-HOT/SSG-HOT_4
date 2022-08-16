@@ -4,6 +4,7 @@ import com.ssghot.ssg.common.ResultDtoOutput;
 import com.ssghot.ssg.common.ResultsDtoOutput;
 import com.ssghot.ssg.userCoupon.dto.UserCouponDtoInput;
 import com.ssghot.ssg.userCoupon.dto.UserCouponDtoOutput;
+import com.ssghot.ssg.userCoupon.dto.UserCouponEditDtoInput;
 
 import java.util.List;
 
@@ -14,6 +15,7 @@ public interface IUserCouponService {
         3. 전체 조회
         4. 사용가능한 유저별 쿠폰 조회
         5. 쿠폰 사용하기 수정
+        6. 쿠폰 삭제
      */
 
     ResultDtoOutput<UserCouponDtoOutput> addUserCoupon(UserCouponDtoInput userCouponDtoInput);
@@ -22,4 +24,9 @@ public interface IUserCouponService {
 
     ResultDtoOutput<UserCouponDtoOutput> getUserCouponById(Long id);
     ResultsDtoOutput<List<UserCouponDtoOutput>> getUserCouponListByUserId(Long userId);
+
+    ResultDtoOutput<UserCouponDtoOutput> editUserCoupon(UserCouponEditDtoInput userCouponEditDtoInput);
+
+    void deleteUserCoupon(Long id);
+
 }

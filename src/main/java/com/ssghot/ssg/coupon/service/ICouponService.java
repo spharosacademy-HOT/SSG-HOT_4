@@ -17,14 +17,14 @@ public interface ICouponService {
         4. 쿠폰 쿠폰 수정
         5. 쿠폰 삭제
      */
-    ResultDtoOutput<CouponDtoOutput> addCoupon(CouponDtoInput couponDtoInput);
+    ResultDtoOutput<CouponDtoOutput> addCoupon(CouponDtoInput couponDtoInput,String imgUrl);
 
     ResultsDtoOutput<List<CouponDtoOutput>> getAll();
 
     ResultsDtoOutput<List<CouponDtoOutput>> getValidCouponList();
     ResultDtoOutput<CouponDtoOutput> getCouponById(Long id);
 
-    ResultDtoOutput<CouponDtoOutput> editCoupon(CouponEditDtoInput couponEditDtoInput);
+    ResultDtoOutput<CouponDtoOutput> editCoupon(CouponEditDtoInput couponEditDtoInput,String imgUrl);
 
     void deleteCoupon(Long id);
 }

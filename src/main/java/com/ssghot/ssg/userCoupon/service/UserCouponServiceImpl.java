@@ -8,6 +8,7 @@ import com.ssghot.ssg.coupon.repository.ICouponRepository;
 import com.ssghot.ssg.userCoupon.domain.UserCoupon;
 import com.ssghot.ssg.userCoupon.dto.UserCouponDtoInput;
 import com.ssghot.ssg.userCoupon.dto.UserCouponDtoOutput;
+import com.ssghot.ssg.userCoupon.dto.UserCouponEditDtoInput;
 import com.ssghot.ssg.userCoupon.repository.IUserCouponRepository;
 import com.ssghot.ssg.users.domain.User;
 import com.ssghot.ssg.users.repository.IUserRepository;
@@ -15,6 +16,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -29,8 +31,13 @@ public class UserCouponServiceImpl implements IUserCouponService{
     @Override
     public ResultDtoOutput<UserCouponDtoOutput> addUserCoupon(UserCouponDtoInput userCouponDtoInput) {
         Optional<Coupon> coupon = iCouponRepository.findById(userCouponDtoInput.getCouponId());
+
         Optional<User> user = iUserRepository.findById(userCouponDtoInput.getUserId());
         if(coupon.isPresent() && user.isPresent()){
+            Optional<UserCoupon> couponIdAndUserId = iUserCouponRepository.findByCouponIdAndUserId(coupon.get().getId(), user.get().getId());
+            if(couponIdAndUserId.isPresent()){
+                return getUserCouponDtoOutput(400,"해당 유저의 기존 쿠폰이 존재합니다",null);
+            }
             UserCoupon userCoupon = iUserCouponRepository.save(userCouponDtoInput.toEntity(coupon.get(), user.get()));
             return getUserCouponDtoOutput(200,"유저에게 쿠폰이 등록되었습니다.",userCoupon);
         }
@@ -53,16 +60,36 @@ public class UserCouponServiceImpl implements IUserCouponService{
         if(userCoupon.isPresent()){
             return getUserCouponDtoOutput(200,"유저 쿠폰을 가져왔습니다.",userCoupon.get());
         }
-        return getUserCouponDtoOutput(404,"쿠폰 정보가 없습니다.",null);
+        return getUserCouponDtoOutput(404, id +" 쿠폰 정보가 없습니다.",null);
     }
 
     @Override
     public ResultsDtoOutput<List<UserCouponDtoOutput>> getUserCouponListByUserId(Long userId) {
-        List<UserCoupon> userCoupons = iUserCouponRepository.findByUserId(userId);
+        List<UserCoupon> userCoupons = iUserCouponRepository.findValidUserCouponList(userId, LocalDateTime.now());
         if(userCoupons.isEmpty()){
-
+            return  getUserCouponDtoOutputList(400,userId.toString()+"쿠폰 정보가 없습니다.",null);
         }
-        return null;
+        return getUserCouponDtoOutputList(200,userId.toString()+"의 쿠폰 정보를 가져왔습니다.",userCoupons);
+    }
+
+    @Override
+    public ResultDtoOutput<UserCouponDtoOutput> editUserCoupon(UserCouponEditDtoInput userCouponEditDtoInput) {
+        Optional<UserCoupon> oldUserCoupon = iUserCouponRepository.findById(userCouponEditDtoInput.getId());
+        if(oldUserCoupon.isPresent()){
+            UserCoupon userCoupon = iUserCouponRepository.save(userCouponEditDtoInput.toEntity(oldUserCoupon.get()));
+            if(userCouponEditDtoInput.isValid()) {
+
+                return getUserCouponDtoOutput(200, "쿠폰을 사용하였습니다", userCoupon);
+            }else{
+                return getUserCouponDtoOutput(200, "쿠폰 사용을 취소하였습니다", userCoupon);
+            }
+        }
+        return getUserCouponDtoOutput(400,"쿠폰 정보가 없습니다.",null);
+    }
+
+    @Override
+    public void deleteUserCoupon(Long id) {
+        iUserCouponRepository.deleteById(id);
     }
 
 
@@ -70,8 +97,9 @@ public class UserCouponServiceImpl implements IUserCouponService{
         if(userCoupon!=null){
             return new ResultDtoOutput<>(status,message,UserCouponDtoOutput.builder()
                     .id(userCoupon.getId())
-                    .couponDtoOutput(CouponDtoOutput.toEntity(userCoupon.getCoupon()))
+                    .coupon(CouponDtoOutput.toEntity(userCoupon.getCoupon()))
                     .userId(userCoupon.getUser().getId())
+                    .valid(userCoupon.isValid())
                     .build());
         }
      return new ResultDtoOutput<>(status,message,null);
@@ -82,8 +110,9 @@ public class UserCouponServiceImpl implements IUserCouponService{
             List<UserCouponDtoOutput> collect = userCoupons.stream().map(userCoupon ->
                     UserCouponDtoOutput.builder()
                             .id(userCoupon.getId())
-                            .couponDtoOutput(CouponDtoOutput.toEntity(userCoupon.getCoupon()))
+                            .coupon(CouponDtoOutput.toEntity(userCoupon.getCoupon()))
                             .userId(userCoupon.getUser().getId())
+                            .valid(userCoupon.isValid())
                             .build()).collect(Collectors.toList());
             return new ResultsDtoOutput<>(status,message,collect.size(),collect);
         }
