@@ -12,7 +12,6 @@ import javax.persistence.*;
 @Entity
 @Builder
 @Table(name = "orders")
-@EqualsAndHashCode(callSuper=false)
 public class Order extends CommonDTO{
 
     @Id  @GeneratedValue(strategy = GenerationType.IDENTITY)
