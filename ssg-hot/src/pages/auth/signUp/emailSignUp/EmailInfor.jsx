@@ -1,8 +1,8 @@
 import React from "react";
 
 function EmailInhtmlFor() {
-  return (
-    <>
+  return (<>
+   
       <div className="cmem_card_tit">
         <h3>회원정보</h3>
       </div>
@@ -220,7 +220,7 @@ function EmailInhtmlFor() {
           </div>
         </div>
       </div>
-    </>
+      </>
   );
 }
 

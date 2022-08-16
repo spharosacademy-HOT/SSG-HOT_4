@@ -12,7 +12,7 @@ export default function LogIn() {
       <LogInInput />
       <LogInSns />
       <div>
-        <a href="/m/member/nonMemberLogin.ssg" className="cmem_nomem_btn">
+        <a href="https://member.ssg.com/m/member/nonMemberLogin.ssg" className="cmem_nomemarea .cmem_nomem_btn">
           <span>비회원 조회하기</span>
         </a>
       </div>
