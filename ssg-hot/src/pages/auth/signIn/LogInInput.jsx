@@ -109,7 +109,7 @@ function LogInInput() {
               <a href="https://member.ssg.com/m/member/findIdPw.ssg?tabType=pw">
                 비밀번호 찾기|
               </a>
-              <a href="https://member.ssg.com/m/member/join/simpleJoinIntro.ssg">
+              <a href="./signup">
                 회원가입
               </a>
             </div>
