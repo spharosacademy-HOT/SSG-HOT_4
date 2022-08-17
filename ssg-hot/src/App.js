@@ -20,6 +20,7 @@ import Header from "./components/layout/header/Header";
 import MyPage from "./pages/myPage/MyPage";
 import Cart2 from "./pages/cart2/Cart2";
 import EmailSignUp from "./pages/auth/signUp/emailSignUp/EmailSignUp";
+import Qna from "./pages/auth/qna/Qna";
 
 function App() {
   return (
@@ -35,11 +36,12 @@ function App() {
         <Route path="/cart2" element={<Cart2 />} />
         <Route path="/productList" element={<ProductList />} />
         <Route path="/product" element={<Product />}>
-          <Route path=":productId" element={<Product/>}/>
+        <Route path=":productId" element={<Product/>}/>
         </Route>
         <Route path="/mypage" element={<MyPage />} />
         <Route path="/signUp" element={<SignUp/>}/>
         <Route path="/emailsignup" element={<EmailSignUp/>}/>
+        <Route path="/qna" element={<Qna/>}/>
       </Routes>
       <ToolBar />
       <Footer />

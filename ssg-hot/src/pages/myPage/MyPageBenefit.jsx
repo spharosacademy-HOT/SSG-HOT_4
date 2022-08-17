@@ -44,8 +44,7 @@ function MyPageBenefit() {
               <input
                 type="hidden"
                 name="pointCardNo"
-                i
-                d="pointCardNo"
+                id="pointCardNo"
                 value="9350130365567609"
               />
               <span className="myssg_point_layer_tit_tx">
