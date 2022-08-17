@@ -16,7 +16,7 @@ function CategoryItem({ setViewerView, item,cateNumber, setGetNum, isClick, setI
         <div className="category-clickable" onClick={handleCateItem}>
           <div>
             <img src={item.imgUrl} alt="카테고리 이미지" />
-            <div className="clicked"></div>
+            <div className={isClick ? "clicked" : "un-clicked"}></div>
           </div>
           <p>{item.cateName}</p>
         </div>
