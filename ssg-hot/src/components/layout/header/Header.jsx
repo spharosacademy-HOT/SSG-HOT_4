@@ -30,6 +30,8 @@ export default function Header() {
        "" 
        :  pagePath === "/emailsignup" ?
        "" 
+        : pagePath === "/qna" ?
+        ""
         :
        (
       

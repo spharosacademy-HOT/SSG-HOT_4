@@ -20,8 +20,10 @@ export default function ToolBar() {
       ) : pagePath === "/signup" ? 
       ""
        : pagePath === "/emailsignup" ? 
-            ""
-        :
+      ""
+       : pagePath === "/qna" ? 
+       ""
+       :
       (
 
         <div className="toolBar">
