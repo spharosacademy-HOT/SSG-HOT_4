@@ -4,6 +4,7 @@ import CartContents from "./cartContent/CartContents";
 import CartFooter from "./CartFooter";
 import CartHeader from "./CartHeader";
 import CartNotice from "./CartNotice";
+import CartToolBar from "./cartToolBar/CartToolBar";
 
 export default function Cart() {
   return (
@@ -12,6 +13,7 @@ export default function Cart() {
       <CartContents />
       <CartFooter />
       <CartNotice />
+      <CartToolBar />
     </div>
   );
 }

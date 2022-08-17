@@ -16,6 +16,7 @@ const cartDatas = [
       qty: 1,
       stock: 8,
       isOption: true,
+      deliveryCost: 0,
     },
   },
   {
@@ -31,6 +32,7 @@ const cartDatas = [
       qty: 1,
       stock: 20,
       isOption: false,
+      deliveryCost: 0,
     },
   },
   {
@@ -46,6 +48,7 @@ const cartDatas = [
       qty: 1,
       stock: 30,
       isOption: true,
+      deliveryCost: 0,
     },
   },
 ];
