@@ -240,25 +240,118 @@
 }
 /* 하단 구매 바 */
 .product-purchase-bar{
-    display: fixed;
-    height: 50px;
+    width: 100%;
+    /* height: 100px; */
+    box-sizing: content-box;
+    position: fixed;
+    bottom: 0;
+    z-index: 3000;
+    padding: 0;
+    margin: 0;
 }
 .product-purchase-bar ul{
     display: flex;
+    flex-wrap: wrap;
     height: 54px;
-    width: 100%;
 }
 .product-purchase-bar ul li{
-    text-align: center;
+    display: flex;
+    align-items: center;
 }
-.product-choice{
-
+.product-purchase-bar ul li div{
+    margin: auto;
 }
-.product-present{
-
+.product-purchase-bar ul .product-choice{
+    flex-basis: 10%;
+    background-color: #fff;
+    border: solid #cdcdd0 0.5px;
 }
-.product-purchase{
+.product-purchase-bar ul .product-present{
+    flex-basis: 20%;
+    background-color: #fff;
+    border: solid #cdcdd0 0.5px;
+}
+.product-purchase-bar ul .product-purchase{
     background-color: red;
     color: white;
-    width: 80%;
+    /* width: 80%; */
+    flex-basis: 70%;
+}
+.product-purchase-like{
+    width: 100%;
+    box-sizing: content-box;
+    position: fixed;
+    bottom: 0;
+    z-index: 3000;
+    padding: 0;
+    margin: 0;
+}
+.product-purchase-like ul li{
+    display: flex;
+    align-items: center;
+}
+.product-purchase-like ul .product-choice{
+    display: none;
+}
+.product-purchase-like ul .product-present{
+    width: 100%;
+    background-color: red;
+    color: #fff;
+    height: 54px;
+}
+.product-purchase-like ul li div{
+    margin: auto;
+}
+.product-purchase-like ul .product-purchase{
+    display: none;;
+}
+.product-purchase-like ul .product-basket{
+    display: none;
+}
+.product-purchase-like ul .product-buy{
+    display: none;
+}
+.product-purchase-buy{
+    width: 100%;
+    box-sizing: content-box;
+    position: fixed;
+    bottom: 0;
+    z-index: 3000;
+    padding: 0;
+    margin: 0;
+}
+.product-purchase-buy ul{
+    display: flex;
+}
+.product-purchase-buy ul li{
+    display: flex;
+    align-items: center;
+    height: 54px;
+    color: #fff;
+}
+.product-purchase-buy ul li div{
+    margin: auto;
+}
+.product-purchase-buy ul .product-choice{
+    display: none;
+}
+.product-purchase-buy ul .product-present{
+    display: none;
+}
+.product-purchase-buy ul .product-purchase{
+    display: none;
+}
+.product-purchase-buy ul .product-basket{
+    flex-basis: 50%;
+    background-color: #333;
+}
+.product-purchase-buy ul .product-buy{
+    flex-basis: 50%;
+    background-color: red;
+}
+.option-box{
+    display: flex;
+    width: 100%;
+    height: 200px;
+    background-color: #333;
 }
