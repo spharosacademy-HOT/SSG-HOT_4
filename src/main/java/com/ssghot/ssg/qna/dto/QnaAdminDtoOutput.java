@@ -1,6 +1,6 @@
-package com.ssghot.ssg.userCoupon.dto;
+package com.ssghot.ssg.qna.dto;
 
-import com.ssghot.ssg.coupon.dto.CouponDtoOutput;
+import com.ssghot.ssg.qna.domain.Type;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -12,11 +12,13 @@ import java.time.LocalDateTime;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserCouponDtoOutput {
+public class QnaAdminDtoOutput {
     private Long id;
-    private Long userId;
-    private CouponDtoOutput coupon;
-    private boolean valid;
+    private String title;
+    private String contents;
+    private Long parentId;
+    private Type type;
     private LocalDateTime createdDate;
     private LocalDateTime updatedDate;
+
 }

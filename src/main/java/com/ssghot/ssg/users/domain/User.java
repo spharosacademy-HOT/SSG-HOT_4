@@ -1,5 +1,6 @@
 package com.ssghot.ssg.users.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.ssghot.ssg.common.CommonDTO;
 import lombok.*;
 
@@ -12,6 +13,7 @@ import javax.persistence.*;
 @Entity
 @Builder
 @EqualsAndHashCode(callSuper=false)
+@JsonIgnoreProperties({"hibernateLazyInitializer"})
 public class User extends CommonDTO {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
