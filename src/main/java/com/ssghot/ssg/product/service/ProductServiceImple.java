@@ -1,9 +1,13 @@
 package com.ssghot.ssg.product.service;
 
-import com.ssghot.ssg.category.domain.Category;
 import com.ssghot.ssg.category.repository.ICategoryMRepository;
 import com.ssghot.ssg.category.repository.ICategoryRepository;
+import com.ssghot.ssg.categoryProductList.domain.CategoryProductList;
+import com.ssghot.ssg.categoryProductList.dto.CategoryProductListDtoOutput;
 import com.ssghot.ssg.categoryProductList.repository.ICategoryProductListRepository;
+import com.ssghot.ssg.optionList.domain.Stock;
+import com.ssghot.ssg.optionList.dto.StockDtoOutputOnlyId;
+import com.ssghot.ssg.optionList.dto.StockDtoOutputProductIdName;
 import com.ssghot.ssg.optionList.repository.IStockRepository;
 import com.ssghot.ssg.product.domain.Product;
 import com.ssghot.ssg.product.domain.ProductSubImg;
@@ -62,15 +66,22 @@ public class ProductServiceImple implements IProductService{
 //                        .build()
 //        );
 
-        iCategoryRepository.save(Category.builder()
-                        .id(productDtoInputAll.getId())
-                        .name(productDtoInputAll.getName())
-                .build());
+//        iCategoryRepository.save(Category.builder()
+//                        .id(productDtoInputAll.getCategory().getId())
+//                        .name(productDtoInputAll.getCategory().getName())
+//                .build());
+
+//        iCategoryMRepository.save(CategoryM.builder()
+//                        .category(productDtoInputAll.getCategory())
+//                        .name(productDtoInputAll.getCategoryM().getName())
+//                .build());
 
         Product product = iProductRepository.save(Product.builder()
                 .name(productDtoInputAll.getName())
                 .regularPrice(productDtoInputAll.getRegularPrice())
                 .discountPrice(productDtoInputAll.getDiscountPrice())
+                .shippingFee(productDtoInputAll.getShippingFee())
+                .discountRate(productDtoInputAll.getDiscountRate())
 //                .stockQuantity(productDtoInputAll.getStockQuantity())
                 .star(0)
                 .detail(productDtoInputAll.getDetail())
@@ -110,6 +121,8 @@ public class ProductServiceImple implements IProductService{
                             .name(productDtoInputAll.getName())
                             .regularPrice(productDtoInputAll.getRegularPrice())
                             .discountPrice(productDtoInputAll.getDiscountPrice())
+                            .discountRate(productDtoInputAll.getDiscountRate())
+                            .shippingFee(productDtoInputAll.getShippingFee())
 //                            .stockQuantity(productDtoInputAll.getStockQuantity())
                             .detail(productDtoInputAll.getDetail())
                             .deliveryCondition(productDtoInputAll.getDeliveryCondition())
@@ -130,14 +143,56 @@ public class ProductServiceImple implements IProductService{
         List<Product> productList = iProductRepository.findAll();
         List<ProductDtoOutputAll> productDtoOutputAllList = new ArrayList<>();
 
+
         productList.forEach(
                 product -> {
+
+                    // ProductSubImg
+                    List<ProductSubImg> productSubImgList = iProductSubImgRepository.findAllByProductId(product.getId());
+                    List<ProductSubImgDtoOutputOnlyId> productSubImgDtoOutputOnlyIds = new ArrayList<>();
+
+                    productSubImgList.forEach(productSubImg -> {
+                        productSubImgDtoOutputOnlyIds.add(
+                                ProductSubImgDtoOutputOnlyId.builder()
+                                        .id(productSubImg.getId())
+                                        .build()
+                        );
+                    });
+
+                    // Stock
+                    List<Stock> stockList = iStockRepository.findAllByProductId(product.getId());
+                    List<StockDtoOutputOnlyId> stockDtoOutputOnlyIdList = new ArrayList<>();
+                    stockList.forEach(stock -> {
+                        stockDtoOutputOnlyIdList.add(
+                                StockDtoOutputOnlyId.builder()
+                                        .id(stock.getId())
+                                        .build()
+                        );
+                    });
+
+                    // CategoryProductList
+                    List<CategoryProductList> categoryProductListList = iCategoryProductListRepository.findAllByProductId(product.getId());
+                    List<CategoryProductListDtoOutput> categoryProductListDtoOutputList = new ArrayList<>();
+                    categoryProductListList.forEach(categoryProductList -> {
+                        categoryProductListDtoOutputList.add(
+                                CategoryProductListDtoOutput.builder()
+                                        .id(categoryProductList.getId())
+                                        .productId(categoryProductList.getProduct().getId())
+                                        .categoryId(categoryProductList.getCategory().getId())
+                                        .categoryMId(categoryProductList.getCategoryM().getId())
+                                        .build()
+                        );
+                    });
+
+
                     productDtoOutputAllList.add(
                             ProductDtoOutputAll.builder()
                                     .id(product.getId())
                                     .name(product.getName())
                                     .regularPrice(product.getRegularPrice())
                                     .discountPrice(product.getDiscountPrice())
+                                    .discountRate(product.getDiscountRate())
+                                    .shippingFee(product.getShippingFee())
 //                                    .stockQuantity(product.getStockQuantity())
                                     .star(product.getStar())
                                     .detail(product.getDetail())
@@ -148,9 +203,12 @@ public class ProductServiceImple implements IProductService{
 //                                    .optionList(product.getOptionList())
                                     .titleImgUrl(product.getTitleImgUrl())
                                     .titleImgTxt(product.getTitleImgTxt())
-                                    .productSubImgList(iProductSubImgRepository.findAllByProductId(product.getId())) // 수정 필요
-                                    .stockList(iStockRepository.findAllByProductId(product.getId()))
-                                    .categoryProductList(iCategoryProductListRepository.findAllByProductId(product.getId()))
+                                    .productSubImgList(productSubImgDtoOutputOnlyIds)
+//                                    .productSubImgList(iProductSubImgRepository.findAllByProductId(product.getId())) // 수정 필요
+                                    .stockList(stockDtoOutputOnlyIdList)
+//                                    .stockList(iStockRepository.findAllByProductId(product.getId()))
+                                    .categoryProductList(categoryProductListDtoOutputList)
+//                                    .categoryProductList(iCategoryProductListRepository.findAllByProductId(product.getId()))
                                     .build()
                     );
                 }
@@ -173,6 +231,8 @@ public class ProductServiceImple implements IProductService{
                             .detail(product.getDetail())
                             .sellCount(product.getSellCount())
                             .discountPrice(product.getDiscountPrice())
+                            .discountRate(product.getDiscountRate())
+                            .shippingFee(product.getShippingFee())
                             .name(product.getName())
                             .viewCount(product.getViewCount())
                             .star(product.getStar())
@@ -195,11 +255,50 @@ public class ProductServiceImple implements IProductService{
     public ProductDtoOutputAllDetail getProductOne(Long productId) {
         Optional<Product> product = iProductRepository.findById(productId);
         if(product.isPresent()){
+
+            // ProductSubImg
+            List<ProductSubImg> productSubImgList = iProductSubImgRepository.findAllByProductId(product.get().getId());
+            List<ProductSubImgDtoOutputOnlyId> productSubImgDtoOutputOnlyIdList = new ArrayList<>();
+            productSubImgList.forEach(productSubImg -> {
+                productSubImgDtoOutputOnlyIdList.add(
+                        ProductSubImgDtoOutputOnlyId.builder()
+                                .id(productSubImg.getId())
+                                .build()
+                );
+            });
+
+            // CategoryProductList
+            List<CategoryProductList> categoryProductLists = iCategoryProductListRepository.findAllByProductId(product.get().getId());
+            List<CategoryProductListDtoOutput> categoryProductListDtoOutputList = new ArrayList<>();
+            categoryProductLists.forEach(categoryProductList -> {
+                categoryProductListDtoOutputList.add(
+                        CategoryProductListDtoOutput.builder()
+                                .id(categoryProductList.getId())
+                                .productId(categoryProductList.getProduct().getId())
+                                .categoryId(categoryProductList.getCategory().getId())
+                                .categoryMId(categoryProductList.getCategoryM().getId())
+                                .build()
+                );
+            });
+
+            // Stock
+            List<Stock> stockList = iStockRepository.findAllByProductId(product.get().getId());
+            List<StockDtoOutputOnlyId> stockDtoOutputOnlyIdList = new ArrayList<>();
+            stockList.forEach(stock -> {
+                stockDtoOutputOnlyIdList.add(
+                        StockDtoOutputOnlyId.builder()
+                                .id(stock.getId())
+                                .build()
+                );
+            });
+
             return ProductDtoOutputAllDetail.builder()
                     .id(productId)
                     .name(product.get().getName())
                     .star(product.get().getStar())
                     .discountPrice(product.get().getDiscountPrice())
+                    .discountRate(product.get().getDiscountRate())
+                    .shippingFee(product.get().getShippingFee())
                     .titleImgTxt(product.get().getTitleImgTxt())
                     .titleImgUrl(product.get().getTitleImgUrl())
                     .brandName(product.get().getBrandName())
@@ -208,9 +307,12 @@ public class ProductServiceImple implements IProductService{
                     .deliveryCondition(product.get().getDeliveryCondition())
                     .detail(product.get().getDetail())
                     .regularPrice(product.get().getRegularPrice())
-                    .categoryProductList(iCategoryProductListRepository.findAllByProductId(product.get().getId()))
-                    .productSubImgList(iProductSubImgRepository.findAllByProductId(product.get().getId()))
-                    .stockList(iStockRepository.findAllByProductId(product.get().getId()))
+//                    .categoryProductList(iCategoryProductListRepository.findAllByProductId(product.get().getId()))
+                    .categoryProductList(categoryProductListDtoOutputList)
+//                    .productSubImgList(iProductSubImgRepository.findAllByProductId(product.get().getId()))
+                    .productSubImgList(productSubImgDtoOutputOnlyIdList)
+//                    .stockList(iStockRepository.findAllByProductId(product.get().getId()))
+                    .stockList(stockDtoOutputOnlyIdList)
                     .build();
         }
 
@@ -229,9 +331,23 @@ public class ProductServiceImple implements IProductService{
 
         ProductDtoOutputStockByProductId productDtoOutputStockByProductId = null;
 
+        List<Stock> stockList = iStockRepository.findAllByProductId(productDtoOutputIdName.getId());
+        List<StockDtoOutputProductIdName> stockDtoOutputProductIdNameList = new ArrayList<>();
+        stockList.forEach(stock -> {
+            stockDtoOutputProductIdNameList.add(
+                    StockDtoOutputProductIdName.builder()
+                            .id(stock.getId())
+                            .qty(stock.getQty())
+                            .optionFirstId(stock.getOptionFirst().getId())
+                            .optionSecondId(stock.getOptionSecond().getId())
+                            .productId(stock.getProduct().getId())
+                            .build()
+            );
+        });
+
         return ProductDtoOutputStockByProductId.builder()
                 .id(product.get().getId())
-//                .stock(iStockRepository.findAllByProductId(productDtoOutputIdName.getId()))
+                .stock(stockDtoOutputProductIdNameList)
                 .build();
     }
 

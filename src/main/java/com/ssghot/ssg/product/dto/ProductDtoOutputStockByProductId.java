@@ -1,6 +1,6 @@
 package com.ssghot.ssg.product.dto;
 
-import com.ssghot.ssg.optionList.domain.Stock;
+import com.ssghot.ssg.optionList.dto.StockDtoOutputProductIdName;
 import lombok.Builder;
 import lombok.Data;
 
@@ -11,5 +11,5 @@ import java.util.List;
 public class ProductDtoOutputStockByProductId {
 
     private Long id;
-    private List<Stock> stock;
+    private List<StockDtoOutputProductIdName> stock;
 }

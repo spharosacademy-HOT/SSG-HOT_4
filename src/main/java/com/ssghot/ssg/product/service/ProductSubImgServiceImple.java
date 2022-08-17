@@ -98,7 +98,15 @@ public class ProductSubImgServiceImple implements IProductSubImgService{
 
     // 4. 서브 이미지 단일 조회하기
     @Override
-    public ProductSubImg getOne(Long productSubImgId) {
-        return iProductSubImgRepository.findById(productSubImgId).get();
+    public ProductSubImgDtoOutputAll getOne(Long productSubImgId) {
+        ProductSubImg productSubImg = iProductSubImgRepository.findById(productSubImgId).get();
+
+        return ProductSubImgDtoOutputAll.builder()
+                .id(productSubImg.getId())
+                .subImgUrl(productSubImg.getSubImgUrl())
+                .subImgTxt(productSubImg.getSubImgTxt())
+                .productId(productSubImg.getProduct().getId())
+                .build();
+
     }
 }

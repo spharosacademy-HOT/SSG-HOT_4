@@ -22,6 +22,10 @@ public class Product extends CommonDTO {
     private int regularPrice; // 정가
     @Column(nullable = true)
     private int discountPrice; // 할인가
+    @Column(nullable = true)
+    private float discountRate; // 할인율
+    @Column(nullable = true)
+    private int shippingFee; // 배송비
 //    @Column(nullable = true)
 //    private int stockQuantity; // 재고 개수
     @Column(nullable = true)

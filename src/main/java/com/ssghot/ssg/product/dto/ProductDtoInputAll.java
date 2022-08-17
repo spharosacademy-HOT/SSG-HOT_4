@@ -20,6 +20,8 @@ public class ProductDtoInputAll {
     private String name; // 상품명
     private int regularPrice; // 정가
     private int discountPrice; // 할인가
+    private float discountRate; // 할인율
+    private int shippingFee; // 배송비
 //    private int stockQuantity; // 재고 개수
     //private int star; // 별점
     private String detail; // 상세설명

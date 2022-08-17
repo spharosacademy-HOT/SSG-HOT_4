@@ -75,9 +75,9 @@ public class CategoryProductListServiceImple implements ICategoryProductListServ
                     categoryProductListDtoOutputs.add(
                             CategoryProductListDtoOutput.builder()
                                     .id(categoryProductList.getId())
-                                    .category(categoryProductList.getCategory())
-                                    .categoryM(categoryProductList.getCategoryM())
-                                    .product(categoryProductList.getProduct())
+                                    .categoryId(categoryProductList.getCategory().getId())
+                                    .categoryMId(categoryProductList.getCategoryM().getId())
+                                    .productId(categoryProductList.getProduct().getId())
                                     .build()
                     );
                 }
@@ -96,9 +96,9 @@ public class CategoryProductListServiceImple implements ICategoryProductListServ
         if(categoryProductList.isPresent()){
             return CategoryProductListDtoOutput.builder()
                     .id(id)
-                    .category(categoryProductList.get().getCategory())
-                    .categoryM(categoryProductList.get().getCategoryM())
-                    .product(categoryProductList.get().getProduct())
+                    .categoryId(categoryProductList.get().getCategory().getId())
+                    .categoryMId(categoryProductList.get().getCategoryM().getId())
+                    .productId(categoryProductList.get().getProduct().getId())
                     .build();
         }
 //        return iCategoryProductListRepository.findById(id).get();

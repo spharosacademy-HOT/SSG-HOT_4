@@ -93,7 +93,7 @@ public class ProductController {
 
     // 8. 서브 이미지 단일 조회하기
     @GetMapping("/product/subimg/{productSubImgId}")
-    public ProductSubImg getOneProductSubImg(@PathVariable Long productSubImgId){
+    public ProductSubImgDtoOutputAll getOneProductSubImg(@PathVariable Long productSubImgId){
         return iProductSubImgService.getOne(productSubImgId);
     }
 

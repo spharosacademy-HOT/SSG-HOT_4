@@ -30,5 +30,5 @@ public interface IProductSubImgService {
     List<ProductSubImgDtoOutputAll> getAll();
 
     // 4. 서브 이미지 단일 조회하기
-    ProductSubImg getOne(Long productSubImgId);
+    ProductSubImgDtoOutputAll getOne(Long productSubImgId);
 }
