@@ -5,6 +5,7 @@ import { useLocation } from "react-router-dom";
 import CartFooter from "./CartFooter";
 import CartHeader from "./CartHeader";
 import CartNotice from "./CartNotice";
+import CartToolBar from "./cartToolBar/CartToolBar";
 
 export default function Cart() {
   let pageUrl = useLocation();
@@ -34,6 +35,7 @@ export default function Cart() {
       <CartContents />
       <CartFooter />
       <CartNotice />
+      <CartToolBar />
     </div>
     </>
   );
