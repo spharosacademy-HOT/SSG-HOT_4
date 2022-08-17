@@ -47,7 +47,7 @@ function ProductPurchaseBar() {
                         </div>
                     </li>
                 </ul>
-                <div className='option-box'>
+                {/* <div className='option-box'>
                     <div>
                         닫기
                     </div>
@@ -57,7 +57,7 @@ function ProductPurchaseBar() {
                     <div>
                         총 합계 0 원
                     </div>
-                </div>
+                </div> */}
             </div>
         </>
      );
