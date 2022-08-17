@@ -15,7 +15,7 @@ public class UserCouponEditDtoInput {
     private boolean valid;
 
     public UserCoupon toEntity(UserCoupon userCoupon){
-        System.out.println(isValid());
+
         return UserCoupon.builder()
                 .id(getId())
                 .coupon(userCoupon.getCoupon())

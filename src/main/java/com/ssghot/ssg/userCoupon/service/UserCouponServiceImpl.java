@@ -100,6 +100,8 @@ public class UserCouponServiceImpl implements IUserCouponService{
                     .coupon(CouponDtoOutput.toEntity(userCoupon.getCoupon()))
                     .userId(userCoupon.getUser().getId())
                     .valid(userCoupon.isValid())
+                    .createdDate(userCoupon.getCreatedDate())
+                    .updatedDate(userCoupon.getUpdatedDate())
                     .build());
         }
      return new ResultDtoOutput<>(status,message,null);
@@ -113,6 +115,8 @@ public class UserCouponServiceImpl implements IUserCouponService{
                             .coupon(CouponDtoOutput.toEntity(userCoupon.getCoupon()))
                             .userId(userCoupon.getUser().getId())
                             .valid(userCoupon.isValid())
+                            .updatedDate(userCoupon.getUpdatedDate())
+                            .createdDate(userCoupon.getCreatedDate())
                             .build()).collect(Collectors.toList());
             return new ResultsDtoOutput<>(status,message,collect.size(),collect);
         }
