@@ -5,7 +5,7 @@ export default function CartBlank() {
     <div
       style={{
         width: "100%",
-        height: "22px",
+        height: "11px",
         backgroundColor: "#f5f5f5",
       }}
     ></div>

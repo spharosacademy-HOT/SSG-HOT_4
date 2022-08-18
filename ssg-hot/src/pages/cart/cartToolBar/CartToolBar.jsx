@@ -3,14 +3,18 @@ import CartToolBarBtn from "./CartToolBarBtn";
 import CartToolBarContent from "./CartToolBarContent";
 import CartToolBarFloat from "./CartToolBarFloat";
 
-export default function CartToolBar() {
+export default function CartToolBar({ isItem, isLogin }) {
   return (
     <div className="mnodr_toolbar2 on">
-      <CartToolBarFloat />
-
-      <CartToolBarContent />
-
-      <CartToolBarBtn />
+      {isItem ? (
+        <>
+          <CartToolBarFloat />
+          <CartToolBarContent isLogin={isLogin} />
+          <CartToolBarBtn />
+        </>
+      ) : (
+        <></>
+      )}
     </div>
   );
 }

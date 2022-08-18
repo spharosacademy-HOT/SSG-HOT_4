@@ -1,13 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import NoCartNoLogin from "./NoCartNoLogin";
 import DeliveryType from "./DeliveryType";
 import CartAddress from "./CartAddress";
 import UserNoItem from "./UserNoItem";
 import CartBlank from "./CartBlank";
 import HasCartItem from "./HasCartItem";
-export default function CartContents() {
-  const [isItem, setIsItem] = useState(true);
-  const [isLogin, setIsLogin] = useState(false);
+import TryLogin from "./TryLogin";
+import RecommendContent from "./RecommendContent";
+export default function CartContents({ isItem, isLogin }) {
   return (
     <div>
       {isLogin ? (
@@ -20,6 +20,7 @@ export default function CartContents() {
             <>
               <UserNoItem />
               <CartBlank />
+              <RecommendContent />
             </>
           )}
         </>
@@ -27,11 +28,11 @@ export default function CartContents() {
         <>
           {isItem ? (
             <>
+              <TryLogin />
               <HasCartItem />
             </>
           ) : (
             <>
-              {" "}
               <NoCartNoLogin />
             </>
           )}

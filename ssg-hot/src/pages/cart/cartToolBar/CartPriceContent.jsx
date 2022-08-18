@@ -7,7 +7,7 @@ export default function CartPriceContent() {
   const cartCnt = 3;
   return (
     <div className="mnodr_toolbar_cont">
-      <p className="mnodr_tx_desc" id="bar_price">
+      <p className="mnodr_tx_desc" id="bar_price" style={{ marginTop: "1rem" }}>
         <span className="mnodr_cnt">전체상품 {cartCnt}개 </span>
         <span className="ssg_tx" id="toolbarCst">
           {originPrice - discountPrice}원 + 배송비 {deliveryPrice}원 =

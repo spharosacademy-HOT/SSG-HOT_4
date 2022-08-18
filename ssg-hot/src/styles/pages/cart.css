@@ -464,3 +464,6 @@
   font-size: 18px;
   font-weight: bold;
 }
+.mnodr_toolbar_ctn::before {
+  display: none !important;
+}
