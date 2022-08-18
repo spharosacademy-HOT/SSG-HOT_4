@@ -1,6 +1,8 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function TryLogin() {
+  const navigate = useNavigate();
   return (
     <div
       className="mnodr_info2"
@@ -17,7 +19,12 @@ export default function TryLogin() {
       </div>
       <div className="mnodr_info2_contents">
         <div className="mnodr_info2_btnarea">
-          <button className="mnodr_info2_btn" type="button" name="loginBtn">
+          <button
+            className="mnodr_info2_btn"
+            type="button"
+            name="loginBtn"
+            onClick={() => navigate("/login")}
+          >
             로그인 하기
           </button>
         </div>
