@@ -36,6 +36,57 @@
     border-radius: 10px;
     border: solid #5d30ff 2px;
 }
+/* 리뷰 링크만 */
+.product-simple-review{
+    display: flex;
+    padding: 20px;
+}
+.product-review-page{
+    padding: 20px;
+}
+.product-simple-review :nth-child(2){
+    text-decoration-line: underline;
+    margin-left: 10px;
+}
+/* 리뷰 상세페이지 */
+.product-review-info{
+    padding: 20px 0;
+}
+.product-review-info div{
+    display: flex;
+    font-weight: bold;
+}
+.product-review-info .total-review-cnt{
+    font-size: 1.5rem;
+}
+.product-review-card div{
+    display: flex;
+}
+.product-review-card .review-star{
+    font-weight: bold;
+    justify-content: space-between;
+}
+.review-star > :nth-child(2){
+    font-size: 0.8rem;
+    color: #cdcdd0;
+}
+.product-review-card > :nth-child(2){
+    color: #666;
+    font-size: 0.8rem;
+}
+.product-review-card > :nth-child(3){
+    margin-top: 10px;
+    color: #666;
+    font-size: 0.9rem;
+}
+.product-review-card > :nth-child(3) > :nth-child(1){
+    width: 12%;
+    font-weight: bold;
+}
+.product-review-card .review-content{
+    margin-top: 10px;
+    font-size: 0.9rem;
+}
 /* 상품정보 */
 .product-detail-info{
     padding: 20px;
