@@ -7,7 +7,7 @@ import CartToolBar from "./cartToolBar/CartToolBar";
 
 export default function Cart() {
   const [isLogin, setIsLogin] = useState(false);
-  const [isItem, setIsItem] = useState(false);
+  const [isItem, setIsItem] = useState(true);
 
   return (
     <div className="bgGray">

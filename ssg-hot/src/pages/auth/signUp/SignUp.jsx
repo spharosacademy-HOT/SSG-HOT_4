@@ -1,19 +1,13 @@
 import React from "react";
-import SignUpTop from "./SignUpTop";
 import SignUpSns from "./SignUpSns";
 import SignUpInput from "./SignUpInput";
+import CommonHeader from "../../../components/layout/header/CommonHeader";
 export default function SignUp() {
-  return ( <>
-    
-    
-    <SignUpTop/>
-    
-    <SignUpInput/>
-    
-    <SignUpSns/>
-    
-
- 
+  return (
+    <>
+      <CommonHeader title="회원가입" />
+      <SignUpInput />
+      <SignUpSns />
     </>
-    );
+  );
 }

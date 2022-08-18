@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function LogInInput() {
   return (
@@ -109,9 +110,7 @@ function LogInInput() {
               <a href="https://member.ssg.com/m/member/findIdPw.ssg?tabType=pw">
                 비밀번호 찾기|
               </a>
-              <a href="./signup">
-                회원가입
-              </a>
+              <Link to="/signup">회원가입</Link>
             </div>
           </fieldset>
         </form>

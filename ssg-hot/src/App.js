@@ -18,7 +18,6 @@ import ProductList from "./pages/product/ProductList";
 import Product from "./pages/product/Product";
 import Header from "./components/layout/header/Header";
 import MyPage from "./pages/myPage/MyPage";
-import Cart2 from "./pages/cart2/Cart2";
 import EmailSignUp from "./pages/auth/signUp/emailSignUp/EmailSignUp";
 
 function App() {
@@ -32,14 +31,13 @@ function App() {
         <Route path="/category" element={<Category />} />
         <Route path="/mainsearch" element={<Search />} />
         <Route path="/cart" element={<Cart />} />
-        <Route path="/cart2" element={<Cart2 />} />
         <Route path="/productList" element={<ProductList />} />
         <Route path="/product" element={<Product />}>
-          <Route path=":productId" element={<Product/>}/>
+          <Route path=":productId" element={<Product />} />
         </Route>
         <Route path="/mypage" element={<MyPage />} />
-        <Route path="/signUp" element={<SignUp/>}/>
-        <Route path="/emailsignup" element={<EmailSignUp/>}/>
+        <Route path="/signUp" element={<SignUp />} />
+        <Route path="/emailsignup" element={<EmailSignUp />} />
       </Routes>
       <ToolBar />
       <Footer />
