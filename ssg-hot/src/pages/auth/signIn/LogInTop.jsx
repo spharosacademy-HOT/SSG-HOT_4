@@ -56,7 +56,7 @@ function LoginTop() {
             <div className="cgsearch_inpbox_util">
               <a
                 id="mHeaderCartBtn_search"
-                href=""
+                href="#;"
                 className="cgsearch_util_mn ty_cart"
               >
                 <i className="icon icon_cart">
@@ -117,7 +117,7 @@ function LoginTop() {
       <div className="ly_change ly_narae">
         <div className="tit_change">
           <h3>대체 상품</h3>
-          <a href="#" className="btn_close">
+          <a href="#;" className="btn_close">
             <span className="blind">닫기</span>
           </a>
         </div>

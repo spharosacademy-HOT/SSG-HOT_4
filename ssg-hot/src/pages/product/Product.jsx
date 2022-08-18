@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ProductDetailInfo from "./productDetail/ProductDetailInfo";
 import ProductMainImg from "./productDetail/ProductMainImg";
 import ProductInfo from "./productDetail/ProductInfo";
@@ -13,30 +13,56 @@ import EventBanner from "./productDetail/EventBanner";
 import StoreInfo from "./productDetail/StoreInfo";
 
 import ProductCard from "./ProductCard";
-import productDatas from "../../datas/js/productDatas";
+// import productDatas from "../../datas/js/productDatas";
+import { useLocation } from "react-router-dom";
+import axios from "axios";
+import ProductPurchaseBar from "./productDetail/ProductPurchaseBar";
 
 function Product() {
+  let pageUrl = useLocation();
+  const [pagePath, setPagePath] = useState();
+  let productPageNum = 0;
+
+  useEffect(() => {
+    setPagePath(pageUrl.pathname);
+    const productNum = pageUrl.pathname.split("/");
+    productPageNum = productNum[2];
+    console.log(productNum[2]);
+  }, [pageUrl]);
+  useEffect(() => {
+    axios
+      .get(`http://10.10.10.125:8080/ssghot/product/${productPageNum}`)
+      .then((Response) => {
+        setProductDatas(Response.data);
+        console.log(Response.data);
+      });
+  }, []);
+  const [productDatas, setProductDatas] = useState([]);
+
   return (
     <>
-      <ProductMainImg />
-      <ProductInfo />
+      <div className="product-head-box"></div>
+      <ProductMainImg productDatas={productDatas.titleImgUrl} />
+      <ProductInfo productDatas={productDatas} />
       <SmileClub />
-      <ProductSimpleReview />
+      {/* <ProductSimpleReview /> */}
       <ProductEvent />
       <ProductDetailInfo />
       <ProductDetailImg />
       <ProductReiew />
       <ProductQnA />
-      <ProductGuide />
+      {/* <ProductGuide /> */}
       <EventBanner />
-      <StoreInfo />
+      {/* <StoreInfo /> */}
+      <ProductPurchaseBar />
 
       {/* 추천 상품 */}
-      <div>함께보면 좋은 상품</div>
+      {/* <div>함께보면 좋은 상품</div>
       <div className="product-list">
-        {productDatas &&
-          productDatas.map((item) => <ProductCard item={item} key={item.id} />)}
-      </div>
+        {productDatas && productDatas.map((item) => 
+          <ProductCard item={item} key={item.id} />
+        )}
+      </div> */}
     </>
   );
 }
