@@ -39,6 +39,7 @@ export default function CartHeader() {
             </span>
           </a>
         </div>
+      </div>
     </div>
   );
 }
