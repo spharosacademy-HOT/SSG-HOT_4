@@ -1,8 +1,11 @@
 package com.ssghot.ssg.category.service;
 
 import com.ssghot.ssg.category.domain.Category;
+import com.ssghot.ssg.category.domain.CategoryM;
 import com.ssghot.ssg.category.dto.CategoryDtoInput;
 import com.ssghot.ssg.category.dto.CategoryDtoOutput;
+import com.ssghot.ssg.category.dto.CategoryDtoOutputOnlyIdAndName;
+import com.ssghot.ssg.category.repository.ICategoryMRepository;
 import com.ssghot.ssg.category.repository.ICategoryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -16,6 +19,7 @@ import java.util.Optional;
 public class CategoryServiceImple implements ICategoryService{
 
     private final ICategoryRepository iCategoryRepository;
+    private final ICategoryMRepository iCategoryMRepository;
 
     /*
         1. 카테고리 대분류 등록하기
@@ -52,23 +56,24 @@ public class CategoryServiceImple implements ICategoryService{
 
     // 3. 카테고리 대분류 전체 조회하기
     @Override
-    public List<CategoryDtoOutput> getAllCategory() {
+    public List<CategoryDtoOutputOnlyIdAndName> getAllCategory() {
 
         List<Category> categoryList = iCategoryRepository.findAll();
-        List<CategoryDtoOutput> categoryDtoOutputList = new ArrayList<>();
+        List<CategoryDtoOutputOnlyIdAndName> categoryDtoOutputOnlyIdAndNameList = new ArrayList<>();
 
         categoryList.forEach(
                 category -> {
-                    categoryDtoOutputList.add(
-                            CategoryDtoOutput.builder()
+                    categoryDtoOutputOnlyIdAndNameList.add(
+                            CategoryDtoOutputOnlyIdAndName.builder()
                                     .id(category.getId())
                                     .name(category.getName())
+                                    .categoryMList(iCategoryMRepository.findAllByCategoryId(category.getId()))
                                     .build()
                     );
                 }
         );
 
-        return categoryDtoOutputList;
+        return categoryDtoOutputOnlyIdAndNameList;
     }
 
     // 4. 카테고리 대분류 단일 조회하기
@@ -77,10 +82,14 @@ public class CategoryServiceImple implements ICategoryService{
 
         Optional<Category> category = iCategoryRepository.findById(categoryId);
         CategoryDtoOutput categoryDtoOutput = null;
+
+        List<CategoryM> allByCategoryId = iCategoryMRepository.findAllByCategoryId(category.get().getId());
+
         if (category.isPresent()) {
             categoryDtoOutput = CategoryDtoOutput.builder()
                     .id(category.get().getId())
                     .name(category.get().getName())
+                    .categoryMList(iCategoryMRepository.findAllByCategoryId(category.get().getId()))
                     .build();
         }
 

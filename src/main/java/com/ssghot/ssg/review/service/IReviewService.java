@@ -1,8 +1,8 @@
-package com.ssghot.ssg.post.review.service;
+package com.ssghot.ssg.review.service;
 
-import com.ssghot.ssg.post.review.domain.Review;
-import com.ssghot.ssg.post.review.dto.ReviewDtoInput;
-import com.ssghot.ssg.post.review.dto.ReviewDtoOutput;
+import com.ssghot.ssg.review.domain.Review;
+import com.ssghot.ssg.review.dto.ReviewDtoInput;
+import com.ssghot.ssg.review.dto.ReviewDtoOutput;
 
 import java.util.List;
 

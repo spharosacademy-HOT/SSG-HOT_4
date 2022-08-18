@@ -2,10 +2,7 @@ package com.ssghot.ssg.category.controller;
 
 import com.ssghot.ssg.category.domain.Category;
 import com.ssghot.ssg.category.domain.CategoryM;
-import com.ssghot.ssg.category.dto.CategoryDtoInput;
-import com.ssghot.ssg.category.dto.CategoryDtoOutput;
-import com.ssghot.ssg.category.dto.CategoryMDtoInput;
-import com.ssghot.ssg.category.dto.CategoryMDtoOutput;
+import com.ssghot.ssg.category.dto.*;
 import com.ssghot.ssg.category.service.ICategoryMService;
 import com.ssghot.ssg.category.service.ICategoryService;
 import lombok.RequiredArgsConstructor;
@@ -60,7 +57,7 @@ public class CategoryController {
 
     // 3-1. 카테고리 대분류 전체 조회하기
     @GetMapping("/category")
-    public List<CategoryDtoOutput> getAllCategory(){
+    public List<CategoryDtoOutputOnlyIdAndName> getAllCategory(){
         return iCategoryService.getAllCategory();
     }
     // 3-2. 카테고리 중분류 전체 조회하기

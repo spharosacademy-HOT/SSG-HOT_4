@@ -1,5 +1,6 @@
-package com.ssghot.ssg.post.review.domain;
+package com.ssghot.ssg.review.domain;
 
+import com.ssghot.ssg.common.CommonDTO;
 import com.ssghot.ssg.order.domain.Order;
 import com.ssghot.ssg.product.domain.Product;
 import com.ssghot.ssg.users.domain.User;
@@ -15,7 +16,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-public class Review {
+public class Review extends CommonDTO {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

@@ -1,4 +1,4 @@
-package com.ssghot.ssg.post.review.dto;
+package com.ssghot.ssg.review.dto;
 
 import com.ssghot.ssg.order.domain.Order;
 import com.ssghot.ssg.product.domain.Product;

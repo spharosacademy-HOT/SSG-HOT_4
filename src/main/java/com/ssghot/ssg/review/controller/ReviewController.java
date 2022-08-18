@@ -1,9 +1,9 @@
-package com.ssghot.ssg.post.review.controller;
+package com.ssghot.ssg.review.controller;
 
-import com.ssghot.ssg.post.review.domain.Review;
-import com.ssghot.ssg.post.review.dto.ReviewDtoInput;
-import com.ssghot.ssg.post.review.dto.ReviewDtoOutput;
-import com.ssghot.ssg.post.review.service.IReviewService;
+import com.ssghot.ssg.review.domain.Review;
+import com.ssghot.ssg.review.dto.ReviewDtoInput;
+import com.ssghot.ssg.review.dto.ReviewDtoOutput;
+import com.ssghot.ssg.review.service.IReviewService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

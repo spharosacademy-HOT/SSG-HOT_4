@@ -1,9 +1,11 @@
-package com.ssghot.ssg.post.review.service;
+package com.ssghot.ssg.review.service;
 
-import com.ssghot.ssg.post.review.domain.Review;
-import com.ssghot.ssg.post.review.dto.ReviewDtoInput;
-import com.ssghot.ssg.post.review.dto.ReviewDtoOutput;
-import com.ssghot.ssg.post.review.repository.IReviewRepository;
+import com.ssghot.ssg.review.domain.Review;
+import com.ssghot.ssg.review.dto.ReviewDtoInput;
+import com.ssghot.ssg.review.dto.ReviewDtoOutput;
+import com.ssghot.ssg.review.repository.IReviewRepository;
+import com.ssghot.ssg.product.repository.IProductRepository;
+import com.ssghot.ssg.users.repository.IUserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,8 @@ import java.util.Optional;
 public class ReviewServiceImple implements IReviewService{
 
     private final IReviewRepository iReviewRepository;
+    private final IUserRepository iUserRepository;
+    private final IProductRepository iProductRepository;
 
     /*
         1. 리뷰 등록하기
@@ -97,6 +101,7 @@ public class ReviewServiceImple implements IReviewService{
     @Override
     public ReviewDtoOutput getOneReview(Long id) {
         Optional<Review> review = iReviewRepository.findById(id);
+
         if(review.isPresent()){
             return ReviewDtoOutput.builder()
                     .id(review.get().getId())
