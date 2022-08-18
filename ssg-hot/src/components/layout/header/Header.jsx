@@ -27,6 +27,7 @@ export default function Header() {
       ) : pagePath === "/mypage" ? (
         ""
       ) : pagePath === "/signup" ? (
+
        "" 
        ) :  pagePath === "/emailsignup" ?(
        "" 
@@ -39,7 +40,7 @@ export default function Header() {
         :
        (
       
-      
+
         <header>
           <div className="innerHeader">
             <HomeLogo />
@@ -48,5 +49,5 @@ export default function Header() {
         </header>
       )}
     </>
- );
-       }
+  );
+}

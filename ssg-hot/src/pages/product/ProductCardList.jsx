@@ -21,7 +21,7 @@ function ProductCardList() {
       <div className="cmft_sort_count v2">
         <div className="cmft_sort_tit">
           <div className="cmft_num">
-            <strong>509,375</strong>개의 상품이 있습니다.
+            <strong>{productDatas.length}</strong>개의 상품이 있습니다.
           </div>
         </div>
       </div>

@@ -1,10 +1,20 @@
 import React from 'react'
+import themeDatas from '../../datas/js/themeDatas';
+import ThemeRecommendCard from './ThemeRecommendCard';
 
 function ThemeRecommend() {
     return ( 
         <>
-            <img src="//sui.ssgcdn.com/cmpt/banner/202207/2022070515062822153723407372_375.jpg" alt="" />
-            <p>SSG Luxury</p>
+            <h3 className="category-title">테마추천</h3>
+            <ul>
+                {
+                    themeDatas && themeDatas.map(item =>(
+                        <li>
+                            <ThemeRecommendCard item={item} key={item.id}/>
+                        </li>
+                    ))
+                }
+            </ul>
         </>
      );
 }

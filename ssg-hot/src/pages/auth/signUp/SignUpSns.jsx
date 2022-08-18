@@ -9,7 +9,10 @@ function SignUpSns() {
         </div>
         <div className="cmem_cont"></div>
       </div>
-      <ul className="cmem_sns_login" style={{padding:"0px"}}>
+      <ul
+        className="cmem_sns_login"
+        style={{ listStyle: "none", padding: "0" }}
+      >
         <li>
           <a href="./emailsignup">
             <span className="ico_area">

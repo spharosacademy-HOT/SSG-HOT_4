@@ -15,10 +15,10 @@ import Search from "./pages/search/Search";
 import Cart from "./pages/cart/Cart";
 import Footer from "./components/layout/footer/Footer";
 import ProductList from "./pages/product/ProductList";
+import ProductReviewPage from "./pages/product/productDetail/productReview/productReviewDetail/ProductReviewPage";
 import Product from "./pages/product/Product";
 import Header from "./components/layout/header/Header";
 import MyPage from "./pages/myPage/MyPage";
-import Cart2 from "./pages/cart2/Cart2";
 import EmailSignUp from "./pages/auth/signUp/emailSignUp/EmailSignUp";
 import Qna from "./pages/auth/qna/Qna";
 import CartControl from "./pages/myPage/cartcontrol/CartControl";
@@ -36,17 +36,23 @@ function App() {
         <Route path="/category" element={<Category />} />
         <Route path="/mainsearch" element={<Search />} />
         <Route path="/cart" element={<Cart />} />
-        <Route path="/cart2" element={<Cart2 />} />
         <Route path="/productList" element={<ProductList />} />
-        <Route path="/product" element={<Product />}>
-        <Route path="productId" element={<Product/>}/>
-        </Route>
+        <Route path="/product" element={<Product />}/>
+
+
+        <Route path=":productId" element={<Product />} />
+       
+        <Route path="/product/review" element={<ProductReviewPage/>}/>
+          <Route path=":productId" element={<ProductReviewPage/>}/>
+        
         <Route path="/mypage" element={<MyPage />} />
-        <Route path="/signUp" element={<SignUp/>}/>
-        <Route path="/emailsignup" element={<EmailSignUp/>}/>
-        <Route path="/qna" element={<Qna/>}/>
+        <Route path="/signUp" element={<SignUp />} />
+        <Route path="/emailsignup" element={<EmailSignUp />} />
         <Route path="/cartcontrol" element={<CartControl/>}/>
         <Route path="/plusship" element={<PlusShip/>}/>
+        <Route path="/qna" element={<Qna/>}/>
+        
+
       </Routes>
       <ToolBar />
       <Footer />

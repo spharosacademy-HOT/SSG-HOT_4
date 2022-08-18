@@ -18,10 +18,18 @@ function ProductInfo({ productDatas }) {
           </div>
         </div>
         <div className="product-price">
-          <div className="discount-price">{/* 있다면 나오도록 */}</div>
-          <div className="original-price">
-            {productDatas.regularPrice}원{/* 중간에 점 어떻게 불러올까 */}
+          <div className="discount-price">
+            {productDatas.regularPrice}  
           </div>
+          <div>
+            <div>
+              {productDatas.discountRate}%
+            </div>
+            <div className="original-price">
+            {productDatas.discountPrice}원{/* 중간에 점 어떻게 불러올까 */}
+          </div>
+          </div>
+          
         </div>
       </div>
     </>
