@@ -17,6 +17,6 @@ public class AddressDtoEditInput {
     private String homePhone;
     private String city;
     private String street;
-    private String zipcode;
+    private int zipcode;
 
 }

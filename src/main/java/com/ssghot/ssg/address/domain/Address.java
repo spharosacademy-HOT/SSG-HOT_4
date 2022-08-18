@@ -41,7 +41,7 @@ public class Address extends CommonDTO {
     @Column(nullable = false)
     private String street;
     @Column(nullable = false)
-    private String zipcode;
+    private int zipcode;
 
     // 기존 배송지 여부
     @Column(columnDefinition = "boolean default false")
