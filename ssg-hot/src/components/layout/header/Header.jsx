@@ -27,10 +27,20 @@ export default function Header() {
       ) : pagePath === "/mypage" ? (
         ""
       ) : pagePath === "/signup" ? (
+
+       "" 
+       ) :  pagePath === "/emailsignup" ?(
+       "" 
+       ): pagePath === "/qna" ?(
         ""
-      ) : pagePath === "/emailsignup" ? (
+       ): pagePath === "/cartcontrol" ?(
         ""
-      ) : (
+       ): pagePath === "/plusship"?
+        ""
+        :
+       (
+      
+
         <header>
           <div className="innerHeader">
             <HomeLogo />

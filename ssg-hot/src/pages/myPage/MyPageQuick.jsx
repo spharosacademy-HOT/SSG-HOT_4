@@ -1,11 +1,12 @@
-import React from "react";
-
+import React from 'react'
 function MyPageQuick() {
   return (
+    
     <div className="myssg_sec">
       <div className="myssg_sec_conts">
         <h3 className="myssg_sec_title">자주찾는 메뉴</h3>
         <ul className="myssg_quick_list">
+
           <li>
             <a
               href="https://m.ssg.com/myssg/productMng/frequentlyOrderItem.ssg?_mpop=new"
@@ -88,7 +89,7 @@ function MyPageQuick() {
           </li>
           <li>
             <a
-              href="javascript:moveCsbot('http://talk.ssg.com/webchat?gateType=cs&siteNo=6005');"
+              href="http://talk.ssg.com/webchat?gateType=cs&siteNo=6005');"
               className="myssg_quick_link clickable"
               data-react-tarea="MYSSG|메인|자주찾는메뉴_고객센터톡"
             >
