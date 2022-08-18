@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import CartContents from "./cartContent/CartContents";
 
 import CartFooter from "./CartFooter";
@@ -7,13 +7,16 @@ import CartNotice from "./CartNotice";
 import CartToolBar from "./cartToolBar/CartToolBar";
 
 export default function Cart() {
+  const [isLogin, setIsLogin] = useState(false);
+  const [isItem, setIsItem] = useState(false);
+
   return (
     <div className="bgGray">
       <CartHeader />
-      <CartContents />
+      <CartContents isLogin={isLogin} isItem={isItem} />
       <CartFooter />
       <CartNotice />
-      <CartToolBar />
+      <CartToolBar isLogin={isLogin} isItem={isItem} />
     </div>
   );
 }
