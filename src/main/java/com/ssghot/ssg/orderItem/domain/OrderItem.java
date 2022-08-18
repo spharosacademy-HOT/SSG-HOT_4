@@ -1,10 +1,13 @@
 package com.ssghot.ssg.orderItem.domain;
 
-import com.ssghot.ssg.coupon.domain.Coupon;
-import com.ssghot.ssg.users.domain.User;
+import com.ssghot.ssg.common.CommonDTO;
+import com.ssghot.ssg.optionList.domain.Stock;
+import com.ssghot.ssg.order.domain.Order;
+import com.sun.istack.NotNull;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
@@ -12,59 +15,44 @@ import javax.persistence.*;
 @Entity
 @Builder
 @EqualsAndHashCode(callSuper=false)
-public class OrderItem {
+public class OrderItem extends CommonDTO {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // --------결제 정보-------
-    //최종 주문 금액
-    @Column(nullable = false)
-    private int amountPaid;
-
-    // 총 상품 금액
-    @Column(nullable = false)
-    private int orderTotal;
-
-    // 배송비
-    @Column(nullable = false)
-    private int deliveryPay;
-
-    // ---------배송지--------
-
-    @Column(nullable = false)
-    private String deliveryName;
-
-    @Column(nullable = false)
-    private String deliveryPhone;
-
-    @Column(nullable = false)
-    private String deliveryAddress;
-
-    @Column(nullable = false)
-    private String deliveryZipcode;
-
-    @Column(columnDefinition = "varchar(13) default ''")
-    private String deliveryHomePhone;
-
-    // 송장 번호
-    @Column(nullable = false)
-    private int envoice;
-    // ---------------------------
-
-    // 결제방법
-    @Column(nullable = false)
-    private String paymentOption;
+    @ManyToOne
+    private Stock stock;
 
     @ManyToOne
-    private User user;
+    private Order order;
 
-     // 쿠폰 사용 확인
-    @OneToOne
-    private Coupon coupon;
+    // 상품 개수
+    @NotNull
+    private int count;
+
+    // 상품 가격
+    @NotNull
+    private int price;
+
+    // 딜리버리 상태
+    @Column(nullable = false)
+    private String deliveryStatus;
+
+    // 딜리버리 정보
+    @Column(nullable = false)
+    private LocalDateTime deliveryInfo;
 
     @PrePersist
     public void prePersist() {
-        this.deliveryHomePhone = this.deliveryHomePhone == null ? "" : this.deliveryHomePhone;
+        this.deliveryStatus = this.deliveryStatus == null ? "배송 준비중" : this.deliveryStatus;
+        this.deliveryInfo =this.deliveryInfo == null? LocalDateTime.now().plusDays(2):this.deliveryInfo;
+
     }
+
+    public void setOrder(Order order){
+        this.order = order;
+    }
+
+
 }

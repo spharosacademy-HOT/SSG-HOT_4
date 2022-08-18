@@ -20,7 +20,7 @@ public class AddressDtoOutput {
     private String homePhone;
     private String city;
     private String street;
-    private String zipcode;
+    private int zipcode;
     private boolean existed;
     private LocalDateTime createdDate;
     private LocalDateTime updatedDate;

@@ -53,12 +53,14 @@ public class Qna extends CommonDTO {
 
 
 
+
+//    @JoinColumn(name = "parent_id")
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "parent_id")
     @JsonIgnore
     private Qna parent;
 
     @OneToMany(mappedBy = "parent", orphanRemoval = true)
     @JsonIgnore
+    @Builder.Default
     private List<Qna> children = new ArrayList<>();
 }

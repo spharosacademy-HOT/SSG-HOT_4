@@ -29,5 +29,6 @@ public class QnaDtoOutput {
     private Long parentId;
     private LocalDateTime createdDate;
     private LocalDateTime updatedDate;
+    @Builder.Default
     private List<Qna> children = new ArrayList<>();
 }
