@@ -17,14 +17,21 @@ export default function ToolBar() {
         ""
       ) : pagePath === "/mainsearch" ? (
         ""
-      ) : pagePath === "/signup" ? 
+      ) : pagePath === "/signup" ? (
       ""
-       : pagePath === "/emailsignup" ? 
+      ): pagePath === "/emailsignup" ? (
       ""
-       : pagePath === "/qna" ? 
+       ): pagePath === "/qna" ? (
+       ""
+       ): pagePath === "/cartcontrol" ?(
+       ""
+       ): pagePath === "/plusship" ?
        ""
        :
-      (
+       (
+      
+        
+      
 
         <div className="toolBar">
           <ul className="toolUl">
