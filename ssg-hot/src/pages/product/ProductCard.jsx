@@ -1,7 +1,8 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar, faHeart } from "@fortawesome/free-solid-svg-icons";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
 import React from "react";
 import { Link } from "react-router-dom";
+import LikeButton from "../../components/common/widgets/button/LikeButton";
 
 function ProductCard({ item }) {
   return (
@@ -11,7 +12,7 @@ function ProductCard({ item }) {
           <div className="product-image">
             <img src={item.titleImgUrl} alt="" />
             <div>
-              <FontAwesomeIcon icon={faHeart} />
+              <LikeButton/>
             </div>
           </div>
           <div className="product-info">

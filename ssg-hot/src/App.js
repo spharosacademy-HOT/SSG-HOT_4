@@ -15,6 +15,7 @@ import Search from "./pages/search/Search";
 import Cart from "./pages/cart/Cart";
 import Footer from "./components/layout/footer/Footer";
 import ProductList from "./pages/product/ProductList";
+import ProductReviewPage from "./pages/product/productDetail/productReview/productReviewDetail/ProductReviewPage";
 import Product from "./pages/product/Product";
 import Header from "./components/layout/header/Header";
 import MyPage from "./pages/myPage/MyPage";
@@ -36,6 +37,9 @@ function App() {
         <Route path="/productList" element={<ProductList />} />
         <Route path="/product" element={<Product />}>
           <Route path=":productId" element={<Product/>}/>
+        </Route>
+        <Route path="/product/review" element={<ProductReviewPage/>}>
+          <Route path=":productId" element={<ProductReviewPage/>}/>
         </Route>
         <Route path="/mypage" element={<MyPage />} />
         <Route path="/signUp" element={<SignUp/>}/>
