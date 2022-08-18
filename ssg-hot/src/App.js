@@ -24,7 +24,6 @@ import Qna from "./pages/auth/qna/Qna";
 import CartControl from "./pages/myPage/cartcontrol/CartControl";
 import PlusShip from "./pages/myPage/cartcontrol/plusship/PlusShip";
 
-
 function App() {
   return (
     <BrowserRouter className="test">
@@ -37,22 +36,19 @@ function App() {
         <Route path="/mainsearch" element={<Search />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/productList" element={<ProductList />} />
-        <Route path="/product" element={<Product />}/>
-
+        <Route path="/product" element={<Product />} />
 
         <Route path=":productId" element={<Product />} />
-       
-        <Route path="/product/review" element={<ProductReviewPage/>}/>
-          <Route path=":productId" element={<ProductReviewPage/>}/>
-        
+
+        <Route path="/product/review" element={<ProductReviewPage />} />
+        <Route path=":productId" element={<ProductReviewPage />} />
+
         <Route path="/mypage" element={<MyPage />} />
         <Route path="/signUp" element={<SignUp />} />
         <Route path="/emailsignup" element={<EmailSignUp />} />
-        <Route path="/cartcontrol" element={<CartControl/>}/>
-        <Route path="/plusship" element={<PlusShip/>}/>
-        <Route path="/qna" element={<Qna/>}/>
-        
-
+        <Route path="/cartcontrol" element={<CartControl />} />
+        <Route path="/plusship" element={<PlusShip />} />
+        <Route path="/qna" element={<Qna />} />
       </Routes>
       <ToolBar />
       <Footer />

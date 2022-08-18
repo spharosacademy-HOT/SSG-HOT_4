@@ -5,7 +5,7 @@ function QnaFooter() {
     <>
       <div className="qna_check">
         <input type="checkbox" id="lbQnaSecret" className="blind" />
-        <label for="lbQnaSecret"></label>
+        <label htmlFor="lbQnaSecret"></label>
       </div>
 
       <ul className="qna_notice">
@@ -56,7 +56,7 @@ function QnaFooter() {
               <input
                 type="text"
                 id="receiverPhone2"
-                maxlength="4"
+                maxLength="4"
                 title="휴대폰 뒷자리"
                 style={{ width: "50px" }}
               />
@@ -66,7 +66,7 @@ function QnaFooter() {
               <input
                 type="text"
                 id="receiverPhone3"
-                maxlength="4"
+                maxLength="4"
                 title="휴대폰 뒷자리"
                 style={{ width: "50px" }}
               />
