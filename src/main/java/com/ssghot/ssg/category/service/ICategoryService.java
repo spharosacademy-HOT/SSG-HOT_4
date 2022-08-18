@@ -3,6 +3,7 @@ package com.ssghot.ssg.category.service;
 import com.ssghot.ssg.category.domain.Category;
 import com.ssghot.ssg.category.dto.CategoryDtoInput;
 import com.ssghot.ssg.category.dto.CategoryDtoOutput;
+import com.ssghot.ssg.category.dto.CategoryDtoOutputOnlyIdAndName;
 
 import java.util.List;
 
@@ -22,7 +23,7 @@ public interface ICategoryService {
     Category editCategory(Long categoryId, CategoryDtoInput categoryDtoInput);
 
     // 3. 카테고리 대분류 전체 조회하기
-    List<CategoryDtoOutput> getAllCategory();
+    List<CategoryDtoOutputOnlyIdAndName> getAllCategory();
 
     // 4. 카테고리 대분류 단일 조회하기
     CategoryDtoOutput getOneCategory(Long categoryId);

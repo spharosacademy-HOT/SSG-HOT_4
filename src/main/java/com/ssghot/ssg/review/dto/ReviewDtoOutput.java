@@ -1,4 +1,4 @@
-package com.ssghot.ssg.post.review.dto;
+package com.ssghot.ssg.review.dto;
 
 import lombok.Builder;
 

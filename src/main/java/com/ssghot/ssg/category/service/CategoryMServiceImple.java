@@ -67,6 +67,7 @@ public class CategoryMServiceImple implements ICategoryMService{
                             CategoryMDtoOutput.builder()
                                     .id(categoryM.getId())
                                     .name(categoryM.getName())
+                                    .category(categoryM.getCategory())
                                     .build()
                     );
                 }
@@ -87,6 +88,7 @@ public class CategoryMServiceImple implements ICategoryMService{
             categoryMDtoOutput = CategoryMDtoOutput.builder()
                     .id(categoryM.get().getId())
                     .name(categoryM.get().getName())
+                    .category(categoryM.get().getCategory())
                     .build();
         }
 

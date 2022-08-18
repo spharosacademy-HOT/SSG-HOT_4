@@ -1,7 +1,9 @@
-package com.ssghot.ssg.post.review.repository;
+package com.ssghot.ssg.review.repository;
 
-import com.ssghot.ssg.post.review.domain.Review;
+import com.ssghot.ssg.review.domain.Review;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface IReviewRepository extends JpaRepository<Review, Long> {
+
+
 }
