@@ -21,7 +21,7 @@ export function useScroll() {
     window.addEventListener("scroll", listener);
     return () => {
       window.removeEventListener("scroll", listener);
-      console.log(scrollY);
+      //   console.log(scrollY);
     };
   });
 
