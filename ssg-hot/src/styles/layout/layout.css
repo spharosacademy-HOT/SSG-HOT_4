@@ -9,3 +9,6 @@ ul {
   list-style: none !important;
   padding-left: 0 !important;
 }
+h1 {
+  margin: 0 !important;
+}

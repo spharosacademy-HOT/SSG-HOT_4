@@ -1,11 +1,11 @@
 import React from "react";
 
-export default function MainMenuBar() {
+export default function MainTopNav() {
   return (
     <div
       id="m_topnav"
       className="mcom_topnav react-area"
-      style={{ marginLeft: "20px" }}
+      style={{ backgroundColor: "#fff", marginTop: "10px" }}
     >
       <h2 className="blind">서비스 매장 바로가기</h2>
       <ul className="topnav_menu" role="navigation">
