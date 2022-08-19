@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import HomeLogo from "../../common/ui/logo/HomeLogo";
 import HomeSearchBar from "../../common/widgets/searchBar/HomeSearchBar";
@@ -299,45 +299,49 @@ export default function Header() {
                           className="gnb_search_inpbox_inp"
                           autoComplete="off"
                         />
-                        <button
-                          type="button"
-                          id="globalSearchButton"
-                          className="gnb_search_inpbox_src"
-                        >
-                          <i className="icon icon_search">
-                            <span className="blind">검색</span>
-                          </i>
-                        </button>
+                        <Link to="/mainsearch">
+                          <button
+                            type="button"
+                            id="globalSearchButton"
+                            className="gnb_search_inpbox_src"
+                          >
+                            <i className="icon icon_search">
+                              <span className="blind">검색</span>
+                            </i>
+                          </button>
+                        </Link>
                       </div>
                     </div>
                   </form>
                 </fieldset>
               </div>
-              <a
-                id="mHeaderCartBtn"
-                // href="javascript:mobileCommonFn.goCartViewPage('https://pay.ssg.com/m/cart/dmsShpp.ssg')"
-                className="gnb_util_mn ty_cart clickable"
-                data-react-tarea="웹공통_N|GNB|장바구니"
-                // onclick="javascript:setCommonGnbCookie('useGnbAdvertCk','',-1);"
-              >
-                <i className="icon icon_cart">
-                  <span id="mHeaderCartNm" className="blind">
-                    장바구니
-                  </span>
-                </i>
-                <span
-                  className="cmnoti_cartshare"
-                  id="cmnoti_cartshare"
-                  style={{ display: "none" }}
+              <Link to="/cart">
+                <a
+                  id="mHeaderCartBtn"
+                  // href="javascript:mobileCommonFn.goCartViewPage('https://pay.ssg.com/m/cart/dmsShpp.ssg')"
+                  className="gnb_util_mn ty_cart clickable"
+                  data-react-tarea="웹공통_N|GNB|장바구니"
+                  // onclick="javascript:setCommonGnbCookie('useGnbAdvertCk','',-1);"
                 >
-                  <span className="blind">함께 장보기</span>
-                </span>{" "}
-                <span className="cmnoti_push" id="cartCnt_header">
-                  <span className="blind" id="cartCntSpan">
-                    담은 상품 수
+                  <i className="icon icon_cart">
+                    <span id="mHeaderCartNm" className="blind">
+                      장바구니
+                    </span>
+                  </i>
+                  <span
+                    className="cmnoti_cartshare"
+                    id="cmnoti_cartshare"
+                    style={{ display: "none" }}
+                  >
+                    <span className="blind">함께 장보기</span>
+                  </span>{" "}
+                  <span className="cmnoti_push" id="cartCnt_header">
+                    <span className="blind" id="cartCntSpan">
+                      담은 상품 수
+                    </span>
                   </span>
-                </span>
-              </a>
+                </a>
+              </Link>
             </div>
           </div>
 
