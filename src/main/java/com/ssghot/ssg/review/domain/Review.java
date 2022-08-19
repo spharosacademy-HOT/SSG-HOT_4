@@ -1,7 +1,7 @@
 package com.ssghot.ssg.review.domain;
 
 import com.ssghot.ssg.common.CommonDTO;
-import com.ssghot.ssg.order.domain.Order;
+import com.ssghot.ssg.orderItem.domain.OrderItem;
 import com.ssghot.ssg.product.domain.Product;
 import com.ssghot.ssg.users.domain.User;
 import lombok.AllArgsConstructor;
@@ -32,7 +32,7 @@ public class Review extends CommonDTO {
     private Product product;
 
     @ManyToOne
-    private Order order;
+    private OrderItem orderItem;
 
     @ManyToOne
     private User user;

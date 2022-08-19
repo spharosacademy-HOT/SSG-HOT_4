@@ -41,7 +41,7 @@ public class ReviewServiceImple implements IReviewService{
                         .star(0)
                         .viewCount(0)
                         .product(reviewDtoInput.getProduct())
-                        .order(reviewDtoInput.getOrder())
+                        .orderItem(reviewDtoInput.getOrderItem())
                         .user(reviewDtoInput.getUser())
                         .build()
         );
@@ -62,7 +62,7 @@ public class ReviewServiceImple implements IReviewService{
                             .star(review.get().getStar())
                             .viewCount(review.get().getViewCount())
                             .product(review.get().getProduct())
-                            .order(review.get().getOrder())
+                            .orderItem(review.get().getOrderItem())
                             .user(review.get().getUser())
                             .build()
             );
@@ -88,7 +88,7 @@ public class ReviewServiceImple implements IReviewService{
                             .star(review.getStar())
                             .viewCount(review.getViewCount())
                             .productId(review.getProduct().getId())
-                            .orderId(review.getOrder().getId())
+                            .orderItemId(review.getOrderItem().getId())
                             .userId(review.getUser().getId())
                             .build()
             );
@@ -112,7 +112,7 @@ public class ReviewServiceImple implements IReviewService{
                     .star(review.get().getStar())
                     .viewCount(review.get().getViewCount())
                     .productId(review.get().getProduct().getId())
-                    .orderId(review.get().getOrder().getId())
+                    .orderItemId(review.get().getOrderItem().getId())
                     .userId(review.get().getUser().getId())
                     .build();
         }
