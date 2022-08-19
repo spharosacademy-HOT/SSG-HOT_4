@@ -316,9 +316,9 @@ export default function Header() {
                 </fieldset>
               </div>
               <Link to="/cart">
-                <a
+                <span
                   id="mHeaderCartBtn"
-                  // href="javascript:mobileCommonFn.goCartViewPage('https://pay.ssg.com/m/cart/dmsShpp.ssg')"
+                  // href=""
                   className="gnb_util_mn ty_cart clickable"
                   data-react-tarea="웹공통_N|GNB|장바구니"
                   // onclick="javascript:setCommonGnbCookie('useGnbAdvertCk','',-1);"
@@ -340,7 +340,7 @@ export default function Header() {
                       담은 상품 수
                     </span>
                   </span>
-                </a>
+                </span>
               </Link>
             </div>
           </div>
