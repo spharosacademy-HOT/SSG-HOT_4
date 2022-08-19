@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 function SignUpSns() {
   return (
     <>
@@ -14,12 +15,12 @@ function SignUpSns() {
         style={{ listStyle: "none", padding: "0" }}
       >
         <li>
-          <a href="./emailsignup">
+          <Link to="/emailsignup">
             <span className="ico_area">
               <span className="sp_cmem_sns cmem_ico_email"></span>
             </span>
             <span className="cmem_sns_name">이메일</span>
-          </a>
+          </Link>
         </li>
         <li>
           <a

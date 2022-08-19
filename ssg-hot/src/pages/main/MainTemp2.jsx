@@ -8,11 +8,11 @@ export default function MainTemp2() {
         <MainSlider />
       </div>
       <div className="swiper-pagination swiper-pagination-custom">
-        <span className="blind">현재 배너</span>
+        {/* <span className="blind">현재 배너</span>
         <span className="swiper-pagination-current">02</span>
         <span className="swiper-pagination-separator">-</span>
         <span className="blind">전체 배너</span>
-        <span className="swiper-pagination-total">18</span>
+        <span className="swiper-pagination-total">18</span> */}
       </div>
       <div className="swiper-ctrls">
         <div className="swiper_autoplay">
