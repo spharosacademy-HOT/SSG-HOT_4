@@ -23,10 +23,12 @@ import EmailSignUp from "./pages/auth/signUp/emailSignUp/EmailSignUp";
 import Qna from "./pages/auth/qna/Qna";
 import CartControl from "./pages/myPage/cartcontrol/CartControl";
 import PlusShip from "./pages/myPage/cartcontrol/plusship/PlusShip";
+import ScrollToTop from "./components/layout/ScrollToTop";
 
 function App() {
   return (
     <BrowserRouter className="test">
+      <ScrollToTop />
       <Header />
       <Routes>
         <Route path="/" element={<Main />} />
