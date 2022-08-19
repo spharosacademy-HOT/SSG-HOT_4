@@ -20,6 +20,9 @@ import Product from "./pages/product/Product";
 import Header from "./components/layout/header/Header";
 import MyPage from "./pages/myPage/MyPage";
 import EmailSignUp from "./pages/auth/signUp/emailSignUp/EmailSignUp";
+import Qna from "./pages/auth/qna/Qna";
+import CartControl from "./pages/myPage/cartcontrol/CartControl";
+import PlusShip from "./pages/myPage/cartcontrol/plusship/PlusShip";
 
 function App() {
   return (
@@ -36,12 +39,15 @@ function App() {
         <Route path="/product" element={<Product />}>
           <Route path=":productId" element={<Product />} />
         </Route>
-        <Route path="/product/review" element={<ProductReviewPage/>}>
-          <Route path=":productId" element={<ProductReviewPage/>}/>
+        <Route path="/product/review" element={<ProductReviewPage />}>
+          <Route path=":productId" element={<ProductReviewPage />} />
         </Route>
         <Route path="/mypage" element={<MyPage />} />
         <Route path="/signUp" element={<SignUp />} />
         <Route path="/emailsignup" element={<EmailSignUp />} />
+        <Route path="/cartcontrol" element={<CartControl />} />
+        <Route path="/plusship" element={<PlusShip />} />
+        <Route path="/qna" element={<Qna />} />
       </Routes>
       <ToolBar />
       <Footer />

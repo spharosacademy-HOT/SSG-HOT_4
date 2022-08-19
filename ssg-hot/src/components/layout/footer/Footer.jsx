@@ -26,7 +26,12 @@ export default function Footer() {
         ""
       ) : pagePath === "/cart" ? (
         ""
-      ) : (
+      ) : pagePath === "/qna" ? (
+        ""
+      ) :
+      
+      
+      (
         <footer>
           <FooterHeader />
           <FooterMenu />

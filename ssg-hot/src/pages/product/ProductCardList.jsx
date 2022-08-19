@@ -7,7 +7,7 @@ import axios from 'axios';
 function ProductCardList() {
   useEffect(()=>{
 
-    axios.get('http://10.10.10.125:8080/ssghot/product')
+    axios.get('http://10.10.10.84:8080/ssghot/product')
       .then(Response =>{
         setProductDatas(Response.data)
       })
