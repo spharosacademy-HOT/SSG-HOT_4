@@ -17,7 +17,7 @@ function EmailA() {
                   className="checkbox"
                   data-terms="Y"
                 />
-                <label for="ssgagree1" className="label_noraml">
+                <label htmlFor="ssgagree1" className="label_noraml">
                   (필수) SSG.COM 회원 이용약관
                 </label>
               </span>
@@ -39,7 +39,7 @@ function EmailA() {
                   className="checkbox"
                   data-terms="Y"
                 />
-                <label for="ssgagree2" className="label_noraml">
+                <label htmlFor="ssgagree2" className="label_noraml">
                   (필수) SSG.COM 회원 개인정보 수집 및 이용 동의
                 </label>
               </span>
@@ -64,7 +64,7 @@ function EmailA() {
                 <label
                   type="checkbox"
                   label
-                  for="chk_age_up"
+                  htmlFor="chk_age_up"
                   className="label_noraml"
                 >
                   (필수)
