@@ -7,6 +7,7 @@ export default function MainContent() {
       className="react-area"
       data-globalid="홈"
       data-areaid="ad_list"
+      style={{ backgroundColor: "#fff" }}
     >
       <div className="cmgrid_module">
         <div className="cmgrid_list" data-equal-height="false">

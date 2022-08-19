@@ -1,7 +1,7 @@
 import React from "react";
 
 import ssgLogo from "../../../../assets/img/svg/ssgLogo.svg";
-import arrowDown from "../../../../assets/img/svg/arrowDown.svg";
+// import arrowDown from "../../../../assets/img/svg/arrowDown.svg";
 import { Link } from "react-router-dom";
 export default function HomeLogo() {
   return (
@@ -18,7 +18,7 @@ export default function HomeLogo() {
           alt="신세계몰로고"
         />
 
-        <img className="moreBtn" src={arrowDown} alt="" />
+        {/* <img className="moreBtn" src={arrowDown} alt="" /> */}
       </Link>
     </div>
   );

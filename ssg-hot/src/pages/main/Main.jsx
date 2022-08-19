@@ -1,18 +1,16 @@
 import React from "react";
-import MainSlider from "../../components/common/widgets/slider/MainSlider";
-import Header from "../../components/layout/header/Header";
-import UpContent from "./mainContent/upContent/UpContent";
-import MainMenuTitle from "./MainMenuTitle";
-import MainQuick from "./MainQuick";
+import MainBanner from "./MainBanner";
+import MainMenuBar from "./MainMenuBar";
 
+import MainContent from "./MainContent";
+import MainTemp from "./MainTemp";
 export default function Main() {
   return (
-    <div>
-      <Header />
-      <MainMenuTitle />
-      <MainSlider />
-      <UpContent />
-      <MainQuick />
+    <div id="m_container" className="mcom_container">
+      <MainTemp />
+      {/* <MainBanner /> */}
+      <MainMenuBar />
+      <MainContent />
     </div>
   );
 }
