@@ -2,7 +2,6 @@ package com.ssghot.ssg.order.service;
 
 import com.ssghot.ssg.common.ResultDtoOutput;
 import com.ssghot.ssg.common.ResultsDtoOutput;
-import com.ssghot.ssg.optionList.repository.IStockRepository;
 import com.ssghot.ssg.order.domain.Order;
 import com.ssghot.ssg.order.dto.OrderDtoInput;
 import com.ssghot.ssg.order.dto.OrderDtoInputDetail;
@@ -10,12 +9,11 @@ import com.ssghot.ssg.order.dto.OrderDtoOutput;
 import com.ssghot.ssg.order.dto.OrderDtoOutputList;
 import com.ssghot.ssg.order.repository.IOrderRepository;
 import com.ssghot.ssg.orderItem.domain.OrderItem;
-import com.ssghot.ssg.orderItem.repository.IOrderItemRepository;
+import com.ssghot.ssg.orderItem.dto.OrderItemDtoInput;
 import com.ssghot.ssg.orderItem.service.IOrderItemService;
 import com.ssghot.ssg.userCoupon.domain.UserCoupon;
 import com.ssghot.ssg.userCoupon.dto.UserCouponEditDtoInput;
 import com.ssghot.ssg.userCoupon.repository.IUserCouponRepository;
-import com.ssghot.ssg.userCoupon.service.IUserCouponService;
 import com.ssghot.ssg.users.domain.User;
 import com.ssghot.ssg.users.repository.IUserRepository;
 import lombok.RequiredArgsConstructor;
@@ -31,12 +29,10 @@ import java.util.stream.Collectors;
 @Service
 public class OrderServiceImpl implements IOrderService{
     private final IUserRepository iUserRepository;
-    private final IStockRepository iStockRepository;
-    private final IOrderItemRepository iOrderItemRepository;
     private final IOrderRepository iOrderRepository;
     private final IUserCouponRepository iUserCouponRepository;
     private final IOrderItemService iOrderItemService;
-    private final IUserCouponService iUserCouponService;
+
     @Override
     public ResultDtoOutput<OrderDtoOutput> addOrder(OrderDtoInput orderDtoInput) {
         Optional<User> user = iUserRepository.findById(orderDtoInput.getUserId());
@@ -76,8 +72,12 @@ public class OrderServiceImpl implements IOrderService{
 
     @Override
     public ResultsDtoOutput<List<OrderDtoOutputList>> getOrdersByUserId(Long userId) {
-        //test
+
+        // 날짜 업데이트
+        iOrderItemService.bulkUpdate();
+
         List<Order> orders = iOrderRepository.findAllByUserId(userId);
+
         if(orders.isEmpty()){
             return getOrderDtoOutputListByUserId(400,"주문정보를 가져오지 못했습니다.",null);
         }
@@ -102,15 +102,19 @@ public class OrderServiceImpl implements IOrderService{
         return getOrderDtoOutput(400,"주문 상세 정보가 없습니다.",null);
     }
 
+    @Override
+    public void deleteOrderById(Long id) {
+        iOrderRepository.deleteById(id);
+    }
+
 
     private ResultDtoOutput<OrderDtoOutput> saveOrder(OrderDtoInput orderDtoInput, Order orderEntity) {
-        orderDtoInput.getOrderItems().stream().map(orderItem ->
-                {
-                    OrderItem item = orderItem.toEntity(iOrderItemService.findStockByStockId(orderItem));
-                    orderEntity.addOrderItem(item);
-                    return item;
-                }
-        );
+
+
+        for (OrderItemDtoInput orderItem:orderDtoInput.getOrderItems()) {
+            OrderItem item = orderItem.toEntity(iOrderItemService.findStockByStockId(orderItem));
+            orderEntity.addOrderItem(item);
+        }
         Order saveOrder = iOrderRepository.save(orderEntity);
         return getOrderDtoOutput(200,"성공입니다!",saveOrder);
     }
