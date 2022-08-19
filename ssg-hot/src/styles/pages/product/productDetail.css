@@ -289,6 +289,26 @@
 .event-banner img{
     width: 100%;
 }
+/* 상품고시정보 */
+.product-guide{
+    padding: 10px 20px;
+}
+.product-guide ul{
+    display: flex;
+    flex-wrap: wrap;
+}
+.product-guide ul li{
+    padding: 10px 20px;
+    margin: 0.5%;
+    border: solid 0.5px #e5e5e5;
+    border-radius: 10px;
+    width: 49%;
+    font-size: 0.8rem;
+}
+.product-guide ul > :nth-child(5){
+    width: 100%;
+}
+/* 스토어 */
 /* 하단 구매 바 */
 .product-purchase-bar{
     width: 100%;

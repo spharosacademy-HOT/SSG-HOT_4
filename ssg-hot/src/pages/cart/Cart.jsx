@@ -6,7 +6,7 @@ import CartNotice from "./CartNotice";
 import CartToolBar from "./cartToolBar/CartToolBar";
 
 export default function Cart() {
-  const [isLogin, setIsLogin] = useState(false);
+  const [isLogin, setIsLogin] = useState(true);
   const [isItem, setIsItem] = useState(true);
 
   return (

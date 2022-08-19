@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 
 import HomeLogo from "../../common/ui/logo/HomeLogo";
 import HomeSearchBar from "../../common/widgets/searchBar/HomeSearchBar";
@@ -13,6 +13,9 @@ export default function Header() {
     setPagePath(pageUrl.pathname);
     // console.log(pageUrl.pathname);
   }, [pageUrl]);
+
+  let {params} = useParams()
+  console.log('params', params)
 
   return (
     <>
@@ -29,6 +32,8 @@ export default function Header() {
       ) : pagePath === "/signup" ? (
         ""
       ) : pagePath === "/emailsignup" ? (
+        ""
+      ) : pagePath === `/product/review/` ? (
         ""
       ) : (
         <header>
