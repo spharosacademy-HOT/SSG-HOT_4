@@ -22,4 +22,6 @@ public interface IRecentlyViewedProductService {
 
     // 3. 최근 본 상품 전체 조회하기
     List<RecentlyViewedProductDtoOutput> getAllRecentlyViewedProduct();
+
+    List<RecentlyViewedProductDtoOutput> getAllRecentlyViewedProductByUserId(Long userId);
 }

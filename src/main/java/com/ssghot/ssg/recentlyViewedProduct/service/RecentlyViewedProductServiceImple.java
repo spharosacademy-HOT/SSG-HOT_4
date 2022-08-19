@@ -4,6 +4,8 @@ import com.ssghot.ssg.recentlyViewedProduct.domain.RecentlyViewedProduct;
 import com.ssghot.ssg.recentlyViewedProduct.dto.RecentlyViewedProductDtoInput;
 import com.ssghot.ssg.recentlyViewedProduct.dto.RecentlyViewedProductDtoOutput;
 import com.ssghot.ssg.recentlyViewedProduct.repository.IRecentlyViewedProductRepository;
+import com.ssghot.ssg.users.domain.User;
+import com.ssghot.ssg.users.repository.IUserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,7 @@ import java.util.Optional;
 public class RecentlyViewedProductServiceImple implements IRecentlyViewedProductService{
 
     private final IRecentlyViewedProductRepository iRecentlyViewedProductRepository;
+    private final IUserRepository iUserRepository;
 
     /*
         1. 최근 본 상품 등록하기
@@ -27,6 +30,7 @@ public class RecentlyViewedProductServiceImple implements IRecentlyViewedProduct
 
     @Override
     public RecentlyViewedProduct addRecentlyViewedProduct(RecentlyViewedProductDtoInput recentlyViewedProductDtoInput) {
+
         RecentlyViewedProduct recentlyViewedProduct = iRecentlyViewedProductRepository.save(
                 RecentlyViewedProduct.builder()
                         .product(recentlyViewedProductDtoInput.getProduct())
@@ -76,5 +80,19 @@ public class RecentlyViewedProductServiceImple implements IRecentlyViewedProduct
                 }
         );
         return recentlyViewedProductDtoOutputList;
+    }
+
+    @Override
+    public List<RecentlyViewedProductDtoOutput> getAllRecentlyViewedProductByUserId(Long userId) {
+
+        Optional<User> user = iUserRepository.findById(userId);
+        if(user.isPresent()){
+            List<RecentlyViewedProduct> recentlyViewedProductRepositoryAllByUserId = iRecentlyViewedProductRepository.findAllByUserId(userId);
+
+
+        }
+
+
+        return null;
     }
 }

@@ -37,4 +37,10 @@ public class RecentlyViewedProductController {
     public List<RecentlyViewedProductDtoOutput> getAllRecentlyViewedProduct(){
         return iRecentlyViewedProductService.getAllRecentlyViewedProduct();
     }
+    @GetMapping("/recentlyviewedproduct/{id}")
+    public List<RecentlyViewedProductDtoOutput> getAllRecentlyViewedProductByUserId(@PathVariable Long id){
+//        return iRecentlyViewedProductService;
+        return null;
+    }
+
 }
