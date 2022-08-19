@@ -1,15 +1,15 @@
 import React from "react";
 import MainBanner from "./MainBanner";
-import MainMenuBar from "./MainMenuBar";
-
+import MainChange from "./MainChange";
 import MainContent from "./MainContent";
-import MainTemp from "./MainTemp";
+import MainTopNav from "./MainTopNav";
+
 export default function Main() {
   return (
-    <div id="m_container" className="mcom_container">
-      <MainTemp />
-      {/* <MainBanner /> */}
-      <MainMenuBar />
+    <div className="mcom_containter" id="m_containter">
+      <MainBanner />
+      <MainTopNav />
+      <MainChange />
       <MainContent />
     </div>
   );

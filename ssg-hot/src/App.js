@@ -2,7 +2,7 @@ import React from "react";
 //modules
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Category from "./pages/category/Category";
-import Main from "./pages/main2/Main";
+import Main from "./pages/main/Main";
 //components
 import ToolBar from "./components/layout/toolBar/ToolBar";
 import Recent from "./pages/recent/Recent";
