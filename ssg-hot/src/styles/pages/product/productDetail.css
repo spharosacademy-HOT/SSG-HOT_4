@@ -17,10 +17,20 @@
     color: #666;
     font-size: 0.8rem;
 }
+.product-price{
+    padding: 0 20px 0 20px;
+}
+.discount-price{
+    color: #777;
+    text-decoration: line-through;
+}
 .original-price{
     font-size: 1.75rem;
     font-weight: bold;
-    padding: 20px 0 0 20px;
+}
+.original-price div{
+    color: red;
+    display: inline;
 }
 /* 스마일 클럽 */
 .smile-club{
@@ -154,6 +164,7 @@
 }
 .i-have-shadow :nth-child(2){
     padding: 20px;
+    box-shadow: 5px 20px 30px 10px white;
 }
 .i-have-shadow :nth-child(1){
     display: none;
@@ -309,6 +320,7 @@
     width: 100%;
 }
 /* 스토어 */
+
 /* 하단 구매 바 */
 .product-purchase-bar{
     width: 100%;

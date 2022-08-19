@@ -36,9 +36,15 @@
 .product-info .product-text{
     color: #666;
 }
-.product-info div .price{
-    font-weight: bold;
+.product-info .price div div{
     font-size: 1.25rem;
+}
+.product-info .price div{
+    display: flex;
+    justify-content: space-between;
+}
+.product-info .price div :nth-child(2){
+    color: red;
 }
 .product-event{
     color: #666;

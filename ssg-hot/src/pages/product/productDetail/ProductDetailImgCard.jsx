@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import { useEffect } from 'react';
 
 function ProductDetailImgCard({item}) {
-    console.log(item)
     const [subImg, setSubImg] = useState();
     useEffect(() =>{
         axios

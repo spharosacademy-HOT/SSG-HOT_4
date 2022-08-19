@@ -19,8 +19,12 @@ function ProductCard({ item }) {
             <div className="product-name">{item.name}</div>
             <div className="product-text">{item.detail}</div>
 
-            <div>
-              <div className="price">{item.regularPrice}원</div>
+            <div className="price">
+              <div>
+                <div>{item.discountPrice}원</div>
+                <div>{item.discountRate}%</div>
+              </div>
+
             </div>
             <div>
               <div>

@@ -12,11 +12,8 @@ export default function Header() {
 
   useEffect(() => {
     setPagePath(pageUrl.pathname);
-    // console.log(pageUrl.pathname);
   }, [pageUrl]);
 
-  // let {params} = useParams()
-  // console.log('params', params)
 
   return (
     <>
