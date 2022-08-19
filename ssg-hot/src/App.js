@@ -36,13 +36,12 @@ function App() {
         <Route path="/mainsearch" element={<Search />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/productList" element={<ProductList />} />
-        <Route path="/product" element={<Product />} />
-
-        <Route path=":productId" element={<Product />} />
-
-        <Route path="/product/review" element={<ProductReviewPage />} />
-        <Route path=":productId" element={<ProductReviewPage />} />
-
+        <Route path="/product" element={<Product />}>
+          <Route path=":productId" element={<Product />} />
+        </Route>
+        <Route path="/product/review" element={<ProductReviewPage />}>
+          <Route path=":productId" element={<ProductReviewPage />} />
+        </Route>
         <Route path="/mypage" element={<MyPage />} />
         <Route path="/signUp" element={<SignUp />} />
         <Route path="/emailsignup" element={<EmailSignUp />} />

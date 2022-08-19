@@ -9,9 +9,9 @@ function ThemeRecommend() {
             <ul>
                 {
                     themeDatas && themeDatas.map(item =>(
-                        <li>
+
                             <ThemeRecommendCard item={item} key={item.id}/>
-                        </li>
+
                     ))
                 }
             </ul>

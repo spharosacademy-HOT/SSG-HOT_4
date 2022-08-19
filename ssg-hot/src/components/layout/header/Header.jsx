@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import { Link, useLocation } from "react-router-dom";
 
+
 import HomeLogo from "../../common/ui/logo/HomeLogo";
 import HomeSearchBar from "../../common/widgets/searchBar/HomeSearchBar";
 
@@ -13,6 +14,9 @@ export default function Header() {
     setPagePath(pageUrl.pathname);
     // console.log(pageUrl.pathname);
   }, [pageUrl]);
+
+  // let {params} = useParams()
+  // console.log('params', params)
 
   return (
     <>

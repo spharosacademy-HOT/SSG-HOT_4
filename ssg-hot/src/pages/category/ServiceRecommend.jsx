@@ -9,9 +9,7 @@ function ServiceRecommend() {
             <ul>
                 {
                     serviceDatas && serviceDatas.map(item =>(
-                        <li>
                             <ServiceRecommendCard item={item} key={item.id} />
-                        </li>
                     ))
                 }
             </ul>

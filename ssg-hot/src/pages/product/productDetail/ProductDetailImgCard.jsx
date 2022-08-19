@@ -7,7 +7,7 @@ function ProductDetailImgCard({item}) {
     const [subImg, setSubImg] = useState();
     useEffect(() =>{
         axios
-        .get(`http://10.10.10.125:8080/ssghot/product/subimg/${item}`)
+        .get(`http://10.10.10.84:8080/ssghot/product/subimg/${item}`)
         .then((Response) =>{
             setSubImg(Response.data)
         })
