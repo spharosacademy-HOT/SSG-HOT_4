@@ -8,6 +8,7 @@ import com.ssghot.ssg.order.dto.OrderDtoOutput;
 import com.ssghot.ssg.order.dto.OrderDtoOutputList;
 import com.ssghot.ssg.order.service.IOrderService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -40,5 +41,9 @@ public class OrderController {
     public ResultDtoOutput<OrderDtoOutput> getOrderByUserIdAndOrderId(@PathVariable Long id){
         return iOrderService.getOrderById(id);
     }
-
+    @DeleteMapping("/{id}")
+    @ResponseStatus(value = HttpStatus.NO_CONTENT)
+    public void deleteUserCoupon(@PathVariable Long id){
+        iOrderService.deleteOrderById(id);
+    }
 }

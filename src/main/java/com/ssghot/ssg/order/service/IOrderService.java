@@ -28,4 +28,7 @@ public interface IOrderService {
     ResultDtoOutput<OrderDtoOutput> getOrdersByUserIdAndOrderId(OrderDtoInputDetail orderDtoInputDetail);
 
     ResultDtoOutput<OrderDtoOutput> getOrderById(Long id);
+
+    void deleteOrderById(Long id);
+
 }

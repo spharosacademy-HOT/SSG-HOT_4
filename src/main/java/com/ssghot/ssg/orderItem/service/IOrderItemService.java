@@ -15,4 +15,6 @@ public interface IOrderItemService {
     Stock findStockByStockId(OrderItemDtoInput orderItemDtoInput);
 
     List<OrderItemDtoOutput> getOrderItemDtoOutputList(List<OrderItem> orderItems);
+
+    int bulkUpdate();
 }
