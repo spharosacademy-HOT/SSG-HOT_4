@@ -22,7 +22,6 @@ function Product() {
   let pageUrl = useLocation();
   const [pagePath, setPagePath] = useState();
   let productPageNum = 0;
-  console.log(productPageNum)
 
   useEffect(() => {
     setPagePath(pageUrl.pathname);
@@ -34,7 +33,6 @@ function Product() {
       .get(`http://10.10.10.84:8080/ssghot/product/${productPageNum}`)
       .then((Response) => {
         setProductDatas(Response.data);
-        console.log(Response.data);
       });
   }, []);
   const [productDatas, setProductDatas] = useState([]);
