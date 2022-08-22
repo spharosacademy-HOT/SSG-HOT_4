@@ -93,9 +93,9 @@ public class CartServiceImpl implements ICartService{
     public ResultsDtoOutput<List<CartDtoOutput>> getAll() {
         List<Cart> carts = iCartRepository.findAll();
         if(carts.isEmpty()) {
-            return getCartsDtoOutputs(404,"상품 목록을 가져오지 못했습니다.",null);
+            return getCartsDtoOutputs(404,"카트 목록을 가져오지 못했습니다.",null);
         }
-        return getCartsDtoOutputs(200,"상품 목록을 가져왔습니다.",carts);
+        return getCartsDtoOutputs(200,"카트 목록을 가져왔습니다.",carts);
     }
 
     @Override
