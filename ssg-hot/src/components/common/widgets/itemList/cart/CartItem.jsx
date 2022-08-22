@@ -1,24 +1,27 @@
 import React from "react";
 
 import cartDatas from "../../../../../datas/js/cartDatas";
-import CartDesc from "./CartDesc";
+import CartDeliveryHeader from "../../../../../pages/cart/cartContent/CartDeliveryHeader";
+import CartContent from "./CartContent";
 import CartImg from "./CartImg";
+import CartSummary from "./CartSummary";
 
 export default function CartItem() {
   return (
-    <div>
+    <div className="cartItemTotal">
+      <CartDeliveryHeader />
       <ul className="cartUl">
         {cartDatas &&
           cartDatas.map((item) => (
-            <div className="cartUnit">
-              <li
-                key={item.id}
-                style={{ display: "flex" }}
-                className="cartItemList"
-              >
+            <div className="cartUnit" key={item.id}>
+              <li style={{ display: "flex" }} className="cartItemList">
                 <CartImg imgUrl={item.imgUrl} />
-                <CartDesc desc={item.desc} />
+                <CartContent desc={item.desc} />
               </li>
+              <CartSummary
+                newPrice={item.desc.newPrice}
+                deliveryCost={item.desc.deliveryCost}
+              />
             </div>
           ))}
       </ul>

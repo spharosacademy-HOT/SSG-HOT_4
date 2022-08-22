@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+
 
 import HomeLogo from "../../common/ui/logo/HomeLogo";
 import HomeSearchBar from "../../common/widgets/searchBar/HomeSearchBar";
@@ -27,19 +28,17 @@ export default function Header() {
       ) : pagePath === "/mypage" ? (
         ""
       ) : pagePath === "/signup" ? (
-       "" 
-       ) :  pagePath === "/emailsignup" ?(
-       "" 
-       ): pagePath === "/qna" ?(
         ""
-       ): pagePath === "/cartcontrol" ?(
+      ) : pagePath === "/emailsignup" ? (
         ""
-       ): pagePath === "/plusship"?(
+      ) : pagePath === "/qna" ? (
         ""
-       ): pagePath === "/like"?
-         ""
-         :
-        (
+      ) : pagePath === "/cartcontrol" ? (
+        ""
+       ): pagePath === "/plusship"?
+        ""
+        :
+       (
       
       
         <header>
@@ -48,7 +47,13 @@ export default function Header() {
             <HomeSearchBar />
           </div>
         </header>
+        // <header>
+        //   <div className="innerHeader">
+        //     <HomeLogo />
+        //     <HomeSearchBar />
+        //   </div>
+        // </header>
       )}
     </>
- );
-       }
+  );
+}

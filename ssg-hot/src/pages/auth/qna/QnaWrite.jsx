@@ -5,7 +5,7 @@ function QnaWrite() {
     <>
       <dl>
         <dt className="blind">
-          <label for="postngTitleNm">제목</label>
+          <label htmlFor="postngTitleNm">제목</label>
         </dt>
         <dd className="inp_area">
           <input
@@ -13,7 +13,7 @@ function QnaWrite() {
             id="postngTitleNm"
             name="postngTitleNm"
             placeholder="제목을 입력해주세요"
-            maxlength="35"
+            maxLength="35"
           />
           <span className="txnum">0/35</span>
         </dd>
@@ -21,7 +21,7 @@ function QnaWrite() {
         <dt className="blind">내용</dt>
 
         <span className="txtarea">
-          <label for="postngCntt" className=""></label>
+          <label htmlFor="postngCntt" className=""></label>
           <textarea
             name="postngCntt"
             id="postngCntt"

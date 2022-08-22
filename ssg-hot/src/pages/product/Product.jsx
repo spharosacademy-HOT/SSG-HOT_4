@@ -27,14 +27,12 @@ function Product() {
     setPagePath(pageUrl.pathname);
     const productNum = pageUrl.pathname.split("/");
     productPageNum = productNum[2];
-    console.log(productNum[2]);
   }, [pageUrl]);
   useEffect(() => {
     axios
-      .get(`http://10.10.10.125:8080/ssghot/product/${productPageNum}`)
+      .get(`http://10.10.10.84:8080/ssghot/product/${productPageNum}`)
       .then((Response) => {
         setProductDatas(Response.data);
-        console.log(Response.data);
       });
   }, []);
   const [productDatas, setProductDatas] = useState([]);
@@ -45,15 +43,15 @@ function Product() {
       <ProductMainImg productDatas={productDatas.titleImgUrl} />
       <ProductInfo productDatas={productDatas} />
       <SmileClub />
-      {/* <ProductSimpleReview /> */}
+      <ProductSimpleReview itemNum={productPageNum} />
       <ProductEvent />
       <ProductDetailInfo />
-      <ProductDetailImg />
+      <ProductDetailImg imgNum={productDatas.productSubImgList} />
       <ProductReiew />
       <ProductQnA />
-      {/* <ProductGuide /> */}
+      <ProductGuide />
       <EventBanner />
-      {/* <StoreInfo /> */}
+      <StoreInfo />
       <ProductPurchaseBar />
 
       {/* 추천 상품 */}
