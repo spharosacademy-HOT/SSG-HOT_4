@@ -13,7 +13,7 @@ plugins {
 
 group = 'com.ssghot'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '11'
+sourceCompatibility = '8'
 
 configurations {
 	compileOnly {
@@ -66,3 +66,7 @@ compileQuerydsl {
 	options.annotationProcessorPath = configurations.querydsl
 }
 //querydsl 추가 끝
+
+bootJar{
+	destinationDirectory = file("./target")
+}
