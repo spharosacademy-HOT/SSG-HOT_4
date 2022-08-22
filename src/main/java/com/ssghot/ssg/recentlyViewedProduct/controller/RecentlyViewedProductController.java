@@ -12,6 +12,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class RecentlyViewedProductController {
 
     private final IRecentlyViewedProductService iRecentlyViewedProductService;

@@ -79,4 +79,15 @@ public class StockServiceImple implements IStockService{
         return stockDtoOutputProductIdNameList;
 
     }
+
+    @Override
+    public Stock getOneStock(Long id) {
+
+        Optional<Stock> stock = iStockRepository.findById(id);
+        if(stock.isPresent()){
+            return stock.get();
+        }
+
+        return null;
+    }
 }

@@ -15,6 +15,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class OptionListController {
 
     private final IStockService iStockService;
@@ -32,7 +33,8 @@ public class OptionListController {
 
         3-1. 재고 등록
         3-2. 재고 수정
-        3-3. 재고 조회
+        3-3. 재고 전체 조회
+        3-4. 재고 단건 조회
      */
 
     // 1-1. 옵션1 등록
@@ -84,9 +86,15 @@ public class OptionListController {
         return iStockService.editStock(id, stock);
     }
 
-    // 3-3. 재고 조회
+    // 3-3. 재고 전체 조회
     @GetMapping("/stock")
     public List<StockDtoOutputProductIdName> getAllStock(){
         return iStockService.getAllStock();
+    }
+
+    // 4-4. 재고 단건 조회
+    @GetMapping("/stock/{id}")
+    public Stock getOneStock(@PathVariable Long id){
+        return iStockService.getOneStock(id);
     }
 }

@@ -42,6 +42,7 @@ public class ProductDtoInputAll {
     private CategoryM categoryM;
 
 
+
 //    public Product toEntity(){
 //        return Product.builder()
 //                .name(name)

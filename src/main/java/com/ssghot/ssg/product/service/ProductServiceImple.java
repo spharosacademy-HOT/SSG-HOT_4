@@ -105,6 +105,13 @@ public class ProductServiceImple implements IProductService{
             );
         });
 
+        CategoryProductList categoryProductList = iCategoryProductListRepository.save(CategoryProductList.builder()
+                .product(iProductRepository.findById(product.getId()).get())
+                .category(iCategoryRepository.findById(productDtoInputAll.getCategory().getId()).get())
+                .categoryM(iCategoryMRepository.findById(productDtoInputAll.getCategoryM().getId()).get())
+                .build());
+
+
 
 
         return product;
