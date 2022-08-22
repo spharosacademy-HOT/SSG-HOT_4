@@ -13,7 +13,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/ssghot")
+@RequestMapping("/api")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class ProductController {
 

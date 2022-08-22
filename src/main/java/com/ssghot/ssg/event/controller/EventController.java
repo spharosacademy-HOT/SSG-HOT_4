@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/ssghot")
+@RequestMapping("/api")
 public class EventController {
 
     private final IEventService iEventService;
