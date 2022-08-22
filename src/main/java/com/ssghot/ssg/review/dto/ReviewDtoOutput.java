@@ -14,6 +14,6 @@ public class ReviewDtoOutput {
     private int viewCount;
 
     private Long productId;
-    private Long orderId;
+    private Long orderItemId;
     private Long userId;
 }

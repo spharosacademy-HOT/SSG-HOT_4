@@ -1,6 +1,6 @@
 package com.ssghot.ssg.review.dto;
 
-import com.ssghot.ssg.order.domain.Order;
+import com.ssghot.ssg.orderItem.domain.OrderItem;
 import com.ssghot.ssg.product.domain.Product;
 import com.ssghot.ssg.users.domain.User;
 import lombok.Getter;
@@ -16,6 +16,6 @@ public class ReviewDtoInput {
     private int viewCount;
 
     private Product product;
-    private Order order;
+    private OrderItem orderItem;
     private User user;
 }
