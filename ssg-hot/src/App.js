@@ -23,7 +23,7 @@ import EmailSignUp from "./pages/auth/signUp/emailSignUp/EmailSignUp";
 import Qna from "./pages/auth/qna/Qna";
 import CartControl from "./pages/myPage/cartcontrol/CartControl";
 import PlusShip from "./pages/myPage/cartcontrol/plusship/PlusShip";
-
+import Like from "./pages/myPage/like/Like";
 
 function App() {
   return (
@@ -47,6 +47,7 @@ function App() {
         <Route path="/qna" element={<Qna/>}/>
         <Route path="/cartcontrol" element={<CartControl/>}/>
         <Route path="/plusship" element={<PlusShip/>}/>
+        <Route path="/like" element={<Like/>}/>
       </Routes>
       <ToolBar />
       <Footer />

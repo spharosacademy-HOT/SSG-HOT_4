@@ -34,10 +34,12 @@ export default function Header() {
         ""
        ): pagePath === "/cartcontrol" ?(
         ""
-       ): pagePath === "/plusship"?
+       ): pagePath === "/plusship"?(
         ""
-        :
-       (
+       ): pagePath === "/like"?
+         ""
+         :
+        (
       
       
         <header>
