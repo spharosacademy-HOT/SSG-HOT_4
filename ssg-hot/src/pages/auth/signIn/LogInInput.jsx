@@ -1,7 +1,44 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { basicApiClient } from "../../../store/apis/apiClient";
+import jwt_decode from "jwt-decode";
+import { useNavigate } from "react-router-dom";
 
 function LogInInput() {
+  let navigate = useNavigate();
+  const [userName, setUserName] = useState("");
+  const [password, setPassword] = useState("");
+
+  const checkUserName = (e) => {
+    setUserName(e.target.value);
+  };
+  const checkPassword = (e) => {
+    setPassword(e.target.value);
+  };
+
+  const postLogin = async () => {
+    console.log("요청!");
+    const res = await basicApiClient.post(`/login`, {
+      username: userName,
+      password: password,
+    });
+    if (res.data.access_token) {
+      //토큰 값 변수에 저장 및 jwt 디코딩
+      var ACCESS_TOKEN = res.data.access_token;
+      var decoded = jwt_decode(ACCESS_TOKEN);
+
+      //토큰 localStorage에 저장
+      localStorage.setItem("token", ACCESS_TOKEN);
+
+      //SessionStotage에 저장
+      sessionStorage.setItem("id", decoded.id);
+      sessionStorage.setItem("name", decoded.name);
+      sessionStorage.setItem("username", decoded.username);
+
+      alert(`${decoded.name}님 반갑습니다.`);
+      navigate("/");
+    }
+  };
   return (
     <div id="m_content" className="ssglogin">
       <div className="cmem_login_form">
@@ -22,6 +59,7 @@ function LogInInput() {
                   autoCapitalize="off"
                   spellCheck="false"
                   maxLength="50"
+                  onBlur={checkUserName}
                 />
                 <button type="button" className="inp_clear">
                   <span className="sp_cmem_login cmem_ico_clear">
@@ -38,6 +76,7 @@ function LogInInput() {
                   id="inp_pw"
                   name="password"
                   placeholder="비밀번호"
+                  onBlur={checkPassword}
                 />
                 <button type="button" className="inp_clear">
                   <span className="sp_cmem_login cmem_ico_clear">
@@ -96,9 +135,11 @@ function LogInInput() {
             </div>
             <div className="cmem_btn_area">
               <button
-                type="submit"
+                type="button"
+                // type="submit"
                 className="cmem_btn cmem_btn_orange3"
                 id="loginBtn"
+                onClick={postLogin}
               >
                 로그인
               </button>

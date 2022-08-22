@@ -10,7 +10,7 @@ function EmailSignUp() {
       <CommonHeader title="간편회원가입" />
       <EmailA />
       <EmailInfor />
-      <EmailAd />
+      {/* <EmailAd /> */}
     </>
   );
 }
