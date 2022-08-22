@@ -1,12 +1,11 @@
 package com.ssghot.ssg.users.dto;
 
 import com.ssghot.ssg.users.domain.User;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
+
 @Getter
 @Builder
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserDtoInput {

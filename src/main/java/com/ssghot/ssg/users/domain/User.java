@@ -5,6 +5,9 @@ import com.ssghot.ssg.common.CommonDTO;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 
 @Data
@@ -34,7 +37,7 @@ public class User extends CommonDTO {
     @Column(columnDefinition = "boolean default false")
     private boolean isSlept;
 
-    @Column(columnDefinition = "varchar(255) default 'user'")
+    @Column(columnDefinition = "varchar(255) default 'ROLE_USER'")
     private String role;
 
     @Column(columnDefinition = "varchar(255) default 'FRIENDS'")
@@ -43,8 +46,13 @@ public class User extends CommonDTO {
     @PrePersist
     public void prePersist() {
         this.memberLevel = this.memberLevel == null ? "FRIENDS" : this.memberLevel;
-        this.role = this.role == null ? "user": this.role;
+        this.role = this.role == null ? "ROLE_USER": this.role;
     }
-
+    public List<String> getRoleList(){
+        if(this.role.length() > 0){
+            return Arrays.asList(this.role.split(","));
+        }
+        return new ArrayList<>();
+    }
 
 }
