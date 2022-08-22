@@ -1,8 +1,31 @@
 import React from "react";
 
 function EmailInhtmlFor() {
-  return (<>
-   
+  // 이메일 유효성 검사
+  const checkEmail = (e) => {
+    var regExp =
+      /([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+    console.log("이메일 유효성 검사", regExp.test(e.target.value));
+  };
+
+  // 비밀번호 유효성 검사
+  const checkPassword = (e) => {
+    var regExp = /^(?=.*[a-zA-Z])((?=.*\d)(?=.*\W)).{8,20}$/;
+    console.log("비밀번호 유효성 검사", regExp.test(e.target.value));
+  };
+
+  // 휴대폰 유효성 검사
+  const checkPhone = (e) => {
+    //'-'입력시
+    var regExp = /(?:\d{3}|\d{4})-\d{4}$/;
+    // 숫자만 입력시
+    var regExp2 = /(?:\d{3}|\d{4})\d{4}$/;
+    var test1 = regExp.test(e.target.value);
+    var test2 = regExp2.test(e.target.value);
+    console.log("휴대폰 유효성 검사", test1 || test2);
+  };
+  return (
+    <>
       <div className="cmem_card_tit">
         <h3>회원정보</h3>
       </div>
@@ -29,9 +52,9 @@ function EmailInhtmlFor() {
                     name="mbrLoginId"
                     title="이메일주소 입력"
                     className="input_text small"
-                    
                     maxLength="50"
                     placeholder="이메일주소 입력"
+                    onBlur={checkEmail}
                   />
                 </span>
                 <button
@@ -41,7 +64,7 @@ function EmailInhtmlFor() {
                 >
                   중복확인
                 </button>
-                <input type="hidden" id="isDuplicateMbrLoginId"  />
+                <input type="hidden" id="isDuplicateMbrLoginId" />
               </div>
             </dd>
           </dl>
@@ -64,7 +87,8 @@ function EmailInhtmlFor() {
                   type="password"
                   id="pwdStr"
                   name="pwdStr"
-                  placeholder="영문, 숫자 조합 8~20자리"
+                  placeholder="영문, 숫자, 특수문자 조합 8~20자리"
+                  onBlur={checkPassword}
                 />
                 <button type="button" className="inp_clear">
                   <span className="cmem_ico_clear">
@@ -113,7 +137,7 @@ function EmailInhtmlFor() {
         <div className="cmem_row">
           <div className="cmem_user_phone">
             <div className="cmem_ip">
-              <dt>
+              <dt style={{ paddingLeft: "0px" }}>
                 <span className="cmem_require"></span>
                 <span className="star" aria-hidden="true">
                   *
@@ -145,6 +169,7 @@ function EmailInhtmlFor() {
                       id="mobileNoStr"
                       title="휴대폰 번호 뒷자리"
                       placeholder="휴대폰 뒷자리"
+                      onBlur={checkPhone}
                     />
                   </span>
                 </div>
@@ -154,8 +179,9 @@ function EmailInhtmlFor() {
                   id="btnReqOtp"
                   type="button"
                   className="cmem_btn cmem_btn_gray3"
-                //   onClick={"reqOtp(); return false;"}
+                  //   onClick={"reqOtp(); return false;"}
                   href="#;"
+                  style={{ marginTop: "10px" }}
                 >
                   인증번호 발송
                 </button>
@@ -176,7 +202,7 @@ function EmailInhtmlFor() {
                 <button
                   id="resend"
                   className="cmem_btn cmem_btn_gray3"
-                //   onClick={"reqOtp(); return false;"}
+                  //   onClick={"reqOtp(); return false;"}
                   href="#;"
                 >
                   재발송
@@ -196,7 +222,7 @@ function EmailInhtmlFor() {
                     <button
                       type="button"
                       className="cmem_btn cmem_btn_blkline"
-                    //   onClick={"initOtp(); return false;"}
+                      //   onClick={"initOtp(); return false;"}
                       href="#;"
                     >
                       <span className="notranslate" />
@@ -207,7 +233,7 @@ function EmailInhtmlFor() {
                     <button
                       type="button"
                       className="cmem_btn cmem_btn_gray"
-                    //   onClick={"otpCert.chkOtp(); return false;"}
+                      //   onClick={"otpCert.chkOtp(); return false;"}
                       href="#;"
                     >
                       <span className="notranslate" />
@@ -220,7 +246,7 @@ function EmailInhtmlFor() {
           </div>
         </div>
       </div>
-      </>
+    </>
   );
 }
 
