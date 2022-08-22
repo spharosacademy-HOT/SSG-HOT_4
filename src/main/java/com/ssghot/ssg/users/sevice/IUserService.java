@@ -34,4 +34,6 @@ public interface IUserService {
     ResultListDtoOutput<List<UserDtoOutput>> getAll();
 
    checkEmailDtoOutPut checkUserEmail(String email);
+
+    void addRoleToUser(String username, String roleName);
 }

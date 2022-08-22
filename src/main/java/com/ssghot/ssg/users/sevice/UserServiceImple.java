@@ -5,6 +5,7 @@ import com.ssghot.ssg.users.dto.*;
 import com.ssghot.ssg.users.repository.IUserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,20 +19,7 @@ import java.util.stream.Collectors;
 public class UserServiceImple implements IUserService {
 
     private final IUserRepository iUserRepository;
-//    private final PasswordEncoder passwordEncoder;
-//    @Override
-//    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-//        Optional<User> user = iUserRepository.findByEmail(username);
-//        if(user==null){
-//            log.error("User not found in the database");
-//            throw new UsernameNotFoundException("User not found in the database");
-//        }else{
-//            log.info("User found in the database: {}",username);
-//        }
-//        Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
-//       authorities.add(new SimpleGrantedAuthority(user.get().getRole()));
-//        return new org.springframework.security.core.userdetails.User(user.get().getEmail(),user.get().getPassword(),authorities);
-//    }
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
     @Override
     public void validateDuplicateUser(User user) {
         List<User> findUsers;
@@ -42,11 +30,13 @@ public class UserServiceImple implements IUserService {
         public UserDtoOutput addUser(UserDtoInput userDtoInput){
 
         boolean ischecked = iUserRepository.existsByEmail(userDtoInput.getEmail());
+
         if(ischecked){
             throw new Error("유저 정보가 존재합니다.");
         }
-//        String encode = passwordEncoder.encode(userDtoInput.getPassword());
-        User user = iUserRepository.save(userDtoInput.toEntity(userDtoInput.getPassword()));
+        String encode = bCryptPasswordEncoder.encode(userDtoInput.getPassword());
+
+        User user = iUserRepository.save(userDtoInput.toEntity(encode));
 
         return UserDtoOutput.builder()
                 .id(user.getId())
@@ -147,5 +137,14 @@ public class UserServiceImple implements IUserService {
     }
 
 
-
+    @Override
+    public void addRoleToUser(String username, String roleName) {
+        Optional<User> user = iUserRepository.findByEmail(username);
+        if(user.isPresent()){
+            String roles = user.get().getRole();
+            String newRole = roles + "," + roleName;
+            user.get().setRole(newRole);
+            iUserRepository.save(user.get());
+        }
+    }
 }
