@@ -12,7 +12,7 @@ public interface IOrderItemService {
         1. order 아이템 주문 추가
      */
     OrderItem addOrderItem(OrderItemDtoInput orderItemDtoInput);
-    Stock findStockByStockId(OrderItemDtoInput orderItemDtoInput);
+    Stock findStockByStockId(Long stockId);
 
     List<OrderItemDtoOutput> getOrderItemDtoOutputList(List<OrderItem> orderItems);
 

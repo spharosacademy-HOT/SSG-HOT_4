@@ -3,6 +3,7 @@ package com.ssghot.ssg.users.sevice;
 import com.ssghot.ssg.users.domain.User;
 import com.ssghot.ssg.users.dto.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 public interface IUserService {
@@ -13,6 +14,7 @@ public interface IUserService {
         4. 회원정보 수정
         5. 회원 탈퇴
         6. 소셜 로그인
+        7. 회원 전화번호 확인
     */
 
     // 중복 회원 검증
@@ -36,4 +38,8 @@ public interface IUserService {
    checkEmailDtoOutPut checkUserEmail(String email);
 
     void addRoleToUser(String username, String roleName);
+
+    boolean checkUserPhone(String phone);
+
+    Long getUserByToken(HttpServletRequest request);
 }

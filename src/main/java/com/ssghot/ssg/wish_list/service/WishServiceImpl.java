@@ -31,6 +31,13 @@ public class WishServiceImpl implements IWishListService{
         Optional<User> user = iUserRepository.findById(wishListDtoInput.getUserId());
         Optional<Product> product = iProductRepository.findById(wishListDtoInput.getProductId());
         if(user.isPresent() && product.isPresent()){
+            Optional<WishList> byProductIdAndUserId = iWishListRepository.findByProductIdAndUserId(product.get().getId(), user.get().getId());
+
+            if(byProductIdAndUserId.isPresent()){
+                iWishListRepository.deleteById(byProductIdAndUserId.get().getId());
+                return getWishListDtoOutput(400,"좋아요 리스트가 삭제 되었습니다.",null);
+            }
+
             WishList wishList = iWishListRepository.save(wishListDtoInput.toEntity(product.get(), user.get()));
             return getWishListDtoOutput(200,"좋아요 리스트에 추가 되었습니다.",wishList);
         }

@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
@@ -22,10 +23,11 @@ public class UserController {
         return "home.html";
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/user")
     @PreAuthorize("hasRole('ROLE_USER')")
-    public UserDtoOutput getUser(@PathVariable Long id){
-        return iUserService.getUserById(id);
+    public UserDtoOutput getUser(HttpServletRequest request){
+        Long userId = iUserService.getUserByToken(request);
+        return iUserService.getUserById(userId);
     }
 
     @GetMapping("")
@@ -33,10 +35,12 @@ public class UserController {
         return iUserService.getAll();
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/user")
+    @PreAuthorize("hasRole('ROLE_USER')")
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
-    public void deleteUser(@PathVariable Long id){
-        iUserService.deleteUser(id);
+    public void deleteUser(HttpServletRequest request){
+        Long userId = iUserService.getUserByToken(request);
+        iUserService.deleteUser(userId);
     }
 
     @PutMapping("")
