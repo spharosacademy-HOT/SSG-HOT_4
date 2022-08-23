@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-// import axios from 'axios'
-export const baseURL = "http://10.10.10.128:8080/api";
-=======
+
 import axios from "axios";
 //baseurl
 export const baseURL = "http://10.10.10.51:8080/api";
@@ -37,4 +34,3 @@ export const basicFileApiClient = axios.create({
 //     "Content-type": "multipart/form-data",
 //   },
 // });
->>>>>>> 73f1ef9ef7c0c2c12b5ae61c50e99af022150f6c

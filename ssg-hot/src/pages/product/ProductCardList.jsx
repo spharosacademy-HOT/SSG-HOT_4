@@ -18,8 +18,10 @@ function ProductCardList() {
   //   axios.get(baseURL)
   // })
 
-  let { params } = useParams()
-  console.log('params',params)
+  let params = useParams()
+  console.log(params)
+  console.log('params',params.categoryId)
+  console.log('params',params.categoryMid)
 
   const [productDatas, setProductDatas] = useState([])
   return (
