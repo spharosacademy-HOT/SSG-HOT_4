@@ -17,26 +17,33 @@ function LogInInput() {
   };
 
   const postLogin = async () => {
-    console.log("요청!");
-    const res = await basicApiClient.post(`/login`, {
-      username: userName,
-      password: password,
-    });
-    if (res.data.access_token) {
-      //토큰 값 변수에 저장 및 jwt 디코딩
-      var ACCESS_TOKEN = res.data.access_token;
-      var decoded = jwt_decode(ACCESS_TOKEN);
+    if (userName && password) {
+      const res = await basicApiClient.post(`/login`, {
+        username: userName,
+        password: password,
+      });
+      if (res.data.access_token) {
+        //토큰 값 변수에 저장 및 jwt 디코딩
+        var ACCESS_TOKEN = res.data.access_token;
+        var decoded = jwt_decode(ACCESS_TOKEN);
 
-      //토큰 localStorage에 저장
-      localStorage.setItem("token", ACCESS_TOKEN);
+        //토큰 localStorage에 저장
+        localStorage.setItem("token", ACCESS_TOKEN);
 
-      //SessionStotage에 저장
-      sessionStorage.setItem("id", decoded.id);
-      sessionStorage.setItem("name", decoded.name);
-      sessionStorage.setItem("username", decoded.username);
+        //SessionStotage에 저장
+        sessionStorage.setItem("id", decoded.id);
+        sessionStorage.setItem("name", decoded.name);
+        sessionStorage.setItem("username", decoded.username);
 
-      alert(`${decoded.name}님 반갑습니다.`);
-      navigate("/");
+        alert(`${decoded.name}님 반갑습니다.`);
+        navigate("/");
+      }
+    } else if (!userName) {
+      alert("아이디를 입력해주세요");
+      return;
+    } else {
+      alert("비밀번호를 입력해주세요");
+      return;
     }
   };
   return (
