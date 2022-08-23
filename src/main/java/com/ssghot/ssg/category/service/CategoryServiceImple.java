@@ -95,4 +95,9 @@ public class CategoryServiceImple implements ICategoryService{
 
         return categoryDtoOutput;
     }
+
+    @Override
+    public List<Category> getAllCategory1() {
+        return iCategoryRepository.findAll();
+    }
 }

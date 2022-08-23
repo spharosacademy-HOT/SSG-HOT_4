@@ -75,8 +75,6 @@ public class RecentlyViewedProductServiceImple implements IRecentlyViewedProduct
         List<RecentlyViewedProduct> recentlyViewedProductList = iRecentlyViewedProductRepository.findAll();
         List<RecentlyViewedProductDtoOutput> recentlyViewedProductDtoOutputList = new ArrayList<>();
 
-
-
         // .productSubImgList(iProductSubImgRepository.allByProductId(product.getId()))
 
         recentlyViewedProductList.forEach(

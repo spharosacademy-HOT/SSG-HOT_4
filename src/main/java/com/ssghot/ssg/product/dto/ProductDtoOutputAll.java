@@ -2,6 +2,7 @@ package com.ssghot.ssg.product.dto;
 
 import com.ssghot.ssg.categoryProductList.dto.CategoryProductListDtoOutput;
 import com.ssghot.ssg.optionList.dto.StockDtoOutputOnlyId;
+import com.ssghot.ssg.product.domain.Product;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -40,5 +41,22 @@ public class ProductDtoOutputAll {
 
     //=== CategoryProductList ===///
     private List<CategoryProductListDtoOutput> categoryProductList;
+
+    public ProductDtoOutputAll(Product product){
+        this.id = product.getId();
+        this.name = product.getName();
+        this.regularPrice = product.getRegularPrice();
+        this.discountPrice = product.getDiscountPrice();
+        this.discountRate = product.getDiscountRate();
+        this.shippingFee = product.getShippingFee();
+        this.star = product.getStar();
+        this.detail = product.getDetail();
+        this.deliveryCondition = product.getDeliveryCondition();
+        this.viewCount = product.getViewCount();
+        this.sellCount = product.getSellCount();
+        this.brandName = product.getBrandName();
+        this.titleImgTxt = product.getTitleImgTxt();
+        this.titleImgUrl = product.getTitleImgUrl();
+    }
 
 }

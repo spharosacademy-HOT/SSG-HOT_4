@@ -5,6 +5,7 @@ import com.ssghot.ssg.review.dto.ReviewDtoInput;
 import com.ssghot.ssg.review.dto.ReviewDtoOutput;
 import com.ssghot.ssg.review.service.IReviewService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,6 +28,7 @@ public class ReviewController {
 
     // 1. 리뷰 등록하기
     @PostMapping("/review")
+    @PreAuthorize("hasRole('ROLE_USER')")
     public Review addReview(@RequestBody ReviewDtoInput reviewDtoInput){
         return iReviewService.addReview(reviewDtoInput);
     }
@@ -39,6 +41,7 @@ public class ReviewController {
 
     // 3. 리뷰 전체 조회하기
     @GetMapping("/review")
+    @PreAuthorize("hasRole('ROLE_USER')")
     public List<ReviewDtoOutput> getAllReview(){
         return iReviewService.getAllReview();
     }

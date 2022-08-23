@@ -1,5 +1,6 @@
 package com.ssghot.ssg.category.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -18,7 +19,8 @@ public class CategoryM {
     private Long id;
     private String name; // 중분류 이름
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonBackReference
     private Category category;
 
 //    @ManyToOne

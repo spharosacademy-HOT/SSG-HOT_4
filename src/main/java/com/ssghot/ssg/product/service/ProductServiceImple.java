@@ -15,11 +15,12 @@ import com.ssghot.ssg.product.dto.*;
 import com.ssghot.ssg.product.repository.IProductRepository;
 import com.ssghot.ssg.product.repository.IProductSubImgRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -255,6 +256,137 @@ public class ProductServiceImple implements IProductService{
 
 
         return productDtoOutputAllAndEachIdList;
+    }
+
+    // 3-3. 상품 전체 조회하기 (페이지)
+    @Override
+    public Page<ProductDtoOutputAll> getProductAllPage(Pageable pageable) {
+
+        return iProductRepository.findAll(pageable)
+                .map(product ->
+                        {
+                            List<ProductSubImg> productSubImgList = iProductSubImgRepository.findAllByProductId(product.getId());
+                            List<ProductSubImgDtoOutputOnlyId> productSubImgDtoOutputOnlyIds = new ArrayList<>();
+
+                            productSubImgList.forEach(productSubImg -> {
+                                productSubImgDtoOutputOnlyIds.add(
+                                        ProductSubImgDtoOutputOnlyId.builder()
+                                                .id(productSubImg.getId())
+                                                .build()
+                                );
+                            });
+
+                            // Stock
+                            List<Stock> stockList = iStockRepository.findAllByProductId(product.getId());
+                            List<StockDtoOutputOnlyId> stockDtoOutputOnlyIdList = new ArrayList<>();
+                            stockList.forEach(stock -> {
+                                stockDtoOutputOnlyIdList.add(
+                                        StockDtoOutputOnlyId.builder()
+                                                .id(stock.getId())
+                                                .build()
+                                );
+                            });
+
+                            // CategoryProductList
+                            List<CategoryProductList> categoryProductListList = iCategoryProductListRepository.findAllByProductId(product.getId());
+                            List<CategoryProductListDtoOutput> categoryProductListDtoOutputList = new ArrayList<>();
+                            categoryProductListList.forEach(categoryProductList -> {
+                                categoryProductListDtoOutputList.add(
+                                        CategoryProductListDtoOutput.builder()
+                                                .id(categoryProductList.getId())
+                                                .productId(categoryProductList.getProduct().getId())
+                                                .categoryId(categoryProductList.getCategory().getId())
+                                                .categoryMId(categoryProductList.getCategoryM().getId())
+                                                .build()
+                                );
+                            });
+
+                            return ProductDtoOutputAll.builder()
+                                    .id(product.getId())
+                                    .name(product.getName())
+                                    .regularPrice(product.getRegularPrice())
+                                    .discountPrice(product.getDiscountPrice())
+                                    .discountRate(product.getDiscountRate())
+                                    .shippingFee(product.getShippingFee())
+                                    .star(product.getStar())
+                                    .detail(product.getDetail())
+                                    .deliveryCondition(product.getDeliveryCondition())
+                                    .viewCount(product.getViewCount())
+                                    .sellCount(product.getSellCount())
+                                    .brandName(product.getBrandName())
+                                    .titleImgUrl(product.getTitleImgUrl())
+                                    .titleImgTxt(product.getTitleImgTxt())
+                                    .productSubImgList(productSubImgDtoOutputOnlyIds)
+                                    .categoryProductList(categoryProductListDtoOutputList)
+                                    .stockList(stockDtoOutputOnlyIdList)
+                                    .build();
+                        }
+                );
+    }
+
+    // 3-3. 상품 전체 조회하기 (슬라이스)
+    @Override
+    public Slice<ProductDtoOutputAll> getProductAllSlice(Pageable pageable) {
+        return iProductRepository.findAll(pageable)
+                .map(product ->
+                        {
+                            List<ProductSubImg> productSubImgList = iProductSubImgRepository.findAllByProductId(product.getId());
+                            List<ProductSubImgDtoOutputOnlyId> productSubImgDtoOutputOnlyIds = new ArrayList<>();
+
+                            productSubImgList.forEach(productSubImg -> {
+                                productSubImgDtoOutputOnlyIds.add(
+                                        ProductSubImgDtoOutputOnlyId.builder()
+                                                .id(productSubImg.getId())
+                                                .build()
+                                );
+                            });
+
+                            // Stock
+                            List<Stock> stockList = iStockRepository.findAllByProductId(product.getId());
+                            List<StockDtoOutputOnlyId> stockDtoOutputOnlyIdList = new ArrayList<>();
+                            stockList.forEach(stock -> {
+                                stockDtoOutputOnlyIdList.add(
+                                        StockDtoOutputOnlyId.builder()
+                                                .id(stock.getId())
+                                                .build()
+                                );
+                            });
+
+                            // CategoryProductList
+                            List<CategoryProductList> categoryProductListList = iCategoryProductListRepository.findAllByProductId(product.getId());
+                            List<CategoryProductListDtoOutput> categoryProductListDtoOutputList = new ArrayList<>();
+                            categoryProductListList.forEach(categoryProductList -> {
+                                categoryProductListDtoOutputList.add(
+                                        CategoryProductListDtoOutput.builder()
+                                                .id(categoryProductList.getId())
+                                                .productId(categoryProductList.getProduct().getId())
+                                                .categoryId(categoryProductList.getCategory().getId())
+                                                .categoryMId(categoryProductList.getCategoryM().getId())
+                                                .build()
+                                );
+                            });
+
+                            return ProductDtoOutputAll.builder()
+                                    .id(product.getId())
+                                    .name(product.getName())
+                                    .regularPrice(product.getRegularPrice())
+                                    .discountPrice(product.getDiscountPrice())
+                                    .discountRate(product.getDiscountRate())
+                                    .shippingFee(product.getShippingFee())
+                                    .star(product.getStar())
+                                    .detail(product.getDetail())
+                                    .deliveryCondition(product.getDeliveryCondition())
+                                    .viewCount(product.getViewCount())
+                                    .sellCount(product.getSellCount())
+                                    .brandName(product.getBrandName())
+                                    .titleImgUrl(product.getTitleImgUrl())
+                                    .titleImgTxt(product.getTitleImgTxt())
+                                    .productSubImgList(productSubImgDtoOutputOnlyIds)
+                                    .categoryProductList(categoryProductListDtoOutputList)
+                                    .stockList(stockDtoOutputOnlyIdList)
+                                    .build();
+                        }
+                );
     }
 
     // 4. 상품 단일 조회하기

@@ -60,6 +60,11 @@ public class CategoryController {
     public List<CategoryDtoOutputOnlyIdAndName> getAllCategory(){
         return iCategoryService.getAllCategory();
     }
+
+    @GetMapping("/category2")
+    public List<Category> getAll2(){
+        return iCategoryService.getAllCategory1();
+    }
     // 3-2. 카테고리 중분류 전체 조회하기
     @GetMapping("/categorym")
     public List<CategoryMDtoOutput> getAllCategoryM(){

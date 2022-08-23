@@ -28,5 +28,7 @@ public interface ICategoryService {
     // 4. 카테고리 대분류 단일 조회하기
     CategoryDtoOutput getOneCategory(Long categoryId);
 
+    List<Category> getAllCategory1();
+
 
 }
