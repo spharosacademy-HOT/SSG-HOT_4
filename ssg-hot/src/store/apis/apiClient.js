@@ -1,11 +1,14 @@
+<<<<<<< HEAD
 
+=======
+>>>>>>> 942e4b6539774e46c51f72acf4e662eb396df451
 import axios from "axios";
 //baseurl
 export const baseURL = "http://10.10.10.51:8080/api";
 // 로컬에서 토큰 가져오기
 // const ACCESS_TOKEN = localStorage.getItem("token");
-
 //토큰 필요 없는 json 타입 요청시
+
 export const basicApiClient = axios.create({
   baseURL: baseURL,
   headers: { "Content-type": "application/json" },
