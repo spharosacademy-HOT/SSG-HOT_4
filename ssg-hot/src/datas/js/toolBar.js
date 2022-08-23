@@ -27,7 +27,7 @@ const toolMenu = [
   },
   {
     id: 4,
-    url: "/login",
+    url: "/mypage",
     name: "MY",
     icon: faUser,
   },

@@ -2,7 +2,7 @@ import React from "react";
 
 function MyPageBenefit() {
   return (
-    <div className="myssg_user_benefit">
+    <div className="myssg_user_benefit" style={{ margin: "2rem 0" }}>
       <div className="myssg_coupon_point myssg_layer_conts">
         <div className="myssg_coupon">
           <a
