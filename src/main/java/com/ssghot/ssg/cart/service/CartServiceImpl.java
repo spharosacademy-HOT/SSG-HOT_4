@@ -1,12 +1,12 @@
 package com.ssghot.ssg.cart.service;
 
 import com.ssghot.ssg.cart.domain.Cart;
-import com.ssghot.ssg.cart.dto.CartDtoInput;
-import com.ssghot.ssg.cart.dto.CartDtoOutput;
-import com.ssghot.ssg.cart.dto.CartEditDtoInput;
+import com.ssghot.ssg.cart.dto.*;
 import com.ssghot.ssg.cart.repository.ICartRepository;
 import com.ssghot.ssg.common.ResultDtoOutput;
 import com.ssghot.ssg.common.ResultsDtoOutput;
+import com.ssghot.ssg.optionList.domain.OptionFirst;
+import com.ssghot.ssg.optionList.domain.OptionSecond;
 import com.ssghot.ssg.optionList.domain.Stock;
 import com.ssghot.ssg.optionList.repository.IStockRepository;
 import com.ssghot.ssg.users.domain.User;
@@ -15,6 +15,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -80,13 +81,29 @@ public class CartServiceImpl implements ICartService{
     }
 
     @Override
-    public ResultsDtoOutput<List<CartDtoOutput>> getCartByUserId(Long userId) {
+    public ResultsDtoOutput<List<CartByUserDtoOutput>> getCartByUserId(Long userId) {
         boolean isValid = iUserRepository.existsById(userId);
         if(isValid){
             List<Cart> carts = iCartRepository.findByUserId(userId);
-            return getCartsDtoOutputs(200,"유저별 카트 정보를 가져왔습니다.",carts);
+            List<OptionListDtoOutput> optionListDtoOutputs = new ArrayList<>();
+            for (Cart cart: carts) {
+
+                List<Stock> allByProductId = iStockRepository.findAllByProductId(cart.getStock().getProduct().getId());
+
+                for (Stock stock : allByProductId) {
+                    OptionFirst optionFirst = stock.getOptionFirst();
+                    OptionSecond optionSecond = stock.getOptionSecond();
+                    Long id = stock.getId();
+                    OptionListDtoOutput optionListDtoOutput = OptionListDtoOutput.builder()
+                            .optionFirst(optionFirst).optionSecond(optionSecond)
+                            .stockId(id)
+                            .build();
+                    optionListDtoOutputs.add(optionListDtoOutput);
+                }
+            }
+            return getCartsDtoOutputs(200,"유저별 카트 정보를 가져왔습니다.",carts,optionListDtoOutputs);
         }
-        return getCartsDtoOutputs(404,"유저 정보가 없습니다",null);
+        return getCartsDtoOutputs(404,"유저 정보가 없습니다",null,null);
     }
 
     @Override
@@ -104,8 +121,19 @@ public class CartServiceImpl implements ICartService{
     }
 
     @Override
-    public ResultDtoOutput<CartDtoOutput> editStockCart(CartDtoInput cartDtoInput) {
-        return null;
+    public ResultDtoOutput<CartDtoOutput> editStockCart(CartEditStockDtoInput cartEditStockDtoInput) {
+        Optional<Stock> stock = iStockRepository.findById(cartEditStockDtoInput.getStockId());
+        Optional<User> user = iUserRepository.findById(cartEditStockDtoInput.getUserId());
+        Optional<Cart> cart = iCartRepository.findById(cartEditStockDtoInput.getId());
+        if(stock.isPresent() && user.isPresent() && cart.isPresent()){
+            int result = iCartRepository.replaceStock(cartEditStockDtoInput.getId(), stock.get().getId());
+            if(result==1){
+                return getCartDtoOutput(200,"재고가 변경되었습니다.",null);
+            }
+            return getCartDtoOutput(400,"재고가 변경되지 않았습니다.",null);
+        }
+
+        return getCartDtoOutput(400,"재고가 존재하지 않았습니다.",null);
     }
 
     private ResultDtoOutput<CartDtoOutput> getCartDtoOutput(int status, String message, Cart cart){
@@ -130,6 +158,24 @@ public class CartServiceImpl implements ICartService{
                             .userId(cart.getUser().getId())
                             .count(cart.getCount())
                             .stock(cart.getStock())
+                            .createdDate(cart.getCreatedDate())
+                            .updatedDate(cart.getUpdatedDate())
+                            .build()
+            ).collect(Collectors.toList());
+            return new ResultsDtoOutput<>(status, message, collect.size(), collect);
+        }
+        return new ResultsDtoOutput<>(status, message, 0,null);
+    }
+
+    private ResultsDtoOutput<List<CartByUserDtoOutput>> getCartsDtoOutputs(int status, String message, List<Cart> carts,List<OptionListDtoOutput> optionListDtoOutputs) {
+        if(carts!=null) {
+            List<CartByUserDtoOutput> collect = carts.stream().map(cart ->
+                    CartByUserDtoOutput.builder()
+                            .id(cart.getId())
+                            .userId(cart.getUser().getId())
+                            .count(cart.getCount())
+                            .stock(cart.getStock())
+                            .optionList(optionListDtoOutputs)
                             .createdDate(cart.getCreatedDate())
                             .updatedDate(cart.getUpdatedDate())
                             .build()

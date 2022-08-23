@@ -18,6 +18,7 @@ import org.springframework.web.filter.CorsFilter;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig  extends WebSecurityConfigurerAdapter {
     private final CorsFilter corsFilter;
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         JwtAuthenticationFilter jwtAuthenticationFilter = new JwtAuthenticationFilter(authenticationManagerBean());

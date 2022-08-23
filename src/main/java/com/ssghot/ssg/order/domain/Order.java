@@ -84,6 +84,7 @@ public class Order extends CommonDTO{
         this.paymentOption = this.paymentOption == null? "기타":this.paymentOption;
     }
     public void addOrderItem(OrderItem orderItem){
+
         orderItem.setOrder(this);
         orderItems.add(orderItem);
     }

@@ -1,5 +1,9 @@
 package com.ssghot.ssg.users.sevice;
 
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.algorithms.Algorithm;
+import com.auth0.jwt.interfaces.DecodedJWT;
+import com.ssghot.ssg.security.jwt.JwtProperties;
 import com.ssghot.ssg.users.domain.User;
 import com.ssghot.ssg.users.dto.*;
 import com.ssghot.ssg.users.repository.IUserRepository;
@@ -8,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -146,5 +151,24 @@ public class UserServiceImple implements IUserService {
             user.get().setRole(newRole);
             iUserRepository.save(user.get());
         }
+    }
+
+    @Override
+    public boolean checkUserPhone(String phone) {
+            boolean byPhone = iUserRepository.existsByPhone(phone);
+            return byPhone;
+    }
+
+    @Override
+    public Long getUserByToken(HttpServletRequest request) {
+        String header = request.getHeader(JwtProperties.HEADER_STRING);
+        if (header != null && header.startsWith("Bearer")) {
+
+            String token = header.substring("Bearer ".length());
+            DecodedJWT decodedJWT = JWT.require(Algorithm.HMAC512(JwtProperties.SECRET)).build().verify(token);
+            Long userId = decodedJWT.getClaim("id").asLong();
+            return userId;
+        }
+        return null;
     }
 }
