@@ -3,15 +3,23 @@ import ProductCard from "./ProductCard";
 // import productDatas from "../../datas/js/productDatas";
 import ProductCardFilter from "./ProductCardFIlter";
 import axios from 'axios';
+import { baseURL } from "../../store/apis/apiClient";
+import { useParams } from "react-router-dom";
 
 function ProductCardList() {
-  useEffect(()=>{
+  // useEffect(()=>{
 
-    axios.get('http://10.10.10.84:8080/ssghot/product')
-      .then(Response =>{
-        setProductDatas(Response.data)
-      })
-  },[])
+  //   axios.get(baseURL + '/product')
+  //     .then(Response =>{
+  //       setProductDatas(Response.data)
+  //     })
+  // },[])
+  // useEffect(()=>{
+  //   axios.get(baseURL)
+  // })
+
+  let { params } = useParams()
+  console.log('params',params)
 
   const [productDatas, setProductDatas] = useState([])
   return (
