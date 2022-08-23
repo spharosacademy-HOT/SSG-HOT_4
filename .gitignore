@@ -38,4 +38,4 @@ out/
 
 ### properties 보안###
 application-s3.properties
-#application-mysql.properties
+application-mysql.properties
