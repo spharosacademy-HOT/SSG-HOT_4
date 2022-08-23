@@ -75,13 +75,30 @@ public class RecentlyViewedProductServiceImple implements IRecentlyViewedProduct
         List<RecentlyViewedProduct> recentlyViewedProductList = iRecentlyViewedProductRepository.findAll();
         List<RecentlyViewedProductDtoOutput> recentlyViewedProductDtoOutputList = new ArrayList<>();
 
+
+
+        // .productSubImgList(iProductSubImgRepository.allByProductId(product.getId()))
+
         recentlyViewedProductList.forEach(
                 recentlyViewedProduct -> {
+
+//                    List<Product> allByRecentlyViewedProductId = iProductRepository.findAllByRecentlyViewedProductId(recentlyViewedProduct.getId());
+//                    List<ProductDtoOutputAll> productDtoOutputAllList = new ArrayList<>();
+//                    allByRecentlyViewedProductId.forEach(product -> {
+//                        productDtoOutputAllList.add(
+//                                ProductDtoOutputAll.builder()
+//                                        .name(product.getName())
+//                                        .discountPrice(product.getDiscountPrice())
+//                                        .titleImgUrl(product.getTitleImgUrl())
+//                                        .build()
+//                        );
+//                    });
+
                     if(recentlyViewedProduct.getIsDeleted().equals("N")){
                         recentlyViewedProductDtoOutputList.add(
                                 RecentlyViewedProductDtoOutput.builder()
                                         .id(recentlyViewedProduct.getId())
-                                        .productId(recentlyViewedProduct.getProduct().getId())
+                                        .product(recentlyViewedProduct.getProduct())
                                         .userId(recentlyViewedProduct.getUser().getId())
                                         .isDeleted(recentlyViewedProduct.getIsDeleted())
                                         .build()
