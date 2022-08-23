@@ -3,15 +3,13 @@ package com.ssghot.ssg.cart.dto;
 import com.ssghot.ssg.cart.domain.Cart;
 import com.ssghot.ssg.optionList.domain.Stock;
 import com.ssghot.ssg.users.domain.User;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Getter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Setter
 public class CartDtoInput {
     private Long stockId;
     private Long userId;

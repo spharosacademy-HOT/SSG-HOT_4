@@ -20,5 +20,8 @@ public interface ICartRepository extends JpaRepository<Cart,Long> {
     @Modifying
     @Query("update Cart c set c.count = :count where c.id = :id")
     int replaceCount(Long id,int count);
-
+    @Transactional
+    @Modifying
+    @Query("update Cart c set c.stock.id = :stockId where c.id = :id")
+    int replaceStock(Long id,Long stockId);
 }

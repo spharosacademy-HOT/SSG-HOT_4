@@ -2,6 +2,8 @@ package com.ssghot.ssg.order.service;
 
 import com.ssghot.ssg.common.ResultDtoOutput;
 import com.ssghot.ssg.common.ResultsDtoOutput;
+import com.ssghot.ssg.optionList.domain.Stock;
+import com.ssghot.ssg.optionList.repository.IStockRepository;
 import com.ssghot.ssg.order.domain.Order;
 import com.ssghot.ssg.order.dto.OrderDtoInput;
 import com.ssghot.ssg.order.dto.OrderDtoInputDetail;
@@ -20,6 +22,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -32,7 +35,7 @@ public class OrderServiceImpl implements IOrderService{
     private final IOrderRepository iOrderRepository;
     private final IUserCouponRepository iUserCouponRepository;
     private final IOrderItemService iOrderItemService;
-
+    private final IStockRepository iStockRepository;
     @Override
     public ResultDtoOutput<OrderDtoOutput> addOrder(OrderDtoInput orderDtoInput) {
         Optional<User> user = iUserRepository.findById(orderDtoInput.getUserId());
@@ -104,16 +107,59 @@ public class OrderServiceImpl implements IOrderService{
 
     @Override
     public void deleteOrderById(Long id) {
+        Optional<Order> order = iOrderRepository.findById(id);
+        // 재고 다시 추가해서 완상태로 복귀
+        if(order.isPresent()){
+            List<OrderItem> orderItems = order.get().getOrderItems();
+            for (OrderItem orderItem: orderItems) {
+                int result = iStockRepository.replaceStockCountInc(orderItem.getStock().getId(), orderItem.getCount());
+            }
+
+            // 쿠폰을 사용했을 경우 취소
+            if(order.get().getUserCoupon()!=null){
+                Optional<UserCoupon> userCoupon = iUserCouponRepository.findById(order.get().getUserCoupon().getId());
+                if(userCoupon.isPresent()){
+                    UserCouponEditDtoInput couponEditDtoInput = UserCouponEditDtoInput.builder()
+                            .id(userCoupon.get().getId())
+                            .valid(false)
+                            .build();
+                    // 변경 후
+                    iUserCouponRepository.save(couponEditDtoInput.toEntity(userCoupon.get()));
+                }
+            }
+
+
+
+        }
+
         iOrderRepository.deleteById(id);
     }
 
 
     private ResultDtoOutput<OrderDtoOutput> saveOrder(OrderDtoInput orderDtoInput, Order orderEntity) {
-
+        List<OrderItem> items = new ArrayList<>();
 
         for (OrderItemDtoInput orderItem:orderDtoInput.getOrderItems()) {
-            OrderItem item = orderItem.toEntity(iOrderItemService.findStockByStockId(orderItem));
-            orderEntity.addOrderItem(item);
+            Stock stock = iOrderItemService.findStockByStockId(orderItem.getStockId());
+            if(stock.getQty()>=orderItem.getStockCount())
+            {
+
+                OrderItem item = orderItem.toEntity(stock);
+                int result = iStockRepository.replaceStockCountDec(stock.getId(), orderItem.getStockCount());
+                if(result==1){
+                    items.add(item);
+                }
+                if(result!=1){
+                    return getOrderDtoOutput(400,"재고 id에 수량이 업데이트하지 못하였습니다.",null);
+                }
+
+            }
+            else {
+                return getOrderDtoOutput(404, "해당 제품의 재고 수량이 충분하지 않습니다.", null);
+            }
+        }
+        for (OrderItem order: items) {
+            orderEntity.addOrderItem(order);
         }
         Order saveOrder = iOrderRepository.save(orderEntity);
         return getOrderDtoOutput(200,"성공입니다!",saveOrder);

@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.util.*;
 
 public class JwtAuthorizationFilter extends OncePerRequestFilter {
+
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         if(request.getServletPath().equals("/api/login") || request.getServletPath().equals("/api/token/refresh")){
@@ -26,17 +27,17 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
             if (authorizationHeader != null && authorizationHeader.startsWith("Bearer")) {
                 try {
                     String token = authorizationHeader.substring("Bearer ".length());
-                    System.out.println(token);
                     DecodedJWT decodedJWT = JWT.require(Algorithm.HMAC512(JwtProperties.SECRET)).build().verify(token);
                     String username = decodedJWT.getClaim("username").asString();
                     String[] roles = decodedJWT.getClaim("roles").asArray(String.class);
+
                     Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
                     Arrays.stream(roles).forEach(role -> {
                         authorities.add(new SimpleGrantedAuthority(role));
                     });
                     UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(username, null, authorities);
                     SecurityContextHolder.getContext().setAuthentication(authenticationToken);
-                    System.out.println(username);
+
                     filterChain.doFilter(request, response);
                 } catch (Exception exception) {
                     response.setHeader("error", exception.getMessage());
@@ -51,4 +52,5 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
             }
         }
     }
+
 }

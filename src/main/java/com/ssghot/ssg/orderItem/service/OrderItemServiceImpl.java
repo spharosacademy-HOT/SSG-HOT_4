@@ -32,8 +32,8 @@ public class OrderItemServiceImpl implements IOrderItemService{
     }
 
     @Override
-    public Stock findStockByStockId(OrderItemDtoInput orderItemDtoInput) {
-        Optional<Stock> stock = iStockRepository.findById(orderItemDtoInput.getStockId());
+    public Stock findStockByStockId(Long stockId) {
+        Optional<Stock> stock = iStockRepository.findById(stockId);
         if(stock.isPresent()){
             return stock.get();
         }

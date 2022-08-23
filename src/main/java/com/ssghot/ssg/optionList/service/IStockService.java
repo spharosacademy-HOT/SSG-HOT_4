@@ -12,6 +12,7 @@ public interface IStockService {
         2. 재고 수정하기
         3. 재고 전체 조회하기
         4. 재고 단건 조회하기
+
      */
 
     // 1. 재고 등록하기
@@ -25,4 +26,6 @@ public interface IStockService {
 
     // 4. 재고 단건 조회하기
     Stock getOneStock(Long id);
+
+
 }
