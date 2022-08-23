@@ -5,6 +5,7 @@ function CategoryViewer({ isTrue, item, getNum}) {
   // useEffect(() => {
   //   console.log(item);
   // }, []);
+
   return (
     <div className={isTrue ? "category-group" : "non-category-group"}>
       <div>

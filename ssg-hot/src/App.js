@@ -24,6 +24,7 @@ import Qna from "./pages/auth/qna/Qna";
 import CartControl from "./pages/myPage/cartcontrol/CartControl";
 import PlusShip from "./pages/myPage/cartcontrol/plusship/PlusShip";
 import ScrollToTop from "./components/layout/ScrollToTop";
+import Purchase from "./pages/product/productPurchase/Purchase";
 
 function App() {
   return (
@@ -38,9 +39,7 @@ function App() {
         <Route path="/mainsearch" element={<Search />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/productList" element={<ProductList />}>
-          <Route path=":category" element={<ProductList/>}>
-            <Route path=":categoryM" element={<ProductList/>}/>
-          </Route>
+          <Route path=":categoryId/:categoryMid" element={<ProductList/>}/>
         </Route>
         <Route path="/product" element={<Product />}>
           <Route path=":productId" element={<Product />} />
@@ -48,6 +47,7 @@ function App() {
         <Route path="/product/review" element={<ProductReviewPage />}>
           <Route path=":productId" element={<ProductReviewPage />} />
         </Route>
+        <Route path="/product/purchase" element={<Purchase/>}/>
         <Route path="/mypage" element={<MyPage />} />
         <Route path="/signUp" element={<SignUp />} />
         <Route path="/emailsignup" element={<EmailSignUp />} />
