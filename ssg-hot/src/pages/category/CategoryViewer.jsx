@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 
-function CategoryViewer({ isTrue, item, differ }) {
+function CategoryViewer({ isTrue, item, getNum}) {
   // useEffect(() => {
   //   console.log(item);
   // }, []);
-  // console.log('비교',differ)
   return (
     <div className={isTrue ? "category-group" : "non-category-group"}>
       <div>
@@ -12,7 +12,9 @@ function CategoryViewer({ isTrue, item, differ }) {
           {item &&
             item.map((list) => (
               <li key={list.id}>
-                <a href={list.url}>{list.name}</a>
+                <Link to={`/productList/${getNum}/${list.id}`}>
+                  {list.name}
+                </Link>
               </li>
               // <li key={list.id}></li>
             ))}

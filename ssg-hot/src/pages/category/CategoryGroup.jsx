@@ -12,11 +12,10 @@ function CategoryGroup({cateData, viewIsTrue,cateNumber, setCateNumber, isClick,
    
         setViewerData(cateData[getNum-1].content)
         setCateNumber(cateId)
-        
 
     }, [getNum])
-    
-   
+    // console.log('id',cateData)
+    console.log(getNum)
     return ( 
         <>
             <ul className='category-align'>
@@ -35,7 +34,7 @@ function CategoryGroup({cateData, viewIsTrue,cateNumber, setCateNumber, isClick,
                     ))
                 }
             </ul>
-           <CategoryViewer item={viewerData} isTrue={viewerView} differ={differ}/>
+           <CategoryViewer item={viewerData} isTrue={viewerView} differ={differ} getNum={getNum}/>
         </>
     );
 }
