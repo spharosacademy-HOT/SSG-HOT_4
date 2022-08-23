@@ -1,5 +1,7 @@
 package com.ssghot.ssg.recentlyViewedProduct.service;
 
+import com.ssghot.ssg.product.domain.Product;
+import com.ssghot.ssg.product.repository.IProductRepository;
 import com.ssghot.ssg.recentlyViewedProduct.domain.RecentlyViewedProduct;
 import com.ssghot.ssg.recentlyViewedProduct.dto.RecentlyViewedProductDtoInput;
 import com.ssghot.ssg.recentlyViewedProduct.dto.RecentlyViewedProductDtoOutput;
@@ -20,6 +22,8 @@ public class RecentlyViewedProductServiceImple implements IRecentlyViewedProduct
     private final IRecentlyViewedProductRepository iRecentlyViewedProductRepository;
     private final IUserRepository iUserRepository;
 
+    private final IProductRepository iProductRepository;
+
     /*
         1. 최근 본 상품 등록하기
         2. 최근 본 상품 삭제하기
@@ -31,15 +35,21 @@ public class RecentlyViewedProductServiceImple implements IRecentlyViewedProduct
     @Override
     public RecentlyViewedProduct addRecentlyViewedProduct(RecentlyViewedProductDtoInput recentlyViewedProductDtoInput) {
 
-        RecentlyViewedProduct recentlyViewedProduct = iRecentlyViewedProductRepository.save(
-                RecentlyViewedProduct.builder()
-                        .product(recentlyViewedProductDtoInput.getProduct())
-                        .user(recentlyViewedProductDtoInput.getUser())
-                        .isDeleted("N")
-                        .build()
-        );
+        Optional<Product> product = iProductRepository.findById(recentlyViewedProductDtoInput.getProduct().getId());
+        Optional<User> user = iUserRepository.findById(recentlyViewedProductDtoInput.getUser().getId());
 
-        return recentlyViewedProduct;
+        if(product.isPresent() && user.isPresent()) {
+            RecentlyViewedProduct recentlyViewedProduct = iRecentlyViewedProductRepository.save(
+                    RecentlyViewedProduct.builder()
+                            .product(recentlyViewedProductDtoInput.getProduct())
+                            .user(recentlyViewedProductDtoInput.getUser())
+                            .isDeleted("N")
+                            .build()
+            );
+
+            return recentlyViewedProduct;
+        }
+        return null;
     }
 
     // 2. 최근 본 상품 삭제하기
