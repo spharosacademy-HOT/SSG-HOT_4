@@ -3,11 +3,16 @@ import { Link } from "react-router-dom";
 import { basicApiClient } from "../../../store/apis/apiClient";
 import jwt_decode from "jwt-decode";
 import { useNavigate } from "react-router-dom";
+import { useRecoilState } from "recoil";
+import { cartState } from "../../../store/atom/cartState";
+import { getMyCart } from "../../../store/apis/cart";
 
 function LogInInput() {
   let navigate = useNavigate();
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
+
+  const [cartData, setCartData] = useRecoilState(cartState);
 
   const checkUserName = (e) => {
     setUserName(e.target.value);
@@ -18,26 +23,38 @@ function LogInInput() {
 
   const postLogin = async () => {
     if (userName && password) {
-      const res = await basicApiClient.post(`/login`, {
-        username: userName,
-        password: password,
-      });
-      if (res.data.access_token) {
-        //토큰 값 변수에 저장 및 jwt 디코딩
-        var ACCESS_TOKEN = res.data.access_token;
-        var decoded = jwt_decode(ACCESS_TOKEN);
+      const res = await basicApiClient
+        .post(`/login`, {
+          username: userName,
+          password: password,
+        })
+        .then((res) => {
+          console.log(res);
+          var ACCESS_TOKEN = res.data.access_token;
+          var decoded = jwt_decode(ACCESS_TOKEN);
 
-        //토큰 localStorage에 저장
-        localStorage.setItem("token", ACCESS_TOKEN);
+          //토큰 localStorage에 저장
+          localStorage.setItem("token", ACCESS_TOKEN);
 
-        //SessionStotage에 저장
-        sessionStorage.setItem("id", decoded.id);
-        sessionStorage.setItem("name", decoded.name);
-        sessionStorage.setItem("username", decoded.username);
+          //SessionStotage에 저장
+          sessionStorage.setItem("id", decoded.id);
+          sessionStorage.setItem("name", decoded.name);
+          sessionStorage.setItem("username", decoded.username);
 
-        alert(`${decoded.name}님 반갑습니다.`);
-        navigate("/");
-      }
+          alert(`${decoded.name}님 반갑습니다.`);
+
+          getMyCart().then((res) => {
+            setCartData(res.data);
+            console.log("!!!!!!!!!!!!!!", res.data);
+          });
+
+          navigate("/");
+        })
+        .catch((err) => {
+          alert(
+            "아이디(로그인 전용 아이디) 또는 비밀번호를 잘못 입력했습니다."
+          );
+        });
     } else if (!userName) {
       alert("아이디를 입력해주세요");
       return;

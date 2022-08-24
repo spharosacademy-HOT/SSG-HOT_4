@@ -1,9 +1,9 @@
 import React from "react";
 
-export default function CartButton({ isOption }) {
+export default function CartButton({ optionList }) {
   return (
     <div className="cartButton">
-      {isOption ? (
+      {optionList ? (
         <button type="button">
           <span>옵션변경</span>
         </button>
