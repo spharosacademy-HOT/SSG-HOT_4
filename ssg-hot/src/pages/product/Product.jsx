@@ -37,7 +37,6 @@ function Product() {
       });
   }, []);
   const [productDatas, setProductDatas] = useState([]);
-  console.log(productDatas)
   return (
     <>
       <div className="product-head-box"></div>

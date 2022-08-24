@@ -8,19 +8,28 @@ import cateDatas from '../../datas/js/cateDatas';
 import { useState } from "react";
 import { useEffect } from "react";
 import ServiceRecommend from "./ServiceRecommend";
+import axios from "axios";
+import { baseURL } from "../../store/apis/apiClient";
 
 function Category() {
 
   const [cateNumber , setCateNumber] = useState(0)
   const [isClick, setIsClick] = useState(false)
-  
+  const [categoryIds, setCategoryId] = useState()
 
   useEffect(()=>{
     let setTrues = [ false, false ];
-    console.log(cateNumber)
+    // console.log(cateNumber)
     setTrues[cateNumber-1]=true
-    console.log('상황',setTrues)
+    // console.log('상황',setTrues)
   },[cateNumber])
+  useEffect(()=>{
+    axios
+      .get(`${baseURL}/category`)
+      .then((Response) =>{
+        setCategoryId(Response.data)
+      })
+  },[])
 
   return (
     <div>
@@ -28,7 +37,7 @@ function Category() {
       {/* 카테고리 */}
       <div className="category">
         {/* 카테고리 하나하나 */}
-        {
+        {/* {
           cateDatas.map(cateData => (
             <CategoryGroup
               key={cateData.id}
@@ -40,6 +49,11 @@ function Category() {
               setIsClick={setIsClick}
               cateId = {cateData.id}
             />
+          ))
+        } */}
+        {
+          categoryIds && categoryIds.map(categoryId => (
+            <CategoryGroup categoryId={categoryId} key={categoryId.id} setIsClick={setIsClick}/>
           ))
         }
       </div>

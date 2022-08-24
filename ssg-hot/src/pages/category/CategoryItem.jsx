@@ -1,10 +1,10 @@
 import React from "react";
 
-function CategoryItem({ setViewerView, item,cateNumber, setGetNum, isClick, setIsClick, setDiffer }) {
+function CategoryItem({ setViewerView, item,cateNumber, setGetNum, isClick, setIsClick, setDiffer, categoryId }) {
 
   const handleCateItem = () => {
-    cateNumber !== item.id ? setDiffer(true) : setDiffer(false)
-    setGetNum(item.id)
+    // cateNumber !== categoryId.id ? setDiffer(true) : setDiffer(false)
+    // setGetNum(categoryId.id)
     setViewerView(true)
     setIsClick(!isClick)
 
@@ -15,10 +15,10 @@ function CategoryItem({ setViewerView, item,cateNumber, setGetNum, isClick, setI
       <li>
         <div className="category-clickable" onClick={handleCateItem}>
           <div>
-            <img src={item.imgUrl} alt="카테고리 이미지" />
+            <img src={categoryId.imgUrl} alt="카테고리 이미지" />
             <div className={isClick ? "clicked" : "un-clicked"}></div>
           </div>
-          <p>{item.cateName}</p>
+          <p>{categoryId.name}</p>
         </div>
       </li>
   );
