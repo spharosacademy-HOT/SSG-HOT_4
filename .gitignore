@@ -37,6 +37,6 @@ out/
 /.nb-gradle/
 
 ### properties 보안###
-application-s3.properties
-application-mysql.properties
-application-sms.properties
+#application-s3.properties
+#application-mysql.properties
+#application-sms.properties
