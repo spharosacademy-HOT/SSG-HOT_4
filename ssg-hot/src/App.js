@@ -1,14 +1,12 @@
 import React from "react";
 //modules
+import { RecoilRoot } from "recoil";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+//components
 import Category from "./pages/category/Category";
 import Main from "./pages/main/Main";
-//components
 import ToolBar from "./components/layout/toolBar/ToolBar";
 import Recent from "./pages/recent/Recent";
-// css
-import "./styles/styles.css";
-import "bootstrap/dist/css/bootstrap.min.css";
 import LogIn from "./pages/auth/signIn/LogIn";
 import SignUp from "./pages/auth/signUp/SignUp";
 import Search from "./pages/search/Search";
@@ -26,38 +24,43 @@ import PlusShip from "./pages/myPage/cartcontrol/plusship/PlusShip";
 import ScrollToTop from "./components/layout/ScrollToTop";
 import Purchase from "./pages/product/productPurchase/Purchase";
 
+//css
+import "./styles/styles.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+
 function App() {
   return (
-    <BrowserRouter className="test">
-      <ScrollToTop />
-      <Header />
-      <Routes>
-        <Route path="/" element={<Main />} />
-        <Route path="/logIn" element={<LogIn />} />
-        <Route path="/recent" element={<Recent />} />
-        <Route path="/category" element={<Category />} />
-        <Route path="/mainsearch" element={<Search />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/productList" element={<ProductList />}>
+    <RecoilRoot>
+      <BrowserRouter className="test">
+        <ScrollToTop />
+        <Header />
+        <Routes>
+          <Route path="/" element={<Main />} />
+          <Route path="/logIn" element={<LogIn />} />
+          <Route path="/recent" element={<Recent />} />
+          <Route path="/category" element={<Category />} />
+          <Route path="/mainsearch" element={<Search />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/productList" element={<ProductList />}>
           <Route path=":categoryMId" element={<ProductList/>}/>
         </Route>
         <Route path="/product" element={<Product />}>
           <Route path=":productId" element={<Product />} />
         </Route>
-        <Route path="/product/review" element={<ProductReviewPage />}>
-          <Route path=":productId" element={<ProductReviewPage />} />
-        </Route>
-        <Route path="/product/purchase" element={<Purchase/>}/>
-        <Route path="/mypage" element={<MyPage />} />
-        <Route path="/signUp" element={<SignUp />} />
-        <Route path="/emailsignup" element={<EmailSignUp />} />
-        <Route path="/cartcontrol" element={<CartControl />} />
-        <Route path="/plusship" element={<PlusShip />} />
-        <Route path="/qna" element={<Qna />} />
-      </Routes>
-      <ToolBar />
-      <Footer />
-    </BrowserRouter>
+          <Route path="/product/review" element={<ProductReviewPage />}>
+            <Route path=":productId" element={<ProductReviewPage />} />
+          </Route>
+          <Route path="/mypage" element={<MyPage />} />
+          <Route path="/signUp" element={<SignUp />} />
+          <Route path="/emailsignup" element={<EmailSignUp />} />
+          <Route path="/cartcontrol" element={<CartControl />} />
+          <Route path="/plusship" element={<PlusShip />} />
+          <Route path="/qna" element={<Qna />} />
+        </Routes>
+        <ToolBar />
+        <Footer />
+      </BrowserRouter>
+    </RecoilRoot>
   );
 }
 
