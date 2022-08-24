@@ -92,7 +92,7 @@ public class ReviewServiceImple implements IReviewService{
 
         reviewList.forEach(
             review -> {
-            reviewDtoOutputList.add(
+                reviewDtoOutputList.add(
                     ReviewDtoOutput.builder()
                             .id(review.getId())
                             .title(review.getTitle())

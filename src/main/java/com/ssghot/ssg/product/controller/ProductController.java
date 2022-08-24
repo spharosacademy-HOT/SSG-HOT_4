@@ -81,7 +81,7 @@ public class ProductController {
 
     // 3-4. 상품 전체 조회하기 (페이지 DTO)
     @GetMapping("/product")
-    public Page<ProductDtoOutputAll> getAllProductPage2(@PageableDefault(size = 10) Pageable pageable){
+    public Page<ProductDtoOutputAll> getAllProductPage2(@PageableDefault(size = 30) Pageable pageable){
         Page<ProductDtoOutputAll> productPage = iProductService.getProductAllPage(pageable);
 //        Page<ProductDtoOutputAll> productDtoOutputAllList = iProductService.getProductAll(pageable);
         return productPage;

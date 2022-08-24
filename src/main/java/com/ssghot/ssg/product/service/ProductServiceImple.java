@@ -93,6 +93,7 @@ public class ProductServiceImple implements IProductService{
 //                .optionList(productDtoInputAll.getOptionList())
                 .titleImgUrl(productDtoInputAll.getTitleImgUrl())
                 .titleImgTxt(productDtoInputAll.getTitleImgTxt())
+                        .categoryM(productDtoInputAll.getCategoryM())
                 .build());
 
         // List라 forEach로 풀어서 넣는다.
@@ -141,7 +142,7 @@ public class ProductServiceImple implements IProductService{
                             .build()
             );
         }
-        return null;
+        throw new Error(id + "번 상품이 존재하지 않습니다.");
     }
 
     // 3-1. 상품 전체 조회하기 (전체 컬럼)
@@ -455,7 +456,7 @@ public class ProductServiceImple implements IProductService{
                     .build();
         }
 
-        return null;
+        throw new Error(productId + "번 상품이 존재하지 않습니다.");
     }
 
     // 5. 상품-재고 현황 조회하기

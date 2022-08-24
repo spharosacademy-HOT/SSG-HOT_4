@@ -41,7 +41,6 @@ public class ReviewController {
 
     // 3. 리뷰 전체 조회하기
     @GetMapping("/review")
-    @PreAuthorize("hasRole('ROLE_USER')")
     public List<ReviewDtoOutput> getAllReview(){
         return iReviewService.getAllReview();
     }

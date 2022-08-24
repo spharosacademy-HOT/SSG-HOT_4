@@ -1,12 +1,13 @@
 package com.ssghot.ssg.category.domain;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.ssghot.ssg.product.domain.Product;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Data
@@ -19,9 +20,12 @@ public class CategoryM {
     private Long id;
     private String name; // 중분류 이름
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JsonBackReference
+    @ManyToOne//(fetch = FetchType.LAZY)
+    //@JsonBackReference
     private Category category;
+
+    @OneToMany
+    private List<Product> productList;
 
 //    @ManyToOne
 //    private CategoryProductList categoryProductList;

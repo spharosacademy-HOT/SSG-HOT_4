@@ -4,7 +4,8 @@ import com.ssghot.ssg.category.domain.Category;
 import com.ssghot.ssg.category.domain.CategoryM;
 import com.ssghot.ssg.category.dto.CategoryDtoInput;
 import com.ssghot.ssg.category.dto.CategoryDtoOutput;
-import com.ssghot.ssg.category.dto.CategoryDtoOutputOnlyIdAndName;
+import com.ssghot.ssg.category.dto.CategoryDtoOutputOnlyIdAndName2;
+import com.ssghot.ssg.category.dto.CategoryMDtoOutputIdAndName2;
 import com.ssghot.ssg.category.repository.ICategoryMRepository;
 import com.ssghot.ssg.category.repository.ICategoryRepository;
 import lombok.RequiredArgsConstructor;
@@ -48,6 +49,7 @@ public class CategoryServiceImple implements ICategoryService{
                     Category.builder()
                     .id(categoryId)
                     .name(categoryDtoInput.getName())
+                    .imgUrl(categoryDtoInput.getImgUrl())
                     .build()
             );
         }
@@ -56,24 +58,38 @@ public class CategoryServiceImple implements ICategoryService{
 
     // 3. 카테고리 대분류 전체 조회하기
     @Override
-    public List<CategoryDtoOutputOnlyIdAndName> getAllCategory() {
+    public List<CategoryDtoOutputOnlyIdAndName2> getAllCategory() {
 
         List<Category> categoryList = iCategoryRepository.findAll();
-        List<CategoryDtoOutputOnlyIdAndName> categoryDtoOutputOnlyIdAndNameList = new ArrayList<>();
+        List<CategoryDtoOutputOnlyIdAndName2> categoryDtoOutputOnlyIdAndNameList2 = new ArrayList<>();
 
         categoryList.forEach(
                 category -> {
-                    categoryDtoOutputOnlyIdAndNameList.add(
-                            CategoryDtoOutputOnlyIdAndName.builder()
+
+                    List<CategoryM> categoryMList = iCategoryMRepository.findAllByCategoryId(category.getId());
+                    List<CategoryMDtoOutputIdAndName2> categoryMDtoOutputIdAndNameList2 = new ArrayList<>();
+
+                    categoryMList.forEach(categoryM -> {
+                        categoryMDtoOutputIdAndNameList2.add(
+                                CategoryMDtoOutputIdAndName2.builder()
+                                        .id(categoryM.getId())
+                                        .name(categoryM.getName())
+                                        .build()
+                        );
+                    });
+
+                    categoryDtoOutputOnlyIdAndNameList2.add(
+                            CategoryDtoOutputOnlyIdAndName2.builder()
                                     .id(category.getId())
                                     .name(category.getName())
-                                    .categoryMList(iCategoryMRepository.findAllByCategoryId(category.getId()))
+                                    .imgUrl(category.getImgUrl())
+                                    .categoryMList(categoryMDtoOutputIdAndNameList2)
                                     .build()
                     );
                 }
         );
 
-        return categoryDtoOutputOnlyIdAndNameList;
+        return categoryDtoOutputOnlyIdAndNameList2;
     }
 
     // 4. 카테고리 대분류 단일 조회하기

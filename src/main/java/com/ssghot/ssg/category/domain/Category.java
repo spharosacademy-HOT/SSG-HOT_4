@@ -1,6 +1,5 @@
 package com.ssghot.ssg.category.domain;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,9 +19,10 @@ public class Category {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name; // 대분류 이름
+    private String imgUrl; // 이미지
 
     //jpa 순환 참조오류
-    @OneToMany(mappedBy = "category")
-    @JsonManagedReference
+    @OneToMany//(mappedBy = "category")
+    //@JsonManagedReference
     private List<CategoryM> categoryMList = new ArrayList<>();
 }
