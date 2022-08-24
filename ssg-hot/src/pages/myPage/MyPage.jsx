@@ -7,7 +7,7 @@ import MyPageUser from "./MyPageUser";
 import MyPageQuick from "./MyPageQuick";
 import ImageSlider from "./ImageSlider";
 import MyPageLink from "./MyPageLink";
-import CommonHeader from "../../components/layout/header/CommonHeader";
+
 export default function MyPage() {
   let navigate = useNavigate();
   const ACCESS_TOKEN = localStorage.getItem("token");
@@ -18,7 +18,6 @@ export default function MyPage() {
   }, []);
   return (
     <>
-      {/* <CommonHeader title="MY SSG" /> */}
       <MyPageTop />
       <MyPageUser />
       <MyPageBenefit />

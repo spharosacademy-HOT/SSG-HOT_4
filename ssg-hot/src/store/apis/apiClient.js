@@ -1,9 +1,10 @@
 import axios from "axios";
 //baseurl
-export const baseURL = "http://10.10.10.51:8080/api";
+export const baseURL = "https://ssg-hot.herokuapp.com/api";
 
 // 로컬에서 토큰 가져오기
 const ACCESS_TOKEN = localStorage.getItem("token");
+// console.log(ACCESS_TOKEN);
 
 //토큰 필요 없는 json 타입 요청시
 export const basicApiClient = axios.create({

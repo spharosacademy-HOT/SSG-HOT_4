@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 function MyPageTop() {
   const navigate = useNavigate();
@@ -23,7 +23,11 @@ function MyPageTop() {
       </div>
       <div className="mcom_tit_rgt">
         <div className="btn_cate btn_cart">
-          <button type="button" className="clickable">
+          <button
+            type="button"
+            className="clickable"
+            onClick={() => navigate("/cart")}
+          >
             <span className="sp_ctg_icon ctg_icon_cart">
               <span className="cmnoti_push">
                 <span className="blind" id="topCartCnt">
@@ -34,11 +38,11 @@ function MyPageTop() {
           </button>
         </div>
         <div className="btn_cate btn_home">
-          <a href="/">
+          <Link to="/">
             <span className="sp_ctg_icon ctg_icon_home">
               <span className="blind">홈</span>
             </span>
-          </a>
+          </Link>
         </div>
       </div>
     </div>

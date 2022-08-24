@@ -1,7 +1,18 @@
 import React from "react";
 
-export default function CartOption({ option, IsOption }) {
+export default function CartOption({ optionFirst, optionSecond }) {
   return (
-    <>{!IsOption ? <span className="cartItemOption">{option}</span> : ""}</>
+    <>
+      {!optionFirst ? (
+        <span className="cartItemOption">{optionFirst}</span>
+      ) : (
+        ""
+      )}
+      {!optionSecond ? (
+        <span className="cartItemOption">{optionSecond}</span>
+      ) : (
+        ""
+      )}
+    </>
   );
 }

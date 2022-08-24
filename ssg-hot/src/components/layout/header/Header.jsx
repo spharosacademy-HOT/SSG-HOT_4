@@ -1,18 +1,21 @@
 import React, { useEffect, useState } from "react";
-
+import { Badge } from "react-bootstrap";
 import { Link, useLocation } from "react-router-dom";
+import { useRecoilValue } from "recoil";
+import { cartState } from "../../../store/atom/cartState";
 
 import HomeLogo from "../../common/ui/logo/HomeLogo";
-import HomeSearchBar from "../../common/widgets/searchBar/HomeSearchBar";
 
 export default function Header() {
   let pageUrl = useLocation();
   const [pagePath, setPagePath] = useState();
+  const cartData = useRecoilValue(cartState);
+  const cartSize = cartData.size;
 
   useEffect(() => {
     setPagePath(pageUrl.pathname);
+    // console.log(cartSize, "카트사이즈");
   }, [pageUrl]);
-
 
   return (
     <>
@@ -49,25 +52,6 @@ export default function Header() {
               <h1>
                 <span className="gnb_mall_logo v3">
                   <HomeLogo />
-                  {/* <a
-                href="https://m.ssg.com"
-                className="gnb_logo_ssg clickable"
-                data-react-tarea="웹공통_N|GNB|SSG"
-                // onclick="javascript:setCommonGnbCookie('useGnbAdvertCk','',-1);"
-              >
-                <span className="blind">SSG</span>
-              </a>
-              <a
-                href="/"
-                className="gnb_logo_now clickable"
-                data-react-tarea="웹공통_N|GNB|홈"
-                // onclick="javascript:setCommonGnbCookie('useGnbAdvertCk','',-1);"
-              >
-                
-                <span className="gnb_logo">
-                  <span className="blind">신세계몰</span>
-                </span>
-              </a> */}
                 </span>
               </h1>
               <button
@@ -405,7 +389,7 @@ export default function Header() {
                         장바구니
                       </span>
                     </i>
-
+                    <Badge bg="secondary">{cartSize}</Badge>
                     <span
                       className="cmnoti_cartshare"
                       id="cmnoti_cartshare_search"
@@ -459,12 +443,6 @@ export default function Header() {
             </div>
           </div>
         </header>
-        // <header>
-        //   <div className="innerHeader">
-        //     <HomeLogo />
-        //     <HomeSearchBar />
-        //   </div>
-        // </header>
       )}
     </>
   );
