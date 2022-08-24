@@ -15,7 +15,6 @@ function CategoryGroup({cateData, viewIsTrue,cateNumber, setCateNumber, isClick,
 
     }, [getNum])
     // console.log('id',cateData)
-    console.log(getNum)
     return ( 
         <>
             <ul className='category-align'>

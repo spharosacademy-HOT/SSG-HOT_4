@@ -22,7 +22,9 @@ import Qna from "./pages/auth/qna/Qna";
 import CartControl from "./pages/myPage/cartcontrol/CartControl";
 import PlusShip from "./pages/myPage/cartcontrol/plusship/PlusShip";
 import ScrollToTop from "./components/layout/ScrollToTop";
-// css
+import Purchase from "./pages/product/productPurchase/Purchase";
+
+//css
 import "./styles/styles.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 

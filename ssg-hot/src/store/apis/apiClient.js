@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+
+=======
+>>>>>>> 942e4b6539774e46c51f72acf4e662eb396df451
 import axios from "axios";
 //baseurl
 export const baseURL = "https://ssg-hot.herokuapp.com/api";
