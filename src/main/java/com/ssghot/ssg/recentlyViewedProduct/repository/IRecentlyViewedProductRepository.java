@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface IRecentlyViewedProductRepository extends JpaRepository<RecentlyViewedProduct, Long> {
     List<RecentlyViewedProduct> findAllByUserId(Long userId);
+
+    List<RecentlyViewedProduct> findAllByProductId(Long productId);
 }
