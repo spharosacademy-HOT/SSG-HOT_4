@@ -1,14 +1,12 @@
 package com.ssghot.ssg.order.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Getter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Setter
 public class OrderDtoInputDetail {
     private Long id;
     private Long userId;
