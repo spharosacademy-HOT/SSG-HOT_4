@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Badge } from "react-bootstrap";
 import { Link, useLocation } from "react-router-dom";
+
+
 import { useRecoilValue } from "recoil";
 import { cartState } from "../../../store/atom/cartState";
+
 
 import HomeLogo from "../../common/ui/logo/HomeLogo";
 
@@ -14,7 +17,11 @@ export default function Header() {
 
   useEffect(() => {
     setPagePath(pageUrl.pathname);
+
+    // console.log(pageUrl.pathname);
+
     // console.log(cartSize, "카트사이즈");
+
   }, [pageUrl]);
 
   return (
@@ -39,7 +46,15 @@ export default function Header() {
         ""
       ) : pagePath === "/plusship" ? (
         ""
+      ) : pagePath === "/like" ? (
+        ""
       ) : (
+
+        <header>
+          <div className="innerHeader">
+            <HomeLogo />
+            <HomeSearchBar />
+
         <header
           id="m_header"
           className="mcom_header react-area"
@@ -441,6 +456,7 @@ export default function Header() {
                 </div>
               </div>
             </div>
+
           </div>
         </header>
       )}
