@@ -30,8 +30,8 @@ function LogInInput() {
         })
         .then((res) => {
           console.log(res);
-          var ACCESS_TOKEN = res.data.access_token;
-          var decoded = jwt_decode(ACCESS_TOKEN);
+          const ACCESS_TOKEN = res.data.access_token;
+          const decoded = jwt_decode(ACCESS_TOKEN);
 
           //토큰 localStorage에 저장
           localStorage.setItem("token", ACCESS_TOKEN);
@@ -45,6 +45,7 @@ function LogInInput() {
 
           getMyCart().then((res) => {
             setCartData(res.data);
+            console.log(ACCESS_TOKEN);
             console.log("!!!!!!!!!!!!!!", res.data);
           });
 
