@@ -1,0 +1,24 @@
+.likeBtn {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.likeBtn img {
+  width: 24px;
+  height: 24px;
+}
+.recentCartBtn {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.recentCartBtn img {
+  width: 24px;
+  height: 24px;
+  margin: auto;
+}
+.recentBtn {
+  width: 50px;
+}

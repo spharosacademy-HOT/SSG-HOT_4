@@ -1,27 +1,27 @@
-import React from 'react'
+import React from "react";
 
-function CategoryItem({isTrue, setIsTrue, item}) {
-    
-    const ImageClick = () => {
-        setIsTrue(!isTrue)
-    }
+function CategoryItem({ setViewerView, item,cateNumber, setGetNum, isClick, setIsClick, setDiffer, categoryId }) {
 
-    return ( 
-        <>
-            <li>
-                <div className='category-clickable'>
-                    <div onClick={ImageClick}>
-                        <img
-                            src={item.imgUrl} alt="카테고리 이미지"
-                            />
-                        <div className={ isTrue ? "un-clicked" : "clicked"}></div>
-                    </div>
-                    <p>{item.cateName}</p>
-                </div>
-            </li>
-            
-        </>
-     );
+  const handleCateItem = () => {
+    // cateNumber !== categoryId.id ? setDiffer(true) : setDiffer(false)
+    // setGetNum(categoryId.id)
+    setViewerView(true)
+    setIsClick(!isClick)
+
+  }
+
+  return (
+
+      <li>
+        <div className="category-clickable" onClick={handleCateItem}>
+          <div>
+            <img src={categoryId.imgUrl} alt="카테고리 이미지" />
+            <div className={isClick ? "clicked" : "un-clicked"}></div>
+          </div>
+          <p>{categoryId.name}</p>
+        </div>
+      </li>
+  );
 }
 
 export default CategoryItem;

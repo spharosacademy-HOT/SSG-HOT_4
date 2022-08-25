@@ -12,7 +12,7 @@ export default function FooterNotice() {
           통신판매업 신고번호: 제2022-서울강남-03751호
           <a
             href="#"
-            // onclick="appBroswer('https://www.ftc.go.kr/bizCommPop.do?wrkr_no=8708801143', 'stack');return false;"
+            // onClick="appBroswer('https://www.ftc.go.kr/bizCommPop.do?wrkr_no=8708801143', 'stack');return false;"
             className="txt_link"
           >
             사업자 정보확인
@@ -29,7 +29,7 @@ export default function FooterNotice() {
           우리은행 채무지급보증 안내{" "}
           <a
             href="#"
-            // onclick="appBroswer('https://m.ssg.com/comm/popupWooriService.ssg', 'stack', 'Y'); return false;"
+            // onClick="appBroswer('https://m.ssg.com/comm/popupWooriService.ssg', 'stack', 'Y'); return false;"
             className="txt_link"
           >
             서비스가입사실 확인
@@ -48,7 +48,7 @@ export default function FooterNotice() {
             <a
               href="#"
               title="새창열림"
-              // onclick="appBroswer('https://company.ssg.com', 'stack', 'Y'); return false;"
+              // onClick="appBroswer('https://company.ssg.com', 'stack', 'Y'); return false;"
             >
               <span>회사소개</span>
             </a>
@@ -57,7 +57,7 @@ export default function FooterNotice() {
             <a
               href="#"
               title="새창열림"
-              // onclick="appBroswer('https://m.ssg.com/comm/commInfo.ssg?type=clause&amp;_mpop=new','stack','Y'); return false;"
+              // onClick="appBroswer('https://m.ssg.com/comm/commInfo.ssg?type=clause&amp;_mpop=new','stack','Y'); return false;"
             >
               이용약관
             </a>
@@ -66,7 +66,7 @@ export default function FooterNotice() {
             <a
               href="#"
               title="새창열림"
-              // onclick="appBroswer('https://member.ssg.com/m/policies/tradeTerms.ssg', 'stack', 'Y'); return false;"
+              // onClick="appBroswer('https://member.ssg.com/m/policies/tradeTerms.ssg', 'stack', 'Y'); return false;"
             >
               전자금융거래이용약관
             </a>
@@ -75,7 +75,7 @@ export default function FooterNotice() {
             <a
               href="#"
               title="새창열림"
-              // onclick="appBroswer('https://member.ssg.com/m/policies/privacy.ssg', 'stack', 'Y'); return false;"
+              // onClick="appBroswer('https://member.ssg.com/m/policies/privacy.ssg', 'stack', 'Y'); return false;"
             >
               <strong>개인정보처리방침</strong>
             </a>
@@ -84,7 +84,7 @@ export default function FooterNotice() {
             <a
               href="#"
               title="새창열림"
-              // onclick="appBroswer('https://member.ssg.com/m/policies/youthProtection.ssg', 'stack', 'Y'); return false;"
+              // onClick="appBroswer('https://member.ssg.com/m/policies/youthProtection.ssg', 'stack', 'Y'); return false;"
             >
               청소년보호방침
             </a>
@@ -93,7 +93,7 @@ export default function FooterNotice() {
             <a
               href="#"
               title="새창열림"
-              // onclick="appBroswer('https://member.ssg.com/m/policies/consumerDispute.ssg', 'stack', 'Y'); return false;"
+              // onClick="appBroswer('https://member.ssg.com/m/policies/consumerDispute.ssg', 'stack', 'Y'); return false;"
             >
               소비자분쟁해결기준
             </a>
@@ -102,7 +102,7 @@ export default function FooterNotice() {
             <a
               href="#"
               title="새창열림"
-              // onclick="appBroswer('https://partners.ssgadm.com/m/', 'stack', 'Y'); return false;"
+              // onClick="appBroswer('https://partners.ssgadm.com/m/', 'stack', 'Y'); return false;"
             >
               <span>입점상담</span>
             </a>

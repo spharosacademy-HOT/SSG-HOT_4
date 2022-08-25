@@ -2,3 +2,18 @@
   padding-top: 40px;
   padding: 20px;
 }
+.cmem_nomemarea .cmem_nomem_btn {
+  display: block;
+  padding: 12px 0;
+  color: #9b9b9b;
+  font-size: 13px;
+  line-height: 16px;
+  letter-spacing: -0.3px;
+  text-align: center;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.cmem_ct_login, .cmem_ct_nomem {
+  padding: 20px;
+  color: #666;
+}

@@ -167,10 +167,189 @@
       href="https://sui.ssgcdn.com/ui/m_ssg/css/ssg_component.css?v=20220802"
     />
 
-    <title>React App</title>
+    <!--마이(배송지관리) -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="//sui.ssgcdn.com/ui/m_ssg/css/m_layout.css?v=20220816"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="//sui.ssgcdn.com/ui/m_ssg/css/m_com.css?v=20220816"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="//sui.ssgcdn.com/ui/m_ssg/css/m_ssg.css?v=20220816"
+    />
+
+    <!-- 배송지관리 페이지 -->
+
+    <!-- 장바구니 카드정보 -->
+    <link
+      rel="stylesheet"
+      href="https://sui.ssgcdn.com/ui/m_ssg/css/mnodr.css?v=20220816"
+    />
+    <link
+      rel="stylesheet"
+      href="https://sui.ssgcdn.com/ui/m_ssg/css/ssg_component.css?v=20220816"
+    />
+    
+    <!-- 좋아요 페이지 -->
+    <link 
+    rel="stylesheet" type="text/css" 
+    href="//sui.ssgcdn.com/ui/m_ssg/css/mylike.css" />
+    
+  <!-- 카카오api -->
+    
+
+
+
+
+
+
+    <title>SSG.HOT</title>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
+
+
+
+
+
+
+
+
+
+
+    <!-- <script type="text/javascript">
+      function setCommonGnbCookie(name, value, expiredays) {
+        //name:useGnbAdvert, value:Y
+        //$.cookie(name, value, {expires: expiredays, path: '/', domain: '.ssg.com'});
+
+        var strCookie = name + "=" + encodeURIComponent(value);
+        strCookie += "; path=/";
+        strCookie += "; domain=.ssg.com";
+        if (typeof expiredays === "number") {
+          var todayDate = new Date();
+          todayDate.setDate(todayDate.getDate() + expiredays);
+
+          strCookie += "; expires=" + todayDate.toGMTString();
+        }
+
+        document.cookie = strCookie;
+      }
+    </script>
+    <script>
+      var oTopCategoryPath = (function () {
+        var welTopCategory = $("#mcom_path_cate"),
+          welCatePath = welTopCategory.find(".cate_path"),
+          welCateView = welTopCategory.find(".cate_view"),
+          welCateList = welCateView.find("> .lst_cate"),
+          welBtnCateMore = welCatePath.find(".btn_more"),
+          welContainer = $(".mcom_container"),
+          _focusin = false;
+
+        function _hidePathCategory() {
+          welBtnCateMore.removeClass("on");
+          welCateView.hide();
+          welContainer.removeClass("overlay").off("click.dimmedLayer");
+        }
+
+        function _showSubMenu(welCurrent) {
+          welCurrent
+            .parent()
+            .find("li.selected")
+            .removeClass("selected")
+            .find(".cate_view_lv2.selected")
+            .removeClass("selected")
+            .attr("aria-expanded", "false");
+          welCurrent.addClass("selected");
+          welCurrent
+            .find(">.cate_view_lv2")
+            .addClass("selected")
+            .attr("aria-expanded", "true");
+        }
+
+        function _hideSubMenu(welCurrent) {
+          welCurrent.removeClass("selected");
+          welCurrent
+            .find(">.cate_view_lv2")
+            .removeClass("selected")
+            .attr("aria-expanded", "false");
+        }
+
+        function _attachEventHandlers() {
+          welBtnCateMore.on("click", function (e) {
+            e.stopPropagation();
+            var welTarget = $(e.currentTarget);
+
+            if (welTarget.hasClass("on")) {
+              _hidePathCategory();
+            } else {
+              welBtnCateMore.addClass("on");
+              welCateView.show();
+              welContainer
+                .addClass("overlay")
+                .one("click.dimmedLayer", function (e) {
+                  e.preventDefault();
+                  _hidePathCategory();
+                });
+            }
+          });
+
+          welCateList.on("click.a11y, focusin.a11y", "li", function (e) {
+            if (e.type === "focusin") {
+              if (!_focusin) {
+                return;
+              }
+            }
+            e.stopPropagation();
+            var welTarget = $(e.currentTarget);
+
+            if (welTarget.hasClass("selected")) {
+              _hideSubMenu(welTarget);
+            } else {
+              _showSubMenu(welTarget);
+            }
+          });
+
+          welTopCategory.on("keydown.a11y", function (e) {
+            var welTarget = $(e.currentTarget);
+            var sKeyCode = e.sKeyCode || e.which;
+            var bTabKey = sKeyCode === 9 || sKeyCode === "Tab";
+            var bEscKey = sKeyCode === 27 || sKeyCode === "Escape";
+            var aActiveMenu = null;
+            var nActive = 0;
+            var welCurrentMenu = null;
+
+            if (bEscKey) {
+              aActiveMenu = welCateList.find("li.selected");
+              nActive = aActiveMenu.length;
+              if (aActiveMenu.parent().hasClass("lv2")) {
+                welCurrentMenu = $(aActiveMenu.get(nActive - 1));
+                _hideSubMenu(aActiveMenu);
+                welCurrentMenu.addClass("selected").focus();
+              } else {
+                aActiveMenu.addClass("selected").focus();
+                _hidePathCategory();
+              }
+            }
+
+            if (bTabKey) {
+              _focusin = true;
+            }
+          });
+        }
+
+        return {
+          init: _attachEventHandlers,
+        };
+      })();
+
+      oTopCategoryPath.init();
+    </script> -->
   </body>
 </html>
