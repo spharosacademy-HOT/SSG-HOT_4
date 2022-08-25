@@ -23,3 +23,9 @@ export const addMyCart = async (id, count) => {
   const res = await apiClient.post(`/carts`, { id, count });
   return res;
 };
+
+//장바구니 삭제
+export const deleteCart = async () => {
+  const res = await apiClient.delete(`/carts`);
+  return res;
+};

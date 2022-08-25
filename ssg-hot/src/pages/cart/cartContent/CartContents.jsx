@@ -8,6 +8,7 @@ import HasCartItem from "./HasCartItem";
 import TryLogin from "./TryLogin";
 import RecommendContent from "./RecommendContent";
 export default function CartContents({ isItem, isLogin }) {
+  console.log(isLogin, isItem);
   return (
     <div>
       {isLogin ? (

@@ -4,6 +4,7 @@
 
 a {
   text-decoration: none !important;
+  color: black !important;
 }
 ul {
   list-style: none !important;
@@ -14,4 +15,7 @@ h1 {
 }
 h2 {
   margin: 0 !important;
+}
+p {
+  margin-bottom: 0 !important;
 }
