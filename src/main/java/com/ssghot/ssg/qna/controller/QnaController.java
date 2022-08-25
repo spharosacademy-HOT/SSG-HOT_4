@@ -4,10 +4,13 @@ import com.ssghot.ssg.common.ResultDtoOutput;
 import com.ssghot.ssg.common.ResultsDtoOutput;
 import com.ssghot.ssg.qna.dto.*;
 import com.ssghot.ssg.qna.service.IQnaService;
+import com.ssghot.ssg.users.sevice.IUserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
@@ -16,9 +19,13 @@ import java.util.List;
 @RequiredArgsConstructor
 public class QnaController {
     private final IQnaService iQnaService;
+    private final IUserService iUserService;
 
     @PostMapping
-    public ResultDtoOutput<QnaDtoOutput> addQna(@RequestBody QnaDtoInput qnaDtoInput){
+    @PreAuthorize("hasRole('ROLE_USER')")
+    public ResultDtoOutput<QnaDtoOutput> addQna(@RequestBody QnaDtoInput qnaDtoInput, HttpServletRequest request){
+        Long userId = iUserService.getUserByToken(request);
+        qnaDtoInput.setUserId(userId);
         return iQnaService.addQna(qnaDtoInput);
     }
     @GetMapping
@@ -30,9 +37,11 @@ public class QnaController {
     public ResultDtoOutput<QnaDtoOutput> getQnaById(@PathVariable Long id){
         return iQnaService.getQnaById(id);
     }
-    @GetMapping("/user/{id}")
-    public ResultsDtoOutput<List<QnaDtoOutput>> getQnaListByUserId(@PathVariable Long id){
-        return iQnaService.getQnaByUserId(id);
+    @GetMapping("/user")
+    @PreAuthorize("hasRole('ROLE_USER')")
+    public ResultsDtoOutput<List<QnaDtoOutput>> getQnaListByUserId(HttpServletRequest request){
+        Long userId = iUserService.getUserByToken(request);
+        return iQnaService.getQnaByUserId(userId);
     }
 
     @GetMapping("/product/{id}")
@@ -40,7 +49,10 @@ public class QnaController {
         return iQnaService.getQnaByProductId(id);
     }
     @PutMapping
-    public ResultDtoOutput<QnaDtoOutput> editQna(@RequestBody QnaEditDtoInput qnaEditDtoInput){
+    @PreAuthorize("hasRole('ROLE_USER')")
+    public ResultDtoOutput<QnaDtoOutput> editQna(@RequestBody QnaEditDtoInput qnaEditDtoInput,HttpServletRequest request){
+        Long userId = iUserService.getUserByToken(request);
+        qnaEditDtoInput.setUserId(userId);
         return iQnaService.editQna(qnaEditDtoInput);
     }
     @DeleteMapping("/{id}")

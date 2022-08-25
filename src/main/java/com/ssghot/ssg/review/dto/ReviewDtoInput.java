@@ -4,8 +4,10 @@ import com.ssghot.ssg.orderItem.domain.OrderItem;
 import com.ssghot.ssg.product.domain.Product;
 import com.ssghot.ssg.users.domain.User;
 import lombok.Getter;
+import lombok.Setter;
 
 @Getter
+@Setter
 public class ReviewDtoInput {
 
     private String title;

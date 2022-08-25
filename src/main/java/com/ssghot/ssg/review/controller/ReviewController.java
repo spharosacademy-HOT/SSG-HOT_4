@@ -4,9 +4,13 @@ import com.ssghot.ssg.review.domain.Review;
 import com.ssghot.ssg.review.dto.ReviewDtoInput;
 import com.ssghot.ssg.review.dto.ReviewDtoOutput;
 import com.ssghot.ssg.review.service.IReviewService;
+import com.ssghot.ssg.users.domain.User;
+import com.ssghot.ssg.users.sevice.IUserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
@@ -16,6 +20,7 @@ import java.util.List;
 public class ReviewController {
 
     private final IReviewService iReviewService;
+    private final IUserService iUserService;
 
     /*
         1. 리뷰 등록하기
@@ -27,13 +32,23 @@ public class ReviewController {
 
     // 1. 리뷰 등록하기
     @PostMapping("/review")
-    public Review addReview(@RequestBody ReviewDtoInput reviewDtoInput){
+    @PreAuthorize("hasRole('ROLE_USER')")
+    public Review addReview(@RequestBody ReviewDtoInput reviewDtoInput, HttpServletRequest request){
+        Long userId = iUserService.getUserByToken(request);
+        User user = new User();
+        user.setId(userId);
+        reviewDtoInput.setUser(user);
         return iReviewService.addReview(reviewDtoInput);
     }
 
     // 2. 리뷰 수정하기
     @PutMapping("/review/{id}")
-    public Review editReview(@PathVariable Long id, @RequestBody ReviewDtoInput reviewDtoInput){
+    @PreAuthorize("hasRole('ROLE_USER')")
+    public Review editReview(@PathVariable Long id, @RequestBody ReviewDtoInput reviewDtoInput, HttpServletRequest request){
+        Long userId = iUserService.getUserByToken(request);
+        User user = new User();
+        user.setId(userId);
+        reviewDtoInput.setUser(user);
         return iReviewService.editReview(id, reviewDtoInput);
     }
 

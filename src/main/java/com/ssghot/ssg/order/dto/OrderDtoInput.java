@@ -4,10 +4,7 @@ import com.ssghot.ssg.order.domain.Order;
 import com.ssghot.ssg.orderItem.dto.OrderItemDtoInput;
 import com.ssghot.ssg.userCoupon.domain.UserCoupon;
 import com.ssghot.ssg.users.domain.User;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.List;
 
@@ -15,6 +12,7 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Setter
 public class OrderDtoInput {
 
 

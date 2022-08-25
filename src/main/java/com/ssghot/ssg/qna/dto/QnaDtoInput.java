@@ -4,15 +4,13 @@ import com.ssghot.ssg.product.domain.Product;
 import com.ssghot.ssg.qna.domain.Qna;
 import com.ssghot.ssg.qna.domain.Type;
 import com.ssghot.ssg.users.domain.User;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Getter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Setter
 public class QnaDtoInput {
     private String type;
     private String title;

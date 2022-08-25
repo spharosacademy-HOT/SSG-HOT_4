@@ -48,7 +48,10 @@ public class CartController {
         return iCartService.editCountCart(cartEditDtoInput);
     }
     @PutMapping("/stock")
-    public ResultDtoOutput<CartDtoOutput> editStockCart(@RequestBody CartEditStockDtoInput cartEditStockDtoInput){
+    @PreAuthorize("hasRole('ROLE_USER')")
+    public ResultDtoOutput<CartDtoOutput> editStockCart(@RequestBody CartEditStockDtoInput cartEditStockDtoInput,HttpServletRequest request){
+        Long userId = iUserService.getUserByToken(request);
+        cartEditStockDtoInput.setUserId(userId);
         return iCartService.editStockCart(cartEditStockDtoInput);
     }
     @DeleteMapping("/{id}")

@@ -3,15 +3,13 @@ package com.ssghot.ssg.userCoupon.dto;
 import com.ssghot.ssg.coupon.domain.Coupon;
 import com.ssghot.ssg.userCoupon.domain.UserCoupon;
 import com.ssghot.ssg.users.domain.User;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Getter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Setter
 public class UserCouponDtoInput {
     private Long couponId;
     private Long userId;

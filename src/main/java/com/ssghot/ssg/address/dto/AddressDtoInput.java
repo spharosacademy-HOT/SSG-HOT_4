@@ -2,15 +2,13 @@ package com.ssghot.ssg.address.dto;
 
 import com.ssghot.ssg.address.domain.Address;
 import com.ssghot.ssg.users.domain.User;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Getter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Setter
 public class AddressDtoInput {
 
     private String alias;
