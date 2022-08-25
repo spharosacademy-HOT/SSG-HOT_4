@@ -1,9 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useRecoilValue } from "recoil";
+import { cartState } from "../../../store/atom/cartState";
 
 export default function CartTotalPrice() {
-  const originPrice = 230000;
-  const discountPrice = 2000;
-  const deliveryPrice = 0;
+  const cartData = useRecoilValue(cartState);
+  let originPrice = 0;
+  let discountPrice = 0;
+  let deliveryPrice = 0;
+
+  const sumPrice = () => {
+    cartData.map((item) => {
+      originPrice += item.stock.product.regularPrice * item.count;
+      discountPrice +=
+        item.stock.product.regularPrice *
+        (item.stock.product.discountRate / 100) *
+        item.count;
+      deliveryPrice += item.stock.product.shippingFee;
+    });
+  };
+
+  sumPrice();
+
   return (
     <div>
       <div className="cartTotal">

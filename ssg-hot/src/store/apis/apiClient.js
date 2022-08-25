@@ -1,10 +1,7 @@
 import axios from "axios";
 //baseurl
 
-export const baseURL = "http://10.10.10.128:8080/api";
-// 로컬에서 토큰 가져오기
-// const ACCESS_TOKEN = localStorage.getItem("token");
-//토큰 필요 없는 json 타입 요청시
+export const baseURL = "http://localhost:8080/api";
 
 // 로컬에서 토큰 가져오기
 const ACCESS_TOKEN = localStorage.getItem("token");

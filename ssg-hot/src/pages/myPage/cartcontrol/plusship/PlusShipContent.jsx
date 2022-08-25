@@ -1,5 +1,6 @@
 import React from "react";
 
+
 function PlusShipContent() {
   return (
     <>
@@ -156,29 +157,15 @@ function PlusShipContent() {
                                     name="zipcd"
                                     defaultValue=""
                                     title="우편번호 입력"
-                                    // readonly="readonly"
                                   />
                                 </a>
                               </span>
                             </span>
                           </div>
-                          <a
-                            href="#;"
-                            onClick={() => "searchZipcd()"}
-                            className="b_def3"
-                          >
+
+                          <a href=";" onClick={() => {}} className="b_def3">
                             우편번호
                           </a>
-                        </div>
-                        <div className="addr_info" style={{ display: "none" }}>
-                          <strong className="info_tit">도로명</strong>
-                          <span id="roadNmAddr" className="info_cont">
-                            도로명주소가 없거나 확인되지 않습니다.
-                          </span>
-                          <strong className="info_tit">지번</strong>
-                          <span id="lotnoAddr" className="info_cont">
-                            지번주소가 없거나 확인되지 않습니다
-                          </span>
                         </div>
                       </div>
                     </li>

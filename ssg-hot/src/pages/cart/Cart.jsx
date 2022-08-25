@@ -10,7 +10,7 @@ import { cartState } from "../../store/atom/cartState";
 
 export default function Cart() {
   const ACCESS_TOKEN = localStorage.getItem("token");
-  const isLogin = ACCESS_TOKEN && true;
+  const isLogin = ACCESS_TOKEN != null && true;
   const [cartData, setCartData] = useRecoilState(cartState);
   const [isItem, setIsItem] = useState(cartData && true);
 
@@ -23,10 +23,10 @@ export default function Cart() {
   return (
     <div className="bgGray">
       <CartHeader />
-      <CartContents isLogin={isLogin} isItem={isItem} />
+      <CartContents isLogin={isLogin} isItem={isLogin} />
       <CartFooter />
       <CartNotice />
-      <CartToolBar isLogin={isLogin} isItem={isItem} />
+      <CartToolBar isLogin={isLogin} isItem={isLogin} />
     </div>
   );
 }

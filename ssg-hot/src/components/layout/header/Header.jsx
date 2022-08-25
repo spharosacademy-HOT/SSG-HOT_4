@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Badge } from "react-bootstrap";
 import { Link, useLocation } from "react-router-dom";
-import { useRecoilValue } from "recoil";
+
+import { useRecoilState, useRecoilValue } from "recoil";
+import { getMyCart } from "../../../store/apis/cart";
 import { cartState } from "../../../store/atom/cartState";
 
 import HomeLogo from "../../common/ui/logo/HomeLogo";
@@ -9,14 +11,25 @@ import HomeLogo from "../../common/ui/logo/HomeLogo";
 export default function Header() {
   let pageUrl = useLocation();
   const [pagePath, setPagePath] = useState();
-  const cartData = useRecoilValue(cartState);
+  const [cartData, setCartData] = useRecoilState(cartState);
   const cartSize = cartData.size;
+  // const ACCESS_TOKEN = localStorage.getItem("token");
 
   useEffect(() => {
     setPagePath(pageUrl.pathname);
+
+    // console.log(pageUrl.pathname);
+
     // console.log(cartSize, "카트사이즈");
   }, [pageUrl]);
-
+  // const getCart = () => {
+  //   if (ACCESS_TOKEN != null) {
+  //     getMyCart().then((res) => {
+  //       setCartData(res.data);
+  //       console.log("!!!!!!!!!!!!!!", res.data);
+  //     });
+  //   }
+  // };
   return (
     <>
       {pagePath === "/login" ? (
@@ -38,6 +51,8 @@ export default function Header() {
       ) : pagePath === "/cartcontrol" ? (
         ""
       ) : pagePath === "/plusship" ? (
+        ""
+      ) : pagePath === "/like" ? (
         ""
       ) : (
         <header
