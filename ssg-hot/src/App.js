@@ -47,6 +47,9 @@ function App() {
         <Route path="/product" element={<Product />}>
           <Route path=":productId" element={<Product />} />
         </Route>
+        <Route path="/product/purchase" element={<Purchase/>}>
+          <Route path=":productId" element={<Purchase/>}/>
+        </Route>
           <Route path="/product/review" element={<ProductReviewPage />}>
             <Route path=":productId" element={<ProductReviewPage />} />
           </Route>

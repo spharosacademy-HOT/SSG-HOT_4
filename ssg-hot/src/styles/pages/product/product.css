@@ -14,3 +14,13 @@
 .product-head-box{
     padding-top: 50px;
 }
+.title-style{
+    font-size:1.2rem;
+    font-weight: bold;
+    padding: auto;
+    margin: auto;
+}
+.modal-header{
+    text-align: center;
+    padding: 0;
+}

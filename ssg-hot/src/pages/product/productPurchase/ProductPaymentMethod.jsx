@@ -9,7 +9,7 @@ function ProductPaymentMethod() {
                 <form action="">
                     <div>
                         <input type="radio" id='card1' name='card'/>
-                        <label for="card1">SSGPAY. 카드</label>
+                        <label htmlFor="card1">SSGPAY. 카드</label>
                         <ProductPaymentCards/>
                     </div>
                     <div>

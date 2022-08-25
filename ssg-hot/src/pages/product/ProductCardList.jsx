@@ -18,9 +18,7 @@ function ProductCardList() {
         setProductDatas(Response.data.productList)
       })
   },[])
-
-
-
+  console.log(productDatas)
 
 
   return (
