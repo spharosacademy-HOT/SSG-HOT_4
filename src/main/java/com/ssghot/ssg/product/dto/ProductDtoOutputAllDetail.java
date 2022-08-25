@@ -1,7 +1,7 @@
 package com.ssghot.ssg.product.dto;
 
 import com.ssghot.ssg.categoryProductList.dto.CategoryProductListDtoOutput;
-import com.ssghot.ssg.optionList.dto.StockDtoOutputOnlyId;
+import com.ssghot.ssg.optionList.dto.StockDtoOutputProductIdName;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -36,9 +36,12 @@ public class ProductDtoOutputAllDetail {
     private List<ProductSubImgDtoOutputOnlyId> productSubImgList;
 
     //=== OptionList ===///
-    private List<StockDtoOutputOnlyId> stockList;
+    private List<StockDtoOutputProductIdName> stockList;
 
     //=== CategoryProductList ===///
     private List<CategoryProductListDtoOutput> categoryProductList;
+
+    //=== Review ===///
+    private List<ReviewDtoOutputDetail> reviewList;
 
 }

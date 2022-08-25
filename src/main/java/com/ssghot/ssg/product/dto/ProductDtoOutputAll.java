@@ -1,7 +1,7 @@
 package com.ssghot.ssg.product.dto;
 
 import com.ssghot.ssg.categoryProductList.dto.CategoryProductListDtoOutput;
-import com.ssghot.ssg.optionList.dto.StockDtoOutputOnlyId;
+import com.ssghot.ssg.optionList.dto.StockDtoOutputProductIdName;
 import com.ssghot.ssg.product.domain.Product;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -37,10 +37,13 @@ public class ProductDtoOutputAll {
     private List<ProductSubImgDtoOutputOnlyId> productSubImgList;
 
     //=== OptionList ===///
-    private List<StockDtoOutputOnlyId> stockList;
+    private List<StockDtoOutputProductIdName> stockList;
 
     //=== CategoryProductList ===///
     private List<CategoryProductListDtoOutput> categoryProductList;
+
+    //=== Review ===///
+
 
     public ProductDtoOutputAll(Product product){
         this.id = product.getId();
@@ -57,6 +60,11 @@ public class ProductDtoOutputAll {
         this.brandName = product.getBrandName();
         this.titleImgTxt = product.getTitleImgTxt();
         this.titleImgUrl = product.getTitleImgUrl();
+    }
+
+    //=== 조회 수 증가 ===//
+    public void addViewCount(){
+        viewCount++;
     }
 
 }

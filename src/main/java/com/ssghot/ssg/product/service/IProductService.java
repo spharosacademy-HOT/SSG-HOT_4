@@ -20,6 +20,7 @@ public interface IProductService {
         4. 상품 단일 조회하기
         5. 상품-재고 현황 조회하기
         6. 상품 Id, Name 조회하기
+        7. 상품 검색하기
      */
 
     // 1. 상품 등록하기
@@ -49,4 +50,13 @@ public interface IProductService {
     // 6. 상품 Id, Name 조회하기
     ProductDtoOutputIdName getProductIdName(Long productId);
 
+    // 7-1. 상품 검색하기
+//    List<ProductDtoOutputAll> getSearchNameList(String keyword);
+
+    // 7-2. 상품 검색하기 (페이지)
+    Page<ProductDtoOutputAll> getSearchNameListPage(String query, Pageable pageable);
+
+    Page<ProductDtoOutputAll> getSearchNameAndCategoryMIdListPage(String query, Long id, Pageable pageable);
+
+    Page<ProductDtoOutputAll> getSearchNameAndBetweenDiscountPrice(String query, int minPrice, int maxPrice, Pageable pageable);
 }

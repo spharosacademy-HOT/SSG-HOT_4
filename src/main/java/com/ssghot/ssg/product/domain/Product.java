@@ -1,10 +1,13 @@
 package com.ssghot.ssg.product.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.ssghot.ssg.category.domain.CategoryM;
 import com.ssghot.ssg.common.CommonDTO;
+import com.ssghot.ssg.review.domain.Review;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Entity
@@ -48,8 +51,17 @@ public class Product extends CommonDTO {
     @Column(nullable = true)
     private String titleImgTxt; // 타이틀 이미지 txt
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonBackReference
     private CategoryM categoryM;
+
+    @OneToMany
+    private List<Review> reviewList;
+
+    //=== 조회 수 증가 ===//
+    public int addViewCount(){
+        return this.viewCount++;
+    }
 
 //    id BIGINT
 //    name VARCHAR(45)

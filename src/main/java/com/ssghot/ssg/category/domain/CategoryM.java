@@ -1,5 +1,6 @@
 package com.ssghot.ssg.category.domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.ssghot.ssg.product.domain.Product;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -7,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -24,8 +26,9 @@ public class CategoryM {
     //@JsonBackReference
     private Category category;
 
-    @OneToMany
-    private List<Product> productList;
+    @OneToMany(mappedBy = "categoryM")
+    @JsonManagedReference
+    private List<Product> productList = new ArrayList<>();
 
 //    @ManyToOne
 //    private CategoryProductList categoryProductList;

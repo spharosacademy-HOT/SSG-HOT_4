@@ -6,7 +6,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -24,5 +23,5 @@ public class Category {
     //jpa 순환 참조오류
     @OneToMany//(mappedBy = "category")
     //@JsonManagedReference
-    private List<CategoryM> categoryMList = new ArrayList<>();
+    private List<CategoryM> categoryMList;
 }

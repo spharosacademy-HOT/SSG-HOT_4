@@ -2,14 +2,17 @@ package com.ssghot.ssg.category.service;
 
 import com.ssghot.ssg.category.domain.Category;
 import com.ssghot.ssg.category.domain.CategoryM;
-import com.ssghot.ssg.category.dto.*;
+import com.ssghot.ssg.category.dto.CategoryDtoOutputLargeId;
+import com.ssghot.ssg.category.dto.CategoryMDtoInput;
+import com.ssghot.ssg.category.dto.CategoryMDtoOutput;
+import com.ssghot.ssg.category.dto.CategoryMDtoOutputIdAndName;
 import com.ssghot.ssg.category.repository.ICategoryMRepository;
 import com.ssghot.ssg.category.repository.ICategoryRepository;
 import com.ssghot.ssg.categoryProductList.domain.CategoryProductList;
 import com.ssghot.ssg.categoryProductList.dto.CategoryProductListDtoOutput;
 import com.ssghot.ssg.categoryProductList.repository.ICategoryProductListRepository;
 import com.ssghot.ssg.optionList.domain.Stock;
-import com.ssghot.ssg.optionList.dto.StockDtoOutputOnlyId;
+import com.ssghot.ssg.optionList.dto.StockDtoOutputProductIdName;
 import com.ssghot.ssg.optionList.repository.IStockRepository;
 import com.ssghot.ssg.product.domain.Product;
 import com.ssghot.ssg.product.domain.ProductSubImg;
@@ -90,12 +93,15 @@ public class CategoryMServiceImple implements ICategoryMService{
 
                         // Stock
                         List<Stock> stockList = iStockRepository.findAllByProductId(product.getId());
-                        List<StockDtoOutputOnlyId> stockDtoOutputOnlyIdList = new ArrayList<>();
-
+                        List<StockDtoOutputProductIdName> stockDtoOutputProductIdNameList = new ArrayList<>();
                         stockList.forEach(stock -> {
-                            stockDtoOutputOnlyIdList.add(
-                                    StockDtoOutputOnlyId.builder()
+                            stockDtoOutputProductIdNameList.add(
+                                    StockDtoOutputProductIdName.builder()
                                             .id(stock.getId())
+                                            .qty(stock.getQty())
+                                            .productId(stock.getProduct().getId())
+                                            .optionFirstId(stock.getOptionFirst().getId())
+                                            .optionSecondId(stock.getOptionSecond().getId())
                                             .build()
                             );
                         });
@@ -143,7 +149,7 @@ public class CategoryMServiceImple implements ICategoryMService{
                                         .brandName(product.getBrandName())
                                         .titleImgUrl(product.getTitleImgUrl())
                                         .titleImgTxt(product.getTitleImgTxt())
-                                        .stockList(stockDtoOutputOnlyIdList)
+                                        .stockList(stockDtoOutputProductIdNameList)
                                         .productSubImgList(productSubImgDtoOutputOnlyIdList)
                                         .categoryProductList(categoryProductListDtoOutputList)
                                         .build()
@@ -185,12 +191,15 @@ public class CategoryMServiceImple implements ICategoryMService{
 
             // Stock
             List<Stock> stockList = iStockRepository.findAllByProductId(product.getId());
-            List<StockDtoOutputOnlyId> stockDtoOutputOnlyIdList = new ArrayList<>();
-
+            List<StockDtoOutputProductIdName> stockDtoOutputProductIdNameList = new ArrayList<>();
             stockList.forEach(stock -> {
-                stockDtoOutputOnlyIdList.add(
-                        StockDtoOutputOnlyId.builder()
+                stockDtoOutputProductIdNameList.add(
+                        StockDtoOutputProductIdName.builder()
                                 .id(stock.getId())
+                                .qty(stock.getQty())
+                                .productId(stock.getProduct().getId())
+                                .optionFirstId(stock.getOptionFirst().getId())
+                                .optionSecondId(stock.getOptionSecond().getId())
                                 .build()
                 );
             });
@@ -238,7 +247,7 @@ public class CategoryMServiceImple implements ICategoryMService{
                             .brandName(product.getBrandName())
                             .titleImgUrl(product.getTitleImgUrl())
                             .titleImgTxt(product.getTitleImgTxt())
-                            .stockList(stockDtoOutputOnlyIdList)
+                            .stockList(stockDtoOutputProductIdNameList)
                             .productSubImgList(productSubImgDtoOutputOnlyIdList)
                             .categoryProductList(categoryProductListDtoOutputList)
                             .build()

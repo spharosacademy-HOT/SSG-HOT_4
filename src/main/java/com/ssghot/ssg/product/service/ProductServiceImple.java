@@ -6,7 +6,6 @@ import com.ssghot.ssg.categoryProductList.domain.CategoryProductList;
 import com.ssghot.ssg.categoryProductList.dto.CategoryProductListDtoOutput;
 import com.ssghot.ssg.categoryProductList.repository.ICategoryProductListRepository;
 import com.ssghot.ssg.optionList.domain.Stock;
-import com.ssghot.ssg.optionList.dto.StockDtoOutputOnlyId;
 import com.ssghot.ssg.optionList.dto.StockDtoOutputProductIdName;
 import com.ssghot.ssg.optionList.repository.IStockRepository;
 import com.ssghot.ssg.product.domain.Product;
@@ -14,16 +13,22 @@ import com.ssghot.ssg.product.domain.ProductSubImg;
 import com.ssghot.ssg.product.dto.*;
 import com.ssghot.ssg.product.repository.IProductRepository;
 import com.ssghot.ssg.product.repository.IProductSubImgRepository;
+import com.ssghot.ssg.review.domain.Review;
+import com.ssghot.ssg.review.repository.IReviewRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class ProductServiceImple implements IProductService{
 
     private final IProductRepository iProductRepository;
@@ -36,6 +41,7 @@ public class ProductServiceImple implements IProductService{
     private final IStockRepository iStockRepository;
 
     private final ICategoryProductListRepository iCategoryProductListRepository;
+    private final IReviewRepository iReviewRepository;
 
     /*
         1. 상품 등록하기
@@ -44,6 +50,10 @@ public class ProductServiceImple implements IProductService{
         3-2. 상품 전체 조회하기 (각각의 아이디만)
         4. 상품 단일 조회하기
         5. 상품-재고 현황 조회하기
+        6. 상품 Id, Name 조회하기
+        7-1. 상품 검색하기 (페이징) - 이름만
+        7-2. 상품 검색하기 (페이징) - 이름, 카테고리 중분류 id
+        7-3. 상품 검색하기 (페이징) - 이름, 가격대
      */
 
     // 1. 상품 등록하기
@@ -139,6 +149,7 @@ public class ProductServiceImple implements IProductService{
 //                            .optionList(productDtoInputAll.getOptionList())
                             .titleImgUrl(productDtoInputAll.getTitleImgUrl())
                             .titleImgTxt(productDtoInputAll.getTitleImgTxt())
+                            .categoryM(productDtoInputAll.getCategoryM())
                             .build()
             );
         }
@@ -170,11 +181,15 @@ public class ProductServiceImple implements IProductService{
 
                     // Stock
                     List<Stock> stockList = iStockRepository.findAllByProductId(product.getId());
-                    List<StockDtoOutputOnlyId> stockDtoOutputOnlyIdList = new ArrayList<>();
+                    List<StockDtoOutputProductIdName> stockDtoOutputProductIdNameList = new ArrayList<>();
                     stockList.forEach(stock -> {
-                        stockDtoOutputOnlyIdList.add(
-                                StockDtoOutputOnlyId.builder()
+                        stockDtoOutputProductIdNameList.add(
+                                StockDtoOutputProductIdName.builder()
                                         .id(stock.getId())
+                                        .qty(stock.getQty())
+                                        .productId(stock.getProduct().getId())
+                                        .optionFirstId(stock.getOptionFirst().getId())
+                                        .optionSecondId(stock.getOptionSecond().getId())
                                         .build()
                         );
                     });
@@ -214,7 +229,7 @@ public class ProductServiceImple implements IProductService{
                                     .titleImgTxt(product.getTitleImgTxt())
                                     .productSubImgList(productSubImgDtoOutputOnlyIds)
 //                                    .productSubImgList(iProductSubImgRepository.findAllByProductId(product.getId())) // 수정 필요
-                                    .stockList(stockDtoOutputOnlyIdList)
+                                    .stockList(stockDtoOutputProductIdNameList)
 //                                    .stockList(iStockRepository.findAllByProductId(product.getId()))
                                     .categoryProductList(categoryProductListDtoOutputList)
 //                                    .categoryProductList(iCategoryProductListRepository.findAllByProductId(product.getId()))
@@ -279,11 +294,15 @@ public class ProductServiceImple implements IProductService{
 
                             // Stock
                             List<Stock> stockList = iStockRepository.findAllByProductId(product.getId());
-                            List<StockDtoOutputOnlyId> stockDtoOutputOnlyIdList = new ArrayList<>();
+                            List<StockDtoOutputProductIdName> stockDtoOutputProductIdNameList = new ArrayList<>();
                             stockList.forEach(stock -> {
-                                stockDtoOutputOnlyIdList.add(
-                                        StockDtoOutputOnlyId.builder()
+                                stockDtoOutputProductIdNameList.add(
+                                        StockDtoOutputProductIdName.builder()
                                                 .id(stock.getId())
+                                                .qty(stock.getQty())
+                                                .productId(stock.getProduct().getId())
+                                                .optionFirstId(stock.getOptionFirst().getId())
+                                                .optionSecondId(stock.getOptionSecond().getId())
                                                 .build()
                                 );
                             });
@@ -319,7 +338,7 @@ public class ProductServiceImple implements IProductService{
                                     .titleImgTxt(product.getTitleImgTxt())
                                     .productSubImgList(productSubImgDtoOutputOnlyIds)
                                     .categoryProductList(categoryProductListDtoOutputList)
-                                    .stockList(stockDtoOutputOnlyIdList)
+                                    .stockList(stockDtoOutputProductIdNameList)
                                     .build();
                         }
                 );
@@ -344,11 +363,15 @@ public class ProductServiceImple implements IProductService{
 
                             // Stock
                             List<Stock> stockList = iStockRepository.findAllByProductId(product.getId());
-                            List<StockDtoOutputOnlyId> stockDtoOutputOnlyIdList = new ArrayList<>();
+                            List<StockDtoOutputProductIdName> stockDtoOutputProductIdNameList = new ArrayList<>();
                             stockList.forEach(stock -> {
-                                stockDtoOutputOnlyIdList.add(
-                                        StockDtoOutputOnlyId.builder()
+                                stockDtoOutputProductIdNameList.add(
+                                        StockDtoOutputProductIdName.builder()
                                                 .id(stock.getId())
+                                                .qty(stock.getQty())
+                                                .productId(stock.getProduct().getId())
+                                                .optionFirstId(stock.getOptionFirst().getId())
+                                                .optionSecondId(stock.getOptionSecond().getId())
                                                 .build()
                                 );
                             });
@@ -384,7 +407,7 @@ public class ProductServiceImple implements IProductService{
                                     .titleImgTxt(product.getTitleImgTxt())
                                     .productSubImgList(productSubImgDtoOutputOnlyIds)
                                     .categoryProductList(categoryProductListDtoOutputList)
-                                    .stockList(stockDtoOutputOnlyIdList)
+                                    .stockList(stockDtoOutputProductIdNameList)
                                     .build();
                         }
                 );
@@ -394,7 +417,29 @@ public class ProductServiceImple implements IProductService{
     @Override
     public ProductDtoOutputAllDetail getProductOne(Long productId) {
         Optional<Product> product = iProductRepository.findById(productId);
+
         if(product.isPresent()){
+
+            // viewCount 증가
+            Product saveProduct = iProductRepository.save(
+                    Product.builder()
+                            .id(product.get().getId())
+                            .name(product.get().getName())
+                            .regularPrice(product.get().getRegularPrice())
+                            .discountPrice(product.get().getDiscountPrice())
+                            .discountRate(product.get().getDiscountRate())
+                            .shippingFee(product.get().getShippingFee())
+                            .detail(product.get().getDetail())
+                            .deliveryCondition(product.get().getDeliveryCondition())
+                            .brandName(product.get().getBrandName())
+                            .titleImgUrl(product.get().getTitleImgUrl())
+                            .titleImgTxt(product.get().getTitleImgTxt())
+                            .viewCount(product.get().getViewCount()+1)
+                            .categoryM(product.get().getCategoryM())
+                            .build()
+            );
+
+            System.out.println("getViewCount() : " + product.get().getViewCount());
 
             // ProductSubImg
             List<ProductSubImg> productSubImgList = iProductSubImgRepository.findAllByProductId(product.get().getId());
@@ -423,11 +468,33 @@ public class ProductServiceImple implements IProductService{
 
             // Stock
             List<Stock> stockList = iStockRepository.findAllByProductId(product.get().getId());
-            List<StockDtoOutputOnlyId> stockDtoOutputOnlyIdList = new ArrayList<>();
+            List<StockDtoOutputProductIdName> stockDtoOutputProductIdNameList = new ArrayList<>();
             stockList.forEach(stock -> {
-                stockDtoOutputOnlyIdList.add(
-                        StockDtoOutputOnlyId.builder()
+                stockDtoOutputProductIdNameList.add(
+                        StockDtoOutputProductIdName.builder()
                                 .id(stock.getId())
+                                .qty(stock.getQty())
+                                .productId(stock.getProduct().getId())
+                                .optionFirstId(stock.getOptionFirst().getId())
+                                .optionSecondId(stock.getOptionSecond().getId())
+                                .build()
+                );
+            });
+
+            // Review
+            List<Review> reviewList = iReviewRepository.findAllByProductId(product.get().getId());
+            List<ReviewDtoOutputDetail> reviewDtoOutputDetailList = new ArrayList<>();
+            reviewList.forEach(review -> {
+                reviewDtoOutputDetailList.add(
+                        ReviewDtoOutputDetail.builder()
+                                .id(review.getId())
+                                .content(review.getContent())
+                                .title(review.getTitle())
+                                .imgUrl(review.getImgUrl())
+                                .imgUrl2(review.getImgUrl2())
+                                .createdDate(review.getCreatedDate())
+                                .orderItemId(review.getOrderItem().getId())
+                                .userId(review.getUser().getId())
                                 .build()
                 );
             });
@@ -452,7 +519,8 @@ public class ProductServiceImple implements IProductService{
 //                    .productSubImgList(iProductSubImgRepository.findAllByProductId(product.get().getId()))
                     .productSubImgList(productSubImgDtoOutputOnlyIdList)
 //                    .stockList(iStockRepository.findAllByProductId(product.get().getId()))
-                    .stockList(stockDtoOutputOnlyIdList)
+                    .stockList(stockDtoOutputProductIdNameList)
+                    .reviewList(reviewDtoOutputDetailList)
                     .build();
         }
 
@@ -500,5 +568,269 @@ public class ProductServiceImple implements IProductService{
                 .id(product.getId())
                 .name(product.getName())
                 .build();
+    }
+
+    // 7. 상품 검색하기 (페이징 X)
+//    @Override
+//    public List<ProductDtoOutputAll> getSearchNameList(String keyword) {
+//
+//        List<Product> productList = iProductRepository.findByNameContaining(keyword);
+//        List<ProductDtoOutputAll> productDtoOutputAllList = new ArrayList<>();
+//
+//        productList.forEach(product -> {
+//
+//            List<ProductSubImg> allByProductId = iProductSubImgRepository.findAllByProductId(product.getId());
+//            List<ProductSubImgDtoOutputOnlyId> productSubImgDtoOutputOnlyIdList = new ArrayList<>();
+//            allByProductId.forEach(productSubImg -> {
+//                productSubImgDtoOutputOnlyIdList.add(
+//                        ProductSubImgDtoOutputOnlyId.builder()
+//                                .id(productSubImg.getId())
+//                                .build()
+//                );
+//            });
+//
+//            List<CategoryProductList> categoryProductLists = iCategoryProductListRepository.findAllByProductId(product.getId());
+//            List<CategoryProductListDtoOutput> categoryProductListDtoOutputList = new ArrayList<>();
+//            categoryProductLists.forEach(categoryProductList -> {
+//                categoryProductListDtoOutputList.add(
+//                        CategoryProductListDtoOutput.builder()
+//                                .id(categoryProductList.getId())
+//                                .productId(categoryProductList.getId())
+//                                .categoryId(categoryProductList.getCategory().getId())
+//                                .categoryMId(categoryProductList.getCategoryM().getId())
+//                                .build()
+//                );
+//            });
+//
+//            List<Stock> stockList = iStockRepository.findAllByProductId(product.getId());
+//            List<StockDtoOutputOnlyId> stockDtoOutputOnlyIdList = new ArrayList<>();
+//            stockList.forEach(stock -> {
+//                stockDtoOutputOnlyIdList.add(
+//                        StockDtoOutputOnlyId.builder()
+//                                .id(stock.getId())
+//                                .build()
+//                );
+//            });
+//
+//            productDtoOutputAllList.add(
+//                    ProductDtoOutputAll.builder()
+//                            .id(product.getId())
+//                            .name(product.getName())
+//                            .regularPrice(product.getRegularPrice())
+//                            .discountPrice(product.getDiscountPrice())
+//                            .discountRate(product.getDiscountRate())
+//                            .shippingFee(product.getShippingFee())
+//                            .detail(product.getDetail())
+//                            .deliveryCondition(product.getDeliveryCondition())
+//                            .sellCount(product.getSellCount())
+//                            .viewCount(product.getViewCount())
+//                            .titleImgUrl(product.getTitleImgUrl())
+//                            .titleImgTxt(product.getTitleImgTxt())
+//                            .brandName(product.getBrandName())
+//                            .star(product.getStar())
+//                            .productSubImgList(productSubImgDtoOutputOnlyIdList)
+//                            .categoryProductList(categoryProductListDtoOutputList)
+//                            .stockList(stockDtoOutputOnlyIdList)
+//                            .build()
+//            );
+//        });
+//
+//        return productDtoOutputAllList;
+//    }
+
+    // 7-1. 상품 검색하기 (페이징) - 이름만
+    @Override
+    public Page<ProductDtoOutputAll> getSearchNameListPage(String query, Pageable pageable) {
+        Page<Product> productPage = iProductRepository.findByNameContaining(query, pageable);
+        return productPage.map(product -> {
+
+            List<ProductSubImg> allByProductId = iProductSubImgRepository.findAllByProductId(product.getId());
+            List<ProductSubImgDtoOutputOnlyId> productSubImgDtoOutputOnlyIdList = new ArrayList<>();
+            allByProductId.forEach(productSubImg -> {
+                productSubImgDtoOutputOnlyIdList.add(
+                        ProductSubImgDtoOutputOnlyId.builder()
+                                .id(productSubImg.getId())
+                                .build()
+                );
+            });
+
+            List<CategoryProductList> categoryProductLists = iCategoryProductListRepository.findAllByProductId(product.getId());
+            List<CategoryProductListDtoOutput> categoryProductListDtoOutputList = new ArrayList<>();
+            categoryProductLists.forEach(categoryProductList -> {
+                categoryProductListDtoOutputList.add(
+                        CategoryProductListDtoOutput.builder()
+                                .id(categoryProductList.getId())
+                                .productId(categoryProductList.getId())
+                                .categoryId(categoryProductList.getCategory().getId())
+                                .categoryMId(categoryProductList.getCategoryM().getId())
+                                .build()
+                );
+            });
+
+            List<Stock> stockList = iStockRepository.findAllByProductId(product.getId());
+            List<StockDtoOutputProductIdName> stockDtoOutputProductIdNameList = new ArrayList<>();
+            stockList.forEach(stock -> {
+                stockDtoOutputProductIdNameList.add(
+                        StockDtoOutputProductIdName.builder()
+                                .id(stock.getId())
+                                .qty(stock.getQty())
+                                .productId(stock.getProduct().getId())
+                                .optionFirstId(stock.getOptionFirst().getId())
+                                .optionSecondId(stock.getOptionSecond().getId())
+                                .build()
+                );
+            });
+
+            return ProductDtoOutputAll.builder()
+                    .id(product.getId())
+                    .name(product.getName())
+                    .regularPrice(product.getRegularPrice())
+                    .discountPrice(product.getDiscountPrice())
+                    .discountRate(product.getDiscountRate())
+                    .shippingFee(product.getShippingFee())
+                    .detail(product.getDetail())
+                    .deliveryCondition(product.getDeliveryCondition())
+                    .sellCount(product.getSellCount())
+                    .viewCount(product.getViewCount())
+                    .titleImgUrl(product.getTitleImgUrl())
+                    .titleImgTxt(product.getTitleImgTxt())
+                    .brandName(product.getBrandName())
+                    .star(product.getStar())
+                    .productSubImgList(productSubImgDtoOutputOnlyIdList)
+                    .categoryProductList(categoryProductListDtoOutputList)
+                    .stockList(stockDtoOutputProductIdNameList)
+                    .build();
+        });
+    }
+
+    // 7-2. 상품 검색하기 (페이징) - 이름, 카테고리 중분류 id
+    @Override
+    public Page<ProductDtoOutputAll> getSearchNameAndCategoryMIdListPage(String query, Long id, Pageable pageable) {
+        Page<Product> productPage = iProductRepository.findByNameContainingAndCategoryMId(query, id, pageable);
+        return productPage.map(product -> {
+
+            List<ProductSubImg> allByProductId = iProductSubImgRepository.findAllByProductId(product.getId());
+            List<ProductSubImgDtoOutputOnlyId> productSubImgDtoOutputOnlyIdList = new ArrayList<>();
+            allByProductId.forEach(productSubImg -> {
+                productSubImgDtoOutputOnlyIdList.add(
+                        ProductSubImgDtoOutputOnlyId.builder()
+                                .id(productSubImg.getId())
+                                .build()
+                );
+            });
+
+            List<CategoryProductList> categoryProductLists = iCategoryProductListRepository.findAllByProductId(product.getId());
+            List<CategoryProductListDtoOutput> categoryProductListDtoOutputList = new ArrayList<>();
+            categoryProductLists.forEach(categoryProductList -> {
+                categoryProductListDtoOutputList.add(
+                        CategoryProductListDtoOutput.builder()
+                                .id(categoryProductList.getId())
+                                .productId(categoryProductList.getId())
+                                .categoryId(categoryProductList.getCategory().getId())
+                                .categoryMId(categoryProductList.getCategoryM().getId())
+                                .build()
+                );
+            });
+
+            List<Stock> stockList = iStockRepository.findAllByProductId(product.getId());
+            List<StockDtoOutputProductIdName> stockDtoOutputProductIdNameList = new ArrayList<>();
+            stockList.forEach(stock -> {
+                stockDtoOutputProductIdNameList.add(
+                        StockDtoOutputProductIdName.builder()
+                                .id(stock.getId())
+                                .qty(stock.getQty())
+                                .productId(stock.getProduct().getId())
+                                .optionFirstId(stock.getOptionFirst().getId())
+                                .optionSecondId(stock.getOptionSecond().getId())
+                                .build()
+                );
+            });
+
+            return ProductDtoOutputAll.builder()
+                    .id(product.getId())
+                    .name(product.getName())
+                    .regularPrice(product.getRegularPrice())
+                    .discountPrice(product.getDiscountPrice())
+                    .discountRate(product.getDiscountRate())
+                    .shippingFee(product.getShippingFee())
+                    .detail(product.getDetail())
+                    .deliveryCondition(product.getDeliveryCondition())
+                    .sellCount(product.getSellCount())
+                    .viewCount(product.getViewCount())
+                    .titleImgUrl(product.getTitleImgUrl())
+                    .titleImgTxt(product.getTitleImgTxt())
+                    .brandName(product.getBrandName())
+                    .star(product.getStar())
+                    .productSubImgList(productSubImgDtoOutputOnlyIdList)
+                    .categoryProductList(categoryProductListDtoOutputList)
+                    .stockList(stockDtoOutputProductIdNameList)
+                    .build();
+        });
+    }
+
+    // 7-3. 상품 검색하기 (페이징) - 이름, 가격대
+    @Override
+    public Page<ProductDtoOutputAll> getSearchNameAndBetweenDiscountPrice(
+            String query, int minPrice, int maxPrice, Pageable pageable) {
+        Page<Product> productPage = iProductRepository.findByNameContainingAndDiscountPriceBetween(query, minPrice, maxPrice, pageable);
+        return productPage.map(product -> {
+
+            List<ProductSubImg> allByProductId = iProductSubImgRepository.findAllByProductId(product.getId());
+            List<ProductSubImgDtoOutputOnlyId> productSubImgDtoOutputOnlyIdList = new ArrayList<>();
+            allByProductId.forEach(productSubImg -> {
+                productSubImgDtoOutputOnlyIdList.add(
+                        ProductSubImgDtoOutputOnlyId.builder()
+                                .id(productSubImg.getId())
+                                .build()
+                );
+            });
+
+            List<CategoryProductList> categoryProductLists = iCategoryProductListRepository.findAllByProductId(product.getId());
+            List<CategoryProductListDtoOutput> categoryProductListDtoOutputList = new ArrayList<>();
+            categoryProductLists.forEach(categoryProductList -> {
+                categoryProductListDtoOutputList.add(
+                        CategoryProductListDtoOutput.builder()
+                                .id(categoryProductList.getId())
+                                .productId(categoryProductList.getId())
+                                .categoryId(categoryProductList.getCategory().getId())
+                                .categoryMId(categoryProductList.getCategoryM().getId())
+                                .build()
+                );
+            });
+
+            List<Stock> stockList = iStockRepository.findAllByProductId(product.getId());
+            List<StockDtoOutputProductIdName> stockDtoOutputProductIdNameList = new ArrayList<>();
+            stockList.forEach(stock -> {
+                stockDtoOutputProductIdNameList.add(
+                        StockDtoOutputProductIdName.builder()
+                                .id(stock.getId())
+                                .qty(stock.getQty())
+                                .productId(stock.getProduct().getId())
+                                .optionFirstId(stock.getOptionFirst().getId())
+                                .optionSecondId(stock.getOptionSecond().getId())
+                                .build()
+                );
+            });
+
+            return ProductDtoOutputAll.builder()
+                    .id(product.getId())
+                    .name(product.getName())
+                    .regularPrice(product.getRegularPrice())
+                    .discountPrice(product.getDiscountPrice())
+                    .discountRate(product.getDiscountRate())
+                    .shippingFee(product.getShippingFee())
+                    .detail(product.getDetail())
+                    .deliveryCondition(product.getDeliveryCondition())
+                    .sellCount(product.getSellCount())
+                    .viewCount(product.getViewCount())
+                    .titleImgUrl(product.getTitleImgUrl())
+                    .titleImgTxt(product.getTitleImgTxt())
+                    .brandName(product.getBrandName())
+                    .star(product.getStar())
+                    .productSubImgList(productSubImgDtoOutputOnlyIdList)
+                    .categoryProductList(categoryProductListDtoOutputList)
+                    .stockList(stockDtoOutputProductIdNameList)
+                    .build();
+        });
     }
 }

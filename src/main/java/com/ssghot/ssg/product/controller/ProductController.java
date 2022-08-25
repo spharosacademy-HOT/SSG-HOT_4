@@ -44,6 +44,9 @@ public class ProductController {
         8. 서브 이미지 단일 조회하기
 
         9. 상품-재고 조회하기
+        10. 상품 Id, Name 조회하기
+
+        11. 상품 검색하기
      */
 
     // 1. 상품 등록하기
@@ -80,7 +83,7 @@ public class ProductController {
     }
 
     // 3-4. 상품 전체 조회하기 (페이지 DTO)
-    @GetMapping("/product")
+    @GetMapping("/product/page")
     public Page<ProductDtoOutputAll> getAllProductPage2(@PageableDefault(size = 30) Pageable pageable){
         Page<ProductDtoOutputAll> productPage = iProductService.getProductAllPage(pageable);
 //        Page<ProductDtoOutputAll> productDtoOutputAllList = iProductService.getProductAll(pageable);
@@ -88,7 +91,7 @@ public class ProductController {
     }
 
     // 3-5. 상품 전체 조회하기 (슬라이스)
-    @GetMapping("/product/slice")
+    @GetMapping("/product")
     public Slice<ProductDtoOutputAll> getAllProductSlice(Pageable pageable){
         Slice<ProductDtoOutputAll> productPage = iProductService.getProductAllSlice(pageable);
 //        Page<ProductDtoOutputAll> productDtoOutputAllList = iProductService.getProductAll(pageable);
@@ -142,5 +145,26 @@ public class ProductController {
     @GetMapping("/product/id/{id}")
     public ProductDtoOutputIdName getProductIdAndName(@PathVariable Long id){
         return null;
+    }
+
+    // 11. 상품 검색하기 (상품 이름만)
+    @GetMapping("/product/search")
+    public Page<ProductDtoOutputAll> getSearchName(String query, Pageable pageable){
+        // @PageableDefault(sort = "id", direction = Sort.Direction.DESC)
+        return iProductService.getSearchNameListPage(query, pageable);
+    }
+
+    // 11-2. 상품 검색하기 (상품 이름 + 카테고리M id)
+    @GetMapping("/product/search/categorym")
+    public Page<ProductDtoOutputAll> getSearchNameAndCategoryMId(String query, Long categorymid, Pageable pageable){
+        // @PageableDefault(sort = "id", direction = Sort.Direction.DESC)
+        return iProductService.getSearchNameAndCategoryMIdListPage(query, categorymid, pageable);
+    }
+
+    // 11-3. 상품 검색하기 (상품 이름 + 가격대)
+    @GetMapping("/product/search/price")
+    public Page<ProductDtoOutputAll> getSearchNameAndPrice(String query, int minPrice, int maxPrice, Pageable pageable){
+        // @PageableDefault(sort = "id", direction = Sort.Direction.DESC)
+        return iProductService.getSearchNameAndBetweenDiscountPrice(query, minPrice, maxPrice, pageable);
     }
 }
