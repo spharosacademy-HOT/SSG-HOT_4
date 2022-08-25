@@ -7,8 +7,8 @@ export const getMyCart = async () => {
 };
 
 //장바구니 수량 변경하기
-export const changeCartCnt = async () => {
-  const res = await apiClient.put(`/carts/count`);
+export const changeCartCnt = async (id, count) => {
+  const res = await apiClient.put(`/carts/count`, { id: id, count: count });
   return res;
 };
 
@@ -19,13 +19,13 @@ export const changeCartOption = async () => {
 };
 
 //장바구니 넣기
-export const addMyCart = async (id, count) => {
-  const res = await apiClient.post(`/carts`, { id, count });
+export const addMyCart = async (cartData) => {
+  const res = await apiClient.post(`/carts`, cartData);
   return res;
 };
 
 //장바구니 삭제
-export const deleteCart = async () => {
-  const res = await apiClient.delete(`/carts`);
+export const deleteCart = async (id) => {
+  const res = await apiClient.delete(`/carts/${id}`);
   return res;
 };
