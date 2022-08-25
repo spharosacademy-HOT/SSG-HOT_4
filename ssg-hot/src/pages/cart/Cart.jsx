@@ -1,14 +1,25 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { getMyCart } from "../../store/apis/cart";
 import CartContents from "./cartContent/CartContents";
 import CartFooter from "./CartFooter";
 import CartHeader from "./CartHeader";
 import CartNotice from "./CartNotice";
 import CartToolBar from "./cartToolBar/CartToolBar";
+import { useRecoilState } from "recoil";
+import { cartState } from "../../store/atom/cartState";
 
 export default function Cart() {
-  const [isLogin, setIsLogin] = useState(false);
-  const [isItem, setIsItem] = useState(true);
+  const ACCESS_TOKEN = localStorage.getItem("token");
+  const isLogin = ACCESS_TOKEN && true;
+  const [cartData, setCartData] = useRecoilState(cartState);
+  const [isItem, setIsItem] = useState(cartData && true);
 
+  // useEffect(() => {
+  //   getMyCart().then((res) => {
+  //     setCartData(res);
+  //     console.log(res, "가져오기 완료");
+  //   });
+  // }, []);
   return (
     <div className="bgGray">
       <CartHeader />

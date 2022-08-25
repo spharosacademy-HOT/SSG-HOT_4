@@ -17,6 +17,7 @@ import ProductCard from "./ProductCard";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
 import ProductPurchaseBar from "./productDetail/ProductPurchaseBar";
+import { baseURL } from "../../store/apis/apiClient";
 
 function Product() {
   let pageUrl = useLocation();
@@ -30,13 +31,12 @@ function Product() {
   }, [pageUrl]);
   useEffect(() => {
     axios
-      .get(`http://10.10.10.84:8080/ssghot/product/${productPageNum}`)
+      .get(baseURL+`/product/${productPageNum}`)
       .then((Response) => {
         setProductDatas(Response.data);
       });
   }, []);
   const [productDatas, setProductDatas] = useState([]);
-
   return (
     <>
       <div className="product-head-box"></div>

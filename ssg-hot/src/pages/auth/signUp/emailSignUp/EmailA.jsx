@@ -1,6 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 
 function EmailA() {
+  const [checkInputs, setCheckInputs] = useState([]);
+
+  const changeHandler = (checked, id) => {
+    if (checked) {
+      setCheckInputs([...checkInputs, id]);
+    } else {
+      setCheckInputs(checkInputs.filter((el) => el !== id));
+    }
+  };
+  const isCheckedAll = checkInputs.length;
+  const isDisabled = !isCheckedAll;
+
   return (
     <>
       <div id="m_content" className="cmem_ct_join">
@@ -16,6 +28,10 @@ function EmailA() {
                   id="ssgagree1"
                   className="checkbox"
                   data-terms="Y"
+                  value="check1"
+                  onChange={(e) => {
+                    changeHandler(e.currentTarget.checked, e.currentTarget.id);
+                  }}
                 />
                 <label htmlFor="ssgagree1" className="label_noraml">
                   (필수) SSG.COM 회원 이용약관
@@ -38,6 +54,10 @@ function EmailA() {
                   id="ssgagree2"
                   className="checkbox"
                   data-terms="Y"
+                  value="check2"
+                  onChange={(e) => {
+                    changeHandler(e.currentTarget.checked, e.currentTarget.id);
+                  }}
                 />
                 <label htmlFor="ssgagree2" className="label_noraml">
                   (필수) SSG.COM 회원 개인정보 수집 및 이용 동의
@@ -60,10 +80,13 @@ function EmailA() {
                   id="age_up"
                   className="checkbox"
                   data-terms="Y"
+                  value="check3"
+                  onChange={(e) => {
+                    changeHandler(e.currentTarget.checked, e.currentTarget.id);
+                  }}
                 />
                 <label
                   type="checkbox"
-                  label
                   htmlFor="chk_age_up"
                   className="label_noraml"
                 >

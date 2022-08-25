@@ -8,9 +8,9 @@ function EmailSignUp() {
   return (
     <>
       <CommonHeader title="간편회원가입" />
-      <EmailA />
+      {/* <EmailA /> */}
       <EmailInfor />
-      <EmailAd />
+      {/* <EmailAd /> */}
     </>
   );
 }

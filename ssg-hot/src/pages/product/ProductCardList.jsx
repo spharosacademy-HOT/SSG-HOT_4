@@ -3,17 +3,26 @@ import ProductCard from "./ProductCard";
 // import productDatas from "../../datas/js/productDatas";
 import ProductCardFilter from "./ProductCardFIlter";
 import axios from 'axios';
+import { baseURL } from "../../store/apis/apiClient";
+import { useParams } from "react-router-dom";
+
+
 
 function ProductCardList() {
-  useEffect(()=>{
+  let params = useParams()
 
-    axios.get('http://10.10.10.84:8080/ssghot/product')
+  const [productDatas, setProductDatas] = useState([])
+  useEffect(()=>{
+    axios.get(`${baseURL}/categorym/${params.categoryMId}`)
       .then(Response =>{
-        setProductDatas(Response.data)
+        setProductDatas(Response.data.productList)
       })
   },[])
 
-  const [productDatas, setProductDatas] = useState([])
+
+
+
+
   return (
     <>
       <ProductCardFilter />
@@ -21,7 +30,7 @@ function ProductCardList() {
       <div className="cmft_sort_count v2">
         <div className="cmft_sort_tit">
           <div className="cmft_num">
-            <strong>{productDatas.length}</strong>개의 상품이 있습니다.
+            {/* <strong>{productDatas.length}</strong>개의 상품이 있습니다. */}
           </div>
         </div>
       </div>

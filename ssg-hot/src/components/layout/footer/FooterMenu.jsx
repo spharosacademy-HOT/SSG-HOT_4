@@ -1,37 +1,33 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function FooterMenu() {
+  const token = localStorage.getItem("token");
+  const logout = () => {
+    localStorage.removeItem("token");
+    sessionStorage.removeItem("name");
+    sessionStorage.removeItem("username");
+    sessionStorage.removeItem("id");
+    window.scrollTo(0, 0);
+  };
   return (
     <div>
       <div className="contentWrap">
         <ul className="contentList">
-          <li id="footerLoginBtn">
-            <a
-              // href="javascript:mobileLogin('login');"
-              className="clickable"
-              data-react-tarea="푸터|로그인"
-            >
-              로그인
-            </a>
-          </li>
-          <li id="footerLogoutBtn" style={{ display: "none" }}>
-            <a
-              // href="javascript:logout();"
-              className="clickable"
-              data-react-tarea="푸터|로그아웃"
-            >
-              로그아웃
-            </a>
-          </li>
+          {token ? (
+            <li id="footerLogoutBtn">
+              <Link to="/">
+                <span onClick={logout}>로그아웃</span>
+              </Link>
+            </li>
+          ) : (
+            <li id="footerLoginBtn">
+              <Link to="/login">로그인</Link>
+            </li>
+          )}
+
           <li id="footerJoinMemberBtn" style={{}}>
-            <a
-              // href="#"
-              className="clickable"
-              data-react-tarea="푸터|회원가입"
-              // onclick="appBroswer('https://member.ssg.com/m/member/join/simpleJoinIntro.ssg', 'stack'); return false;"
-            >
-              회원가입
-            </a>
+            <Link to="/signup">회원가입</Link>
           </li>
           <li>
             <a
