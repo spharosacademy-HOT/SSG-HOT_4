@@ -7,10 +7,13 @@ import com.ssghot.ssg.order.dto.OrderDtoInputDetail;
 import com.ssghot.ssg.order.dto.OrderDtoOutput;
 import com.ssghot.ssg.order.dto.OrderDtoOutputList;
 import com.ssghot.ssg.order.service.IOrderService;
+import com.ssghot.ssg.users.sevice.IUserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
@@ -19,9 +22,13 @@ import java.util.List;
 @RequiredArgsConstructor
 public class OrderController {
     private final IOrderService iOrderService;
+    private final IUserService iUserService;
 
     @PostMapping
-    public ResultDtoOutput<OrderDtoOutput> addOrder(@RequestBody OrderDtoInput orderDtoInput){
+    @PreAuthorize("hasRole('ROLE_USER')")
+    public ResultDtoOutput<OrderDtoOutput> addOrder(@RequestBody OrderDtoInput orderDtoInput, HttpServletRequest request){
+        Long userId = iUserService.getUserByToken(request);
+        orderDtoInput.setUserId(userId);
         return iOrderService.addOrder(orderDtoInput);
     }
     @GetMapping
@@ -29,13 +36,18 @@ public class OrderController {
         return iOrderService.getAll();
     }
 
-    @GetMapping("/user")
-    public ResultDtoOutput<OrderDtoOutput> getOrderByUserIdAndOrderId(@RequestBody OrderDtoInputDetail orderDtoInputDetail){
+    @GetMapping("/user/detail")
+    @PreAuthorize("hasRole('ROLE_USER')")
+    public ResultDtoOutput<OrderDtoOutput> getOrderByUserIdAndOrderId(@RequestBody OrderDtoInputDetail orderDtoInputDetail, HttpServletRequest request){
+        Long userId = iUserService.getUserByToken(request);
+        orderDtoInputDetail.setUserId(userId);
         return iOrderService.getOrdersByUserIdAndOrderId(orderDtoInputDetail);
     }
-    @GetMapping("/user/{id}")
-    public ResultsDtoOutput<List<OrderDtoOutputList>> getOrdersByUserId(@PathVariable Long id){
-        return iOrderService.getOrdersByUserId(id);
+    @GetMapping("/user")
+    @PreAuthorize("hasRole('ROLE_USER')")
+    public ResultsDtoOutput<List<OrderDtoOutputList>> getOrdersByUserId(HttpServletRequest request){
+        Long userId = iUserService.getUserByToken(request);
+        return iOrderService.getOrdersByUserId(userId);
     }
     @GetMapping("/{id}")
     public ResultDtoOutput<OrderDtoOutput> getOrderByUserIdAndOrderId(@PathVariable Long id){

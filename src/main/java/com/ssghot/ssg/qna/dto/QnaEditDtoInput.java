@@ -1,15 +1,13 @@
 package com.ssghot.ssg.qna.dto;
 
 import com.ssghot.ssg.qna.domain.Qna;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Getter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Setter
 public class QnaEditDtoInput {
 
     private Long id;

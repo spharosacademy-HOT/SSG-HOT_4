@@ -44,11 +44,17 @@ public class CartController {
         return iCartService.getCartByUserId(userId);
     }
     @PutMapping("/count")
-    public ResultDtoOutput<CartDtoOutput> editCountCart(@RequestBody CartEditDtoInput cartEditDtoInput){
+    @PreAuthorize("hasRole('ROLE_USER')")
+    public ResultDtoOutput<CartDtoOutput> editCountCart(@RequestBody CartEditDtoInput cartEditDtoInput,HttpServletRequest request){
         return iCartService.editCountCart(cartEditDtoInput);
     }
     @PutMapping("/stock")
-    public ResultDtoOutput<CartDtoOutput> editStockCart(@RequestBody CartEditStockDtoInput cartEditStockDtoInput){
+    @PreAuthorize("hasRole('ROLE_USER')")
+    public ResultDtoOutput<CartDtoOutput> editStockCart(@RequestBody CartEditStockDtoInput cartEditStockDtoInput,HttpServletRequest request){
+
+        Long userId = iUserService.getUserByToken(request);
+        System.out.println(userId);
+        cartEditStockDtoInput.setUserId(userId);
         return iCartService.editStockCart(cartEditStockDtoInput);
     }
     @DeleteMapping("/{id}")
