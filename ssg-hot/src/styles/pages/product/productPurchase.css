@@ -65,8 +65,11 @@
 /* 결제하기 */
 .product-paying .pay-button{
     width: 100%;
-    color: white;
     background-color: #ff3e3e;
+    color: white;
+    height: 52px;
+    display: flex;
+    align-items: center;
 }
 /* 주문자 정보 */
 .product-my-info .title-line{

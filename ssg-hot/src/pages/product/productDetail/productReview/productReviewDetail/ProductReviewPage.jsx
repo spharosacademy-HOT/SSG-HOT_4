@@ -8,7 +8,6 @@ function ProductReviewPage() {
     return ( 
         <>
             <div className='product-review-page'>
-                <ProductReviewTitle/>
                 <ProductReviewInfo/>
                 <ProductReviewList/>
                 <ProductPurchaseBar/>
