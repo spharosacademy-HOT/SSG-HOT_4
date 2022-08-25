@@ -4,7 +4,6 @@
 
 a {
   text-decoration: none !important;
-  color: black !important;
 }
 ul {
   list-style: none !important;
@@ -18,4 +17,7 @@ h2 {
 }
 p {
   margin-bottom: 0 !important;
+}
+button {
+  cursor: pointer;
 }
