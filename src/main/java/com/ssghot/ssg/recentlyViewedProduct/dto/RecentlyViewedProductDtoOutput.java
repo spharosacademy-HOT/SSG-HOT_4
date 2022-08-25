@@ -1,5 +1,6 @@
 package com.ssghot.ssg.recentlyViewedProduct.dto;
 
+import com.ssghot.ssg.product.domain.Product;
 import lombok.Builder;
 import lombok.Data;
 
@@ -8,7 +9,8 @@ import lombok.Data;
 public class RecentlyViewedProductDtoOutput {
 
     private Long id;
-    private Long productId;
     private Long userId;
     private String isDeleted;
+
+    private Product product;
 }

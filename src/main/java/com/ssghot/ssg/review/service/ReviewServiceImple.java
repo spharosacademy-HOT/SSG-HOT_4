@@ -1,10 +1,12 @@
 package com.ssghot.ssg.review.service;
 
+import com.ssghot.ssg.product.domain.Product;
 import com.ssghot.ssg.review.domain.Review;
 import com.ssghot.ssg.review.dto.ReviewDtoInput;
 import com.ssghot.ssg.review.dto.ReviewDtoOutput;
 import com.ssghot.ssg.review.repository.IReviewRepository;
 import com.ssghot.ssg.product.repository.IProductRepository;
+import com.ssghot.ssg.users.domain.User;
 import com.ssghot.ssg.users.repository.IUserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -32,26 +34,37 @@ public class ReviewServiceImple implements IReviewService{
     // 1. 리뷰 등록하기
     @Override
     public Review addReview(ReviewDtoInput reviewDtoInput) {
-        return iReviewRepository.save(
-                Review.builder()
-                        .title(reviewDtoInput.getTitle())
-                        .content(reviewDtoInput.getContent())
-                        .imgUrl(reviewDtoInput.getImgUrl())
-                        .imgUrl2(reviewDtoInput.getImgUrl2())
-                        .star(0)
-                        .viewCount(0)
-                        .product(reviewDtoInput.getProduct())
-                        .orderItem(reviewDtoInput.getOrderItem())
-                        .user(reviewDtoInput.getUser())
-                        .build()
-        );
+
+        Optional<User> user = iUserRepository.findById(reviewDtoInput.getUser().getId());
+        Optional<Product> product = iProductRepository.findById(reviewDtoInput.getProduct().getId());
+
+        if(user.isPresent() && product.isPresent()) {
+            return iReviewRepository.save(
+                    Review.builder()
+                            .title(reviewDtoInput.getTitle())
+                            .content(reviewDtoInput.getContent())
+                            .imgUrl(reviewDtoInput.getImgUrl())
+                            .imgUrl2(reviewDtoInput.getImgUrl2())
+                            .star(0)
+                            .viewCount(0)
+                            .product(reviewDtoInput.getProduct())
+                            .orderItem(reviewDtoInput.getOrderItem())
+                            .user(reviewDtoInput.getUser())
+                            .build()
+            );
+        }
+        return null;
     }
 
     // 2. 리뷰 수정하기
     @Override
     public Review editReview(Long id, ReviewDtoInput reviewDtoInput) {
         Optional<Review> review = iReviewRepository.findById(id);
-        if(review.isPresent()){
+
+        Optional<User> user = iUserRepository.findById(reviewDtoInput.getUser().getId());
+        Optional<Product> product = iProductRepository.findById(reviewDtoInput.getProduct().getId());
+
+        if(review.isPresent() && user.isPresent() && product.isPresent()){
             iReviewRepository.save(
                     Review.builder()
                             .id(id)
@@ -77,8 +90,9 @@ public class ReviewServiceImple implements IReviewService{
         List<Review> reviewList = iReviewRepository.findAll();
         List<ReviewDtoOutput> reviewDtoOutputList = new ArrayList<>();
 
-        reviewList.forEach(review -> {
-            reviewDtoOutputList.add(
+        reviewList.forEach(
+            review -> {
+                reviewDtoOutputList.add(
                     ReviewDtoOutput.builder()
                             .id(review.getId())
                             .title(review.getTitle())
@@ -103,7 +117,7 @@ public class ReviewServiceImple implements IReviewService{
         Optional<Review> review = iReviewRepository.findById(id);
 
         if(review.isPresent()){
-            return ReviewDtoOutput.builder()
+            ReviewDtoOutput reviewDtoOutput = ReviewDtoOutput.builder()
                     .id(review.get().getId())
                     .title(review.get().getTitle())
                     .content(review.get().getContent())
@@ -115,6 +129,7 @@ public class ReviewServiceImple implements IReviewService{
                     .orderItemId(review.get().getOrderItem().getId())
                     .userId(review.get().getUser().getId())
                     .build();
+            return reviewDtoOutput;
         }
 
         return null;

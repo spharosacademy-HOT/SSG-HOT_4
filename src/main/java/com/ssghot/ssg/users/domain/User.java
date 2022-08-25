@@ -1,5 +1,6 @@
 package com.ssghot.ssg.users.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.ssghot.ssg.common.CommonDTO;
 import lombok.*;
@@ -48,6 +49,7 @@ public class User extends CommonDTO {
         this.memberLevel = this.memberLevel == null ? "FRIENDS" : this.memberLevel;
         this.role = this.role == null ? "ROLE_USER": this.role;
     }
+    @JsonIgnore
     public List<String> getRoleList(){
         if(this.role.length() > 0){
             return Arrays.asList(this.role.split(","));

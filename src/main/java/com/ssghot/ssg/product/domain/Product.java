@@ -1,5 +1,6 @@
 package com.ssghot.ssg.product.domain;
 
+import com.ssghot.ssg.category.domain.CategoryM;
 import com.ssghot.ssg.common.CommonDTO;
 import lombok.*;
 
@@ -47,8 +48,8 @@ public class Product extends CommonDTO {
     @Column(nullable = true)
     private String titleImgTxt; // 타이틀 이미지 txt
 
-//    @ManyToOne
-//    private CategoryM categoryM;
+    @ManyToOne
+    private CategoryM categoryM;
 
 //    id BIGINT
 //    name VARCHAR(45)
