@@ -45,13 +45,15 @@ public class CartController {
     }
     @PutMapping("/count")
     @PreAuthorize("hasRole('ROLE_USER')")
-    public ResultDtoOutput<CartDtoOutput> editCountCart(@RequestBody CartEditDtoInput cartEditDtoInput){
+    public ResultDtoOutput<CartDtoOutput> editCountCart(@RequestBody CartEditDtoInput cartEditDtoInput,HttpServletRequest request){
         return iCartService.editCountCart(cartEditDtoInput);
     }
     @PutMapping("/stock")
     @PreAuthorize("hasRole('ROLE_USER')")
     public ResultDtoOutput<CartDtoOutput> editStockCart(@RequestBody CartEditStockDtoInput cartEditStockDtoInput,HttpServletRequest request){
+
         Long userId = iUserService.getUserByToken(request);
+        System.out.println(userId);
         cartEditStockDtoInput.setUserId(userId);
         return iCartService.editStockCart(cartEditStockDtoInput);
     }
