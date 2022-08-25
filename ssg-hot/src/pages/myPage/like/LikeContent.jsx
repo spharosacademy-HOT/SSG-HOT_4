@@ -61,6 +61,16 @@ function LikeContnent() {
           </a>
         </div>
       </div>
+
+      <div className="mylike_cmitem_wrap">
+        <div className="mylike_cmitem_none">아직 좋아요한 상품이 없습니다.</div>
+
+        <div className="mylike_cmitem_header">
+          <h3 className="mylike_cmitem_tit">
+            <span>이런 상품은 어떠세요?</span>
+          </h3>
+        </div>
+      </div>
     </>
   );
 }

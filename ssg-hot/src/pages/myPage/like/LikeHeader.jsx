@@ -1,6 +1,5 @@
 import React from "react";
 import LikeModal from "./LikeModal.jsx";
-
 import LikeModal2 from "./LikeModal2.jsx";
 function LikeHeader() {
   return (
@@ -32,7 +31,6 @@ function LikeHeader() {
                 </li>
                 <li className="mylike_folder_item" role="presentation">
                   <LikeModal2 />
-
                   <span className="mylike_folder_thmb"></span>
                 </li>
               </ul>

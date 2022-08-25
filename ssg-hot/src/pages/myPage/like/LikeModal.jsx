@@ -42,7 +42,6 @@ function LikeModal() {
             placeholder="폴더명을 입력해주세요"
             maxLength="50"
           />
-
           <Button variant="primary" onClick={handleClose}>
             만들기
           </Button>

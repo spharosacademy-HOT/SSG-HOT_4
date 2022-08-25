@@ -1,17 +1,55 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from 'axios';
 import RecentItem from "../../components/common/widgets/itemList/recent/RecentItem";
-import recentDatas from "../../datas/js/recentDatas";
+import RecentModal from "./RecentModal";
 export default function RecentItemList() {
-  console.log(recentDatas);
+  
+  const [rcData, setRcData] = useState()
+  const [isTrue, setIsTrue] = useState(false)
+  const [dataId, setDataId] = useState()
+  const [modalData, setModalData] = useState()
+  
+  useEffect(()=>{
+    axios
+    .get(`http://10.10.10.128:8080/api/recentlyviewedproduct`)
+    .then((Response)=>{
+      setRcData(Response.data);
+      console.log(Response.data)      
+    })
+    .catch(Error=>console.log(Error));
+  },[])
+
+
+  
   return (
+    <>
+    <RecentModal isTrue={isTrue} setIsTrue={setIsTrue} modalData={modalData}/>
     <div className="recentItem">
-      {recentDatas.length > 0 ? (
-        <RecentItem />
-      ) : (
-        <div className="recentNoItem">
-          <p>최근 본 쇼핑정보가 없습니다.</p>
-        </div>
-      )}
+      {
+       rcData ? 
+       <div>
+        <ul>
+          {
+            rcData.map(data=>(
+              <RecentItem 
+                key={data.id} 
+                item={data} 
+                isTrue={isTrue} 
+                setIsTrue={setIsTrue} 
+                dataId={dataId}
+                setDataId={setDataId}
+                setModalData={setModalData}
+              />           
+            ))
+          }
+        </ul>
+       </div>
+       :
+       <div className= "recentNoItem">
+        <p>최근 본 쇼핑정보가 없습니다.</p>
+       </div>
+      }
     </div>
+    </>
   );
 }
