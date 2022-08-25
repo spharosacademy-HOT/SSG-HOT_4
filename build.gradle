@@ -47,6 +47,8 @@ dependencies {
 	developmentOnly('org.springframework.boot:spring-boot-devtools')
 	// https://mvnrepository.com/artifact/com.auth0/java-jwt
 	implementation group: 'com.auth0', name: 'java-jwt', version: '3.19.2'
+	// oauth
+	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-oauth2-client', version: '2.7.2'
 
 	// sms 인증
 //	implementation group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.13'

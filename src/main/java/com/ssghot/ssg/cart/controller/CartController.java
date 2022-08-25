@@ -44,6 +44,7 @@ public class CartController {
         return iCartService.getCartByUserId(userId);
     }
     @PutMapping("/count")
+    @PreAuthorize("hasRole('ROLE_USER')")
     public ResultDtoOutput<CartDtoOutput> editCountCart(@RequestBody CartEditDtoInput cartEditDtoInput){
         return iCartService.editCountCart(cartEditDtoInput);
     }
