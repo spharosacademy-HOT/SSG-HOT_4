@@ -44,10 +44,13 @@ public class User extends CommonDTO {
     @Column(columnDefinition = "varchar(255) default 'FRIENDS'")
     private String memberLevel;
 
+    private String provider;
+
     @PrePersist
     public void prePersist() {
         this.memberLevel = this.memberLevel == null ? "FRIENDS" : this.memberLevel;
         this.role = this.role == null ? "ROLE_USER": this.role;
+        this.provider = this.provider == null ? "BASIC": this.provider;
     }
     @JsonIgnore
     public List<String> getRoleList(){
