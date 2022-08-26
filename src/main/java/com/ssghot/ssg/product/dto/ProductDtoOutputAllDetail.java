@@ -2,6 +2,7 @@ package com.ssghot.ssg.product.dto;
 
 import com.ssghot.ssg.categoryProductList.dto.CategoryProductListDtoOutput;
 import com.ssghot.ssg.optionList.dto.StockDtoOutputProductIdName;
+import com.ssghot.ssg.review.dto.ReviewDtoOutputDetail;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

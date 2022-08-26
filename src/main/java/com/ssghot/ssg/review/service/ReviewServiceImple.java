@@ -4,6 +4,7 @@ import com.ssghot.ssg.product.domain.Product;
 import com.ssghot.ssg.review.domain.Review;
 import com.ssghot.ssg.review.dto.ReviewDtoInput;
 import com.ssghot.ssg.review.dto.ReviewDtoOutput;
+import com.ssghot.ssg.review.dto.ReviewDtoOutputOption;
 import com.ssghot.ssg.review.repository.IReviewRepository;
 import com.ssghot.ssg.product.repository.IProductRepository;
 import com.ssghot.ssg.users.domain.User;
@@ -113,11 +114,11 @@ public class ReviewServiceImple implements IReviewService{
 
     // 5. 리뷰 단건 조회하기
     @Override
-    public ReviewDtoOutput getOneReview(Long id) {
+    public ReviewDtoOutputOption getOneReview(Long id) {
         Optional<Review> review = iReviewRepository.findById(id);
 
         if(review.isPresent()){
-            ReviewDtoOutput reviewDtoOutput = ReviewDtoOutput.builder()
+            ReviewDtoOutputOption reviewDtoOutputOption = ReviewDtoOutputOption.builder()
                     .id(review.get().getId())
                     .title(review.get().getTitle())
                     .content(review.get().getContent())
@@ -126,10 +127,10 @@ public class ReviewServiceImple implements IReviewService{
                     .star(review.get().getStar())
                     .viewCount(review.get().getViewCount())
                     .productId(review.get().getProduct().getId())
-                    .orderItemId(review.get().getOrderItem().getId())
+                    .orderItem(review.get().getOrderItem())
                     .userId(review.get().getUser().getId())
                     .build();
-            return reviewDtoOutput;
+            return reviewDtoOutputOption;
         }
 
         return null;

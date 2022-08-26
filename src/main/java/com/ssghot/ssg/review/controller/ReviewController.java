@@ -3,6 +3,7 @@ package com.ssghot.ssg.review.controller;
 import com.ssghot.ssg.review.domain.Review;
 import com.ssghot.ssg.review.dto.ReviewDtoInput;
 import com.ssghot.ssg.review.dto.ReviewDtoOutput;
+import com.ssghot.ssg.review.dto.ReviewDtoOutputOption;
 import com.ssghot.ssg.review.service.IReviewService;
 import com.ssghot.ssg.users.domain.User;
 import com.ssghot.ssg.users.sevice.IUserService;
@@ -60,7 +61,7 @@ public class ReviewController {
 
     // 4. 리뷰 단건 조회하기
     @GetMapping("/review/{id}")
-    public ReviewDtoOutput getOneReview(@PathVariable Long id){
+    public ReviewDtoOutputOption getOneReview(@PathVariable Long id){
         return iReviewService.getOneReview(id);
     }
 }

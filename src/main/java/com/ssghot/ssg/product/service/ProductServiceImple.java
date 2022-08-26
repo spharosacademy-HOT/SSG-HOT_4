@@ -14,6 +14,7 @@ import com.ssghot.ssg.product.dto.*;
 import com.ssghot.ssg.product.repository.IProductRepository;
 import com.ssghot.ssg.product.repository.IProductSubImgRepository;
 import com.ssghot.ssg.review.domain.Review;
+import com.ssghot.ssg.review.dto.ReviewDtoOutputDetail;
 import com.ssghot.ssg.review.repository.IReviewRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

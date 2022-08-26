@@ -3,6 +3,7 @@ package com.ssghot.ssg.review.service;
 import com.ssghot.ssg.review.domain.Review;
 import com.ssghot.ssg.review.dto.ReviewDtoInput;
 import com.ssghot.ssg.review.dto.ReviewDtoOutput;
+import com.ssghot.ssg.review.dto.ReviewDtoOutputOption;
 
 import java.util.List;
 
@@ -28,5 +29,5 @@ public interface IReviewService {
     List<ReviewDtoOutput> getAllReview();
 
     // 5. 리뷰 단건 조회하기
-    ReviewDtoOutput getOneReview(Long id);
+    ReviewDtoOutputOption getOneReview(Long id);
 }
