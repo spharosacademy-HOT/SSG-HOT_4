@@ -1,6 +1,6 @@
 import axios from "axios";
-//baseurl
 
+//baseurl
 export const baseURL = "http://localhost:8080/api";
 
 // 로컬에서 토큰 가져오기

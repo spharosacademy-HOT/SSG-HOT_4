@@ -21,9 +21,7 @@ import Qna from "./pages/auth/qna/Qna";
 import CartControl from "./pages/myPage/cartcontrol/CartControl";
 import PlusShip from "./pages/myPage/cartcontrol/plusship/PlusShip";
 import ScrollToTop from "./components/layout/ScrollToTop";
-
 import Like from "./pages/myPage/like/Like";
-
 import Purchase from "./pages/product/productPurchase/Purchase";
 import KakaoRedirectHandler from "./pages/auth/oauth/KakaoRedirectHandler";
 //css
@@ -52,13 +50,21 @@ function App() {
         <Route path="/product/purchase" element={<Purchase/>}>
           <Route path=":productId" element={<Purchase/>}/>
         </Route>
+<<<<<<< HEAD
+=======
+          <Route path="/product/review" element={<ProductReviewPage />}>
+            <Route path=":productId" element={<ProductReviewPage />} />
+          </Route>
+>>>>>>> 45ef2666ac1f051d0fce8822be1e088eca7f836b
           <Route path="/mypage" element={<MyPage />} />
           <Route path="/signUp" element={<SignUp />} />
           <Route path="/emailsignup" element={<EmailSignUp />} />
           <Route path="/cartcontrol" element={<CartControl />} />
           <Route path="/plusship" element={<PlusShip />} />
-          <Route path="/qna" element={<Qna />} />
-          <Route path="/like" element={<Like />} />
+          <Route path="/qna" element={<Qna />} >
+            <Route path=":productId" element={<Qna/>}/>
+          </Route>
+          <Route path="/like" element={<Like/>}/>
           <Route path="/oauth/redirect" element={<KakaoRedirectHandler />} />
         </Routes>
         <ToolBar />

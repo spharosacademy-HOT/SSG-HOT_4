@@ -1,6 +1,14 @@
-import React from "react";
-
+import React, { useEffect, useState } from "react";
+import { getUserDetail } from "../../store/apis/user";
 function MyPageUser() {
+  const [userData, setUserData] = useState({});
+  useEffect(() => {
+    getUserDetail().then((res) => {
+      console.log(res);
+      setUserData(res);
+    });
+  }, []);
+
   return (
     <div id="m_content" className="myssg_main react-area">
       <div className="myssg_user_sec" style={{ padding: "10px 20px 0px" }}>
@@ -21,7 +29,7 @@ function MyPageUser() {
                 className="clickable"
                 data-react-tarea="MYSSG|M_MY_SSG_회원명"
               >
-                이창현 님
+                {userData.name} 님
               </a>
             </div>
             <div
@@ -35,7 +43,9 @@ function MyPageUser() {
                 className="clickable"
               >
                 <p style={{ marginBottom: "0px" }}>
-                  <strong className="myssg_primary_text">FRIENDS</strong>{" "}
+                  <strong className="myssg_primary_text">
+                    {userData.memberLevel}
+                  </strong>{" "}
                   등급입니다.
                 </p>
               </a>
