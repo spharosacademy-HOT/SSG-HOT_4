@@ -1,5 +1,5 @@
 import React from "react";
-import{Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 function CartControlContent() {
   return (
     <div>
@@ -34,12 +34,10 @@ function CartControlContent() {
                   </span>
                 </label>
                 <span className="myodr_btn_rt">
-                <Link to="/plusship">
-                  <button
-                    type="button"
-                    className="myodr_btn_tx">
-                    <span>수정</span>
-                  </button>
+                  <Link to="/plusship">
+                    <button type="button" className="myodr_btn_tx">
+                      <span>수정</span>
+                    </button>
                   </Link>
                 </span>
               </div>
