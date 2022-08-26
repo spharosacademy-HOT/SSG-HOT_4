@@ -14,36 +14,35 @@ import StoreInfo from "./productDetail/StoreInfo";
 
 import ProductCard from "./ProductCard";
 // import productDatas from "../../datas/js/productDatas";
-import { useLocation, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 import ProductPurchaseBar from "./productDetail/ProductPurchaseBar";
 import { baseURL } from "../../store/apis/apiClient";
 
 function Product() {
-  let pageUrl = useLocation();
-  const [pagePath, setPagePath] = useState();
-  let productPageNum = 0;
+  
+  const param = useParams()
+  const url = `${baseURL}/product/${param.productId}`
+  const [productDatas, setProductDatas] = useState([]);
 
   useEffect(() => {
-    setPagePath(pageUrl.pathname);
-    const productNum = pageUrl.pathname.split("/");
-    productPageNum = productNum[2];
-  }, [pageUrl]);
-  useEffect(() => {
-    axios
-      .get(`${baseURL}/product/${productPageNum}`)
+     axios
+      .get(url)
       .then((Response) => {
         setProductDatas(Response.data);
       });
-  }, []);
-  const [productDatas, setProductDatas] = useState([]);
+  }, [url]);
+
   return (
     <>
-      <div className="product-head-box"></div>
+    <div className="product-head-box"></div>
+    {
+      productDatas && 
+      <>
       <ProductMainImg productDatas={productDatas.titleImgUrl} />
       <ProductInfo productDatas={productDatas} />
       <SmileClub />
-      <ProductSimpleReview itemNum={productPageNum} reviewDatas={productDatas.reviewList} />
+      <ProductSimpleReview reviewDatas={productDatas.reviewList} /> 
       <ProductEvent />
       <ProductDetailInfo />
       <ProductDetailImg imgNum={productDatas.productSubImgList} />
@@ -53,6 +52,11 @@ function Product() {
       <EventBanner />
       <StoreInfo />
       <ProductPurchaseBar />
+      </>
+
+    }
+      
+      
 
       {/* 추천 상품 */}
       {/* <div>함께보면 좋은 상품</div>
