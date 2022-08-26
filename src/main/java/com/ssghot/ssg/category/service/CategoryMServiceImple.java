@@ -97,7 +97,7 @@ public class CategoryMServiceImple implements ICategoryMService{
                         stockList.forEach(stock -> {
                             stockDtoOutputProductIdNameList.add(
                                     StockDtoOutputProductIdName.builder()
-                                            .id(stock.getId())
+                                            .stockId(stock.getId())
                                             .qty(stock.getQty())
                                             .productId(stock.getProduct().getId())
                                             .optionFirstId(stock.getOptionFirst().getId())
@@ -195,7 +195,7 @@ public class CategoryMServiceImple implements ICategoryMService{
             stockList.forEach(stock -> {
                 stockDtoOutputProductIdNameList.add(
                         StockDtoOutputProductIdName.builder()
-                                .id(stock.getId())
+                                .stockId(stock.getId())
                                 .qty(stock.getQty())
                                 .productId(stock.getProduct().getId())
                                 .optionFirstId(stock.getOptionFirst().getId())

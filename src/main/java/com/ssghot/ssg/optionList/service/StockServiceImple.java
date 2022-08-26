@@ -1,6 +1,8 @@
 package com.ssghot.ssg.optionList.service;
 
 import com.ssghot.ssg.optionList.domain.Stock;
+import com.ssghot.ssg.optionList.dto.StockDtoOutputOptFirstQty;
+import com.ssghot.ssg.optionList.dto.StockDtoOutputOptSecondQty;
 import com.ssghot.ssg.optionList.dto.StockDtoOutputProductIdName;
 import com.ssghot.ssg.optionList.repository.IStockRepository;
 import com.ssghot.ssg.product.domain.Product;
@@ -20,11 +22,23 @@ public class StockServiceImple implements IStockService{
     private final IStockRepository iStockRepository;
     private final IProductRepository iProductRepository;
 
+    /*
+        1. 재고 등록하기
+        2. 재고 수정하기
+        3. 재고 전체 조회하기
+        4. 재고 단건 조회하기
+
+        5-1. 옵션2와 재고 조회하기
+        5-2. 옵션1과 재고 조회하기
+     */
+
+    // 1. 재고 등록하기
     @Override
     public Stock addStock(Stock stock) {
         return iStockRepository.save(stock);
     }
 
+    // 2. 재고 수정하기
     @Override
     public Stock editStock(Long id, Stock stock) {
         Optional<Stock> stockList = iStockRepository.findById(id);
@@ -43,6 +57,7 @@ public class StockServiceImple implements IStockService{
         return null;
     }
 
+    // 3. 재고 전체 조회하기
     @Override
     public List<StockDtoOutputProductIdName> getAllStock() {
 
@@ -67,7 +82,7 @@ public class StockServiceImple implements IStockService{
                 stock -> {
                     stockDtoOutputProductIdNameList.add(
                             StockDtoOutputProductIdName.builder()
-                                    .id(stock.getId())
+                                    .stockId(stock.getId())
                                     .qty(stock.getQty())
                                     .optionFirstId(stock.getOptionFirst().getId())
                                     .optionSecondId(stock.getOptionSecond().getId())
@@ -80,6 +95,7 @@ public class StockServiceImple implements IStockService{
 
     }
 
+    // 4. 재고 단건 조회하기
     @Override
     public Stock getOneStock(Long id) {
 
@@ -89,5 +105,42 @@ public class StockServiceImple implements IStockService{
         }
 
         return null;
+    }
+
+    // 5-1. 옵션2와 재고 조회하기
+    @Override
+    public List<StockDtoOutputOptSecondQty> getOptSecondAndQty(int optionFirstId) {
+
+        List<Stock> stockList = iStockRepository.findOptionSecondAndStockQty(optionFirstId);
+        List<StockDtoOutputOptSecondQty> stockDtoOutputOptSecondQtyList = new ArrayList<>();
+        stockList.forEach(stock -> {
+            stockDtoOutputOptSecondQtyList.add(
+                    StockDtoOutputOptSecondQty.builder()
+                            .stockId(stock.getId())
+                            .optionSecond(stock.getOptionSecond())
+                            .qty(stock.getQty())
+                            .build()
+            );
+        });
+
+        return stockDtoOutputOptSecondQtyList;
+    }
+
+    // 5-2. 옵션1과 재고 조회하기
+    @Override
+    public List<StockDtoOutputOptFirstQty> getOptFirstAndQty(int optionSecondId) {
+        List<Stock> stockList = iStockRepository.findOptionFirstAndStockQty(optionSecondId);
+        List<StockDtoOutputOptFirstQty> stockDtoOutputOptFirstQties = new ArrayList<>();
+        stockList.forEach(stock -> {
+            stockDtoOutputOptFirstQties.add(
+                    StockDtoOutputOptFirstQty.builder()
+                            .stockId(stock.getId())
+                            .optionFirst(stock.getOptionFirst())
+                            .qty(stock.getQty())
+                            .build()
+            );
+        });
+
+        return stockDtoOutputOptFirstQties;
     }
 }

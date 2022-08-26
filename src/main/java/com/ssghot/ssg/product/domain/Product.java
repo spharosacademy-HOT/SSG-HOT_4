@@ -58,6 +58,9 @@ public class Product extends CommonDTO {
     @OneToMany
     private List<Review> reviewList;
 
+//    @OneToMany
+//    private List<WishList> wishLists;
+
     //=== 조회 수 증가 ===//
     public int addViewCount(){
         return this.viewCount++;

@@ -1,6 +1,8 @@
 package com.ssghot.ssg.optionList.service;
 
 import com.ssghot.ssg.optionList.domain.Stock;
+import com.ssghot.ssg.optionList.dto.StockDtoOutputOptFirstQty;
+import com.ssghot.ssg.optionList.dto.StockDtoOutputOptSecondQty;
 import com.ssghot.ssg.optionList.dto.StockDtoOutputProductIdName;
 
 import java.util.List;
@@ -12,6 +14,9 @@ public interface IStockService {
         2. 재고 수정하기
         3. 재고 전체 조회하기
         4. 재고 단건 조회하기
+
+        5-1. 옵션2와 재고 조회하기
+        5-2. 옵션1과 재고 조회하기
 
      */
 
@@ -27,5 +32,9 @@ public interface IStockService {
     // 4. 재고 단건 조회하기
     Stock getOneStock(Long id);
 
+    // 5-1. 옵션2와 재고 조회하기
+    List<StockDtoOutputOptSecondQty> getOptSecondAndQty(int optionFirstId);
 
+    // 5-2. 옵션1과 재고 조회하기
+    List<StockDtoOutputOptFirstQty> getOptFirstAndQty(int optionSecondId);
 }

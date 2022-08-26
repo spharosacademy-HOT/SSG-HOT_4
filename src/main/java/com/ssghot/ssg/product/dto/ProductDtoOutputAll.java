@@ -44,6 +44,9 @@ public class ProductDtoOutputAll {
 
     //=== Review ===///
 
+//    //=== WishList ===///
+//    private List<WishListDtoOutput> wishLists;
+
 
     public ProductDtoOutputAll(Product product){
         this.id = product.getId();

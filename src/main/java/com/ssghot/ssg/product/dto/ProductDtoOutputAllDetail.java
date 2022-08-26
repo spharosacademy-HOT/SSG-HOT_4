@@ -1,6 +1,7 @@
 package com.ssghot.ssg.product.dto;
 
 import com.ssghot.ssg.categoryProductList.dto.CategoryProductListDtoOutput;
+import com.ssghot.ssg.optionList.domain.OptionFirst;
 import com.ssghot.ssg.optionList.dto.StockDtoOutputProductIdName;
 import com.ssghot.ssg.review.dto.ReviewDtoOutputDetail;
 import lombok.AllArgsConstructor;
@@ -33,6 +34,8 @@ public class ProductDtoOutputAllDetail {
     private String titleImgUrl; // 타이틀 이미지 url
     private String titleImgTxt; // 타이틀 이미지 txt
 
+    private List<OptionFirst> optionFirst; // 옵션 첫번째
+
     //=== ProductSubImg ===///
     private List<ProductSubImgDtoOutputOnlyId> productSubImgList;
 
@@ -44,5 +47,8 @@ public class ProductDtoOutputAllDetail {
 
     //=== Review ===///
     private List<ReviewDtoOutputDetail> reviewList;
+
+//    //=== WishList ===///
+//    private List<WishListDtoOutput> wishList;
 
 }

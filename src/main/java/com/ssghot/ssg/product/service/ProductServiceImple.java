@@ -5,6 +5,7 @@ import com.ssghot.ssg.category.repository.ICategoryRepository;
 import com.ssghot.ssg.categoryProductList.domain.CategoryProductList;
 import com.ssghot.ssg.categoryProductList.dto.CategoryProductListDtoOutput;
 import com.ssghot.ssg.categoryProductList.repository.ICategoryProductListRepository;
+import com.ssghot.ssg.optionList.domain.OptionFirst;
 import com.ssghot.ssg.optionList.domain.Stock;
 import com.ssghot.ssg.optionList.dto.StockDtoOutputProductIdName;
 import com.ssghot.ssg.optionList.repository.IStockRepository;
@@ -16,6 +17,7 @@ import com.ssghot.ssg.product.repository.IProductSubImgRepository;
 import com.ssghot.ssg.review.domain.Review;
 import com.ssghot.ssg.review.dto.ReviewDtoOutputDetail;
 import com.ssghot.ssg.review.repository.IReviewRepository;
+import com.ssghot.ssg.wish_list.repository.IWishListRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -43,6 +45,8 @@ public class ProductServiceImple implements IProductService{
 
     private final ICategoryProductListRepository iCategoryProductListRepository;
     private final IReviewRepository iReviewRepository;
+
+    private final IWishListRepository iWishListRepository;
 
     /*
         1. 상품 등록하기
@@ -186,7 +190,7 @@ public class ProductServiceImple implements IProductService{
                     stockList.forEach(stock -> {
                         stockDtoOutputProductIdNameList.add(
                                 StockDtoOutputProductIdName.builder()
-                                        .id(stock.getId())
+                                        .stockId(stock.getId())
                                         .qty(stock.getQty())
                                         .productId(stock.getProduct().getId())
                                         .optionFirstId(stock.getOptionFirst().getId())
@@ -282,6 +286,7 @@ public class ProductServiceImple implements IProductService{
         return iProductRepository.findAll(pageable)
                 .map(product ->
                         {
+                            // subimg
                             List<ProductSubImg> productSubImgList = iProductSubImgRepository.findAllByProductId(product.getId());
                             List<ProductSubImgDtoOutputOnlyId> productSubImgDtoOutputOnlyIds = new ArrayList<>();
 
@@ -299,7 +304,7 @@ public class ProductServiceImple implements IProductService{
                             stockList.forEach(stock -> {
                                 stockDtoOutputProductIdNameList.add(
                                         StockDtoOutputProductIdName.builder()
-                                                .id(stock.getId())
+                                                .stockId(stock.getId())
                                                 .qty(stock.getQty())
                                                 .productId(stock.getProduct().getId())
                                                 .optionFirstId(stock.getOptionFirst().getId())
@@ -351,6 +356,23 @@ public class ProductServiceImple implements IProductService{
         return iProductRepository.findAll(pageable)
                 .map(product ->
                         {
+
+//                            // WishList
+//                            List<WishList> wishLists = iWishListRepository.findAllByProductId(product.getId());
+//                            List<WishListDtoOutput> wishListDtoOutputList = new ArrayList<>();
+//                            wishLists.forEach(wishList -> {
+//                                wishListDtoOutputList.add(
+//                                        WishListDtoOutput.builder()
+//                                                .id(wishList.getId())
+//                                                .userId(wishList.getUser().getId())
+//                                                .product(wishList.getProduct())
+//                                                .createdDate(wishList.getCreatedDate())
+//                                                .updatedDate(wishList.getUpdatedDate())
+//                                                .build()
+//                                );
+//                            });
+
+                            // SubImg
                             List<ProductSubImg> productSubImgList = iProductSubImgRepository.findAllByProductId(product.getId());
                             List<ProductSubImgDtoOutputOnlyId> productSubImgDtoOutputOnlyIds = new ArrayList<>();
 
@@ -368,7 +390,7 @@ public class ProductServiceImple implements IProductService{
                             stockList.forEach(stock -> {
                                 stockDtoOutputProductIdNameList.add(
                                         StockDtoOutputProductIdName.builder()
-                                                .id(stock.getId())
+                                                .stockId(stock.getId())
                                                 .qty(stock.getQty())
                                                 .productId(stock.getProduct().getId())
                                                 .optionFirstId(stock.getOptionFirst().getId())
@@ -409,6 +431,7 @@ public class ProductServiceImple implements IProductService{
                                     .productSubImgList(productSubImgDtoOutputOnlyIds)
                                     .categoryProductList(categoryProductListDtoOutputList)
                                     .stockList(stockDtoOutputProductIdNameList)
+//                                    .wishLists(wishListDtoOutputList)
                                     .build();
                         }
                 );
@@ -442,6 +465,19 @@ public class ProductServiceImple implements IProductService{
 
             System.out.println("getViewCount() : " + product.get().getViewCount());
 
+//            // WishList
+//            List<WishList> wishLists = iWishListRepository.findAllByProductId(product.get().getId());
+//            List<WishListDtoOutput> wishListDtoOutputList = new ArrayList<>();
+//            wishLists.forEach(wishList -> {
+//                wishListDtoOutputList.add(
+//                        WishListDtoOutput.builder()
+//                                .id(wishList.getId())
+//                                .userId(wishList.getUser().getId())
+//                                .createdDate(wishList.)
+//                                .build()
+//                );
+//            });
+
             // ProductSubImg
             List<ProductSubImg> productSubImgList = iProductSubImgRepository.findAllByProductId(product.get().getId());
             List<ProductSubImgDtoOutputOnlyId> productSubImgDtoOutputOnlyIdList = new ArrayList<>();
@@ -473,7 +509,7 @@ public class ProductServiceImple implements IProductService{
             stockList.forEach(stock -> {
                 stockDtoOutputProductIdNameList.add(
                         StockDtoOutputProductIdName.builder()
-                                .id(stock.getId())
+                                .stockId(stock.getId())
                                 .qty(stock.getQty())
                                 .productId(stock.getProduct().getId())
                                 .optionFirstId(stock.getOptionFirst().getId())
@@ -482,9 +518,27 @@ public class ProductServiceImple implements IProductService{
                 );
             });
 
+            // 첫번째 옵션 리스트
+            List<OptionFirst> optionFirstList = new ArrayList<>();
+            int size = stockList.size();
+            System.out.println("size = " + size);
+            boolean[] check = new boolean[size];
+            stockList.forEach(stock -> {
+                if(check[(stock.getOptionFirst().getId())] = true ){
+                    check[stock.getOptionFirst().getId()] = false;
+                    optionFirstList.add(
+                        OptionFirst.builder()
+                                .id(stock.getOptionFirst().getId())
+                                .name(stock.getOptionFirst().getName())
+                                .build()
+                    );
+                }
+            });
+
             // Review
             List<Review> reviewList = iReviewRepository.findAllByProductId(product.get().getId());
             List<ReviewDtoOutputDetail> reviewDtoOutputDetailList = new ArrayList<>();
+
             reviewList.forEach(review -> {
                 reviewDtoOutputDetailList.add(
                         ReviewDtoOutputDetail.builder()
@@ -495,6 +549,8 @@ public class ProductServiceImple implements IProductService{
                                 .imgUrl2(review.getImgUrl2())
                                 .createdDate(review.getCreatedDate())
                                 .orderItemId(review.getOrderItem().getId())
+                                .optionFirst(review.getOrderItem().getStock().getOptionFirst())
+                                .optionSecond(review.getOrderItem().getStock().getOptionSecond())
                                 .userId(review.getUser().getId())
                                 .build()
                 );
@@ -521,7 +577,8 @@ public class ProductServiceImple implements IProductService{
                     .productSubImgList(productSubImgDtoOutputOnlyIdList)
 //                    .stockList(iStockRepository.findAllByProductId(product.get().getId()))
                     .stockList(stockDtoOutputProductIdNameList)
-                    .reviewList(reviewDtoOutputDetailList)
+                    .optionFirst(optionFirstList)
+//                    .reviewList(reviewDtoOutputDetailList)
                     .build();
         }
 
@@ -545,7 +602,7 @@ public class ProductServiceImple implements IProductService{
         stockList.forEach(stock -> {
             stockDtoOutputProductIdNameList.add(
                     StockDtoOutputProductIdName.builder()
-                            .id(stock.getId())
+                            .stockId(stock.getId())
                             .qty(stock.getQty())
                             .optionFirstId(stock.getOptionFirst().getId())
                             .optionSecondId(stock.getOptionSecond().getId())
@@ -673,7 +730,7 @@ public class ProductServiceImple implements IProductService{
             stockList.forEach(stock -> {
                 stockDtoOutputProductIdNameList.add(
                         StockDtoOutputProductIdName.builder()
-                                .id(stock.getId())
+                                .stockId(stock.getId())
                                 .qty(stock.getQty())
                                 .productId(stock.getProduct().getId())
                                 .optionFirstId(stock.getOptionFirst().getId())
@@ -738,7 +795,7 @@ public class ProductServiceImple implements IProductService{
             stockList.forEach(stock -> {
                 stockDtoOutputProductIdNameList.add(
                         StockDtoOutputProductIdName.builder()
-                                .id(stock.getId())
+                                .stockId(stock.getId())
                                 .qty(stock.getQty())
                                 .productId(stock.getProduct().getId())
                                 .optionFirstId(stock.getOptionFirst().getId())
@@ -804,7 +861,7 @@ public class ProductServiceImple implements IProductService{
             stockList.forEach(stock -> {
                 stockDtoOutputProductIdNameList.add(
                         StockDtoOutputProductIdName.builder()
-                                .id(stock.getId())
+                                .stockId(stock.getId())
                                 .qty(stock.getQty())
                                 .productId(stock.getProduct().getId())
                                 .optionFirstId(stock.getOptionFirst().getId())

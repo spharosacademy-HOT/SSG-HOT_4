@@ -1,5 +1,7 @@
 package com.ssghot.ssg.review.dto;
 
+import com.ssghot.ssg.optionList.domain.OptionFirst;
+import com.ssghot.ssg.optionList.domain.OptionSecond;
 import lombok.Builder;
 import lombok.Data;
 
@@ -19,8 +21,8 @@ public class ReviewDtoOutputDetail {
 
     private Long orderItemId;
     private Long userId;
-    private Long optionFirstId;
-    private Long optionSecondId;
+    private OptionFirst optionFirst;
+    private OptionSecond optionSecond;
 
     private LocalDateTime createdDate;
 }

@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class StockDtoOutputProductIdName {
 
-    private Long id;
+    private Long stockId;
 
     private int qty;
 
