@@ -176,7 +176,7 @@
 .product-review-box{
     padding: 20px;
 }
-.product-review-box div{
+.product-review-box .review-box-contain{
     display: flex;
 }
 .review-image-list{
@@ -236,9 +236,6 @@
     font-weight: bold;
 }
 /* 토탈 리뷰 */
-.total-review{
-    padding: 20px;
-}
 .total-review-header{
     display: flex;
     justify-content: space-between;
