@@ -17,6 +17,7 @@ public class AddressDtoInput {
     private String homePhone;
     private String city;
     private String street;
+    private boolean existed;
     private int zipcode;
 
 
@@ -29,6 +30,7 @@ public class AddressDtoInput {
                 .phone(getPhone())
                 .homePhone(getHomePhone())
                 .city(getCity())
+                .existed(isExisted()?isExisted():false)
                 .street(getStreet())
                 .zipcode(getZipcode())
                 .user(user)

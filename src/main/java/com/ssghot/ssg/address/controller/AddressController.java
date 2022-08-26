@@ -6,11 +6,14 @@ import com.ssghot.ssg.users.dto.ResultListDtoOutput;
 import com.ssghot.ssg.users.sevice.IUserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*")
@@ -26,6 +29,20 @@ public class AddressController {
         Long userId = iUserService.getUserByToken(request);
         addressDtoInput.setUserId(userId);
         return iAddressService.addAddress(addressDtoInput);
+    }
+    @GetMapping("/user/existed")
+    @PreAuthorize("hasRole('ROLE_USER')")
+    public ResponseEntity<Map<String,Object>> findExisted(HttpServletRequest request) {
+        Long userId = iUserService.getUserByToken(request);
+        boolean existedAddressByUserId = iAddressService.getExistedAddressByUserId(userId);
+
+        Map<String,Object> result = new HashMap<>();
+        if(existedAddressByUserId==false){
+            result.put("result", false);
+            return ResponseEntity.ok().body(result);
+        }
+        result.put("result", true);
+        return ResponseEntity.ok().body(result);
     }
 
     @GetMapping("")

@@ -13,6 +13,8 @@ public interface IAddressService {
         4. 배송지 기존 배송지로 변경
         5. 유저별 배송지 조회
         6. 전체 조회
+        7. 기존 배송지 있는지 확인
+
      */
     AddressDtoOutput addAddress(AddressDtoInput address);
 
@@ -26,5 +28,5 @@ public interface IAddressService {
 
     ResultListDtoOutput<List<AddressDtoOutput>> getAll();
 
-
+    boolean getExistedAddressByUserId(Long userId);
 }
