@@ -182,11 +182,9 @@
 .review-image-list{
     display: flex;
     flex-wrap: wrap;
-}
-.review-image-list div{
     width: 25%;
 }
-.review-image-list div img{
+.review-image-list img{
     width: 100%;
     padding: 0.5px;
 }
