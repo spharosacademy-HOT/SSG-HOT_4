@@ -1,10 +1,11 @@
-import React, { useState} from 'react'
-import { Link } from 'react-router-dom';
-import Button from 'react-bootstrap/Button';
+import React, { useEffect, useState} from 'react'
+
 import Modal from 'react-bootstrap/Modal';
 import ProductReviewPage from './productReview/productReviewDetail/ProductReviewPage';
+import axios from 'axios';
+import CommonHeader from '../../../components/layout/header/CommonHeader';
 
-function ProductSimpleReview({itemNum}) {
+function ProductSimpleReview({itemNum, reviewDatas}) {
     const [fullscreen, setFullscreen] = useState(true);
     const [show, setShow] = useState(false);
   
@@ -12,7 +13,6 @@ function ProductSimpleReview({itemNum}) {
       setFullscreen(breakpoint);
       setShow(true);
     }
-  
     return ( 
         <>
             <div className='product-simple-review'>
@@ -23,8 +23,13 @@ function ProductSimpleReview({itemNum}) {
             </div>
             <hr />
             <Modal show={show} fullscreen={fullscreen} onHide={() => setShow(false)}>
-                <Modal.Header closeButton>
-                <Modal.Title>Modal</Modal.Title>
+                <Modal.Header>
+                        <div className="backBtn">
+                            <button type="button" onClick={() => setShow(false)}></button>
+                        </div>
+                        <div className='title-style'>
+                            고객리뷰
+                        </div>
                 </Modal.Header>
                 <Modal.Body>
                     <ProductReviewPage/>

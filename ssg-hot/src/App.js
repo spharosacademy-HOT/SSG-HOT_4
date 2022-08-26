@@ -22,11 +22,9 @@ import Qna from "./pages/auth/qna/Qna";
 import CartControl from "./pages/myPage/cartcontrol/CartControl";
 import PlusShip from "./pages/myPage/cartcontrol/plusship/PlusShip";
 import ScrollToTop from "./components/layout/ScrollToTop";
-
 import Like from "./pages/myPage/like/Like";
-
 import Purchase from "./pages/product/productPurchase/Purchase";
-
+import KakaoRedirectHandler from "./pages/auth/oauth/KakaoRedirectHandler";
 //css
 import "./styles/styles.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -50,6 +48,9 @@ function App() {
         <Route path="/product" element={<Product />}>
           <Route path=":productId" element={<Product />} />
         </Route>
+        <Route path="/product/purchase" element={<Purchase/>}>
+          <Route path=":productId" element={<Purchase/>}/>
+        </Route>
           <Route path="/product/review" element={<ProductReviewPage />}>
             <Route path=":productId" element={<ProductReviewPage />} />
           </Route>
@@ -62,6 +63,7 @@ function App() {
             <Route path=":productId" element={<Qna/>}/>
           </Route>
           <Route path="/like" element={<Like/>}/>
+          <Route path="/oauth/redirect" element={<KakaoRedirectHandler />} />
         </Routes>
         <ToolBar />
         <Footer />

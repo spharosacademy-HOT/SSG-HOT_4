@@ -14,7 +14,7 @@ import StoreInfo from "./productDetail/StoreInfo";
 
 import ProductCard from "./ProductCard";
 // import productDatas from "../../datas/js/productDatas";
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import axios from "axios";
 import ProductPurchaseBar from "./productDetail/ProductPurchaseBar";
 import { baseURL } from "../../store/apis/apiClient";
@@ -31,7 +31,7 @@ function Product() {
   }, [pageUrl]);
   useEffect(() => {
     axios
-      .get(baseURL+`/product/${productPageNum}`)
+      .get(`${baseURL}/product/${productPageNum}`)
       .then((Response) => {
         setProductDatas(Response.data);
       });
@@ -43,11 +43,11 @@ function Product() {
       <ProductMainImg productDatas={productDatas.titleImgUrl} />
       <ProductInfo productDatas={productDatas} />
       <SmileClub />
-      <ProductSimpleReview itemNum={productPageNum} />
+      <ProductSimpleReview itemNum={productPageNum} reviewDatas={productDatas.reviewList} />
       <ProductEvent />
       <ProductDetailInfo />
       <ProductDetailImg imgNum={productDatas.productSubImgList} />
-      <ProductReiew />
+      <ProductReiew reviewDatas={productDatas.reviewList} />
       <ProductQnA />
       <ProductGuide />
       <EventBanner />
