@@ -50,8 +50,6 @@ function App() {
         <Route path="/product" element={<Product />}>
           <Route path=":productId" element={<Product />} />
         </Route>
-
-
           <Route path="/product/review" element={<ProductReviewPage />}>
             <Route path=":productId" element={<ProductReviewPage />} />
           </Route>
@@ -60,14 +58,15 @@ function App() {
           <Route path="/emailsignup" element={<EmailSignUp />} />
           <Route path="/cartcontrol" element={<CartControl />} />
           <Route path="/plusship" element={<PlusShip />} />
-          <Route path="/qna" element={<Qna />} />
+          <Route path="/qna" element={<Qna />} >
+            <Route path=":productId" element={<Qna/>}/>
+          </Route>
           <Route path="/like" element={<Like/>}/>
         </Routes>
         <ToolBar />
         <Footer />
       </BrowserRouter>
     </RecoilRoot>
-
   );
 }
 

@@ -45,7 +45,6 @@ function LogInInput() {
 
           getMyCart().then((res) => {
             setCartData(res.data);
-            console.log("!!!!!!!!!!!!!!", res.data);
           });
 
           navigate("/");
