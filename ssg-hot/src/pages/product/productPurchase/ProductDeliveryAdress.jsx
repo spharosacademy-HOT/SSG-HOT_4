@@ -1,6 +1,23 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import Modal from 'react-bootstrap/Modal';
+import { getAddress } from '../../../store/apis/address';
 
 function ProductDeliveryAdress() {
+    const [fullscreen, setFullscreen] = useState(true);
+    const [show, setShow] = useState(false);
+    const [address, setAddress] = useState();
+    const handleShow = (breakpoint) => {
+        setFullscreen(breakpoint);
+        setShow(true);
+      }
+    
+    useEffect(()=>{
+        getAddress().then((res)=>{
+            console.log(res.data)
+            setAddress(res.data)
+        })
+    },[])
+
     return ( 
         <>
             <div className='purchase-card-box product-delivery-adress'>
@@ -9,7 +26,10 @@ function ProductDeliveryAdress() {
                         배송지 박수아
                     </div>
                     <div className='purchase-change-button'>
-                        <button>변경</button>
+                        <button
+                            onClick={()=> handleShow(true)}>
+                            변경
+                        </button>
                     </div>
                 </div>
                 <div>
@@ -24,6 +44,26 @@ function ProductDeliveryAdress() {
                     </div>
                 </div>
             </div>
+            <Modal show={show} fullscreen={fullscreen} onHide={() => setShow(false)}>
+                <Modal.Header>
+                    <div className="backBtn">
+                        <button type="button" onClick={() => setShow(false)}></button>
+                    </div>
+                    <div className='title-style'>
+                        배송지선택
+                    </div>
+                </Modal.Header>
+                <Modal.Body>
+                    <div>
+                        <div>어디로 보내드릴까요?</div>
+                        <div>+ 신규배송지등록</div>
+                        <div>
+
+                        </div>
+                        <div>더보기</div>
+                    </div>
+                </Modal.Body>
+            </Modal>
         </>
      );
 }
