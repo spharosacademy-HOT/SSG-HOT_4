@@ -82,6 +82,16 @@ public class AddressServiceImpl implements IAddressService{
 
         return getAddressDtoOutputs(addresses);
     }
+
+    @Override
+    public boolean getExistedAddressByUserId(Long userId) {
+        Optional<Address> existedByUserId = iAddressRepository.findExistedByUserId(userId);
+        if(existedByUserId.isPresent()){
+            return true;
+        }
+        return false;
+    }
+
     public AddressDtoExistedOutput getAddressDtoExistedOutput(int status, String result, String message){
         AddressDtoExistedOutput addressDtoExistedOutput = AddressDtoExistedOutput.builder()
                 .status(status)
