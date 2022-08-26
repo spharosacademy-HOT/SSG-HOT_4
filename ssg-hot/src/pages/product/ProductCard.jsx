@@ -1,19 +1,50 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import LikeButton from "../../components/common/widgets/button/LikeButton";
+import { getLike, postLike } from "../../store/apis/like";
 
 function ProductCard({ item }) {
+  const [isLike, setIsLike] = useState();
+
+  const addWish = (id, e) => {
+    e.preventDefault();
+    // const result = e.target.value;
+    console.log(id);
+    postLike(id).then((res) => console.log(res, "좋아요요청"));
+  };
+  useEffect(() => {
+    getLike().then((res) => {
+      console.log(res.data, "좋아요가져오기");
+      if (res.data !== null) {
+        res.data.map((like) => {
+          if (like.product.id == item.id) {
+            console.log(like.product.id, "dsfsjjfklsjdklfjlk");
+            setIsLike(true);
+          }
+        });
+      }
+    });
+  }, []);
   return (
     <>
-      <div className="product-thumbnail-card">
+      <div className="product-thumbnail-card" style={{ position: "relative" }}>
+        <div
+          style={{
+            position: "absolute",
+            zIndex: "30",
+            left: "80%",
+            top: "28%",
+          }}
+          onClick={(e) => addWish(item.id, e)}
+        >
+          <LikeButton isLike={isLike} setIsLike={setIsLike} />
+        </div>
         <Link to={`/product/${item.id}`}>
           <div className="product-image">
             <img src={item.titleImgUrl} alt="" />
-            <div>
-              <LikeButton/>
-            </div>
+            <div></div>
           </div>
           <div className="product-info">
             <div className="product-name">{item.name}</div>
@@ -24,7 +55,6 @@ function ProductCard({ item }) {
                 <div>{item.discountPrice}원</div>
                 <div>{item.discountRate}%</div>
               </div>
-
             </div>
             <div>
               <div>

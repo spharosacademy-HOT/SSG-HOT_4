@@ -4,7 +4,7 @@ import PlusShipContent from './PlusShipContent.jsx';
 
 function PlusShip() {
     return (  <>
-     <CommonHeader title="배송지 추가" />
+     <CommonHeader title="배송지 추가/수정" />
      <PlusShipContent/>
     </>);
 }

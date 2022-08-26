@@ -2,24 +2,20 @@ import React, { useEffect, useState } from "react";
 import ProductCard from "./ProductCard";
 // import productDatas from "../../datas/js/productDatas";
 import ProductCardFilter from "./ProductCardFIlter";
-import axios from 'axios';
+import axios from "axios";
 import { baseURL } from "../../store/apis/apiClient";
 import { useParams } from "react-router-dom";
 
-
-
 function ProductCardList() {
-  let params = useParams()
+  let params = useParams();
 
-  const [productDatas, setProductDatas] = useState([])
-  useEffect(()=>{
-    axios.get(`${baseURL}/categorym/${params.categoryMId}`)
-      .then(Response =>{
-        setProductDatas(Response.data.productList)
-      })
-  },[])
-  console.log(productDatas)
-
+  const [productDatas, setProductDatas] = useState([]);
+  useEffect(() => {
+    axios.get(`${baseURL}/categorym/${params.categoryMId}`).then((Response) => {
+      setProductDatas(Response.data.productList);
+    });
+  }, []);
+  console.log(productDatas);
 
   return (
     <>
@@ -34,9 +30,9 @@ function ProductCardList() {
       </div>
       <div className="product-list">
         {productDatas &&
-          productDatas.map((item) =>
+          productDatas.map((item, idx) => (
             <ProductCard item={item} key={item.id} />
-          )}
+          ))}
       </div>
     </>
   );

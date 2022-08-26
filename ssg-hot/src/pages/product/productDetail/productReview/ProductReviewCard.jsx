@@ -1,12 +1,12 @@
 import React from 'react';
 
-function ProductReviewCard() {
+function ProductReviewCard({item}) {
     return ( 
         <>
             <div className='product-review-card'>
                 <div className='review-star'>
                     <div>
-                        <div>별점&nbsp;</div>
+                        <div>{item.star}&nbsp;</div>
                         <div>| 일반</div>
                     </div>
                     <div>
@@ -15,10 +15,10 @@ function ProductReviewCard() {
                 </div>
                 <div>
                     <div>
-                        2022.07.11 &nbsp;|&nbsp;&nbsp;
+                        {item.createdDat} &nbsp;|&nbsp;&nbsp;
                     </div>
                     <div>
-                        tndk**** &nbsp;|&nbsp;&nbsp;
+                        {item.userId} &nbsp;|&nbsp;&nbsp;
                     </div>
                     <div>
                         신세계몰
@@ -33,7 +33,7 @@ function ProductReviewCard() {
                     </div>
                 </div>
                 <div className='review-content'>
-                    정말 싸게 샀어요 아이가 좋아해요
+                    {item.content}
                 </div>
             </div>
             <hr />

@@ -1,12 +1,22 @@
 import React from "react";
+import { postQna } from "../../../store/apis/qna";
 
 function QnaFooter() {
+  const writeQna = () => {
+    const qnaData = {
+      type: "getType",
+      title: "getTitle",
+      contents: "getContent",
+      secret: "true",
+      productId: "",
+    };
+    postQna(qnaData).then((res) => {
+      console.log(res);
+    });
+  };
   return (
     <>
-      <div className="qna_check">
-        <input type="checkbox" id="lbQnaSecret" className="blind" />
-        <label htmlFor="lbQnaSecret"></label>
-      </div>
+      
 
       <ul className="qna_notice">
         <li className="lst">
@@ -37,11 +47,10 @@ function QnaFooter() {
             <span className="sp_com sel_arrow">&nbsp;</span>
 
             <span className="col dash">
-              -
               <select
                 id="receiverPhone"
                 title="휴대폰 앞자리"
-                style={{ width: "48px" }}
+                style={{ width: "50px" }}
               >
                 <option value="010"> 010</option>
                 <option value="011"> 011</option>
@@ -50,7 +59,6 @@ function QnaFooter() {
                 <option value="018"> 018</option>
                 <option value="019"> 019</option>
               </select>
-              -
             </span>
             <span className="col">
               <input
@@ -76,10 +84,17 @@ function QnaFooter() {
       </div>
 
       <div className="btn_area">
-        <a href="#;" className="btn_submit">
+        <a
+          href="#;"
+          className="btn_submit"
+          onClick={()=>alert("신청완료되었습니다")}>
           확인
         </a>
-        <a href="main;" className="btn_cancle">
+        <a
+          href="main;"
+          className="btn_cancle"
+          onClick={()=>alert("취소되었습니다")}
+        >
           취소
         </a>
       </div>

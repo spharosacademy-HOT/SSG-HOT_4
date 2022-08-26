@@ -45,8 +45,6 @@ function LogInInput() {
 
           getMyCart().then((res) => {
             setCartData(res.data);
-            console.log(ACCESS_TOKEN);
-            console.log("!!!!!!!!!!!!!!", res.data);
           });
 
           navigate("/");

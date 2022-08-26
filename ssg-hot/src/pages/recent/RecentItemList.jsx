@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import RecentItem from "../../components/common/widgets/itemList/recent/RecentItem";
+import { getRecent } from "../../store/apis/recent";
 import RecentModal from "./RecentModal";
 export default function RecentItemList() {
   const [rcData, setRcData] = useState();
@@ -9,13 +9,10 @@ export default function RecentItemList() {
   const [modalData, setModalData] = useState();
 
   useEffect(() => {
-    axios
-      .get(`https://ssg-hot.herokuapp.com/api/recentlyviewedproduct`)
-      .then((Response) => {
-        setRcData(Response.data);
-        console.log(Response.data);
-      })
-      .catch((Error) => console.log(Error));
+    getRecent().then((res) => {
+      setRcData(res);
+      console.log(res, "데이터 가져옴");
+    });
   }, []);
 
   return (
@@ -38,6 +35,7 @@ export default function RecentItemList() {
                   dataId={dataId}
                   setDataId={setDataId}
                   setModalData={setModalData}
+                  setRcData={setRcData}
                 />
               ))}
             </ul>

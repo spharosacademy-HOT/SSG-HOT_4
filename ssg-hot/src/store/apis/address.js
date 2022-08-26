@@ -21,6 +21,7 @@ export const putAddress = async (myAddress) => {
 export const deleteAddress = async (id) => {
   const res = await apiClient.delete(`/address/${id}`);
   return res;
+
 };
 /// test
 
@@ -100,3 +101,4 @@ async function postImg(endpoint, formdata) {
 // 아래처럼 export한 후, import * as A 방식으로 가져오면,
 // A.get, A.post 로 쓸 수 있음.
 export { get, post, put, patch, del as delete, postImg };
+
