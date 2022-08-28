@@ -4,56 +4,32 @@ import CategoryItem from './CategoryItem';
 import CategoryViewer from './CategoryViewer';
 import { baseURL } from '../../store/apis/apiClient';
 
-function CategoryGroup({categoryId, viewIsTrue, cateNumber, setCateNumber, isClick, setIsClick, cateId}) {
-
-    const [getNum , setGetNum] = useState(1)
-    const [viewerData, setViewerData] = useState([])
+function CategoryGroup({setIsClick}) {
     const [viewerView, setViewerView] = useState(false)
-    const [differ, setDiffer] = useState(false)
-    const [categoryMId, setCategoryMId] = useState([])
-    // useEffect(() => {
-   
-    //     setViewerData(cateData[getNum-1].content)
-    //     setCateNumber(cateId)
+    const [categoryIds, setCategoryId] = useState()
 
-    // }, [getNum])
-    // console.log('id',cateData)
-    useEffect(() =>{
+    useEffect(()=>{
         axios
-            .get(`${baseURL}/category/${categoryId.id}`)
-            .then((Response)=>{
-                setCategoryMId(Response.data.categoryMList)
-            })
+          .get(`${baseURL}/category`)
+          .then((Response) =>{
+            setCategoryId(Response.data)
+          })
     },[])
-    // console.log(categoryMId)
+    console.log('첫번째',categoryIds)
     return ( 
         <>
             <ul className='category-align'>
-                {/* {
-                    cateData && cateData.map(item =>(
-                        <CategoryItem
-                            item={item}
-                            key={item.id}
-                            // getNum = {getNum}
-                            cateNumber = {cateNumber}
-                            setGetNum = {setGetNum}
-                            setViewerView={setViewerView}
-                            isClick={isClick}
-                            setIsClick={setIsClick}
-                            setDiffer={setDiffer}/>
-                    ))
-                } */}
                 {
-                    // categoryMId && categoryMId.map(item =>(
-                    //     <CategoryItem item={item} key={item.id}/>
-                    // ))
-                    <CategoryItem categoryId={categoryId} setViewerView={setViewerView} setIsClick={setIsClick}/>
+                    categoryIds && categoryIds.map(item => (
+                        <CategoryItem item={item} setViewerView={setViewerView} setIsClick={setIsClick} key={item.id}/>
+                    ))
                 }
+
             </ul>
-           {/* <CategoryViewer item={viewerData} isTrue={viewerView} differ={differ} getNum={getNum}/> */}
+           {/* <CategoryViewer item={viewerData} isTrue={viewerView} getNum={getNum}/> */}
            {
-            categoryMId && categoryMId.map(item =>(
-                <CategoryViewer item={item} key={item.id} isTrue={viewerView}/>
+            categoryIds && categoryIds.map(item =>(
+                <CategoryViewer item={item.id} key={item.id} isTrue={viewerView}/>
             ))
            }
         </>

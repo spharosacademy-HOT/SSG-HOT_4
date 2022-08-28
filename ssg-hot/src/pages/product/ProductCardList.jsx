@@ -30,7 +30,7 @@ function ProductCardList() {
       </div>
       <div className="product-list">
         {productDatas &&
-          productDatas.map((item, idx) => (
+          productDatas.map((item) => (
             <ProductCard item={item} key={item.id} />
           ))}
       </div>

@@ -1,24 +1,24 @@
 import React from "react";
 
-function CategoryItem({ setViewerView, item,cateNumber, setGetNum, isClick, setIsClick, setDiffer, categoryId }) {
+function CategoryItem({ setViewerView, isClick, setIsClick, item }) {
 
   const handleCateItem = () => {
-    // cateNumber !== categoryId.id ? setDiffer(true) : setDiffer(false)
-    // setGetNum(categoryId.id)
     setViewerView(true)
     setIsClick(!isClick)
 
   }
+  console.log('두번째')
+  console.log(item)
 
   return (
 
       <li>
         <div className="category-clickable" onClick={handleCateItem}>
           <div>
-            <img src={categoryId.imgUrl} alt="카테고리 이미지" />
+            <img src={item.imgUrl} alt="카테고리 이미지" />
             <div className={isClick ? "clicked" : "un-clicked"}></div>
           </div>
-          <p>{categoryId.name}</p>
+          <p>{item.name}</p>
         </div>
       </li>
   );
