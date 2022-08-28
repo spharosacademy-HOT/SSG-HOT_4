@@ -1,4 +1,4 @@
-import { apiClient } from "./apiClient";
+import { apiClient, baseURL } from "./apiClient";
 import axios from "axios";
 // 주소 추가하기
 export const addAddress = async (myAddress) => {
@@ -21,11 +21,10 @@ export const putAddress = async (myAddress) => {
 export const deleteAddress = async (id) => {
   const res = await apiClient.delete(`/address/${id}`);
   return res;
-
 };
 /// test
 
-const baseUrl = `http://localhost:8080/api`;
+const baseUrl = baseURL;
 
 async function get(endpoint) {
   return axios.get(baseUrl + endpoint, {
@@ -101,4 +100,3 @@ async function postImg(endpoint, formdata) {
 // 아래처럼 export한 후, import * as A 방식으로 가져오면,
 // A.get, A.post 로 쓸 수 있음.
 export { get, post, put, patch, del as delete, postImg };
-
