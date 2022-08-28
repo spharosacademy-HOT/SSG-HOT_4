@@ -21,18 +21,6 @@
   padding: 9px 8px 23px;
 }
 
-.select_test {
-  width: 200px; /* 원하는 너비설정 */
-  padding: 0.8em 0.5em; /* 여백으로 높이 설정 */
-  font-family: inherit; /* 폰트 상속 */
-
-  border: 1px solid #999;
-  border-radius: 0px; /* iOS 둥근모서리 제거 */
-  -webkit-appearance: none; /* 네이티브 외형 감추기 */
-  -moz-appearance: none;
-  appearance: none;
-}
-
 .des_select2 {
   display: block;
   position: relative;
