@@ -45,6 +45,21 @@ public class AddressController {
         return ResponseEntity.ok().body(result);
     }
 
+    @GetMapping("/user/existed/v2")
+    @PreAuthorize("hasRole('ROLE_USER')")
+    public Map<String,Object> findExistedV2(HttpServletRequest request) {
+        Long userId = iUserService.getUserByToken(request);
+        boolean existedAddressByUserId = iAddressService.getExistedAddressByUserId(userId);
+
+        Map<String,Object> result = new HashMap<>();
+        if(existedAddressByUserId==false){
+            result.put("result", false);
+            return result;
+        }
+        result.put("result", true);
+        return result;
+    }
+
     @GetMapping("")
     public ResultListDtoOutput<List<AddressDtoOutput>> getAll() {
         return iAddressService.getAll();
@@ -66,7 +81,7 @@ public class AddressController {
     @PreAuthorize("hasRole('ROLE_USER')")
     public AddressDtoExistedOutput editExisted(@RequestBody AddressDtoExistedInput addressDtoExistedInput,HttpServletRequest request) {
         Long userId = iUserService.getUserByToken(request);
-        addressDtoExistedInput.setId(userId);
+        addressDtoExistedInput.setUserId(userId);
         return iAddressService.changeExistedById(addressDtoExistedInput);
     }
 

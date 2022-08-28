@@ -46,6 +46,7 @@ public class AddressServiceImpl implements IAddressService{
                     .taker(addressDtoEditInput.getTaker())
                     .phone(addressDtoEditInput.getPhone())
                     .homePhone(addressDtoEditInput.getHomePhone())
+                        .existed(address.get().isExisted())
                     .city(addressDtoEditInput.getCity())
                     .street(addressDtoEditInput.getStreet())
                     .zipcode(addressDtoEditInput.getZipcode())
