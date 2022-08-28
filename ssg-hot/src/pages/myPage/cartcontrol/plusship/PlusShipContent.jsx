@@ -51,7 +51,7 @@ function PlusShipContent({ sendState, sendAddressInfo }) {
         rcptpeNm: taker,
         detailAddress: city.split(",")[1].split("(")[0].slice(1, -1),
       });
-      console.log(street.replace(detailAddress, ""));
+
       setAddr({
         loadname1: `${city.split(",")[0]},`,
         jibun: street.replace(detailAddress, ""),
@@ -200,8 +200,6 @@ function PlusShipContent({ sendState, sendAddressInfo }) {
   );
 
   const handleComplete = (data) => {
-    console.log(data);
-
     setAddr({
       ...addr,
       loadname1: `${data.address},`,
@@ -288,7 +286,6 @@ function PlusShipContent({ sendState, sendAddressInfo }) {
                                   id="phoneNum1"
                                   title="휴대폰 앞자리"
                                   onChange={(e) => {
-                                    console.log(e.target.value);
                                     setPhoneSelected(e.target.value);
                                   }}
                                   value={phoneSelected}
@@ -335,7 +332,6 @@ function PlusShipContent({ sendState, sendAddressInfo }) {
                                   id="telNum1"
                                   title="전화번호 앞자리"
                                   onChange={(e) => {
-                                    console.log(e.target.value);
                                     setHomeSelected(e.target.value);
                                   }}
                                   value={homeSelected}
