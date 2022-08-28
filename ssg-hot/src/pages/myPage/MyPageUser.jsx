@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { getUserDetail } from "../../store/apis/user";
+import { useNavigate } from "react-router-dom";
 function MyPageUser() {
   const [userData, setUserData] = useState({});
+  const navigate = useNavigate();
   useEffect(() => {
     getUserDetail().then((res) => {
       console.log(res);
@@ -88,13 +90,15 @@ function MyPageUser() {
         >
           <span className="myssg_manage_text ty_like">좋아요</span>
         </a>
-        <a
-          href="https://member.ssg.com/m/comm/shpplocList.ssg?_mpop=new"
+        <button
+          onClick={() => {
+            navigate("/cartcontrol");
+          }}
           className="clickable"
           data-react-tarea="MYSSG|M_MY_SSG_배송지관리"
         >
           <span className="myssg_manage_text ty_devliery">배송지 관리</span>
-        </a>
+        </button>
         <a
           href="#"
           className="clickable"
