@@ -83,7 +83,7 @@ public class Order extends CommonDTO{
         this.deliveryHomePhone = this.deliveryHomePhone == null ? "" : this.deliveryHomePhone;
         this.paymentOption = this.paymentOption == null? "기타":this.paymentOption;
     }
-    public void addOrderItem(OrderItem orderItem){
+        public void addOrderItem(OrderItem orderItem){
 
         orderItem.setOrder(this);
         orderItems.add(orderItem);
