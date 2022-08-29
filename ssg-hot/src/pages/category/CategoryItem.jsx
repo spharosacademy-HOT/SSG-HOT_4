@@ -1,14 +1,14 @@
 import React from "react";
 
-function CategoryItem({ setViewerView, isClick, setIsClick, item }) {
+function CategoryItem({ setViewerView, item,cateNumber, setGetNum, isClick, setIsClick, setDiffer}) {
 
   const handleCateItem = () => {
+    // cateNumber !== categoryId.id ? setDiffer(true) : setDiffer(false)
+    // setGetNum(categoryId.id)
     setViewerView(true)
     setIsClick(!isClick)
 
   }
-  console.log('두번째')
-  console.log(item)
 
   return (
 

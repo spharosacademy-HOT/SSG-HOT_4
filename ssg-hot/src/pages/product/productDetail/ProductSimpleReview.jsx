@@ -8,7 +8,6 @@ function ProductSimpleReview({reviewDatas}) {
 
     const [fullscreen, setFullscreen] = useState(true);
     const [show, setShow] = useState(false);
-    console.log("리뷰데이터들",reviewDatas)
   
     const handleShow = (breakpoint) => {
       setFullscreen(breakpoint);
@@ -58,7 +57,6 @@ function ProductSimpleReview({reviewDatas}) {
             </Modal>
             </>
         }
-            
         </>
      );
 }

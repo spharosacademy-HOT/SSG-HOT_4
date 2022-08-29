@@ -64,8 +64,15 @@ function ProductCard({ item }) {
               <div>{item.viewCount}건</div>
             </div>
             <div className="product-event">
-              <div>해외직구</div>
-              <div>무료배송</div>
+              {
+                item.shippingFee ?
+                <>
+                </>
+                :
+                <div>
+                  무료배송
+                </div>
+              }
             </div>
           </div>
         </Link>

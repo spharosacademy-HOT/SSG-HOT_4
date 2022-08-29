@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import ProductDetailInfo from "./productDetail/ProductDetailInfo";
 import ProductMainImg from "./productDetail/ProductMainImg";
 import ProductInfo from "./productDetail/ProductInfo";
@@ -19,6 +19,7 @@ import axios from "axios";
 import ProductPurchaseBar from "./productDetail/ProductPurchaseBar";
 import { baseURL } from "../../store/apis/apiClient";
 import { postRecent } from "../../store/apis/recent";
+import { useScroll } from "../../components/common/ui/UseScroll";
 
 function Product() {
   const param = useParams();
@@ -26,33 +27,27 @@ function Product() {
   const [productDatas, setProductDatas] = useState([]);
 
   useEffect(() => {
-    axios
-      .get(`http://10.10.10.84:8080/ssghot/product/${param}`)
-      .then((Response) => {
-        setProductDatas(Response.data);
-      axios.get(url).then((Response) => {
-        setProductDatas(Response.data);
-        const userId = sessionStorage.getItem("id");
-        const recentDta = {
-          product: {
-            id: Response.data.id,
-          },
-          user: {
-            id: userId,
-          },
-        };
-        postRecent(recentDta).then((res) => {
-          console.log(res, "최근본아이템등록");
-        });
+    axios.get(url).then((Response) => {
+      setProductDatas(Response.data);
+      const userId = sessionStorage.getItem("id");
+      const recentDta = {
+        product: {
+          id: Response.data.id,
+        },
+        user: {
+          id: userId,
+        },
+      };
+      postRecent(recentDta).then((res) => {
+        console.log(res, "최근본아이템등록");
       });
-    }, [url]);
-  })
+    });
+  }, [url]);
   return (
     <>
-      <div className="product-head-box"></div>
       {productDatas && (
         <>
-          <ProductMainImg productDatas={productDatas.titleImgUrl} />
+          <ProductMainImg productDatas={productDatas.titleImgUrl}/>
           <ProductInfo productDatas={productDatas} />
           <SmileClub />
           <ProductSimpleReview reviewDatas={productDatas.reviewList} />
@@ -68,7 +63,13 @@ function Product() {
         </>
       )}
 
-
+      {/* 추천 상품 */}
+      {/* <div>함께보면 좋은 상품</div>
+      <div className="product-list">
+        {productDatas && productDatas.map((item) => 
+          <ProductCard item={item} key={item.id} />
+        )}
+      </div> */}
     </>
   );
 }

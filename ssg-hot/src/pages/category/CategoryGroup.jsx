@@ -4,7 +4,7 @@ import CategoryItem from './CategoryItem';
 import CategoryViewer from './CategoryViewer';
 import { baseURL } from '../../store/apis/apiClient';
 
-function CategoryGroup({setIsClick}) {
+function CategoryGroup({}) {
     const [viewerView, setViewerView] = useState(false)
     const [categoryIds, setCategoryId] = useState()
 
@@ -21,7 +21,7 @@ function CategoryGroup({setIsClick}) {
             <ul className='category-align'>
                 {
                     categoryIds && categoryIds.map(item => (
-                        <CategoryItem item={item} setViewerView={setViewerView} setIsClick={setIsClick} key={item.id}/>
+                        <CategoryItem item={item} setViewerView={setViewerView} key={item.id}/>
                     ))
                 }
 

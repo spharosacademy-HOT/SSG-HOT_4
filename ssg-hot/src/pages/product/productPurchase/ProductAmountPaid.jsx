@@ -15,11 +15,11 @@ function ProductAmountPaid() {
           <ul>
             <li>
               <div>주문금액</div>
-              <div>+ {totalPricee}</div>
+              {/* <div>+ {totalPricee}</div> */}
             </li>
             <li>
               <div>할인금액</div>
-              <div>- {totalDiscountPrice}</div>
+              {/* <div>- {totalDiscountPrice}</div> */}
             </li>
           </ul>
         </div>

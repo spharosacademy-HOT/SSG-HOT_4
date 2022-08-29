@@ -2,6 +2,15 @@
 .product-main-image img{
     width: 100%;
 }
+.product-main-image{
+    position: relative;
+}
+.product-main-image button{
+    padding: 20px;
+    position: absolute;
+    background: none;
+    border: none;
+}
 /* 제품 간단 소개(가격, 정보) */
 .product-info{
     padding: 20px;
@@ -385,6 +394,21 @@
     background-color: red;
     color: #fff;
     height: 54px;
+    display: none;
+}
+.product-present-long{
+    width: 100%;
+    background-color: red;
+    color: #fff;
+    height: 54px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    /* text-align: center; */
+}
+.product-present-long-none{
+    display: none;
 }
 .product-purchase-like ul li div{
     margin: auto;
