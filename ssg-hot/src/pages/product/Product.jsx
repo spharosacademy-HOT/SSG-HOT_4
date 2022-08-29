@@ -27,7 +27,7 @@ function Product() {
 
   useEffect(() => {
     axios
-      .get(`http://10.10.10.84:8080/ssghot/product/${productPagezNum}`)
+      .get(`http://10.10.10.84:8080/ssghot/product/${param}`)
       .then((Response) => {
         setProductDatas(Response.data);
       axios.get(url).then((Response) => {
