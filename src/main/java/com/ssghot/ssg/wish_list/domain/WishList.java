@@ -21,6 +21,6 @@ public class WishList extends CommonDTO{
     @ManyToOne
     private User user;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     private Product product;
 }
