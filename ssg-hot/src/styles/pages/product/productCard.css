@@ -32,9 +32,11 @@
 }
 .product-info .product-name{
     font-weight: bold;
+    font-size: 0.9rem;
 }
 .product-info .product-text{
     color: #666;
+    font-size: 0.8rem;
 }
 .product-info .price div div{
     font-size: 1.25rem;

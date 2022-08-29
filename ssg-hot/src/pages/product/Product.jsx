@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import ProductDetailInfo from "./productDetail/ProductDetailInfo";
 import ProductMainImg from "./productDetail/ProductMainImg";
 import ProductInfo from "./productDetail/ProductInfo";
@@ -19,6 +19,7 @@ import axios from "axios";
 import ProductPurchaseBar from "./productDetail/ProductPurchaseBar";
 import { baseURL } from "../../store/apis/apiClient";
 import { postRecent } from "../../store/apis/recent";
+import { useScroll } from "../../components/common/ui/UseScroll";
 
 function Product() {
   const param = useParams();
@@ -42,13 +43,11 @@ function Product() {
       });
     });
   }, [url]);
-
   return (
     <>
-      <div className="product-head-box"></div>
       {productDatas && (
         <>
-          <ProductMainImg productDatas={productDatas.titleImgUrl} />
+          <ProductMainImg productDatas={productDatas.titleImgUrl}/>
           <ProductInfo productDatas={productDatas} />
           <SmileClub />
           <ProductSimpleReview reviewDatas={productDatas.reviewList} />

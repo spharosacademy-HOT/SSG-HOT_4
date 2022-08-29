@@ -15,21 +15,18 @@ function Category() {
 
   const [cateNumber , setCateNumber] = useState(0)
   const [isClick, setIsClick] = useState(false)
-  const [categoryIds, setCategoryId] = useState()
 
   useEffect(()=>{
     let setTrues = [ false, false ];
-    // console.log(cateNumber)
     setTrues[cateNumber-1]=true
-    // console.log('상황',setTrues)
   },[cateNumber])
-  useEffect(()=>{
-    axios
-      .get(`${baseURL}/category`)
-      .then((Response) =>{
-        setCategoryId(Response.data)
-      })
-  },[])
+  // useEffect(()=>{
+  //   axios
+  //     .get(`${baseURL}/category`)
+  //     .then((Response) =>{
+  //       setCategoryId(Response.data)
+  //     })
+  // },[])
 
   return (
     <div>
@@ -51,11 +48,12 @@ function Category() {
             />
           ))
         } */}
-        {
+        {/* {
           categoryIds && categoryIds.map(categoryId => (
             <CategoryGroup categoryId={categoryId} key={categoryId.id} setIsClick={setIsClick}/>
           ))
-        }
+        } */}
+        <CategoryGroup/>
       </div>
       {/* 테마추천 */}
       <div>

@@ -13,11 +13,11 @@ import { useRecoilState } from "recoil";
 function ProductPurchaseBar() {
     let params = useParams();
     const id = params.productId;
-  
+    const token = localStorage.getItem("token")
+
     const [cartData, setCartData] = useRecoilState(cartState);
-  
     const [show, setShow] = useState(false);
-  
+
     const handleShow = () => {
       setShow(true);
       console.log(show);
@@ -81,12 +81,32 @@ function ProductPurchaseBar() {
                     </li>
                     <li className='product-buy'>
                         <div>
-                            <Link to={`/product/purchase`}>
-                            바로구매
-                            </Link>
+                            {token? (
+                                <Link to={`/product/purchase`}>
+                                    바로구매
+                                </Link>
+                            ):
+                            (
+                                <Link to={`/login`}>
+                                    바로구매
+                                </Link>
+                            )}
                         </div>
                     </li>
                 </ul>
+                <div className={barState === 1 ? 'product-present-long': 'product-present-long-none'}>
+                    {
+                        token?(
+                            <Link to={`/product/purchase`}>
+                                선물하기
+                            </Link>
+                        ):(
+                            <Link to={`/login`}>
+                                바로구매
+                            </Link>
+                        )
+                    }
+                </div>
             </div>
             <div className={barState === 0 ? 'purchase-info-zero'
                             : 'purchase-info-one'}>
