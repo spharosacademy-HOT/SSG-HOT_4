@@ -98,3 +98,9 @@
   padding-left: 15px;
   margin-left: 25px;
 }
+.searchToolBar {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  align-items: center;
+}
