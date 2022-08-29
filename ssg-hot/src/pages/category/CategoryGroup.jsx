@@ -1,41 +1,37 @@
+import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import CategoryItem from './CategoryItem';
 import CategoryViewer from './CategoryViewer';
+import { baseURL } from '../../store/apis/apiClient';
 
-function CategoryGroup({cateData, viewIsTrue,cateNumber, setCateNumber, isClick, setIsClick, cateId}) {
-
-    const [getNum , setGetNum] = useState(1)
-    const [viewerData, setViewerData] = useState([])
+function CategoryGroup({setIsClick}) {
     const [viewerView, setViewerView] = useState(false)
-    const [differ, setDiffer] = useState(false)
-    useEffect(() => {
-   
-        setViewerData(cateData[getNum-1].content)
-        setCateNumber(cateId)
-        
+    const [categoryIds, setCategoryId] = useState()
 
-    }, [getNum])
-    
-   
+    useEffect(()=>{
+        axios
+          .get(`${baseURL}/category`)
+          .then((Response) =>{
+            setCategoryId(Response.data)
+          })
+    },[])
+    console.log('첫번째',categoryIds)
     return ( 
         <>
             <ul className='category-align'>
                 {
-                    cateData && cateData.map(item =>(
-                        <CategoryItem
-                            item={item}
-                            key={item.id}
-                            // getNum = {getNum}
-                            cateNumber = {cateNumber}
-                            setGetNum = {setGetNum}
-                            setViewerView={setViewerView}
-                            isClick={isClick}
-                            setIsClick={setIsClick}
-                            setDiffer={setDiffer}/>
+                    categoryIds && categoryIds.map(item => (
+                        <CategoryItem item={item} setViewerView={setViewerView} setIsClick={setIsClick} key={item.id}/>
                     ))
                 }
+
             </ul>
-           <CategoryViewer item={viewerData} isTrue={viewerView} differ={differ}/>
+           {/* <CategoryViewer item={viewerData} isTrue={viewerView} getNum={getNum}/> */}
+           {
+            categoryIds && categoryIds.map(item =>(
+                <CategoryViewer item={item.id} key={item.id} isTrue={viewerView}/>
+            ))
+           }
         </>
     );
 }

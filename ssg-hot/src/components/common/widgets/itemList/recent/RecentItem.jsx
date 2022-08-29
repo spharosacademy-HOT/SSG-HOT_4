@@ -1,29 +1,68 @@
-import React from "react";
-import ItemButton from "./ItemButton";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { deleteRecent, getRecent } from "../../../../../store/apis/recent";
+import CartButton from "../../button/CartButton";
+import LikeButton from "../../button/LikeButton";
 import ItemDesc from "./ItemDesc";
 import ItemImg from "./ItemImg";
-import recentDatas from "../../../../../datas/js/recentDatas";
-export default function RecentItem() {
+export default function RecentItem({
+  item,
+  isTrue,
+  setIsTrue,
+  dataId,
+  setDataId,
+  setModalData,
+  setRcData,
+}) {
+  const [isLike, setIsLike] = useState(false);
+  const handleCartAdd = () => {
+    //axios//item.productid.
+
+    setIsTrue(true);
+    if (isTrue) {
+      setModalData("이미 있어요");
+    } else {
+      setModalData("많아요");
+    }
+  };
+  const handleRecent = () => {
+    const userId = sessionStorage.getItem("id");
+    const id = item.id;
+    const recentDta = {
+      product: {
+        id: item.product.id,
+      },
+      user: {
+        id: userId,
+      },
+    };
+    console.log(id, recentDta, "dufidsjfklsdj");
+    deleteRecent(recentDta, id).then((res) => {
+      console.log(res);
+      getRecent().then((res) => {
+        setRcData(res);
+      });
+    });
+  };
+
   return (
-    <div>
-      <ul>
-        {recentDatas &&
-          recentDatas.map((item) => (
-            <li key={item.id} className="recentList">
-              <div className="recentDesc">
-                <a>
-                  <ItemDesc
-                    name={item.name}
-                    info={item.info}
-                    price={item.price}
-                  />
-                  <ItemImg imgUrl={item.imgUrl} />
-                </a>
-              </div>
-              <ItemButton />
-            </li>
-          ))}
-      </ul>
-    </div>
+    <li key={item.id} className="recentList">
+      <div className="recentDesc">
+        <button onClick={handleRecent}>x</button>
+        <Link to={`/product/${item.id}`}>
+          <ItemDesc
+            id={item.product.id}
+            name={item.product.brandName}
+            info={item.product.detail}
+            price={item.product.discountPrice}
+          />
+          <ItemImg imgUrl={item.product.titleImgUrl} />
+        </Link>
+      </div>
+      <div className="recentBtn">
+        <CartButton handleCartAdd={handleCartAdd} />
+        <LikeButton isLike={isLike} setIsLike={setIsLike} />
+      </div>
+    </li>
   );
 }

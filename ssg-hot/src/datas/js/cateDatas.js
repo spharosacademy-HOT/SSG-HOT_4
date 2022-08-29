@@ -26,42 +26,42 @@ const cateDatas = [
                     {
                         id : 1,
                         name : "상품 전체보기",
-                        url : "/productList"
+                        url : "/productList/1/1"
                     },
                     {
                         id : 2,
                         name : "명품/수입의류",
-                        url : "/productList"
+                        url : "/productList/1/2"
                     },
                     {
                         id : 3,
                         name : "여성브랜드패션",
-                        url : "/productList"
+                        url : "/productList/1/3"
                     },
                     {
                         id : 4,
                         name : "여성트렌드패션",
-                        url : "/productList"
+                        url : "/productList/1/4"
                     },
                     {
                         id : 5,
                         name : "남성패션",
-                        url : "/productList"
+                        url : "/productList/1/5"
                     },
                     {
                         id : 6,
                         name : "캐주얼/유니섹스",
-                        url : "/productList"
+                        url : "/productList/1/6"
                     },
                     {
                         id : 7,
                         name : "언더웨어",
-                        url : "/productList"
+                        url : "/productList/1/7"
                     },
                     {
                         id : 8,
                         name : "디자이너샵",
-                        url : "/productList"
+                        url : "/productList/1/8"
                     },
                 ]
             },
@@ -73,32 +73,32 @@ const cateDatas = [
                     {
                         id : 1,
                         name : "상품 전체보기",
-                        url : "/productList"
+                        url : "/productList/2/1"
                     },
                     {
                         id : 2,
                         name : "가방/지갑",
-                        url : "/productList"
+                        url : "/productList/2/2"
                     },
                     {
                         id : 3,
                         name : "모자/장갑/ACC",
-                        url : "/productList"
+                        url : "/productList/2/3"
                     },
                     {
                         id : 4,
                         name : "슈즈/운동화",
-                        url : "/productList"
+                        url : "/productList/2/4"
                     },
                     {
                         id : 5,
                         name : "시계/쥬얼리",
-                        url : "/productList"
+                        url : "/productList/2/5"
                     },
                     {
                         id : 6,
                         name : "명품잡화/아이웨어",
-                        url : "/productList"
+                        url : "/productList/2/6"
                     },
                 ]
             },
@@ -110,37 +110,37 @@ const cateDatas = [
                     {
                         id : 1,
                         name : "상품 전체보기",
-                        url : "/productList"
+                        url : "/productList/3/1"
                     },
                     {
                         id : 2,
                         name : "스킨케어",
-                        url : "/productList"
+                        url : "/productList/3/2"
                     },
                     {
                         id : 3,
                         name : "메이크업",
-                        url : "/productList"
+                        url : "/productList/3/3"
                     },
                     {
                         id : 4,
                         name : "헤어케어",
-                        url : "/productList"
+                        url : "/productList/3/4"
                     },
                     {
                         id : 5,
                         name : "바디케어",
-                        url : "/productList"
+                        url : "/productList/3/5"
                     },
                     {
                         id : 6,
                         name : "향수",
-                        url : "/productList"
+                        url : "/productList/3/6"
                     },
                     {
                         id : 7,
                         name : "미용기기/소품",
-                        url : "/productList"
+                        url : "/productList/3/7"
                     },
                 ]
             },
@@ -152,42 +152,42 @@ const cateDatas = [
                     {
                         id : 1,
                         name : "상품 전체보기",
-                        url : "/productList"
+                        url : "/productList/4/1"
                     },
                     {
                         id : 2,
                         name : "기저귀/물티슈/분유/유아식",
-                        url : "/productList"
+                        url : "/productList/4/2"
                     },
                     {
                         id : 3,
                         name : "출산/육아용품",
-                        url : "/productList"
+                        url : "/productList/4/3"
                     },
                     {
                         id : 4,
                         name : "유모차/카시트/실내용품",
-                        url : "/productList"
+                        url : "/productList/4/4"
                     },
                     {
                         id : 5,
                         name : "완구/교구",
-                        url : "/productList"
+                        url : "/productList/4/5"
                     },
                     {
                         id : 6,
                         name : "신생아/유아패션",
-                        url : "/productList"
+                        url : "/productList/4/6"
                     },
                     {
                         id : 7,
                         name : "아동/주니어패션",
-                        url : "/productList"
+                        url : "/productList/4/7"
                     },
                     {
                         id : 8,
                         name : "유아동신발/잡화",
-                        url : "/productList"
+                        url : "/productList/4/8"
                     },
                 ]
             }
@@ -204,52 +204,52 @@ const cateDatas = [
                     {
                         id : 1,
                         name : "상품 전체보기",
-                        url : "/productList"
+                        url : "/productList/5/1"
                     },
                     {
                         id : 2,
                         name : "스포츠웨어/용품",
-                        url : "/productList"
+                        url : "/productList/5/2"
                     },
                     {
                         id : 3,
                         name : "등산/아웃도어",
-                        url : "/productList"
+                        url : "/productList/5/3"
                     },
                     {
                         id : 4,
                         name : "캠핑/낚시용품",
-                        url : "/productList"
+                        url : "/productList/5/4"
                     },
                     {
                         id : 5,
                         name : "골프웨어/용품/클럽",
-                        url : "/productList"
+                        url : "/productList/5/5"
                     },
                     {
                         id : 6,
                         name : "자전거/스케이트/롤러",
-                        url : "/productList"
+                        url : "/productList/5/6"
                     },
                     {
                         id : 7,
                         name : "헬스/요가/격투기",
-                        url : "/productList"
+                        url : "/productList/5/7"
                     },
                     {
                         id : 8,
                         name : "구기/라켓스포츠",
-                        url : "/productList"
+                        url : "/productList/5/8"
                     },
                     {
                         id : 9,
                         name : "수영/수상레저",
-                        url : "/productList"
+                        url : "/productList/5/9"
                     },
                     {
                         id : 10,
                         name : "스키/보드",
-                        url : "/productList"
+                        url : "/productList/5/10"
                     },
                 ]
             },
@@ -261,37 +261,37 @@ const cateDatas = [
                     {
                         id : 1,
                         name : "상품 전체보기",
-                        url : "/productList"
+                        url : "/productList/6/1"
                     },
                     {
                         id : 2,
                         name : "침구/커튼/카페트",
-                        url : "/productList"
+                        url : "/productList/6/2"
                     },
                     {
                         id : 3,
                         name : "침실/수납가구",
-                        url : "/productList"
+                        url : "/productList/6/3"
                     },
                     {
                         id : 4,
                         name : "거실/주방가구",
-                        url : "/productList"
+                        url : "/productList/6/4"
                     },
                     {
                         id : 5,
                         name : "서재/학생아동가구",
-                        url : "/productList"
+                        url : "/productList/6/5"
                     },
                     {
                         id : 6,
                         name : "조명/인테리어소품",
-                        url : "/productList"
+                        url : "/productList/6/6"
                     },
                     {
                         id : 7,
                         name : "DIY/시공",
-                        url : "/productList"
+                        url : "/productList/6/7"
                     },
                 ]
             },
@@ -303,22 +303,22 @@ const cateDatas = [
                     {
                         id : 1,
                         name : "상품 전체보기",
-                        url : "/productList"
+                        url : "/productList/7/1"
                     },
                     {
                         id : 2,
                         name : "주방용품",
-                        url : "/productList"
+                        url : "/productList/7/2"
                     },
                     {
                         id : 3,
                         name : "청소/욕싱/공구",
-                        url : "/productList"
+                        url : "/productList/7/3"
                     },
                     {
                         id : 4,
                         name : "생활/건강",
-                        url : "/productList"
+                        url : "/productList/7/4"
                     },
                 ]
             },
@@ -330,37 +330,37 @@ const cateDatas = [
                     {
                         id : 1,
                         name : "상품 전체보기",
-                        url : "/productList"
+                        url : "/productList/8/1"
                     },
                     {
                         id : 2,
                         name : "강아지사료/간식",
-                        url : "/productList"
+                        url : "/productList/8/2"
                     },
                     {
                         id : 3,
                         name : "고양이사료/간식",
-                        url : "/productList"
+                        url : "/productList/8/3"
                     },
                     {
                         id : 4,
                         name : "반려동물용품",
-                        url : "/productList"
+                        url : "/productList/8/4"
                     },
                     {
                         id : 5,
                         name : "반려동물서비스",
-                        url : "/productList"
+                        url : "/productList/8/5"
                     },
                     {
                         id : 6,
                         name : "소동물/곤충/조류",
-                        url : "/productList"
+                        url : "/productList/8/6"
                     },
                     {
                         id : 7,
                         name : "관상어용품",
-                        url : "/productList"
+                        url : "/productList/8/7"
                     },
                 ]
             }
@@ -377,37 +377,37 @@ const cateDatas = [
                     {
                         id : 1,
                         name : "상품 전체보기",
-                        url : "/productList"
+                        url : "/productList/9/1"
                     },
                     {
                         id : 2,
                         name : "과일/채소/쌀",
-                        url : "/productList"
+                        url : "/productList/9/2"
                     },
                     {
                         id : 3,
                         name : "정육/계란류",
-                        url : "/productList"
+                        url : "/productList/9/3"
                     },
                     {
                         id : 4,
                         name : "수산물/건해산",
-                        url : "/productList"
+                        url : "/productList/9/4"
                     },
                     {
                         id : 5,
                         name : "반찬/간편식/조미료",
-                        url : "/productList"
+                        url : "/productList/9/5"
                     },
                     {
                         id : 6,
                         name : "유제품/과제/빵/음료/주류",
-                        url : "/productList"
+                        url : "/productList/9/6"
                     },
                     {
                         id : 7,
                         name : "홍삼/건강식품",
-                        url : "/productList"
+                        url : "/productList/9/7"
                     },
                 ]
             },
@@ -419,27 +419,27 @@ const cateDatas = [
                     {
                         id : 1,
                         name : "상품 전체보기",
-                        url : "/productList"
+                        url : "/productList/10/1"
                     },
                     {
                         id : 2,
                         name : "에어컨/계절가전",
-                        url : "/productList"
+                        url : "/productList/10/2"
                     },
                     {
                         id : 3,
                         name : "냉장고/주방가전",
-                        url : "/productList"
+                        url : "/productList/10/3"
                     },
                     {
                         id : 4,
                         name : "세탁기/생활가전",
-                        url : "/productList"
+                        url : "/productList/10/4"
                     },
                     {
                         id : 5,
                         name : "영상/음향가전",
-                        url : "/productList"
+                        url : "/productList/10/5"
                     },
                 ]
             },
@@ -451,42 +451,42 @@ const cateDatas = [
                     {
                         id : 1,
                         name : "상품 전체보기",
-                        url : "/productList"
+                        url : "/productList/11/1"
                     },
                     {
                         id : 2,
                         name : "컴퓨터/노트북/태블릿",
-                        url : "/productList"
+                        url : "/productList11/2"
                     },
                     {
                         id : 3,
                         name : "게임/타이틀",
-                        url : "/productList"
+                        url : "/productList/11/3"
                     },
                     {
                         id : 4,
                         name : "PC주변기기/저장장치",
-                        url : "/productList"
+                        url : "/productList/11/4"
                     },
                     {
                         id : 5,
                         name : "카메라/캠코더",
-                        url : "/productList"
+                        url : "/productList/11/5"
                     },
                     {
                         id : 6,
                         name : "내비/블랙박스/차량용품",
-                        url : "/productList"
+                        url : "/productList/11/6"
                     },
                     {
                         id : 7,
                         name : "휴대폰/스마트기기",
-                        url : "/productList"
+                        url : "/productList/11/7"
                     },
                     {
                         id : 8,
                         name : "렌탈",
-                        url : "/productList"
+                        url : "/productList/11/8"
                     },
                 ]
             },
@@ -498,32 +498,32 @@ const cateDatas = [
                     {
                         id : 1,
                         name : "상품 전체보기",
-                        url : "/productList"
+                        url : "/productList/12/1"
                     },
                     {
                         id : 2,
                         name : "서비스",
-                        url : "/productList"
+                        url : "/productList/12/2"
                     },
                     {
                         id : 3,
                         name : "여행/호텔/레저",
-                        url : "/productList"
+                        url : "/productList/12/3"
                     },
                     {
                         id : 4,
                         name : "항공권 가격비교",
-                        url : "/productList"
+                        url : "/productList/12/4"
                     },
                     {
                         id : 5,
                         name : "호텔 가격비교",
-                        url : "/productList"
+                        url : "/productList/12/5"
                     },
                     {
                         id : 6,
                         name : "e쿠폰/상품권",
-                        url : "/productList"
+                        url : "/productList/12/6"
                     },
                 ]
             }
@@ -540,32 +540,32 @@ const cateDatas = [
                     {
                         id : 1,
                         name : "상품 전체보기",
-                        url : "/productList"
+                        url : "/productList/13/1"
                     },
                     {
                         id : 2,
                         name : "도서",
-                        url : "/productList"
+                        url : "/productList/13/2"
                     },
                     {
                         id : 3,
                         name : "문구/미술/사무용품",
-                        url : "/productList"
+                        url : "/productList/13/3"
                     },
                     {
                         id : 4,
                         name : "악기",
-                        url : "/productList"
+                        url : "/productList/13/4"
                     },
                     {
                         id : 5,
                         name : "음반/DVD",
-                        url : "/productList"
+                        url : "/productList/13/5"
                     },
                     {
                         id : 6,
                         name : "취미/키덜트",
-                        url : "/productList"
+                        url : "/productList/13/6"
                     },
                 ]
             }

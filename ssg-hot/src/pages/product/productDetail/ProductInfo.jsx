@@ -7,7 +7,7 @@ function ProductInfo({ productDatas }) {
         <div className="product-info">
           <div className="product-store">
             <a href="/">
-              <span>HIPP힙(공식)</span>
+              <span>{productDatas.brandName}</span>
             </a>
           </div>
           <div className="product-simple-info">
@@ -18,10 +18,18 @@ function ProductInfo({ productDatas }) {
           </div>
         </div>
         <div className="product-price">
-          <div className="discount-price">{/* 있다면 나오도록 */}</div>
-          <div className="original-price">
-            {productDatas.regularPrice}원{/* 중간에 점 어떻게 불러올까 */}
+          <div className="discount-price">
+            {productDatas.regularPrice}원
           </div>
+          <div>
+            <div className="original-price">
+              <div>
+                {productDatas.discountRate}%&nbsp;
+              </div>
+              {productDatas.discountPrice}원{/* 중간에 점 어떻게 불러올까 */}
+            </div>
+          </div>
+          
         </div>
       </div>
     </>

@@ -2,7 +2,7 @@ import React from "react";
 
 function MyPageBenefit() {
   return (
-    <div className="myssg_user_benefit">
+    <div className="myssg_user_benefit" style={{ margin: "2rem 0" }}>
       <div className="myssg_coupon_point myssg_layer_conts">
         <div className="myssg_coupon">
           <a
@@ -44,8 +44,7 @@ function MyPageBenefit() {
               <input
                 type="hidden"
                 name="pointCardNo"
-                i
-                d="pointCardNo"
+                id="pointCardNo"
                 value="9350130365567609"
               />
               <span className="myssg_point_layer_tit_tx">

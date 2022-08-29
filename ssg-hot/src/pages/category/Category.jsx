@@ -8,19 +8,21 @@ import cateDatas from '../../datas/js/cateDatas';
 import { useState } from "react";
 import { useEffect } from "react";
 import ServiceRecommend from "./ServiceRecommend";
+import axios from "axios";
+import { baseURL } from "../../store/apis/apiClient";
 
 function Category() {
 
   const [cateNumber , setCateNumber] = useState(0)
   const [isClick, setIsClick] = useState(false)
-  
 
   useEffect(()=>{
     let setTrues = [ false, false ];
-    console.log(cateNumber)
+    // console.log(cateNumber)
     setTrues[cateNumber-1]=true
-    console.log('상황',setTrues)
+    // console.log('상황',setTrues)
   },[cateNumber])
+
 
   return (
     <div>
@@ -28,7 +30,7 @@ function Category() {
       {/* 카테고리 */}
       <div className="category">
         {/* 카테고리 하나하나 */}
-        {
+        {/* {
           cateDatas.map(cateData => (
             <CategoryGroup
               key={cateData.id}
@@ -41,12 +43,14 @@ function Category() {
               cateId = {cateData.id}
             />
           ))
-        }
+        } */}
+        <CategoryGroup/>
+
       </div>
       {/* 테마추천 */}
       <div>
         <div className="theme-recommend">
-          <ThemeRecommend />
+            <ThemeRecommend />
         </div>
       </div>
       {/* SSG 서비스 추천 */}

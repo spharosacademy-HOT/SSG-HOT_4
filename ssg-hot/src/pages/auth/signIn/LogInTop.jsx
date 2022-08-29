@@ -18,18 +18,17 @@ function LoginTop() {
                   name="query"
                   type="text"
                   placeholder="검색어를 입력하세요."
-                  autocomplete="off"
+                  autoComplete="off"
                   className="cgsearch_inpbox_inp"
-                  value=""
                 />
-                <input type="hidden" id="query_sub" value="" />
-                <input type="hidden" id="srch_site_no" value="6005" />
-                <input type="hidden" id="select_site_no" value="6005" />
-                <input type="hidden" id="srch_header_type" value="" />
-                <input type="hidden" id="isSpcShopSrchYn" value="" />
-                <input type="hidden" id="specialShopId" value="" />
-                <input type="hidden" id="isModuleSrchYn" value="" />
-                <input type="hidden" id="modulePropId" value="" />
+                <input type="hidden" id="query_sub" />
+                <input type="hidden" id="srch_site_no" />
+                <input type="hidden" id="select_site_no" />
+                <input type="hidden" id="srch_header_type" />
+                <input type="hidden" id="isSpcShopSrchYn" />
+                <input type="hidden" id="specialShopId" />
+                <input type="hidden" id="isModuleSrchYn" />
+                <input type="hidden" id="modulePropId" />
                 <input
                   type="hidden"
                   id="skipHeaderTopYn"
@@ -97,11 +96,7 @@ function LoginTop() {
             <div className="cgsearch_latest_keyword" id="mbr_kwd_alert_all">
               <h3 className="cgsearch_latest_title">최근검색어</h3>
               <ul className="cgsearch_latest_keylst" id="mbr_kwd_list"></ul>
-              <button
-                type="button"
-                className="cgsearch_delete_all"
-                data-value="mbr"
-              >
+              <button type="button" className="cgsearch_delete_all">
                 검색어 전체 삭제
               </button>
             </div>

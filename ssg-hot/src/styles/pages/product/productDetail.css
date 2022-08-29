@@ -17,10 +17,20 @@
     color: #666;
     font-size: 0.8rem;
 }
+.product-price{
+    padding: 0 20px 0 20px;
+}
+.discount-price{
+    color: #777;
+    text-decoration: line-through;
+}
 .original-price{
     font-size: 1.75rem;
     font-weight: bold;
-    padding: 20px 0 0 20px;
+}
+.original-price div{
+    color: red;
+    display: inline;
 }
 /* 스마일 클럽 */
 .smile-club{
@@ -35,6 +45,57 @@
     color: #5d30ff;
     border-radius: 10px;
     border: solid #5d30ff 2px;
+}
+/* 리뷰 링크만 */
+.product-simple-review{
+    display: flex;
+    padding: 20px;
+}
+.product-review-page{
+    padding: 20px;
+}
+.product-simple-review :nth-child(2){
+    text-decoration-line: underline;
+    margin-left: 10px;
+}
+/* 리뷰 상세페이지 */
+.product-review-info{
+    padding: 20px 0;
+}
+.product-review-info div{
+    display: flex;
+    font-weight: bold;
+}
+.product-review-info .total-review-cnt{
+    font-size: 1.5rem;
+}
+.product-review-card div{
+    display: flex;
+}
+.product-review-card .review-star{
+    font-weight: bold;
+    justify-content: space-between;
+}
+.review-star > :nth-child(2){
+    font-size: 0.8rem;
+    color: #cdcdd0;
+}
+.product-review-card > :nth-child(2){
+    color: #666;
+    font-size: 0.8rem;
+}
+.product-review-card > :nth-child(3){
+    margin-top: 10px;
+    color: #666;
+    font-size: 0.9rem;
+}
+.product-review-card > :nth-child(3) > :nth-child(1){
+    width: 12%;
+    font-weight: bold;
+}
+.product-review-card .review-content{
+    margin-top: 10px;
+    font-size: 0.9rem;
 }
 /* 상품정보 */
 .product-detail-info{
@@ -115,17 +176,15 @@
 .product-review-box{
     padding: 20px;
 }
-.product-review-box div{
+.product-review-box .review-box-contain{
     display: flex;
 }
 .review-image-list{
     display: flex;
     flex-wrap: wrap;
-}
-.review-image-list div{
     width: 25%;
 }
-.review-image-list div img{
+.review-image-list img{
     width: 100%;
     padding: 0.5px;
 }
@@ -175,9 +234,6 @@
     font-weight: bold;
 }
 /* 토탈 리뷰 */
-.total-review{
-    padding: 20px;
-}
 .total-review-header{
     display: flex;
     justify-content: space-between;
@@ -238,27 +294,219 @@
 .event-banner img{
     width: 100%;
 }
+/* 상품고시정보 */
+.product-guide{
+    padding: 10px 20px;
+}
+.product-guide ul{
+    display: flex;
+    flex-wrap: wrap;
+}
+.product-guide ul li{
+    padding: 10px 20px;
+    margin: 0.5%;
+    border: solid 0.5px #e5e5e5;
+    border-radius: 10px;
+    width: 49%;
+    font-size: 0.8rem;
+}
+.product-guide ul > :nth-child(5){
+    width: 100%;
+}
+/* 스토어 */
+
 /* 하단 구매 바 */
 .product-purchase-bar{
-    display: fixed;
-    height: 50px;
+    width: 100%;
+    /* height: 100px; */
+    box-sizing: content-box;
+    position: fixed;
+    bottom: 0;
+    z-index: 3000;
+    padding: 0;
+    margin: 0;
 }
 .product-purchase-bar ul{
     display: flex;
+    flex-wrap: wrap;
     height: 54px;
-    width: 100%;
+    margin: 0;
 }
 .product-purchase-bar ul li{
-    text-align: center;
+    display: flex;
+    align-items: center;
 }
-.product-choice{
-
+.product-purchase-bar ul li div{
+    margin: auto;
 }
-.product-present{
-
+.product-purchase-bar ul .product-choice{
+    flex-basis: 10%;
+    background-color: #fff;
+    border: solid #cdcdd0 0.5px;
 }
-.product-purchase{
+.product-purchase-bar ul .product-present{
+    flex-basis: 20%;
+    background-color: #fff;
+    border: solid #cdcdd0 0.5px;
+}
+.product-purchase-bar ul .product-purchase{
     background-color: red;
     color: white;
-    width: 80%;
+    /* width: 80%; */
+    flex-basis: 70%;
+}
+.product-purchase-bar .product-basket{
+    display: none;
+}
+.product-purchase-bar .product-buy{
+    display: none;
+}
+.product-purchase-like{
+    width: 100%;
+    box-sizing: content-box;
+    position: fixed;
+    bottom: 0;
+    z-index: 3000;
+    padding: 0;
+    margin: 0;
+}
+.product-purchase-like ul{
+    margin: 0;
+}
+.product-purchase-like ul li{
+    display: flex;
+    align-items: center;
+}
+.product-purchase-like ul .product-choice{
+    display: none;
+}
+.product-purchase-like ul .product-present{
+    width: 100%;
+    background-color: red;
+    color: #fff;
+    height: 54px;
+}
+.product-purchase-like ul li div{
+    margin: auto;
+}
+.product-purchase-like ul .product-purchase{
+    display: none;;
+}
+.product-purchase-like ul .product-basket{
+    display: none;
+}
+.product-purchase-like ul .product-buy{
+    display: none;
+}
+.product-purchase-buy{
+    width: 100%;
+    box-sizing: content-box;
+    position: fixed;
+    bottom: 0;
+    z-index: 3000;
+    padding: 0;
+    margin: 0;
+}
+.product-purchase-buy ul{
+    display: flex;
+    margin: 0;
+}
+.product-purchase-buy ul li{
+    display: flex;
+    align-items: center;
+    height: 54px;
+    color: #fff;
+}
+.product-purchase-buy ul li div{
+    margin: auto;
+}
+.product-purchase-buy ul .product-choice{
+    display: none;
+}
+.product-purchase-buy ul .product-present{
+    display: none;
+}
+.product-purchase-buy ul .product-purchase{
+    display: none;
+}
+.product-purchase-buy ul .product-basket{
+    flex-basis: 50%;
+    background-color: #333;
+}
+.product-purchase-buy ul .product-buy{
+    flex-basis: 50%;
+    background-color: red;
+}
+.product-purchase-buy ul .product-buy div a{
+    color: white;
+}
+.option-box{
+    display: flex;
+    width: 100%;
+    height: 200px;
+    background-color: #333;
+}
+.purchase-info-zero{
+    display: none;
+}
+.purchase-info-one{
+    position: fixed;
+    bottom: 50px;
+    z-index: 2999;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    box-shadow: -5px -5px 5px rgba(0, 0, 0,0.2);
+}
+.purchase-info-one .product-qty{
+    border: #333 solid 1px;
+    border-radius: 5px;
+    background-color: #f8f8f8;
+    padding: 10px;
+}
+.purchase-info-one .product-add{
+    display: flex;
+    justify-content: space-between;
+    border: solid 1px #333;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+.purchase-info-one{
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+}
+.purchase-info-one .product-qty div{
+    display: flex;
+    justify-content: space-between;
+}
+.purchase-info-one .product-total-price{
+    font-weight: bold;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.purchase-info-one div{
+    text-align: center;
+}
+.product-total-price span{
+    font-size: 1.5rem;
+    color: red;
+    padding: 10px 0;
+}
+.product-qty div div{
+    display: flex;
+    align-items: center;
+}
+.product-qty div div div{
+    background-color: white;
+    border: solid 1px #f8f8f8;
+    height: 33px;
+}
+.product-qty div div :nth-child(2){
+    width: 49px;
+}
+.num-changer{
+    width: 34px;
 }

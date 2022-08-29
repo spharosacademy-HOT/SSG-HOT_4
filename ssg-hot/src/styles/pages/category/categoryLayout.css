@@ -5,6 +5,9 @@
   display: flex;
   flex-wrap: wrap;
 }
+.category-align{
+  display: flex;
+}
 .category-clickable{
   text-align: center;
   position: relative;

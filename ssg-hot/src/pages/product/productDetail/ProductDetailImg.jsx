@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import productImageCard from '../../../datas/js/productImageCard';
 import ProductDetailImgCard from './ProductDetailImgCard';
 
-function ProductDetailImg() {
+function ProductDetailImg({imgNum}) {
     const [isOpen, setIsOpen] = useState(false)
     const ImageFold = () =>{
         setIsOpen(!isOpen)
@@ -12,8 +12,8 @@ function ProductDetailImg() {
         <>
             <div className={isOpen ? 'open-product-image' : 'close-product-image'}>
                 {
-                    productImageCard && productImageCard.map(item => (
-                        <ProductDetailImgCard item={item} key={item.id}/>
+                    imgNum && imgNum.map(item => (
+                        <ProductDetailImgCard item={item.id} key={item.id}/>
                     ))
                 }
             </div>

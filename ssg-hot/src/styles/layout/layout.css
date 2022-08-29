@@ -2,33 +2,22 @@
 @import url("./header.css");
 @import url("./toolBar.css");
 
-/* .container {
-  width: 1140px !important;
-}
-
-@media (min-width: 576px) {
-  .container {
-    width: 100% !important;
-  }
-}
-
-@media (min-width: 768px) {
-  .container {
-    width: 100% !important;
-  }
-}
-
-@media (min-width: 992px) {
-  .container {
-    width: 992px !important;
-  }
-}
-
-@media (min-width: 1200px) {
-  .container {
-    width: 1200px !important;
-  }
-} */
 a {
-  text-decoration: none;
+  text-decoration: none !important;
+}
+ul {
+  list-style: none !important;
+  padding-left: 0 !important;
+}
+h1 {
+  margin: 0 !important;
+}
+h2 {
+  margin: 0 !important;
+}
+p {
+  margin-bottom: 0 !important;
+}
+button {
+  cursor: pointer;
 }

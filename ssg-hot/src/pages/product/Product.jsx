@@ -14,53 +14,61 @@ import StoreInfo from "./productDetail/StoreInfo";
 
 import ProductCard from "./ProductCard";
 // import productDatas from "../../datas/js/productDatas";
-import { useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 import ProductPurchaseBar from "./productDetail/ProductPurchaseBar";
+import { baseURL } from "../../store/apis/apiClient";
+import { postRecent } from "../../store/apis/recent";
 
 function Product() {
-  let pageUrl = useLocation();
-  const [pagePath, setPagePath] = useState();
-  let productPageNum = 0;
+  const param = useParams();
+  const url = `${baseURL}/product/${param.productId}`;
+  const [productDatas, setProductDatas] = useState([]);
 
-  useEffect(() => {
-    setPagePath(pageUrl.pathname);
-    const productNum = pageUrl.pathname.split("/");
-    productPageNum = productNum[2];
-  }, [pageUrl]);
   useEffect(() => {
     axios
       .get(`http://10.10.10.84:8080/ssghot/product/${productPagezNum}`)
       .then((Response) => {
         setProductDatas(Response.data);
+      axios.get(url).then((Response) => {
+        setProductDatas(Response.data);
+        const userId = sessionStorage.getItem("id");
+        const recentDta = {
+          product: {
+            id: Response.data.id,
+          },
+          user: {
+            id: userId,
+          },
+        };
+        postRecent(recentDta).then((res) => {
+          console.log(res, "최근본아이템등록");
+        });
       });
-  }, []);
-  const [productDatas, setProductDatas] = useState([]);
-
+    }, [url]);
+  })
   return (
     <>
       <div className="product-head-box"></div>
-      <ProductMainImg productDatas={productDatas.titleImgUrl} />
-      <ProductInfo productDatas={productDatas} />
-      <SmileClub />
-      <ProductSimpleReview itemNum={productPageNum} />
-      <ProductEvent />
-      <ProductDetailInfo />
-      <ProductDetailImg imgNum={productDatas.productSubImgList} />
-      <ProductReiew />
-      <ProductQnA />
-      <ProductGuide />
-      <EventBanner />
-      <StoreInfo />
-      <ProductPurchaseBar />
+      {productDatas && (
+        <>
+          <ProductMainImg productDatas={productDatas.titleImgUrl} />
+          <ProductInfo productDatas={productDatas} />
+          <SmileClub />
+          <ProductSimpleReview reviewDatas={productDatas.reviewList} />
+          <ProductEvent />
+          <ProductDetailInfo />
+          <ProductDetailImg imgNum={productDatas.productSubImgList} />
+          <ProductReiew reviewDatas={productDatas.reviewList} />
+          <ProductQnA />
+          <ProductGuide />
+          <EventBanner />
+          <StoreInfo />
+          <ProductPurchaseBar />
+        </>
+      )}
 
-      {/* 추천 상품 */}
-      {/* <div>함께보면 좋은 상품</div>
-      <div className="product-list">
-        {productDatas && productDatas.map((item) => 
-          <ProductCard item={item} key={item.id} />
-        )}
-      </div> */}
+
     </>
   );
 }

@@ -23,7 +23,7 @@ function EmailAd() {
               </label>
             </span>
             <a
-              href="#;"
+              href="https://member.ssg.com/m/member/join/agreePrivacyDetail.ssg?type=privacy_signup_terms_scom02&t=simple#;"
               //   onClick={"window.open('/m/member/join/agreePrivacyDetail.ssg?type=privacy_signup_terms_scom02&t=simple');return false;"}
               title="새창열림"
               className="cmem_btn cmem_btn_blkline2"
@@ -67,7 +67,7 @@ function EmailAd() {
         </div>
 
         <div className="cmem_btn_area">
-          <a href="#;" id="btnSubmit" className="cmem_btn cmem_btn_orange2">
+          <a href=";" id="btnSubmit" className="cmem_btn cmem_btn_orange2">
             확인
           </a>
         </div>

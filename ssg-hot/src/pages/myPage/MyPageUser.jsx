@@ -1,26 +1,35 @@
-import React from "react";
-
+import React, { useEffect, useState } from "react";
+import { getUserDetail } from "../../store/apis/user";
 function MyPageUser() {
+  const [userData, setUserData] = useState({});
+  useEffect(() => {
+    getUserDetail().then((res) => {
+      console.log(res);
+      setUserData(res);
+    });
+  }, []);
+
   return (
     <div id="m_content" className="myssg_main react-area">
-      <div className="myssg_user_sec">
-        <div className="mc">
+      <div className="myssg_user_sec" style={{ padding: "10px 20px 0px" }}>
+        <div className="mc" style={{ display: "flex", alignItems: "center" }}>
           <img
             src="//sui.ssgcdn.com/ui/m_ssg/img/@100x100.png"
             alt="프로필사진"
             id="talkImgMain"
+            style={{ borderRadius: "50px", width: "50px", height: "50px" }}
           />
           <span className="myssg_profile_setting">
             <span className="blind">프로필편집</span>
           </span>
-          <div className="myssg_profile_info">
+          <div className="myssg_profile_info" style={{ padding: "10px 20px" }}>
             <div className="myssg_user_name">
               <a
                 href="https://member.ssg.com/m/myssg/myinfoMng/main.ssg?_mpop=new"
                 className="clickable"
                 data-react-tarea="MYSSG|M_MY_SSG_회원명"
               >
-                이창현 님
+                {userData.name} 님
               </a>
             </div>
             <div
@@ -33,8 +42,10 @@ function MyPageUser() {
                 href="https://m.ssg.com/event/couponInfo.ssg?myssg=couponInfo"
                 className="clickable"
               >
-                <p>
-                  <strong className="myssg_primary_text">FRIENDS</strong>{" "}
+                <p style={{ marginBottom: "0px" }}>
+                  <strong className="myssg_primary_text">
+                    {userData.memberLevel}
+                  </strong>{" "}
                   등급입니다.
                 </p>
               </a>
