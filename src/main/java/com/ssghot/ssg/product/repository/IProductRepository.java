@@ -13,9 +13,13 @@ public interface IProductRepository extends JpaRepository<Product, Long> {
 
     List<Product> findAllByCategoryMId(Long id);
 
+//    List<Product> findAllByRecentlyViewedProductId(Long id);
+
     Page<Product> findByNameContaining(String keyword, Pageable pageable);
 
     Page<Product> findByNameContainingAndCategoryMId(String keyword, Long id, Pageable pageable);
 
     Page<Product> findByNameContainingAndDiscountPriceBetween(String keyword, int minPrice, int maxPrice, Pageable pageable);
+
+    Page<Product> findByNameContainingAndAndCategoryMIdAndDiscountPriceBetween(String keyword, Long id, int minPrice, int maxPrice, Pageable pageable);
 }

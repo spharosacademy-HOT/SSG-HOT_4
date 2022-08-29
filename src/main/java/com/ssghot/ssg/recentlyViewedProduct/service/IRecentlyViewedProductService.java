@@ -3,6 +3,8 @@ package com.ssghot.ssg.recentlyViewedProduct.service;
 import com.ssghot.ssg.recentlyViewedProduct.domain.RecentlyViewedProduct;
 import com.ssghot.ssg.recentlyViewedProduct.dto.RecentlyViewedProductDtoInput;
 import com.ssghot.ssg.recentlyViewedProduct.dto.RecentlyViewedProductDtoOutput;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
 
 import java.util.List;
 
@@ -20,8 +22,9 @@ public interface IRecentlyViewedProductService {
     // 2. 최근 본 상품 삭제하기
     RecentlyViewedProduct deleteRecentlyViewedProduct(Long id, RecentlyViewedProductDtoInput recentlyViewedProductDtoInput);
 
-    // 3. 최근 본 상품 전체 조회하기
+    // 3. 최근 본 상품 전체 조회하기 (슬라이스 적용 X)
     List<RecentlyViewedProductDtoOutput> getAllRecentlyViewedProduct();
 
-    List<RecentlyViewedProductDtoOutput> getAllRecentlyViewedProductByUserId(Long userId);
+    // 4. 최근 본 상품 전체 조회하기 (슬라이스 적용 O)
+    Slice<RecentlyViewedProductDtoOutput> getAllRecentlyViewedProductSlice(Pageable pageable);
 }

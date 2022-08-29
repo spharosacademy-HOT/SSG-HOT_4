@@ -9,6 +9,9 @@ import com.ssghot.ssg.recentlyViewedProduct.repository.IRecentlyViewedProductRep
 import com.ssghot.ssg.users.domain.User;
 import com.ssghot.ssg.users.repository.IUserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -69,19 +72,23 @@ public class RecentlyViewedProductServiceImple implements IRecentlyViewedProduct
         return null;
     }
 
-    // 3. 최근 본 상품 전체 조회하기
+    // 3-1. 최근 본 상품 전체 조회하기 (슬라이스 적용 X)
     @Override
     public List<RecentlyViewedProductDtoOutput> getAllRecentlyViewedProduct() {
         List<RecentlyViewedProduct> recentlyViewedProductList = iRecentlyViewedProductRepository.findAll();
         List<RecentlyViewedProductDtoOutput> recentlyViewedProductDtoOutputList = new ArrayList<>();
 
-        // .productSubImgList(iProductSubImgRepository.allByProductId(product.getId()))
+        // 상품 중복 제거
+        int size = recentlyViewedProductList.size();
+        System.out.println("size = " + size);
+        boolean check[] = new boolean[size+1];
+        System.out.println("check[1] = " + check[1]);
 
         recentlyViewedProductList.forEach(
                 recentlyViewedProduct -> {
 
 //                    List<Product> allByRecentlyViewedProductId = iProductRepository.findAllByRecentlyViewedProductId(recentlyViewedProduct.getId());
-//                    List<ProductDtoOutputAll> productDtoOutputAllList = new ArrayList<>();
+//                    List<ProductDtoOutputIdName> productDtoOutputAllList = new ArrayList<>();
 //                    allByRecentlyViewedProductId.forEach(product -> {
 //                        productDtoOutputAllList.add(
 //                                ProductDtoOutputAll.builder()
@@ -92,7 +99,14 @@ public class RecentlyViewedProductServiceImple implements IRecentlyViewedProduct
 //                        );
 //                    });
 
-                    if(recentlyViewedProduct.getIsDeleted().equals("N")){
+                    System.out.println("recentlyViewedProduct.getId() = " + recentlyViewedProduct.getId());
+                    int productid = Math.toIntExact(recentlyViewedProduct.getProduct().getId());
+                    System.out.println("productid = " + Math.toIntExact(productid));
+                    System.out.println("check[" + productid + "] = " + check[productid]);
+                    if(check[productid] == false && recentlyViewedProduct.getIsDeleted().equals("N")){ //
+                        System.out.println("check[" + productid + "] = " + check[productid]);
+                        check[productid] = true;
+                        System.out.println("check[" + productid + "] = " + check[productid]);
                         recentlyViewedProductDtoOutputList.add(
                                 RecentlyViewedProductDtoOutput.builder()
                                         .id(recentlyViewedProduct.getId())
@@ -101,23 +115,63 @@ public class RecentlyViewedProductServiceImple implements IRecentlyViewedProduct
                                         .isDeleted(recentlyViewedProduct.getIsDeleted())
                                         .build()
                         );
+//                        System.out.println(recentlyViewedProductDtoOutputList.get(0));
                     }
+
+
+//                    if(recentlyViewedProduct.getIsDeleted().equals("N")){
+//                        recentlyViewedProductDtoOutputList.add(
+//                                RecentlyViewedProductDtoOutput.builder()
+//                                        .id(recentlyViewedProduct.getId())
+//                                        .product(recentlyViewedProduct.getProduct())
+//                                        .userId(recentlyViewedProduct.getUser().getId())
+//                                        .isDeleted(recentlyViewedProduct.getIsDeleted())
+//                                        .build()
+//                        );
+//                    }
                 }
         );
         return recentlyViewedProductDtoOutputList;
     }
 
+    // 3-2. 최근 본 상품 전체 조회하기 (슬라이스 적용 O)
     @Override
-    public List<RecentlyViewedProductDtoOutput> getAllRecentlyViewedProductByUserId(Long userId) {
+    public Slice<RecentlyViewedProductDtoOutput> getAllRecentlyViewedProductSlice(Pageable pageable) {
 
-        Optional<User> user = iUserRepository.findById(userId);
-        if(user.isPresent()){
-            List<RecentlyViewedProduct> recentlyViewedProductRepositoryAllByUserId = iRecentlyViewedProductRepository.findAllByUserId(userId);
+//        List<RecentlyViewedProduct> recentlyViewedProductList = iRecentlyViewedProductRepository.findAll();
+//        List<RecentlyViewedProductDtoOutput> recentlyViewedProductDtoOutputList = new ArrayList<>();
 
+        Page<RecentlyViewedProduct> all = iRecentlyViewedProductRepository.findAll(pageable);
 
-        }
+        // 상품 중복 제거
+        long totalElements = all.getTotalElements();
+        System.out.println("totalElements = " + totalElements);
+        boolean check[] = new boolean[(int) (totalElements+1)];
+        System.out.println("check[1] = " + check[1]);
 
+        return all
+                .map(recentlyViewedProduct -> {
+//                    all.forEach(
+//                            recentlyViewedProduct2 -> {
+                        System.out.println("recentlyViewedProduct2.getId() = " + recentlyViewedProduct.getId());
+                        int productid = Math.toIntExact(recentlyViewedProduct.getProduct().getId());
+                        System.out.println("productid = " + Math.toIntExact(productid));
+                        System.out.println("check[" + productid + "] = " + check[productid]);
+                        if(check[productid] == false && recentlyViewedProduct.getIsDeleted().equals("N")){ //
+                            System.out.println("check[" + productid + "] = " + check[productid]);
+                            check[productid] = true;
+                            System.out.println("check[" + productid + "] = " + check[productid]);
+//                            all.map(recentlyViewedProduct1 -> {
+                                return RecentlyViewedProductDtoOutput.builder()
+                                       .id(recentlyViewedProduct.getId())
+                                       .product(recentlyViewedProduct.getProduct())
+                                       .userId(recentlyViewedProduct.getUser().getId())
+                                       .isDeleted(recentlyViewedProduct.getIsDeleted())
+                                       .build();
+//                            });
+                        }
+                        return null;
+                });
 
-        return null;
     }
 }

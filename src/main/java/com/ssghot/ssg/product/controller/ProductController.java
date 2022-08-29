@@ -148,23 +148,43 @@ public class ProductController {
     }
 
     // 11. 상품 검색하기 (상품 이름만)
-    @GetMapping("/product/search")
-    public Page<ProductDtoOutputAll> getSearchName(String query, Pageable pageable){
-        // @PageableDefault(sort = "id", direction = Sort.Direction.DESC)
-        return iProductService.getSearchNameListPage(query, pageable);
-    }
+//    @GetMapping("/product/search")
+//    public Page<ProductDtoOutputAll> getSearchName(String query, Pageable pageable){
+//        // @PageableDefault(sort = "id", direction = Sort.Direction.DESC)
+//        return iProductService.getSearchNameListPage(query, pageable);
+//    }
 
     // 11-2. 상품 검색하기 (상품 이름 + 카테고리M id)
     @GetMapping("/product/search/categorym")
-    public Page<ProductDtoOutputAll> getSearchNameAndCategoryMId(String query, Long categorymid, Pageable pageable){
+    public Page<ProductDtoOutputAll> getSearchNameAndCategoryMId(String name, Long categorymid, Pageable pageable){
         // @PageableDefault(sort = "id", direction = Sort.Direction.DESC)
-        return iProductService.getSearchNameAndCategoryMIdListPage(query, categorymid, pageable);
+        return iProductService.getSearchNameAndCategoryMIdListPage(name, categorymid, pageable);
     }
 
     // 11-3. 상품 검색하기 (상품 이름 + 가격대)
     @GetMapping("/product/search/price")
-    public Page<ProductDtoOutputAll> getSearchNameAndPrice(String query, int minPrice, int maxPrice, Pageable pageable){
+    public Page<ProductDtoOutputAll> getSearchNameAndPrice(String name, int minPrice, int maxPrice, Pageable pageable){
         // @PageableDefault(sort = "id", direction = Sort.Direction.DESC)
-        return iProductService.getSearchNameAndBetweenDiscountPrice(query, minPrice, maxPrice, pageable);
+        return iProductService.getSearchNameAndBetweenDiscountPrice(name, minPrice, maxPrice, pageable);
     }
+
+    // 11-4. 상품 검색하기
+    @GetMapping("/product/search")
+    public Page<ProductDtoOutputAll> getSearchNameAndPrice1(
+            String name, Long category, Integer minPrice, Integer maxPrice, Pageable pageable){
+        // @PageableDefault(sort = "id", direction = Sort.Direction.DESC)
+        if(category == null && minPrice == null && maxPrice == null){
+            return iProductService.getSearchNameListPage(name, pageable);
+        } else if (category != null && minPrice == null && maxPrice == null) {
+            System.out.println("category = " + category);
+            return iProductService.getSearchNameAndCategoryMIdListPage(name, category, pageable);
+        } else if (category == null) {
+            return iProductService.getSearchNameAndBetweenDiscountPrice(name, minPrice, maxPrice, pageable);
+        } else if (category != null && minPrice != null && maxPrice != null) {
+            return iProductService.getSearchNameAndCategoryMIdAndBetweenDiscountPrice(name, category, minPrice, maxPrice, pageable);
+        }
+
+        return null;
+    }
+
 }

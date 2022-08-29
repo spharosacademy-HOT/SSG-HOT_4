@@ -88,6 +88,9 @@ public class CategoryServiceImple implements ICategoryService{
                     );
                 }
         );
+//        for(int i=1; i<categoryDtoOutputOnlyIdAndNameList2.size(); i++){
+//
+//        }
 
         return categoryDtoOutputOnlyIdAndNameList2;
     }

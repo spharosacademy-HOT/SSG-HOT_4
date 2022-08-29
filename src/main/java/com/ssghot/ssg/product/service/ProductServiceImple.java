@@ -523,9 +523,13 @@ public class ProductServiceImple implements IProductService{
             int size = stockList.size();
             System.out.println("size = " + size);
             boolean[] check = new boolean[size];
+            System.out.println("check[1] = " + check[1]);
             stockList.forEach(stock -> {
-                if(check[(stock.getOptionFirst().getId())] = true ){
-                    check[stock.getOptionFirst().getId()] = false;
+                System.out.println("stock.getOptionFirst().getId() = " + stock.getOptionFirst().getId());
+                if(check[(stock.getOptionFirst().getId())] == false ){
+                    System.out.println("check[(stock.getOptionFirst().getId())] = " + check[(stock.getOptionFirst().getId())]);
+                    check[stock.getOptionFirst().getId()] = true;
+                    System.out.println("check[(stock.getOptionFirst().getId())] = " + check[(stock.getOptionFirst().getId())]);
                     optionFirstList.add(
                         OptionFirst.builder()
                                 .id(stock.getOptionFirst().getId())
@@ -831,6 +835,72 @@ public class ProductServiceImple implements IProductService{
     public Page<ProductDtoOutputAll> getSearchNameAndBetweenDiscountPrice(
             String query, int minPrice, int maxPrice, Pageable pageable) {
         Page<Product> productPage = iProductRepository.findByNameContainingAndDiscountPriceBetween(query, minPrice, maxPrice, pageable);
+        return productPage.map(product -> {
+
+            List<ProductSubImg> allByProductId = iProductSubImgRepository.findAllByProductId(product.getId());
+            List<ProductSubImgDtoOutputOnlyId> productSubImgDtoOutputOnlyIdList = new ArrayList<>();
+            allByProductId.forEach(productSubImg -> {
+                productSubImgDtoOutputOnlyIdList.add(
+                        ProductSubImgDtoOutputOnlyId.builder()
+                                .id(productSubImg.getId())
+                                .build()
+                );
+            });
+
+            List<CategoryProductList> categoryProductLists = iCategoryProductListRepository.findAllByProductId(product.getId());
+            List<CategoryProductListDtoOutput> categoryProductListDtoOutputList = new ArrayList<>();
+            categoryProductLists.forEach(categoryProductList -> {
+                categoryProductListDtoOutputList.add(
+                        CategoryProductListDtoOutput.builder()
+                                .id(categoryProductList.getId())
+                                .productId(categoryProductList.getId())
+                                .categoryId(categoryProductList.getCategory().getId())
+                                .categoryMId(categoryProductList.getCategoryM().getId())
+                                .build()
+                );
+            });
+
+            List<Stock> stockList = iStockRepository.findAllByProductId(product.getId());
+            List<StockDtoOutputProductIdName> stockDtoOutputProductIdNameList = new ArrayList<>();
+            stockList.forEach(stock -> {
+                stockDtoOutputProductIdNameList.add(
+                        StockDtoOutputProductIdName.builder()
+                                .stockId(stock.getId())
+                                .qty(stock.getQty())
+                                .productId(stock.getProduct().getId())
+                                .optionFirstId(stock.getOptionFirst().getId())
+                                .optionSecondId(stock.getOptionSecond().getId())
+                                .build()
+                );
+            });
+
+            return ProductDtoOutputAll.builder()
+                    .id(product.getId())
+                    .name(product.getName())
+                    .regularPrice(product.getRegularPrice())
+                    .discountPrice(product.getDiscountPrice())
+                    .discountRate(product.getDiscountRate())
+                    .shippingFee(product.getShippingFee())
+                    .detail(product.getDetail())
+                    .deliveryCondition(product.getDeliveryCondition())
+                    .sellCount(product.getSellCount())
+                    .viewCount(product.getViewCount())
+                    .titleImgUrl(product.getTitleImgUrl())
+                    .titleImgTxt(product.getTitleImgTxt())
+                    .brandName(product.getBrandName())
+                    .star(product.getStar())
+                    .productSubImgList(productSubImgDtoOutputOnlyIdList)
+                    .categoryProductList(categoryProductListDtoOutputList)
+                    .stockList(stockDtoOutputProductIdNameList)
+                    .build();
+        });
+    }
+
+    @Override
+    public Page<ProductDtoOutputAll> getSearchNameAndCategoryMIdAndBetweenDiscountPrice(
+            String query, Long id, int minPrice, int maxPrice, Pageable pageable) {
+        Page<Product> productPage = iProductRepository.findByNameContainingAndAndCategoryMIdAndDiscountPriceBetween(
+                query, id, minPrice, maxPrice, pageable);
         return productPage.map(product -> {
 
             List<ProductSubImg> allByProductId = iProductSubImgRepository.findAllByProductId(product.getId());

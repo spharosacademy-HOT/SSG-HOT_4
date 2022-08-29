@@ -59,4 +59,6 @@ public interface IProductService {
     Page<ProductDtoOutputAll> getSearchNameAndCategoryMIdListPage(String query, Long id, Pageable pageable);
 
     Page<ProductDtoOutputAll> getSearchNameAndBetweenDiscountPrice(String query, int minPrice, int maxPrice, Pageable pageable);
+
+    Page<ProductDtoOutputAll> getSearchNameAndCategoryMIdAndBetweenDiscountPrice(String keyword, Long id, int minPrice, int maxPrice, Pageable pageable);
 }
