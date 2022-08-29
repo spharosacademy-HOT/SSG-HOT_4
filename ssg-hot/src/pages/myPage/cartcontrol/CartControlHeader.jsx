@@ -17,25 +17,24 @@ function CartControlHeader() {
         <div className="myodr_addrwrap">
           <div className="myodr_tit">
             <i className="myodr_tit_ico"></i>
-            <h3 className="myodr_tit_tx">[MY배송지] 이창현</h3>
+            <h3 className="myodr_tit_tx">
+              [MY배송지] {sessionStorage.getItem("name")}
+            </h3>
           </div>
           <div className="myodr_tab">
             <ul className="myodr_tab_list" role="tablist">
               <li role="presentation" className="on">
-                <a
-                  href="/m/comm/shpplocList.ssg"
-                  role="tab"
-                  aria-selected="true"
-                >
+                <a href="#" role="tab" aria-selected="true">
                   <span className="myodr_tab_tx">MY배송지</span>
                 </a>
               </li>
 
               <li role="presentation">
                 <a
-                  href="/m/comm/shareShpplocList.ssg"
+                  href="#"
                   role="tab"
                   aria-selected="false"
+                  onClick={() => alert("준비중입니다.")}
                 >
                   <span className="myodr_tab_tx">함께장보기 배송지</span>
                 </a>

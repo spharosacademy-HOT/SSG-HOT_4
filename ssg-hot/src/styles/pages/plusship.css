@@ -1,13 +1,54 @@
 .order_infolist li {
-    position: relative;
-    padding: 11px 0 30px 90px;
-    background-size: 2px 1px;
-    font-size: 13px;
-    line-height: 18px;
-    color: #666;
+  position: relative;
+  padding: 11px -1px 10px 81px;
+  background-size: 2px 1px;
+  font-size: 13px;
+  line-height: 18px;
+  color: #666;
 }
 
-.order_infolist .inpbx {
-  
-    padding: initial;
+.myodr_btn_rt .myodr_btn_tx:before {
+  position: absolute;
+  top: 0;
+  left: -1px;
+  display: inline-block;
+  width: 1px;
+  height: 16px;
+  background: #e0e0e0;
+  content: "";
+}
+.inpbx {
+  padding: 9px 8px 23px;
+}
+
+.des_select2 {
+  display: block;
+  position: relative;
+  width: auto;
+  height: 34px;
+  padding: 0 23px 0 8px;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  background: #fff;
+  font-size: 13px;
+  line-height: 34px;
+  color: #666;
+  vertical-align: top;
+}
+.des_select2 .hide_select2 {
+  display: block;
+  overflow: hidden;
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0.01;
+}
+.cc_ellip_in2 {
+  font-size: 12px;
+  font-weight: normal;
+  color: #aaa;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
