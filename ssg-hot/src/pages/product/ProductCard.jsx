@@ -4,28 +4,37 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import LikeButton from "../../components/common/widgets/button/LikeButton";
 import { getLike, postLike } from "../../store/apis/like";
-
+import * as Api from "../../store/apis/address";
 function ProductCard({ item }) {
   const [isLike, setIsLike] = useState();
 
   const addWish = (id, e) => {
     e.preventDefault();
-    // const result = e.target.value;
     console.log(id);
     postLike(id).then((res) => console.log(res, "좋아요요청"));
   };
+  // const getAxiosLike = async () => {
+  //   try {
+  //     const getData=await Api.get(`/wish/user`)
+  //     console.log(getData)
+  //   } catch (e){
+  //     console.log(e)
+  //   }
+  // }
   useEffect(() => {
-    getLike().then((res) => {
-      console.log(res.data, "좋아요가져오기");
-      if (res.data !== null) {
-        res.data.map((like) => {
-          if (like.product.id == item.id) {
-            console.log(like.product.id, "dsfsjjfklsjdklfjlk");
-            setIsLike(true);
-          }
-        });
-      }
-    });
+    getLike()
+      .then((res) => {
+        console.log(res.data, "좋아요가져오기");
+        if (res.data !== null) {
+          res.data.map((like) => {
+            if (like.product.id == item.id) {
+              console.log(like.product.id, "dsfsjjfklsjdklfjlk");
+              setIsLike(true);
+            }
+          });
+        }
+      })
+      .catch((err) => console.log(err));
   }, []);
   return (
     <>

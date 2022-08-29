@@ -16,12 +16,11 @@ function ProductCardList() {
     });
   }, []);
   console.log(productDatas);
-
   return (
     <>
       <ProductCardFilter />
       {/* <p>6,140개의 상품이 있읍니다.</p> */}
-      <div className="cmft_sort_count v2">
+      <div className="cmft_sort_count v2" style={{ paddingTop: 0 }}>
         <div className="cmft_sort_tit">
           <div className="cmft_num">
             {/* <strong>{productDatas.length}</strong>개의 상품이 있습니다. */}

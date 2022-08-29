@@ -27,6 +27,7 @@ import KakaoRedirectHandler from "./pages/auth/oauth/KakaoRedirectHandler";
 //css
 import "./styles/styles.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import SearchResult from "./pages/search/SearchResult";
 
 function App() {
   return (
@@ -60,6 +61,9 @@ function App() {
           </Route>
           <Route path="/like" element={<Like />} />
           <Route path="/oauth/redirect" element={<KakaoRedirectHandler />} />
+          <Route path="/search" element={<SearchResult />}>
+            <Route path=":productName" element={<SearchResult />} />
+          </Route>
         </Routes>
         <ToolBar />
         <Footer />

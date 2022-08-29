@@ -5,7 +5,7 @@ export const baseURL = "http://localhost:8080/api";
 // export const baseURL = "http://10.10.10.128:8080/api";
 
 // 로컬에서 토큰 가져오기
-const ACCESS_TOKEN = localStorage.getItem("token");
+let ACCESS_TOKEN = localStorage.getItem("token");
 // console.log(ACCESS_TOKEN);
 
 //토큰 필요 없는 json 타입 요청시
