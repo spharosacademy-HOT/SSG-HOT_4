@@ -17,7 +17,7 @@ import java.util.List;
 public class ProductDtoOutputAll {
 
     // 좋아요 추가
-    private Boolean isWished = false;
+    private Boolean isWished;
 
     private Long id; // 상품 id
     private String name; // 상품명
