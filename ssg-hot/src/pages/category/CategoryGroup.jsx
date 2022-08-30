@@ -1,37 +1,41 @@
-import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import CategoryItem from './CategoryItem';
 import CategoryViewer from './CategoryViewer';
-import { baseURL } from '../../store/apis/apiClient';
 
-function CategoryGroup({}) {
+function CategoryGroup({cateData, viewIsTrue,cateNumber, setCateNumber, isClick, setIsClick, cateId}) {
+
+    const [getNum , setGetNum] = useState(1)
+    const [viewerData, setViewerData] = useState([])
     const [viewerView, setViewerView] = useState(false)
-    const [categoryIds, setCategoryId] = useState()
+    const [differ, setDiffer] = useState(false)
+    useEffect(() => {
+   
+        setViewerData(cateData.category[getNum].categoryMList)
+        setCateNumber(cateId)
 
-    useEffect(()=>{
-        axios
-          .get(`${baseURL}/category`)
-          .then((Response) =>{
-            setCategoryId(Response.data)
-          })
-    },[])
-    console.log('첫번째',categoryIds)
+    }, [getNum])
+    console.log('cateData',cateData)
+    
+   
     return ( 
         <>
             <ul className='category-align'>
                 {
-                    categoryIds && categoryIds.map(item => (
-                        <CategoryItem item={item} setViewerView={setViewerView} key={item.id}/>
+                    cateData && cateData.category.map(item =>(
+                        <CategoryItem
+                            item={item}
+                            key={item.id}
+                            // getNum = {getNum}
+                            cateNumber = {cateNumber}
+                            setGetNum = {setGetNum}
+                            setViewerView={setViewerView}
+                            isClick={isClick}
+                            setIsClick={setIsClick}
+                            setDiffer={setDiffer}/>
                     ))
                 }
-
             </ul>
-           {/* <CategoryViewer item={viewerData} isTrue={viewerView} getNum={getNum}/> */}
-           {
-            categoryIds && categoryIds.map(item =>(
-                <CategoryViewer item={item.id} key={item.id} isTrue={viewerView}/>
-            ))
-           }
+           <CategoryViewer item={viewerData} isTrue={viewerView} differ={differ}/>
         </>
     );
 }

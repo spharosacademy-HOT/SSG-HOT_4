@@ -4,7 +4,7 @@ import ThemeRecommend from "./ThemeRecommend";
 // import './Category.module.css'
 import "../../styles/styles.css";
 import CategoryGroup from "./CategoryGroup";
-import cateDatas from '../../datas/js/cateDatas';
+// import cateDatas from '../../datas/js/cateDatas';
 import { useState } from "react";
 import { useEffect } from "react";
 import ServiceRecommend from "./ServiceRecommend";
@@ -15,18 +15,23 @@ function Category() {
 
   const [cateNumber , setCateNumber] = useState(0)
   const [isClick, setIsClick] = useState(false)
+  const [cateDatas, setCateDates] =useState([])
+  
 
   useEffect(()=>{
-    let setTrues = [ false, false ];
-    setTrues[cateNumber-1]=true
+    let setTrues = [ false, false, false, false ];
+    console.log(cateNumber)
+    setTrues[cateNumber]=true
+    console.log('상황',setTrues)
   },[cateNumber])
-  // useEffect(()=>{
-  //   axios
-  //     .get(`${baseURL}/category`)
-  //     .then((Response) =>{
-  //       setCategoryId(Response.data)
-  //     })
-  // },[])
+  useEffect(()=>{
+    axios
+      .get(`${baseURL}/category`)
+      .then((Response) =>{
+        setCateDates(Response.data)
+        console.log('cateDatas',cateDatas)
+      })
+  },[])
 
   return (
     <div>
@@ -35,10 +40,10 @@ function Category() {
       <div className="category">
         {/* 카테고리 하나하나 */}
         {
-          cateDatas.map(cateData => (
+          cateDatas && cateDatas.map(cateData => (
             <CategoryGroup
               key={cateData.id}
-              cateData={cateData.data}
+              cateData={cateData}
               viewIsTrue={false}
               cateNumber = {cateNumber}
               setCateNumber={setCateNumber}
@@ -48,12 +53,6 @@ function Category() {
             />
           ))
         }
-        {/* {
-          categoryIds && categoryIds.map(categoryId => (
-            <CategoryGroup categoryId={categoryId} key={categoryId.id} setIsClick={setIsClick}/>
-          ))
-        } */}
-        {/* <CategoryGroup/> */}
       </div>
       {/* 테마추천 */}
       <div>

@@ -18,7 +18,7 @@ const cateDatas = [
         id : 1,
         data: 
             [
-                {
+            {
                 id : 1,
                 imgUrl : img01,
                 cateName : "패션의류",
@@ -64,6 +64,7 @@ const cateDatas = [
                         url : "/productList/1/8"
                     },
                 ]
+
             },
             {
                 id : 2,
