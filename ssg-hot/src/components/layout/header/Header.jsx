@@ -86,14 +86,21 @@ export default function Header() {
                 <fieldset>
                   <form id="m_sch_bottom_form">
                     <div className="gnb_search_inpbox">
-                      <div className="gnb_search_inpbox_sbox">
-                        <input
-                          type="search"
-                          id="globalSearchInput"
-                          className="gnb_search_inpbox_inp"
-                          autoComplete="off"
-                        />
-                        <Link to="/mainsearch">
+                      <Link to="/mainsearch">
+                        <div
+                          className="gnb_search_inpbox_sbox"
+                          style={{
+                            backgroundColor: "#F5F5F5",
+                            borderRadius: "10px",
+                            padding: "3px",
+                          }}
+                        >
+                          <input
+                            type="search"
+                            id="globalSearchInput"
+                            className="gnb_search_inpbox_inp"
+                            autoComplete="off"
+                          />
                           <button
                             type="button"
                             id="globalSearchButton"
@@ -103,8 +110,8 @@ export default function Header() {
                               <span className="blind">검색</span>
                             </i>
                           </button>
-                        </Link>
-                      </div>
+                        </div>
+                      </Link>
                     </div>
                   </form>
                 </fieldset>
