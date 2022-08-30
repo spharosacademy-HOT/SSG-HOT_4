@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 
-function ProductPurchaseItem() {
+function ProductPurchaseItem({purchaseList}) {
     const[productQty,setProductQty] = useState(1);
     const handleProductPlus = () =>{
         setProductQty(productQty + 1)
@@ -10,6 +10,7 @@ function ProductPurchaseItem() {
     const handleProductMinus = () =>{
         setProductQty(productQty - 1)
     }
+    console.log('구매할 목록',purchaseList)
     return ( 
         <>
             <div className='product-qty'>

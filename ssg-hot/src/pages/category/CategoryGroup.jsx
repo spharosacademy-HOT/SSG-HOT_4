@@ -10,7 +10,7 @@ function CategoryGroup({cateData, viewIsTrue,cateNumber, setCateNumber, isClick,
     const [differ, setDiffer] = useState(false)
     useEffect(() => {
    
-        setViewerData(cateData.category[getNum].categoryMList)
+        setViewerData(cateData.category[getNum-1].categoryMList)
         setCateNumber(cateId)
 
     }, [getNum])

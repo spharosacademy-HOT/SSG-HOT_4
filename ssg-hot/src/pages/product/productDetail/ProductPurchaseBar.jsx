@@ -57,8 +57,9 @@ function ProductPurchaseBar({stockList}) {
             console.log(sizeDatas)
         })
     }
-    const handleAppendStock = () =>{
-        setPurChaseList([,...purchaseList])
+    const handleAppendStock = (item) =>{
+        setStockChoice(!stockChoice)
+        setPurChaseList([item,...purchaseList])
     }
       //장바구니 담고 장바구니 새로 가져오기
     const goCart = () => {
@@ -149,7 +150,7 @@ function ProductPurchaseBar({stockList}) {
                     <div>사이즈선택</div>
                     <div><FontAwesomeIcon icon={faAngleDown}/></div>
                 </div>
-                <ProductPurchaseItem/>
+                <ProductPurchaseItem purchaseList={purchaseList} />
                 <div className='product-total-price'>
                     총 합계 <span>65,065</span>원
                 </div>
@@ -175,7 +176,7 @@ function ProductPurchaseBar({stockList}) {
                 <div>
                     {
                         sizeDatas && sizeDatas.map(item =>(
-                            <div key={item.stockId} className='stock-list' onClick={handleAppendStock}>
+                            <div key={item.stockId} className='stock-list' onClick={()=>{handleAppendStock(item)}}>
                                 {item.optionSecond.name}{item.qty ? <span>(남은 수량 : {item.qty})</span> : <span>(품절)</span>}
                             </div>
                         ))
