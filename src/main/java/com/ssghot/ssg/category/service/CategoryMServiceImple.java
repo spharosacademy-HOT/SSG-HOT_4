@@ -20,6 +20,7 @@ import com.ssghot.ssg.product.dto.ProductDtoOutputAll;
 import com.ssghot.ssg.product.dto.ProductSubImgDtoOutputOnlyId;
 import com.ssghot.ssg.product.repository.IProductRepository;
 import com.ssghot.ssg.product.repository.IProductSubImgRepository;
+import com.ssghot.ssg.wish_list.service.IWishListService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -38,6 +39,7 @@ public class CategoryMServiceImple implements ICategoryMService{
     private final IProductSubImgRepository iProductSubImgRepository;
     private final ICategoryProductListRepository iCategoryProductListRepository;
 
+    private final IWishListService iWishListService;
     /*
         1. 카테고리 중분류 등록하기
         2. 카테고리 중분류 수정하기
@@ -175,7 +177,96 @@ public class CategoryMServiceImple implements ICategoryMService{
 
         return categoryMDtoOutputIdAndNameList;
     }
+    @Override
+    public CategoryMDtoOutput getOneCategoryMWithUser(Long id, Long userId) {
+        Optional<CategoryM> categoryM = iCategoryMRepository.findById(id);
+        CategoryMDtoOutput categoryMDtoOutput = null;
 
+        List<Product> productList = iProductRepository.findAllByCategoryMId(categoryM.get().getId());
+        List<ProductDtoOutputAll> productDtoOutputAllList = new ArrayList<>();
+        productList.forEach(product -> {
+
+            // Stock
+            List<Stock> stockList = iStockRepository.findAllByProductId(product.getId());
+            List<StockDtoOutputProductIdName> stockDtoOutputProductIdNameList = new ArrayList<>();
+            stockList.forEach(stock -> {
+                stockDtoOutputProductIdNameList.add(
+                        StockDtoOutputProductIdName.builder()
+                                .stockId(stock.getId())
+                                .qty(stock.getQty())
+                                .productId(stock.getProduct().getId())
+                                .optionFirstId(stock.getOptionFirst().getId())
+                                .optionSecondId(stock.getOptionSecond().getId())
+                                .build()
+                );
+            });
+
+            // SubImg
+            List<ProductSubImg> productSubImgList = iProductSubImgRepository.findAllByProductId(product.getId());
+            List<ProductSubImgDtoOutputOnlyId> productSubImgDtoOutputOnlyIdList = new ArrayList<>();
+
+            productSubImgList.forEach(productSubImg -> {
+                productSubImgDtoOutputOnlyIdList.add(
+                        ProductSubImgDtoOutputOnlyId.builder()
+                                .id(productSubImg.getId())
+                                .build()
+                );
+            });
+
+            // CategoryProduct
+            List<CategoryProductList> categoryProductLists = iCategoryProductListRepository.findAllByProductId(product.getId());
+            List<CategoryProductListDtoOutput> categoryProductListDtoOutputList = new ArrayList<>();
+
+            categoryProductLists.forEach(categoryProductList -> {
+                categoryProductListDtoOutputList.add(
+                        CategoryProductListDtoOutput.builder()
+                                .id(categoryProductList.getId())
+                                .categoryMId(categoryProductList.getCategoryM().getId())
+                                .categoryId(categoryProductList.getCategory().getId())
+                                .productId(categoryProductList.getProduct().getId())
+                                .build()
+                );
+            });
+            System.out.println("--------------------------------");
+            System.out.println("productId: "+product.getId());
+            System.out.println("userId:"+userId);
+            System.out.println("--------------------------------");
+            boolean wish = iWishListService.wishByProductIdAndUserId(product.getId(), userId);
+            productDtoOutputAllList.add(
+                    ProductDtoOutputAll.builder()
+                            .id(product.getId())
+                            .name(product.getName())
+                            .regularPrice(product.getRegularPrice())
+                            .discountPrice(product.getDiscountPrice())
+                            .discountRate(product.getDiscountRate())
+                            .shippingFee(product.getShippingFee())
+                            .detail(product.getDetail())
+                            .star(product.getStar())
+                            .deliveryCondition(product.getDeliveryCondition())
+                            .viewCount(product.getViewCount())
+                            .sellCount(product.getSellCount())
+                            .brandName(product.getBrandName())
+                            .titleImgUrl(product.getTitleImgUrl())
+                            .titleImgTxt(product.getTitleImgTxt())
+                            .stockList(stockDtoOutputProductIdNameList)
+                            .productSubImgList(productSubImgDtoOutputOnlyIdList)
+                            .categoryProductList(categoryProductListDtoOutputList)
+                            .isWished(wish)
+                            .build()
+            );
+        });
+
+        if(categoryM.isPresent()){
+            categoryMDtoOutput = CategoryMDtoOutput.builder()
+                    .id(categoryM.get().getId())
+                    .name(categoryM.get().getName())
+                    .category(categoryM.get().getCategory())
+                    .productList(productDtoOutputAllList)
+                    .build();
+        }
+
+        return categoryMDtoOutput;
+    }
     // 4. 카테고리 중분류 단일 조회하기
     @Override
     public CategoryMDtoOutput getOneCategoryM(Long categoryMId) {
@@ -250,6 +341,7 @@ public class CategoryMServiceImple implements ICategoryMService{
                             .stockList(stockDtoOutputProductIdNameList)
                             .productSubImgList(productSubImgDtoOutputOnlyIdList)
                             .categoryProductList(categoryProductListDtoOutputList)
+                            .isWished(false)
                             .build()
             );
         });
@@ -265,4 +357,6 @@ public class CategoryMServiceImple implements ICategoryMService{
 
         return categoryMDtoOutput;
     }
+
+
 }

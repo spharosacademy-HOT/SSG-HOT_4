@@ -5,9 +5,11 @@ import com.ssghot.ssg.category.domain.CategoryM;
 import com.ssghot.ssg.category.dto.*;
 import com.ssghot.ssg.category.service.ICategoryMService;
 import com.ssghot.ssg.category.service.ICategoryService;
+import com.ssghot.ssg.users.sevice.IUserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
@@ -15,7 +17,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class CategoryController {
-
+    private final IUserService iUserService;
     private final ICategoryService iCategoryService;
     private final ICategoryMService iCategoryMService;
 
@@ -79,7 +81,11 @@ public class CategoryController {
     }
     // 4-2. 카테고리 중분류 단일 조회하기
     @GetMapping("/categorym/{id}")
-    public CategoryMDtoOutput getOneCategoryM(@PathVariable Long id){
+    public CategoryMDtoOutput getOneCategoryM(@PathVariable Long id, HttpServletRequest request){
+        Long userId = iUserService.getUserByToken(request);
+        if(userId != null)
+        return iCategoryMService.getOneCategoryMWithUser(id,userId);
+
         return iCategoryMService.getOneCategoryM(id);
     }
 }

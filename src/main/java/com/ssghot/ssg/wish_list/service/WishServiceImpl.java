@@ -43,7 +43,14 @@ public class WishServiceImpl implements IWishListService{
         }
         return getWishListDtoOutput(400,"실패",null);
     }
-
+    @Override
+    public boolean wishByProductIdAndUserId(Long productId, Long userId) {
+        Optional<WishList> productIdAndUserId = iWishListRepository.findByProductIdAndUserId(productId, userId);
+        if(productIdAndUserId.isPresent()){
+            return true;
+        }
+        return false;
+    }
     @Override
     public ResultsDtoOutput<List<WishListDtoOutput>> getWishByUserId(Long userId) {
         List<WishList> wishListByUserId = iWishListRepository.findAllByUserId(userId);
@@ -66,6 +73,7 @@ public class WishServiceImpl implements IWishListService{
     public void deleteWish(Long id) {
         iWishListRepository.deleteById(id);
     }
+
 
     private ResultDtoOutput<WishListDtoOutput> getWishListDtoOutput(int status, String message, WishList wishList){
         if(wishList!=null){
