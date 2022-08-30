@@ -59,7 +59,7 @@ function Product() {
           <ProductGuide />
           <EventBanner />
           <StoreInfo />
-          <ProductPurchaseBar />
+          <ProductPurchaseBar stockList={productDatas.optionFirst} />
         </>
       )}
 

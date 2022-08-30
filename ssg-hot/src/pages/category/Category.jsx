@@ -34,7 +34,7 @@ function Category() {
       {/* 카테고리 */}
       <div className="category">
         {/* 카테고리 하나하나 */}
-        {/* {
+        {
           cateDatas.map(cateData => (
             <CategoryGroup
               key={cateData.id}
@@ -47,13 +47,13 @@ function Category() {
               cateId = {cateData.id}
             />
           ))
-        } */}
+        }
         {/* {
           categoryIds && categoryIds.map(categoryId => (
             <CategoryGroup categoryId={categoryId} key={categoryId.id} setIsClick={setIsClick}/>
           ))
         } */}
-        <CategoryGroup/>
+        {/* <CategoryGroup/> */}
       </div>
       {/* 테마추천 */}
       <div>
