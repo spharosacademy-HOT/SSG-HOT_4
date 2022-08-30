@@ -15,6 +15,8 @@ public interface ICategoryMService {
         2. 카테고리 중분류 수정하기
         3. 카테고리 중분류 전체 조회하기
         4. 카테고리 중분류 단일 조회하기
+
+        5. 카테고리 중분류 단일 조회하기(유저용)
      */
 
     // 1. 카테고리 중분류 등록하기
@@ -29,4 +31,6 @@ public interface ICategoryMService {
     // 4. 카테고리 중분류 단일 조회하기
     CategoryMDtoOutput getOneCategoryM(Long categoryMId);
 
+
+    CategoryMDtoOutput getOneCategoryMWithUser(Long id, Long userId);
 }

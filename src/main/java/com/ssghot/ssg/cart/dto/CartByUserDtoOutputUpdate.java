@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class CartByUserDtoOutput {
+public class CartByUserDtoOutputUpdate {
     private Long id;
     private Long userId;
     private Stock stock;

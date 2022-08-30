@@ -18,6 +18,10 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -85,23 +89,43 @@ public class CartServiceImpl implements ICartService{
         boolean isValid = iUserRepository.existsById(userId);
         if(isValid){
             List<Cart> carts = iCartRepository.findByUserId(userId);
-            List<OptionListDtoOutput> optionListDtoOutputs = new ArrayList<>();
+
+            List<OptionListDtoOutputList> optionListDtoOutputsUpdated = new ArrayList<>();
+//            List<OptionListDtoOutput> optionListDtoOutputs = new ArrayList<>();
             for (Cart cart: carts) {
 
                 List<Stock> allByProductId = iStockRepository.findAllByProductId(cart.getStock().getProduct().getId());
+//              version 1
+//                for (Stock stock : allByProductId) {
+//                    OptionFirst optionFirst = stock.getOptionFirst();
+//                    OptionSecond optionSecond = stock.getOptionSecond();
+//                    Long id = stock.getId();
+//                    OptionListDtoOutput optionListDtoOutput = OptionListDtoOutput.builder()
+//                            .optionFirst(optionFirst).optionSecond(optionSecond)
+//                            .stockId(id)
+//                            .build();
+//                    optionListDtoOutputs.add(optionListDtoOutput);
+//                }
+                List<OptionFirst> optionFirsts = new ArrayList<>();
+                List<OptionSecond> optionSeconds = new ArrayList<>();
+                // 첫번째 값 넣기
+                optionFirsts.add(cart.getStock().getOptionFirst());
+                optionSeconds.add(cart.getStock().getOptionSecond());
 
                 for (Stock stock : allByProductId) {
-                    OptionFirst optionFirst = stock.getOptionFirst();
-                    OptionSecond optionSecond = stock.getOptionSecond();
-                    Long id = stock.getId();
-                    OptionListDtoOutput optionListDtoOutput = OptionListDtoOutput.builder()
-                            .optionFirst(optionFirst).optionSecond(optionSecond)
-                            .stockId(id)
-                            .build();
-                    optionListDtoOutputs.add(optionListDtoOutput);
+                    optionFirsts.add(stock.getOptionFirst());
+                    optionSeconds.add(stock.getOptionSecond());
                 }
+                List<OptionFirst> optionFirstFinal = deduplication(optionFirsts, OptionFirst::getId);
+                List<OptionSecond> optionSecondsFinal = deduplication(optionSeconds, OptionSecond::getId);
+
+                OptionListDtoOutputList optionList = OptionListDtoOutputList.builder()
+                        .optionFirsts(optionFirstFinal)
+                        .optionSeconds(optionSecondsFinal)
+                        .build();
+                optionListDtoOutputsUpdated.add(optionList);
             }
-            return getCartsDtoOutputs(200,"유저별 카트 정보를 가져왔습니다.",carts,optionListDtoOutputs);
+            return getCartsDtoOutputs(200,"유저별 카트 정보를 가져왔습니다.",carts,optionListDtoOutputsUpdated);
         }
         return getCartsDtoOutputs(404,"유저 정보가 없습니다",null,null);
     }
@@ -167,22 +191,42 @@ public class CartServiceImpl implements ICartService{
         return new ResultsDtoOutput<>(status, message, 0,null);
     }
 
-    private ResultsDtoOutput<List<CartByUserDtoOutput>> getCartsDtoOutputs(int status, String message, List<Cart> carts,List<OptionListDtoOutput> optionListDtoOutputs) {
+    private ResultsDtoOutput<List<CartByUserDtoOutput>> getCartsDtoOutputs(int status, String message, List<Cart> carts,List<OptionListDtoOutputList> optionListDtoOutputsUpdated) {
         if(carts!=null) {
+            final int[] i = {-1};
             List<CartByUserDtoOutput> collect = carts.stream().map(cart ->
-                    CartByUserDtoOutput.builder()
-                            .id(cart.getId())
-                            .userId(cart.getUser().getId())
-                            .count(cart.getCount())
-                            .stock(cart.getStock())
-                            .optionList(optionListDtoOutputs)
-                            .createdDate(cart.getCreatedDate())
-                            .updatedDate(cart.getUpdatedDate())
-                            .build()
+                    {
+                        i[0]++;
+                        return CartByUserDtoOutput.builder()
+                                .id(cart.getId())
+                                .userId(cart.getUser().getId())
+                                .count(cart.getCount())
+                                .stock(cart.getStock())
+                                .optionList(optionListDtoOutputsUpdated.get(i[0]))
+                                .createdDate(cart.getCreatedDate())
+                                .updatedDate(cart.getUpdatedDate())
+                                .build();
+                    }
+
             ).collect(Collectors.toList());
             return new ResultsDtoOutput<>(status, message, collect.size(), collect);
         }
         return new ResultsDtoOutput<>(status, message, 0,null);
+    }
+
+    /**
+     * @param list 중복이 있는 리스트
+     * @param key 중복 여부를 판단하는  키값
+     * @param <T> 제네릭 타입
+     * @return List
+     */
+    public <T> List<T> deduplication(List<T> list, Function<? super T,?> key){
+        return list.stream().filter(deduplication(key)).collect(Collectors.toList());
+    }
+
+    public <T> Predicate<T> deduplication(Function<? super T,?> key){
+        Set<Object> set = ConcurrentHashMap.newKeySet();
+        return predicate ->set.add(key.apply(predicate));
     }
 }
 

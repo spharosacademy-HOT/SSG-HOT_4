@@ -14,6 +14,7 @@ import javax.persistence.*;
 @Builder
 @EqualsAndHashCode(callSuper=false)
 public class WishList extends CommonDTO{
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

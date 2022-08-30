@@ -13,10 +13,13 @@ public interface IWishListService {
         2. 하트 유저별 조회
         3. 하트 전체 조회
         4. 하트 삭제
+        5. 유저 상품이 존재할 경우
      */
 
     ResultDtoOutput<WishListDtoOutput> addWish(WishListDtoInput wishListDtoInput);
     ResultsDtoOutput<List<WishListDtoOutput>> getWishByUserId(Long userId);
     ResultsDtoOutput<List<WishListDtoOutput>> getAll();
     void deleteWish(Long id);
+
+    boolean wishByProductIdAndUserId(Long productId, Long userId);
 }
