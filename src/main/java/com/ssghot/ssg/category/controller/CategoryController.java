@@ -61,7 +61,7 @@ public class CategoryController {
 
     // 3-1. 카테고리 대분류 전체 조회하기
     @GetMapping("/category")
-    public List<CategoryDtoOutputOnlyIdAndName2> getAllCategory(){
+    public List<CategoryListDto> getAllCategory(){
         return iCategoryService.getAllCategory();
     }
 

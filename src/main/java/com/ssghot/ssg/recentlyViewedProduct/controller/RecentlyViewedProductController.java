@@ -44,8 +44,8 @@ public class RecentlyViewedProductController {
 
     // 4. 최근 본 상품 전체 조회하기 (슬라이스 적용 O)
     @GetMapping("/recentlyviewedproduct")
-    public Slice<RecentlyViewedProductDtoOutput> getAllRecentlyViewedProduct(Pageable pageable){
-        return iRecentlyViewedProductService.getAllRecentlyViewedProductSlice(pageable);
+    public Slice<RecentlyViewedProductDtoOutput> getAllRecentlyViewedProduct(String isDeleted, Pageable pageable){
+        return iRecentlyViewedProductService.getAllRecentlyViewedProductSlice(isDeleted, pageable);
     }
 
 }

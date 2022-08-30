@@ -2,13 +2,11 @@ package com.ssghot.ssg.category.service;
 
 import com.ssghot.ssg.category.domain.Category;
 import com.ssghot.ssg.category.domain.CategoryM;
-import com.ssghot.ssg.category.dto.CategoryDtoInput;
-import com.ssghot.ssg.category.dto.CategoryDtoOutput;
-import com.ssghot.ssg.category.dto.CategoryDtoOutputOnlyIdAndName2;
-import com.ssghot.ssg.category.dto.CategoryMDtoOutputIdAndName2;
+import com.ssghot.ssg.category.dto.*;
 import com.ssghot.ssg.category.repository.ICategoryMRepository;
 import com.ssghot.ssg.category.repository.ICategoryRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -17,6 +15,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class CategoryServiceImple implements ICategoryService{
 
     private final ICategoryRepository iCategoryRepository;
@@ -58,7 +57,7 @@ public class CategoryServiceImple implements ICategoryService{
 
     // 3. 카테고리 대분류 전체 조회하기
     @Override
-    public List<CategoryDtoOutputOnlyIdAndName2> getAllCategory() {
+    public List<CategoryListDto> getAllCategory() {
 
         List<Category> categoryList = iCategoryRepository.findAll();
         List<CategoryDtoOutputOnlyIdAndName2> categoryDtoOutputOnlyIdAndNameList2 = new ArrayList<>();
@@ -88,11 +87,48 @@ public class CategoryServiceImple implements ICategoryService{
                     );
                 }
         );
-//        for(int i=1; i<categoryDtoOutputOnlyIdAndNameList2.size(); i++){
-//
-//        }
+        System.out.println("categoryList.size() : " + categoryList.size());
 
-        return categoryDtoOutputOnlyIdAndNameList2;
+//        ArrayList<Object> arrayList = new ArrayList<>();
+//
+//        int len = categoryList.size();
+//        List<Category> categoryArr = new ArrayList<>();
+//        int j =1;
+//        for(int i=0 ;i<len;i++){
+//
+//            if(i%4==0){
+//                CategoryListDto.builder().categoryList(categoryArr)
+//                        .row(j).build();
+//                j++;
+//                break;
+//            }
+//            categoryArr.add(categoryList.get(i));
+//        }
+//
+//
+//        return categoryDtoOutputOnlyIdAndNameList2;
+
+        ArrayList<Object> arrayList = new ArrayList<>();
+        int len = categoryList.size();
+        List<CategoryDtoOutputOnlyIdAndName2> categoryArr = new ArrayList<>();
+        List<CategoryListDto> categoryListDtos = new ArrayList<>();
+        int j = 1;
+        for(int i=0; i<len; i++){
+            categoryArr.add(categoryDtoOutputOnlyIdAndNameList2.get(i));
+            if(i==3 || i==7 || i==11){
+                CategoryListDto build = CategoryListDto.builder().category(categoryArr)
+                        .row(j).build();
+                j++;
+                categoryArr = new ArrayList<>();
+                categoryListDtos.add(build);
+            }
+        }
+        CategoryListDto build = CategoryListDto.builder().category(categoryArr)
+                .row(j).build();
+        categoryListDtos.add(build);
+//        CategoryListDtoOutput.builder().category(category).build();
+
+        return categoryListDtos;
     }
 
     // 4. 카테고리 대분류 단일 조회하기

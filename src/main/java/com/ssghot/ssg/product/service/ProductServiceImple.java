@@ -520,10 +520,17 @@ public class ProductServiceImple implements IProductService{
 
             // 첫번째 옵션 리스트
             List<OptionFirst> optionFirstList = new ArrayList<>();
-            int size = stockList.size();
+            int productSize = Math.toIntExact(product.get().getId()); // 상품 id
+            int stockSize = stockList.size();
+            int size = 0;
+            if(productSize > stockSize){
+                size = productSize;
+            } else{
+                size = stockSize;
+            }
             System.out.println("size = " + size);
             boolean[] check = new boolean[size];
-            System.out.println("check[1] = " + check[1]);
+            System.out.println("check[0] = " + check[0]);
             stockList.forEach(stock -> {
                 System.out.println("stock.getOptionFirst().getId() = " + stock.getOptionFirst().getId());
                 if(check[(stock.getOptionFirst().getId())] == false ){

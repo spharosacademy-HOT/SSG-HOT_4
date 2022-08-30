@@ -26,5 +26,5 @@ public interface IRecentlyViewedProductService {
     List<RecentlyViewedProductDtoOutput> getAllRecentlyViewedProduct();
 
     // 4. 최근 본 상품 전체 조회하기 (슬라이스 적용 O)
-    Slice<RecentlyViewedProductDtoOutput> getAllRecentlyViewedProductSlice(Pageable pageable);
+    Slice<RecentlyViewedProductDtoOutput> getAllRecentlyViewedProductSlice(String keyword, Pageable pageable);
 }
