@@ -2,6 +2,7 @@ package com.ssghot.ssg.users.sevice;
 
 import com.ssghot.ssg.users.domain.User;
 import com.ssghot.ssg.users.dto.*;
+import org.springframework.http.HttpHeaders;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -42,4 +43,5 @@ public interface IUserService {
     boolean checkUserPhone(String phone);
 
     Long getUserByToken(HttpServletRequest request);
+    Long getUserByTokenFix(HttpHeaders headers);
 }
