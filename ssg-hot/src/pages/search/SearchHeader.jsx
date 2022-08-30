@@ -30,11 +30,18 @@ export default function SearchHeader() {
         placeholder="검색어를 입력하세요"
         value={search}
         onChange={onChangeSearch}
+        style={{
+          backgroundColor: "#F5F5F5",
+          borderRadius: "15px",
+          padding: "6px",
+          border: "none",
+        }}
       />
 
       <button type="submit" style={{ color: "black" }}>
         <img src={searchIcon} alt="검색아이콘" />
       </button>
+
       <Link to="/cart" style={{ color: "black" }}>
         <img src={cartLogo2} alt="장바구니" />
       </Link>
