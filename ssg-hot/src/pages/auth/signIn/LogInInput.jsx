@@ -47,7 +47,7 @@ function LogInInput() {
           //   setCartData(res.data);
           // });
 
-          navigate("/");
+          navigate(-1);
         })
         .catch((err) => {
           alert(

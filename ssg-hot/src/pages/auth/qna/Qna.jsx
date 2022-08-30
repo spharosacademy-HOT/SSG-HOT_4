@@ -6,20 +6,22 @@ import { useParams } from "react-router-dom";
 
 function Qna() {
   let params = useParams();
-  const [productData, setProductData] = useState({})
-  const id=params.productId
-  console.log(id)
-  useEffect(()=>{
-    getProduct(id).then((res)=>{
-      setProductData(res)
-      console.log(res)
-    })
-  },[])
- 
+  const [productData, setProductData] = useState({});
+  const id = params.productId;
+
+  useEffect(() => {
+    getProduct(id)
+      .then((res) => {
+        setProductData(res);
+        console.log(res);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
   return (
     <>
       <CommonHeader title="상품 Q&A 쓰기" />
-      <QnaContent data={productData}/>
+      <QnaContent data={productData} productId={id} />
     </>
   );
 }

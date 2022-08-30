@@ -5,6 +5,7 @@ import ProductCard from "../../product/ProductCard";
 import SearchFilter from "./SearchFilter";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleExclamation } from "@fortawesome/free-solid-svg-icons";
+
 export default function SearchList() {
   const [searchData, setSearchData] = useState([]);
   let params = useParams();
@@ -19,24 +20,23 @@ export default function SearchList() {
 
   return (
     <>
-      <SearchFilter />
-      <div className="product-list">
-        {searchData &&
-          searchData.map((item, idx) => (
-            <ProductCard item={item} key={item.id} />
-          ))}
-      </div>
-      {(searchData === null) &
-      (
-        <div className="recentNoItem">
-          <div>
-            <FontAwesomeIcon
-              icon={faCircleExclamation}
-              style={{ width: "60px", height: "60px", marginBottom: "20px" }}
-            />
-            <p>최근검색어가 없습니다</p>
-          </div>
+      {searchData.length == 0 ? (
+        <div style={{ padding: "20px" }}>
+          <p>
+            <b>'{params.productName}' 상품이 없습니다.</b>
+          </p>
+          <p>단어의 철자나 띄어쓰기가 정확한지 확인해 보세요.</p>
         </div>
+      ) : (
+        <>
+          <SearchFilter />
+          <div className="product-list">
+            {searchData &&
+              searchData.map((item, idx) => (
+                <ProductCard item={item} key={item.id} />
+              ))}
+          </div>
+        </>
       )}
     </>
   );
