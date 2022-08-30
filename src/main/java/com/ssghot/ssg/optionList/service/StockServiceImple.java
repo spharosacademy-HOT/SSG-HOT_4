@@ -119,6 +119,11 @@ public class StockServiceImple implements IStockService{
                             .stockId(stock.getId())
                             .optionSecond(stock.getOptionSecond())
                             .qty(stock.getQty())
+                            .discountPrice(stock.getProduct().getDiscountPrice())
+                            .productId(stock.getProduct().getId())
+                            .productName(stock.getProduct().getName())
+                            .optionFirst(stock.getOptionFirst())
+                            .titleImgUrl(stock.getProduct().getTitleImgUrl())
                             .build()
             );
         });
@@ -137,6 +142,12 @@ public class StockServiceImple implements IStockService{
                             .stockId(stock.getId())
                             .optionFirst(stock.getOptionFirst())
                             .qty(stock.getQty())
+                            .discountPrice(stock.getProduct().getDiscountPrice())
+                            .optionSecond(stock.getOptionSecond())
+                            .productDetail(stock.getProduct().getDetail())
+                            .productId(stock.getProduct().getId())
+                            .productName(stock.getProduct().getName())
+                            .titleImgUrl(stock.getProduct().getTitleImgUrl())
                             .build()
             );
         });

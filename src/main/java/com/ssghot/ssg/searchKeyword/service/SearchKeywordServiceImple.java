@@ -49,15 +49,16 @@ public class SearchKeywordServiceImple implements ISearchKeywordService{
         List<SearchKeyword> searchKeywordList = iSearchKeywordRepository.findAll();
         List<SearchKeywordDtoOutput> searchKeywordDtoOutputList = new ArrayList<>();
 
-        searchKeywordList.forEach(searchKeyword -> {
-            searchKeywordDtoOutputList.add(
-            SearchKeywordDtoOutput.builder()
-                    .searchKeywordId(searchKeyword.getId())
-                    .searchKeyword(searchKeyword.getSearchKeyword())
-                    .userId(searchKeyword.getUser().getId())
-                    .userName(searchKeyword.getUser().getName())
-                    .build()
-            );
+        searchKeywordList.forEach(
+                searchKeyword -> {
+                    searchKeywordDtoOutputList.add(
+                        SearchKeywordDtoOutput.builder()
+                            .searchKeywordId(searchKeyword.getId())
+                            .searchKeyword(searchKeyword.getSearchKeyword())
+                            .userId(searchKeyword.getUser().getId())
+                            .userName(searchKeyword.getUser().getName())
+                            .build()
+                    );
         });
 
         return searchKeywordDtoOutputList;

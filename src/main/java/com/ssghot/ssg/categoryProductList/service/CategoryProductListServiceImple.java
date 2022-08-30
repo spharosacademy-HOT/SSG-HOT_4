@@ -82,8 +82,6 @@ public class CategoryProductListServiceImple implements ICategoryProductListServ
                     );
                 }
         );
-
-//        return iCategoryProductListRepository.findAll();
         return categoryProductListDtoOutputs;
     }
 
