@@ -31,7 +31,6 @@ public class Qna extends CommonDTO {
     private String title;
 
     // 내용
-    @Lob
     @Column(nullable = false)
     private String contents;
 
