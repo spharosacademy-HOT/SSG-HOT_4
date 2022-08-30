@@ -15,7 +15,7 @@ export default function Cart() {
   const [isItem, setIsItem] = useState(cartData && true);
 
   return (
-    <div className="bgGray">
+    <div className="bgGray" id="cart">
       <CartHeader />
       <CartContents isLogin={isLogin} isItem={isLogin} />
       <CartFooter />

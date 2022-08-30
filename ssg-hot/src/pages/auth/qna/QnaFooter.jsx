@@ -1,24 +1,36 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { postQna } from "../../../store/apis/qna";
+import { getUserDetail } from "../../../store/apis/user";
 
-function QnaFooter() {
+function QnaFooter({ title, content, productId, type }) {
+  let navigate = useNavigate();
+  const [fPhone, setFPhone] = useState("");
+  const [bPhone, setBPhone] = useState("");
+
   const writeQna = () => {
     const qnaData = {
-      type: "getType",
-      title: "getTitle",
-      contents: "getContent",
-      secret: "true",
-      productId: "",
+      type: type,
+      title: title,
+      contents: content,
+      productId: productId,
     };
-    postQna(qnaData).then((res) => {
-      console.log(res);
-    });
+    postQna(qnaData)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => console.log(qnaData));
   };
+  useEffect(() => {
+    getUserDetail().then((res) => {
+      const phone = res.phone;
+      setFPhone(phone.substring(0, 4));
+      setBPhone(phone.substring(4, 8));
+    });
+  }, []);
   return (
     <>
-      
-
-      <ul className="qna_notice">
+      <ul className="qna_notice" style={{ margin: "10px" }}>
         <li className="lst">
           배송, 결제, 교환/반품에 대한 문의는 고객센터 E-mail 상담을 이용해
           주세요.{" "}
@@ -39,18 +51,18 @@ function QnaFooter() {
           개인정보수정 메뉴에서 수정 후 신청해주시기 바랍니다.)
         </li>{" "}
       </ul>
-      <div className="push_sms">
+      <div className="push_sms" style={{ margin: "0px 10px" }}>
         <div className="push_num">
           <div className="inner">
             <span className="col"></span>
             <span className="cc_ellip_in selected"></span>
-            <span className="sp_com sel_arrow">&nbsp;</span>
 
             <span className="col dash">
               <select
                 id="receiverPhone"
                 title="휴대폰 앞자리"
-                style={{ width: "50px" }}
+                style={{ width: "50px", height: "35px" }}
+                disabled={true}
               >
                 <option value="010"> 010</option>
                 <option value="011"> 011</option>
@@ -60,13 +72,16 @@ function QnaFooter() {
                 <option value="019"> 019</option>
               </select>
             </span>
+            <span className="col dash">-</span>
             <span className="col">
               <input
-                type="text"
+                type="password"
                 id="receiverPhone2"
                 maxLength="4"
                 title="휴대폰 뒷자리"
                 style={{ width: "50px" }}
+                value={fPhone}
+                disabled={true}
               />
             </span>
             <span className="col dash">-</span>
@@ -77,6 +92,8 @@ function QnaFooter() {
                 maxLength="4"
                 title="휴대폰 뒷자리"
                 style={{ width: "50px" }}
+                value={bPhone}
+                disabled={true}
               />
             </span>
           </div>
@@ -84,16 +101,15 @@ function QnaFooter() {
       </div>
 
       <div className="btn_area">
-        <a
-          href="#;"
-          className="btn_submit"
-          onClick={()=>alert("신청완료되었습니다")}>
+        <a className="btn_submit" onClick={writeQna}>
           확인
         </a>
         <a
-          href="main;"
           className="btn_cancle"
-          onClick={()=>alert("취소되었습니다")}
+          onClick={() => {
+            alert("취소되었습니다");
+            navigate(-1);
+          }}
         >
           취소
         </a>

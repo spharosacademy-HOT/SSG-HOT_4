@@ -1,41 +1,23 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import LikeButton from "../../components/common/widgets/button/LikeButton";
 import { getLike, postLike } from "../../store/apis/like";
-import * as Api from "../../store/apis/address";
-function ProductCard({ item }) {
-  const [isLike, setIsLike] = useState();
 
+function ProductCard({ item }) {
+  let navigate = useNavigate();
+  const [isLike, setIsLike] = useState(item.isWished);
+  console.log(item.isWished, "SDFL!!!!", item.id);
   const addWish = (id, e) => {
     e.preventDefault();
     console.log(id);
-    postLike(id).then((res) => console.log(res, "좋아요요청"));
+    if (localStorage.getItem("token")) {
+      postLike(id).then((res) => console.log(res, "좋아요요청"));
+    } else {
+      navigate("/login");
+    }
   };
-  // const getAxiosLike = async () => {
-  //   try {
-  //     const getData=await Api.get(`/wish/user`)
-  //     console.log(getData)
-  //   } catch (e){
-  //     console.log(e)
-  //   }
-  // }
-  useEffect(() => {
-    getLike()
-      .then((res) => {
-        console.log(res.data, "좋아요가져오기");
-        if (res.data !== null) {
-          res.data.map((like) => {
-            if (like.product.id == item.id) {
-              console.log(like.product.id, "dsfsjjfklsjdklfjlk");
-              setIsLike(true);
-            }
-          });
-        }
-      })
-      .catch((err) => console.log(err));
-  }, []);
   return (
     <>
       <div className="product-thumbnail-card" style={{ position: "relative" }}>
@@ -73,15 +55,7 @@ function ProductCard({ item }) {
               <div>{item.viewCount}건</div>
             </div>
             <div className="product-event">
-              {
-                item.shippingFee ?
-                <>
-                </>
-                :
-                <div>
-                  무료배송
-                </div>
-              }
+              {item.shippingFee ? <></> : <div>무료배송</div>}
             </div>
           </div>
         </Link>
