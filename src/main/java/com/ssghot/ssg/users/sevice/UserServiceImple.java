@@ -9,6 +9,7 @@ import com.ssghot.ssg.users.dto.*;
 import com.ssghot.ssg.users.repository.IUserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpHeaders;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -168,6 +169,21 @@ public class UserServiceImple implements IUserService {
             DecodedJWT decodedJWT = JWT.require(Algorithm.HMAC512(JwtProperties.SECRET)).build().verify(token);
             Long userId = decodedJWT.getClaim("id").asLong();
             return userId;
+        }
+        return null;
+    }
+
+    @Override
+    public Long getUserByTokenFix(HttpHeaders headers) {
+        List<String> head = headers.get(JwtProperties.HEADER_STRING);
+        if(head!=null) {
+            String header = head.get(0);
+            if (header != null && header.startsWith("Bearer")) {
+                String token = header.substring("Bearer ".length());
+                DecodedJWT decodedJWT = JWT.require(Algorithm.HMAC512(JwtProperties.SECRET)).build().verify(token);
+                Long userId = decodedJWT.getClaim("id").asLong();
+                return userId;
+            }
         }
         return null;
     }

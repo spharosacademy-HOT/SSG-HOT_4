@@ -227,10 +227,6 @@ public class CategoryMServiceImple implements ICategoryMService{
                                 .build()
                 );
             });
-            System.out.println("--------------------------------");
-            System.out.println("productId: "+product.getId());
-            System.out.println("userId:"+userId);
-            System.out.println("--------------------------------");
             boolean wish = iWishListService.wishByProductIdAndUserId(product.getId(), userId);
             productDtoOutputAllList.add(
                     ProductDtoOutputAll.builder()
