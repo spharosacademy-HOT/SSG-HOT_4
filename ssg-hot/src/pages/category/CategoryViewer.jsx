@@ -1,37 +1,24 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { baseURL } from "../../store/apis/apiClient";
 
-function CategoryViewer({ isTrue, item}) {
-  const [categoryMId,setCategoryMId] = useState([])
-  useEffect(() => {
-    axios
-      .get(`${baseURL}/category/${item}`)
-      .then((Response)=>{
-          setCategoryMId(Response.data.categoryMList)
-      })
-  }, []);
-  console.log(categoryMId)
-
+function CategoryViewer({ isTrue, item, differ }) {
+  // useEffect(() => {
+  //   console.log(item);
+  // }, []);
+  // console.log('비교',differ)
   return (
     <div className={isTrue ? "category-group" : "non-category-group"}>
       <div>
         <ul className="category-detail-item">
-          {categoryMId &&
-            categoryMId.map((list) => (
-            <li key={list.id}>
+          {item &&
+            item.map((list) => (
+              <li key={list.id}>
                 <Link to={`/productList/${list.id}`}>
                   {list.name}
                 </Link>
-            </li>
-            // <li key={list.id}></li>
+              </li>
+              // <li key={list.id}></li>
             ))}
-            <li>
-              <Link to={`/productList/${item.id}`}>
-                {item.name}
-              </Link>
-            </li>
         </ul>
       </div>
       
