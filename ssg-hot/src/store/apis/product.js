@@ -1,4 +1,5 @@
-import { apiClient } from "./apiClient";
+import { basicApiClient } from "./apiClient";
+import { apiClient } from "./apiClient"
 
 // 상품 디테일 조회
 export const getProduct=async(id)=>{
@@ -11,3 +12,4 @@ export const addOption = async()=>{
     const res = await apiClient.post(`/carts`)
     return res.data
 }
+

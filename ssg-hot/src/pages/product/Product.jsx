@@ -47,7 +47,7 @@ function Product() {
     <>
       {productDatas && (
         <>
-          <ProductMainImg productDatas={productDatas.titleImgUrl}/>
+          <ProductMainImg productDatas={productDatas.titleImgUrl} />
           <ProductInfo productDatas={productDatas} />
           <SmileClub />
           <ProductSimpleReview reviewDatas={productDatas.reviewList} />
@@ -55,7 +55,7 @@ function Product() {
           <ProductDetailInfo />
           <ProductDetailImg imgNum={productDatas.productSubImgList} />
           <ProductReiew reviewDatas={productDatas.reviewList} />
-          <ProductQnA />
+          <ProductQnA item={productDatas} />
           <ProductGuide />
           <EventBanner />
           <StoreInfo />

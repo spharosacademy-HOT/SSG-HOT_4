@@ -14,14 +14,8 @@ export default function Cart() {
   const [cartData, setCartData] = useRecoilState(cartState);
   const [isItem, setIsItem] = useState(cartData && true);
 
-  // useEffect(() => {
-  //   getMyCart().then((res) => {
-  //     setCartData(res);
-  //     console.log(res, "가져오기 완료");
-  //   });
-  // }, []);
   return (
-    <div className="bgGray">
+    <div className="bgGray" id="cart">
       <CartHeader />
       <CartContents isLogin={isLogin} isItem={isLogin} />
       <CartFooter />
