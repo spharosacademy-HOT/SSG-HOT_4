@@ -109,9 +109,9 @@ public class StockServiceImple implements IStockService{
 
     // 5-1. 옵션2와 재고 조회하기
     @Override
-    public List<StockDtoOutputOptSecondQty> getOptSecondAndQty(int optionFirstId) {
+    public List<StockDtoOutputOptSecondQty> getOptSecondAndQty(int optionFirstId, Long productId) {
 
-        List<Stock> stockList = iStockRepository.findOptionSecondAndStockQty(optionFirstId);
+        List<Stock> stockList = iStockRepository.findOptionSecondAndStockQty(optionFirstId, productId);
         List<StockDtoOutputOptSecondQty> stockDtoOutputOptSecondQtyList = new ArrayList<>();
         stockList.forEach(stock -> {
             stockDtoOutputOptSecondQtyList.add(
@@ -133,8 +133,8 @@ public class StockServiceImple implements IStockService{
 
     // 5-2. 옵션1과 재고 조회하기
     @Override
-    public List<StockDtoOutputOptFirstQty> getOptFirstAndQty(int optionSecondId) {
-        List<Stock> stockList = iStockRepository.findOptionFirstAndStockQty(optionSecondId);
+    public List<StockDtoOutputOptFirstQty> getOptFirstAndQty(int optionSecondId, Long productId) {
+        List<Stock> stockList = iStockRepository.findOptionFirstAndStockQty(optionSecondId, productId);
         List<StockDtoOutputOptFirstQty> stockDtoOutputOptFirstQties = new ArrayList<>();
         stockList.forEach(stock -> {
             stockDtoOutputOptFirstQties.add(
@@ -157,9 +157,9 @@ public class StockServiceImple implements IStockService{
 
     // 5-3. 옵션2와 재고 조회하기 (심플)
     @Override
-    public List<StockDtoOutputOptSecondQtySimple> getOptSecondAndQtySimple(int optionFirstId) {
+    public List<StockDtoOutputOptSecondQtySimple> getOptSecondAndQtySimple(int optionFirstId, Long productId) {
 
-        List<Stock> stockList = iStockRepository.findOptionSecondAndStockQty(optionFirstId);
+        List<Stock> stockList = iStockRepository.findOptionSecondAndStockQty(optionFirstId, productId);
         List<StockDtoOutputOptSecondQtySimple> stockDtoOutputOptSecondQtyList = new ArrayList<>();
         stockList.forEach(stock -> {
             stockDtoOutputOptSecondQtyList.add(
@@ -177,8 +177,8 @@ public class StockServiceImple implements IStockService{
 
     // 5-4. 옵션1과 재고 조회하기 (심플)
     @Override
-    public List<StockDtoOutputOptFirstQtySimple> getOptFirstAndQtySimple(int optionSecondId) {
-        List<Stock> stockList = iStockRepository.findOptionFirstAndStockQty(optionSecondId);
+    public List<StockDtoOutputOptFirstQtySimple> getOptFirstAndQtySimple(int optionSecondId, Long productId) {
+        List<Stock> stockList = iStockRepository.findOptionFirstAndStockQty(optionSecondId, productId);
         List<StockDtoOutputOptFirstQtySimple> stockDtoOutputOptFirstQties = new ArrayList<>();
         stockList.forEach(stock -> {
             stockDtoOutputOptFirstQties.add(

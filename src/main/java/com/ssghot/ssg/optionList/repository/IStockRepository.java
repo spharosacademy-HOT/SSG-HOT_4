@@ -28,11 +28,11 @@ public interface IStockRepository extends JpaRepository<Stock, Long> {
     int replaceStockCountDec(Long id,int count);
 
     //    @Query("select s from Stock s join s.optionfirst o where o.id = :ofid")
-    @Query("select s from Stock s where s.optionFirst.id = :oprtionfirstid")
-    List<Stock> findOptionSecondAndStockQty(@Param("oprtionfirstid") int id);
+    @Query("select s from Stock s where s.optionFirst.id = :oprtionfirstid and s.product.id = :productid")
+    List<Stock> findOptionSecondAndStockQty(@Param("oprtionfirstid") int optionFirstId, @Param("productid") Long productId);
 
-    @Query("select s from Stock s where s.optionSecond.id = :oprtionsecondid")
-    List<Stock> findOptionFirstAndStockQty(@Param("oprtionsecondid") int id);
+    @Query("select s from Stock s where s.optionSecond.id = :oprtionsecondid and s.product.id = :productid")
+    List<Stock> findOptionFirstAndStockQty(@Param("oprtionsecondid") int id, @Param("productid") Long productId);
 
     Optional<Stock> findByProductIdAndOptionFirstIdAndOptionSecondId(Long productId,int optionFirstId, int optionSecondId);
 //    @Query("select s from Stock s where s.product.id = :productId and s.optionFirst.id = :optionFirstId and s.optionSecond.id = :optionSecondId")

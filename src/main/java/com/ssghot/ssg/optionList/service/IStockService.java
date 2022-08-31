@@ -33,14 +33,14 @@ public interface IStockService {
     Stock getOneStock(Long id);
 
     // 5-1. 옵션2와 재고 조회하기
-    List<StockDtoOutputOptSecondQty> getOptSecondAndQty(int optionFirstId);
+    List<StockDtoOutputOptSecondQty> getOptSecondAndQty(int optionFirstId, Long productId);
 
     // 5-2. 옵션1과 재고 조회하기
-    List<StockDtoOutputOptFirstQty> getOptFirstAndQty(int optionSecondId);
+    List<StockDtoOutputOptFirstQty> getOptFirstAndQty(int optionSecondId, Long productId);
 
     // 5-3. 옵션2와 재고 조회하기 (심플)
-    List<StockDtoOutputOptSecondQtySimple> getOptSecondAndQtySimple(int optionFirstId);
+    List<StockDtoOutputOptSecondQtySimple> getOptSecondAndQtySimple(int optionFirstId, Long productId);
 
     // 5-4. 옵션1과 재고 조회하기 (심플)
-    List<StockDtoOutputOptFirstQtySimple> getOptFirstAndQtySimple(int optionSecondId);
+    List<StockDtoOutputOptFirstQtySimple> getOptFirstAndQtySimple(int optionSecondId, Long productId);
 }

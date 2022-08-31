@@ -105,26 +105,26 @@ public class OptionListController {
     }
 
     // 4-1. 옵션2와 재고 조회하기
-    @GetMapping("/option1/option2/{id}")
-    public List<StockDtoOutputOptSecondQty> getOption2AndStockQty(@PathVariable int id){
-        return iStockService.getOptSecondAndQty(id);
+    @GetMapping("/option1/option2/{id}/{productId}")
+    public List<StockDtoOutputOptSecondQty> getOption2AndStockQty(@PathVariable int id, @PathVariable Long productId){
+        return iStockService.getOptSecondAndQty(id, productId);
     }
 
     //4-2. 옵션1과 재고 조회하기
-    @GetMapping("/option2/option1/{id}")
-    public List<StockDtoOutputOptFirstQty> getOption1AndStockQty(@PathVariable int id){
-        return iStockService.getOptFirstAndQty(id);
+    @GetMapping("/option2/option1/{id}/{productId}")
+    public List<StockDtoOutputOptFirstQty> getOption1AndStockQty(@PathVariable int id, @PathVariable Long productId){
+        return iStockService.getOptFirstAndQty(id, productId);
     }
 
     // 4-3. 옵션2와 재고 조회하기 (심플)
-    @GetMapping("/option1/option2/simple/{id}")
-    public List<StockDtoOutputOptSecondQtySimple> getOption2AndStockQtySimple(@PathVariable int id){
-        return iStockService.getOptSecondAndQtySimple(id);
+    @GetMapping("/option1/option2/simple/{id}/{productId}")
+    public List<StockDtoOutputOptSecondQtySimple> getOption2AndStockQtySimple(@PathVariable int id, @PathVariable Long productId){
+        return iStockService.getOptSecondAndQtySimple(id, productId);
     }
 
     //4-4. 옵션1과 재고 조회하기 (심플)
-    @GetMapping("/option2/option1/simple/{id}")
-    public List<StockDtoOutputOptFirstQtySimple> getOption1AndStockQtySimple(@PathVariable int id){
-        return iStockService.getOptFirstAndQtySimple(id);
+    @GetMapping("/option2/option1/simple/{id}/{productId}")
+    public List<StockDtoOutputOptFirstQtySimple> getOption1AndStockQtySimple(@PathVariable int id, @PathVariable Long productId){
+        return iStockService.getOptFirstAndQtySimple(id, productId);
     }
 }
