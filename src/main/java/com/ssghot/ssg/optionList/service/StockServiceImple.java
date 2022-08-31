@@ -165,8 +165,8 @@ public class StockServiceImple implements IStockService{
             stockDtoOutputOptSecondQtyList.add(
                     StockDtoOutputOptSecondQtySimple.builder()
                             .stockId(stock.getId())
-                            .optionSecondId(stock.getOptionSecond().getId())
-                            .optionSecondName(stock.getOptionSecond().getName())
+                            .id(stock.getOptionSecond().getId())
+                            .name(stock.getOptionSecond().getName())
                             .qty(stock.getQty())
                             .build()
             );
@@ -184,8 +184,8 @@ public class StockServiceImple implements IStockService{
             stockDtoOutputOptFirstQties.add(
                     StockDtoOutputOptFirstQtySimple.builder()
                             .stockId(stock.getId())
-                            .optionFirstId(stock.getOptionFirst().getId())
-                            .optionFirstName(stock.getOptionFirst().getName())
+                            .id(stock.getOptionFirst().getId())
+                            .name(stock.getOptionFirst().getName())
                             .qty(stock.getQty())
                             .build()
             );

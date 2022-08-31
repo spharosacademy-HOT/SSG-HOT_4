@@ -15,8 +15,8 @@ public class StockDtoOutputOptFirstQtySimple {
 
     private int qty;
 
-    private int optionFirstId;
+    private int id;
 
-    private String optionFirstName;
+    private String name;
 
 }

@@ -34,7 +34,6 @@ public class RecentlyViewedProductServiceImple implements IRecentlyViewedProduct
      */
 
     // 1. 최근 본 상품 등록하기
-
     @Override
     public RecentlyViewedProduct addRecentlyViewedProduct(RecentlyViewedProductDtoInput recentlyViewedProductDtoInput) {
 
@@ -42,7 +41,18 @@ public class RecentlyViewedProductServiceImple implements IRecentlyViewedProduct
         Optional<User> user = iUserRepository.findById(recentlyViewedProductDtoInput.getUser().getId());
 
         List<RecentlyViewedProduct> recentlyViewedProductList = iRecentlyViewedProductRepository.findAll();
-        int size = recentlyViewedProductList.size();
+        int rvpListSize = recentlyViewedProductList.size();
+        System.out.println("rvpListSize = " + rvpListSize);
+        int maxId = recentlyViewedProductList.lastIndexOf(recentlyViewedProductList);
+        System.out.println("maxId = " + maxId);
+        int size = 0;
+
+        if(rvpListSize >= maxId){
+            size = rvpListSize;
+        } else {
+            size = maxId;
+        }
+        System.out.println("size = " + size);
         boolean[] check = new boolean[size+1];
         recentlyViewedProductList.forEach(recentlyViewedProduct -> {
             Long id = recentlyViewedProduct.getProduct().getId();
