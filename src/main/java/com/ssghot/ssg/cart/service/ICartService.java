@@ -29,5 +29,7 @@ public interface ICartService {
 
     ResultDtoOutput<CartDtoOutput> editStockCart(CartEditStockDtoInput cartEditStockDtoInput);
 
+    ResultDtoOutput<CartDtoOutput> editStockCartV2(CartEditV2DtoInput cartEditV2DtoInput);
+
 
 }

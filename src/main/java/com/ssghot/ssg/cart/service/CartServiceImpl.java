@@ -160,6 +160,25 @@ public class CartServiceImpl implements ICartService{
         return getCartDtoOutput(400,"재고가 존재하지 않았습니다.",null);
     }
 
+    @Override
+    public ResultDtoOutput<CartDtoOutput> editStockCartV2(CartEditV2DtoInput cartEditV2DtoInput) {
+        Optional<User> user = iUserRepository.findById(cartEditV2DtoInput.getUserId());
+
+        Optional<Stock> stock = iStockRepository.findByProductIdAndOptionFirstIdAndOptionSecondId(cartEditV2DtoInput.getProductId(),cartEditV2DtoInput.getOptionFirstId(), cartEditV2DtoInput.getOptionSecondId());
+
+        if(user.isEmpty()){
+            return getCartDtoOutput(400,"유저정보가 존재하지 않습니다.",null);
+        }
+        if(stock.isEmpty()){
+            return getCartDtoOutput(400,"해당 옵션 1,2 상품 조합의  스턱이 존재하지 않습니다.",null);
+        }
+        int result = iCartRepository.replaceStock(cartEditV2DtoInput.getCartId(), stock.get().getId());
+        if(result==1){
+            return getCartDtoOutput(200,"재고가 변경되었습니다.",null);
+        }
+        return getCartDtoOutput(400,"재고가 변경되지 않았습니다.",null);
+    }
+
     private ResultDtoOutput<CartDtoOutput> getCartDtoOutput(int status, String message, Cart cart){
         if(cart!=null) {
             return new ResultDtoOutput<>(status, message

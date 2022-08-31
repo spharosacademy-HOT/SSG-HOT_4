@@ -24,4 +24,7 @@ public interface ICartRepository extends JpaRepository<Cart,Long> {
     @Modifying
     @Query("update Cart c set c.stock.id = :stockId where c.id = :id")
     int replaceStock(Long id,Long stockId);
+
+    @Query("select c from Cart c where c.stock.optionFirst.id = :optionFirstId and c.stock.optionSecond.id = :optionSecondId")
+    Optional<Cart> findExistedByUserId(Long optionFirstId,Long optionSecondId);
 }
