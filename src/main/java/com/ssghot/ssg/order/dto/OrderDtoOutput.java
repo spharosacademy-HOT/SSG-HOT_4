@@ -21,6 +21,7 @@ public class OrderDtoOutput {
     private String deliveryName;
     private String deliveryPhone;
     private String deliveryAddress;
+    private String deliveryAddress2;
     private int deliveryZipcode;
     private String deliveryHomePone;
     private String deliveryInfo;

@@ -26,6 +26,8 @@ public class OrderDtoInput {
     private String deliveryName;
     private String deliveryPhone;
     private String deliveryAddress;
+    private String deliveryAddress2;
+
     private int deliveryZipcode;
     private String deliveryHomePone;
     private String deliveryInfo;
@@ -45,6 +47,7 @@ public class OrderDtoInput {
                 .deliveryName(getDeliveryName())
                 .deliveryPay(getDeliveryPay())
                 .deliveryPhone(getDeliveryPhone())
+                .deliveryAddress2(getDeliveryAddress2())
                 .deliveryZipcode(getDeliveryZipcode())
                 .envoice(getEnvoice())
                 .orderTotal(getOrderTotal())
