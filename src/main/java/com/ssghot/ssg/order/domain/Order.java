@@ -49,6 +49,9 @@ public class Order extends CommonDTO{
     private String deliveryAddress;
 
     @NotNull
+    private String deliveryAddress2;
+
+    @NotNull
     private int deliveryZipcode;
 
     @Column(columnDefinition = "varchar(13) default ''")

@@ -200,6 +200,7 @@ public class OrderServiceImpl implements IOrderService{
                 .deliveryName(order.getDeliveryName())
                 .deliveryPay(order.getDeliveryPay())
                 .orderItems(iOrderItemService.getOrderItemDtoOutputList(order.getOrderItems()))
+                .deliveryAddress2(order.getDeliveryAddress2())
                 .deliveryPhone(order.getDeliveryPhone())
                 .orderTotal(order.getOrderTotal())
                 .deliveryZipcode(order.getDeliveryZipcode())
