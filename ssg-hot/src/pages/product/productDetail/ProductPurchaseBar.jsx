@@ -17,10 +17,8 @@ function ProductPurchaseBar({stockList}) {
     let params = useParams();
     const id = params.productId;
     const token = localStorage.getItem("token")
-    const [color, setColor] = useState("");
     const [sizeName, setSizeName] = useState("선택하세요(사이즈)")
     const [colorName, setColorName] = useState("선택하세요(색상)");
-    const url = `${baseURL}/option1/option2/${color}/${id}`
     const [cartData, setCartData] = useRecoilState(cartState);
     const [show, setShow] = useState(false);
     const [stockChoice, setStockChoice] = useState(false);
@@ -28,6 +26,7 @@ function ProductPurchaseBar({stockList}) {
     const [sizeChoice, setSizeChoice] = useState(false);
     const [purchaseList, setPurChaseList] = useState([])
     const [deleteId, setDeleteId] = useState('')
+    const [totalPrice, setTotalPrice]  = useState(0);
     // console.log('목록들',purchaseList)
     const handleShow = () => {
       setShow(true);
@@ -50,21 +49,21 @@ function ProductPurchaseBar({stockList}) {
         setSizeChoice(!sizeChoice)
     }
     const handleColor = (itemId,itemName) =>{
-        setColor(itemId)
         setColorName(itemName)
-        console.log(color)
+        setSizeName("선택하세요(사이즈)")
         setStockChoice(!stockChoice)
-        axios.get(url).then((Response) =>{
+        axios.get(`${baseURL}/option1/option2/${itemId}/${id}`).then((Response) =>{
             setSizeDatas(Response.data)
             console.log(sizeDatas)
         })
     }
-    const handleAppendStock = (itemId, itemName, item) =>{
+    const handleAppendStock = (itemId, itemName, item, price) =>{
         setSizeChoice(!sizeChoice)
         setSizeName(itemName)
         purchaseList.includes(item) ?
             alert('동일한 옵션 상품이 이미 선택되어 있습니다.')
             : setPurChaseList([item,...purchaseList])
+            setTotalPrice(totalPrice + price)
     }
       //장바구니 담고 장바구니 새로 가져오기
     const goCart = () => {
@@ -84,7 +83,6 @@ function ProductPurchaseBar({stockList}) {
     useEffect(()=>{
         const newPurchaseList  = purchaseList.filter((item)=>item.stockId !== deleteId)
         setPurChaseList(newPurchaseList)
-        console.log(deleteId)
     },[deleteId])
     
     return ( 
@@ -167,7 +165,7 @@ function ProductPurchaseBar({stockList}) {
                 }
                 {/* <ProductPurchaseItem purchaseList={purchaseList} /> */}
                 <div className='product-total-price'>
-                    총 합계 <span>65,065</span>원
+                    총 합계 <span>{totalPrice}</span>원
                 </div>
             </div>
             <div className={stockChoice ? 'stock-choice-open' : 'stock-choice-close'}>
@@ -191,7 +189,7 @@ function ProductPurchaseBar({stockList}) {
                 <div>
                     {
                         sizeDatas && sizeDatas.map(item =>(
-                            <div key={item.stockId} className='stock-list' onClick={()=>{handleAppendStock(item.id,item.optionSecond.name,item)}}>
+                            <div key={item.stockId} className={item.qty ? 'stock-list' : 'non-stock-list'} onClick={item.qty ? ()=>{handleAppendStock(item.id,item.optionSecond.name,item,item.discountPrice)} : undefined}>
                                 {item.optionSecond.name}{item.qty ? <span>(남은 수량 : {item.qty})</span> : <span>(품절)</span>}
                             </div>
                         ))

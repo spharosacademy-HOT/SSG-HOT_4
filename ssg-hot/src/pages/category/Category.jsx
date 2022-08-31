@@ -15,6 +15,7 @@ function Category() {
 
   const [cateNumber , setCateNumber] = useState(0)
   const [isClick, setIsClick] = useState(false)
+  const [rowData, setRowData] = useState(false)
   const [cateDatas, setCateDates] =useState([])
   
 
@@ -50,6 +51,9 @@ function Category() {
               isClick={isClick} 
               setIsClick={setIsClick}
               cateId = {cateData.id}
+
+              setRowData={setRowData}
+              rowData={rowData}
             />
           ))
         }
