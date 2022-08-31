@@ -2,15 +2,23 @@ import React, { useState, useEffect } from 'react';
 import CategoryItem from './CategoryItem';
 import CategoryViewer from './CategoryViewer';
 
-function CategoryGroup({cateData, viewIsTrue,cateNumber, setCateNumber, isClick, setIsClick, cateId}) {
+function CategoryGroup({cateData, viewIsTrue,cateNumber, setCateNumber, isClick, setIsClick, cateId, setRowData, rowData}) {
 
     const [getNum , setGetNum] = useState(1)
     const [viewerData, setViewerData] = useState([])
     const [viewerView, setViewerView] = useState(false)
     const [differ, setDiffer] = useState(false)
     useEffect(() => {
-   
-        setViewerData(cateData.category[(getNum % 4) !== 0 ? (getNum % 4) -1 : 3].categoryMList)
+        
+        let tempData = false;
+        cateData.category.map((item) => {
+            if(item?.id == getNum){
+                tempData = item?.categoryMList;
+            }
+        });
+
+        //setViewerData(cateData.category[(getNum % 4) !== 0 ? (getNum % 4) -1 : 3].categoryMList)
+        setViewerData(tempData)
         setCateNumber(cateId)
 
     }, [getNum])
@@ -28,11 +36,16 @@ function CategoryGroup({cateData, viewIsTrue,cateNumber, setCateNumber, isClick,
                             setViewerView={setViewerView}
                             isClick={isClick}
                             setIsClick={setIsClick}
-                            setDiffer={setDiffer}/>
+                            setDiffer={setDiffer}
+                        
+                            // Custom
+                            setRowData={setRowData}
+                            row={cateData?.row}
+                        />
                     ))
                 }
             </ul>
-           <CategoryViewer item={viewerData} isTrue={viewerView} differ={differ}/>
+           <CategoryViewer item={viewerData} isTrue={viewerView} differ={differ} rowData={rowData} row={cateData?.row}/>
         </>
     );
 }
