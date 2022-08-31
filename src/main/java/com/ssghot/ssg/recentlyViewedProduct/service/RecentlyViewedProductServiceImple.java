@@ -43,17 +43,17 @@ public class RecentlyViewedProductServiceImple implements IRecentlyViewedProduct
         List<RecentlyViewedProduct> recentlyViewedProductList = iRecentlyViewedProductRepository.findAll();
         int rvpListSize = recentlyViewedProductList.size();
         System.out.println("rvpListSize = " + rvpListSize);
-        int maxId = recentlyViewedProductList.lastIndexOf(recentlyViewedProductList);
+        Long maxId = recentlyViewedProductList.get(rvpListSize-1).getId();
         System.out.println("maxId = " + maxId);
         int size = 0;
 
         if(rvpListSize >= maxId){
             size = rvpListSize;
         } else {
-            size = maxId;
+            size = Math.toIntExact(maxId);
         }
         System.out.println("size = " + size);
-        boolean[] check = new boolean[size+1];
+        boolean[] check = new boolean[size];
         recentlyViewedProductList.forEach(recentlyViewedProduct -> {
             Long id = recentlyViewedProduct.getProduct().getId();
             System.out.println("id = " + id);
