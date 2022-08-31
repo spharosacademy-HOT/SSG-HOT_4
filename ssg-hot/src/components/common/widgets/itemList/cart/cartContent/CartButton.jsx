@@ -1,5 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Modal from "react-modal";
+import { useRecoilState } from "recoil";
+import {
+  getOption1,
+  getOption2,
+  putOption,
+} from "../../../../../../store/apis/option";
 
 const customStyles = {
   content: {
@@ -13,11 +19,18 @@ const customStyles = {
   },
 };
 Modal.setAppElement("#root");
-export default function CartButton({ optionList }) {
-  const [selected1, setSelected1] = useState();
-  const [selected2, setSelected2] = useState();
+
+export default function CartButton({ optionList, productId, cartId }) {
+  const [optionFirst, setOptionFirst] = useState(optionList.optionFirsts);
+  const [optionSecond, setOptionSecond] = useState(optionList.optionSeconds);
+  const [option1, setOption1] = useState();
+  const [option2, setOption2] = useState();
+
+  const [cartData, setCartData] = useRecoilState();
+
   // let subtitle;
   const [modalIsOpen, setIsOpen] = useState(false);
+
   function openModal() {
     setIsOpen(true);
     document.body.style.overflow = "hidden";
@@ -33,18 +46,38 @@ export default function CartButton({ optionList }) {
   }
 
   console.log(optionList);
-  const handleSelect = (e) => {
-    e.preventDefault();
-    setSelected1(e.target.value);
-    console.log(e.target.value);
+  const handleSelect1 = (e) => {
+    setOption1(e.target.value);
+    getOption1(e.target.value, productId).then((res) => {
+      console.log(res.data, "1로2조회");
+      setOptionSecond(res.data);
+    });
   };
+  const handleSelect2 = (e) => {
+    setOption2(e.target.value);
+  };
+
+  const handleOption = () => {
+    const oData = {
+      cartId: cartId,
+      productId: productId,
+      optionFirstId: option1,
+      optionSecondId: option2,
+    };
+    putOption(oData).then((res) => {
+      console.log(res);
+      alert(res.message);
+      closeModal();
+    });
+  };
+  // console.log(optionSecond);
+
   return (
     <>
       <div className="cartButton">
         {optionList ? (
           <button type="button" onClick={openModal}>
             <span>옵션변경</span>
-            
           </button>
         ) : (
           <></>
@@ -90,15 +123,11 @@ export default function CartButton({ optionList }) {
               <span>
                 <select
                   style={{ width: "200px", height: "35px" }}
-                  value={selected1}
-                  onChange={handleSelect}
+                  onChange={handleSelect1}
                 >
-                  {optionList.optionFirsts &&
-                    optionList.optionFirsts.map((option) => (
-                      <option
-                        value={option.name}
-                        // onClick={console.log("눌림", option.name)}
-                      >
+                  {optionFirst &&
+                    optionFirst.map((option) => (
+                      <option key={option.stockId} value={option.id}>
                         {option.name}
                       </option>
                     ))}
@@ -116,15 +145,11 @@ export default function CartButton({ optionList }) {
               <span>
                 <select
                   style={{ width: "200px", height: "35px" }}
-                  value={selected2}
-                  onChange={handleSelect}
+                  onChange={handleSelect2}
                 >
-                  {optionList.optionSeconds &&
-                    optionList.optionSeconds.map((option) => (
-                      <option
-                        value={option.name}
-                        // onClick={console.log("눌림", option.name)}
-                      >
+                  {optionSecond &&
+                    optionSecond.map((option) => (
+                      <option key={option.stockId} value={option.id}>
                         {option.name}
                       </option>
                     ))}
@@ -140,7 +165,9 @@ export default function CartButton({ optionList }) {
             data-tracking-cd="00044_000000094_t00060"
             data-tracking-value="변경하기"
           >
-            <span className="mnodr_btn_tx">변경하기</span>
+            <span className="mnodr_btn_tx" onClick={handleOption}>
+              변경하기
+            </span>
           </button>
         </Modal>
       </div>

@@ -9,10 +9,14 @@ export default function RecentItemList() {
   const [modalData, setModalData] = useState();
 
   useEffect(() => {
-    getRecent().then((res) => {
-      setRcData(res);
-      console.log(res, "데이터 가져옴");
-    });
+    getRecent()
+      .then((res) => {
+        setRcData(res);
+        console.log(res, "데이터 가져옴");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }, []);
 
   return (

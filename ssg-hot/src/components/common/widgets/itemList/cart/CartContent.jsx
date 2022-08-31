@@ -109,7 +109,7 @@ export default function CartContent({
       </div>
       <CartOrderState qty={qty} />
 
-      <CartButton optionList={optionList} />
+      <CartButton optionList={optionList} cartId={id} productId={desc.id} />
     </div>
   );
 }
