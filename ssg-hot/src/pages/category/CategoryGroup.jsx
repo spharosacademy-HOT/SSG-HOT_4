@@ -10,13 +10,10 @@ function CategoryGroup({cateData, viewIsTrue,cateNumber, setCateNumber, isClick,
     const [differ, setDiffer] = useState(false)
     useEffect(() => {
    
-        setViewerData(cateData.category[getNum-1].categoryMList)
+        setViewerData(cateData.category[(getNum % 4) !== 0 ? (getNum % 4) -1 : 3].categoryMList)
         setCateNumber(cateId)
 
     }, [getNum])
-    console.log('cateData',cateData)
-    
-   
     return ( 
         <>
             <ul className='category-align'>

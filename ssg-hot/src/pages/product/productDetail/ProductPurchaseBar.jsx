@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import LikeButton from '../../../components/common/widgets/button/LikeButton';
@@ -18,6 +18,7 @@ function ProductPurchaseBar({stockList}) {
     const id = params.productId;
     const token = localStorage.getItem("token")
     const [color, setColor] = useState("");
+    const [sizeName, setSizeName] = useState("선택하세요(사이즈)")
     const [colorName, setColorName] = useState("선택하세요(색상)");
     const url = `${baseURL}/option1/option2/${color}`
     const [cartData, setCartData] = useRecoilState(cartState);
@@ -26,7 +27,8 @@ function ProductPurchaseBar({stockList}) {
     const [sizeDatas, setSizeDatas] = useState([]);
     const [sizeChoice, setSizeChoice] = useState(false);
     const [purchaseList, setPurChaseList] = useState([])
-
+    const [deleteId, setDeleteId] = useState('')
+    console.log('목록들',purchaseList)
     const handleShow = () => {
       setShow(true);
       console.log(show);
@@ -57,9 +59,12 @@ function ProductPurchaseBar({stockList}) {
             console.log(sizeDatas)
         })
     }
-    const handleAppendStock = (item) =>{
-        setStockChoice(!stockChoice)
-        setPurChaseList([item,...purchaseList])
+    const handleAppendStock = (itemId, itemName, item) =>{
+        setSizeChoice(!sizeChoice)
+        setSizeName(itemName)
+        purchaseList.includes(item) ?
+            alert('동일한 옵션 상품이 이미 선택되어 있습니다.')
+            : setPurChaseList([item,...purchaseList])
     }
       //장바구니 담고 장바구니 새로 가져오기
     const goCart = () => {
@@ -76,6 +81,11 @@ function ProductPurchaseBar({stockList}) {
         });
         });
     };
+    useEffect(()=>{
+        const newPurchaseList  = purchaseList.filter((item)=>item.stockId !== deleteId)
+        setPurChaseList(newPurchaseList)
+        console.log(deleteId)
+    },[deleteId])
     
     return ( 
         <>
@@ -147,10 +157,15 @@ function ProductPurchaseBar({stockList}) {
                     <div><FontAwesomeIcon icon={faAngleDown}/></div>
                 </div>
                 <div onClick={handleSizeChoice} className='size-add product-add'>
-                    <div>사이즈선택</div>
+                    <div>{sizeName}</div>
                     <div><FontAwesomeIcon icon={faAngleDown}/></div>
                 </div>
-                <ProductPurchaseItem purchaseList={purchaseList} />
+                {
+                    purchaseList && purchaseList.map((purchase)=>(
+                        <ProductPurchaseItem purchase={purchase} key={purchase.stockId} setDeleteId={setDeleteId}/>
+                    ))
+                }
+                {/* <ProductPurchaseItem purchaseList={purchaseList} /> */}
                 <div className='product-total-price'>
                     총 합계 <span>65,065</span>원
                 </div>
@@ -176,7 +191,7 @@ function ProductPurchaseBar({stockList}) {
                 <div>
                     {
                         sizeDatas && sizeDatas.map(item =>(
-                            <div key={item.stockId} className='stock-list' onClick={()=>{handleAppendStock(item)}}>
+                            <div key={item.stockId} className='stock-list' onClick={()=>{handleAppendStock(item.id,item.optionSecond.name,item)}}>
                                 {item.optionSecond.name}{item.qty ? <span>(남은 수량 : {item.qty})</span> : <span>(품절)</span>}
                             </div>
                         ))

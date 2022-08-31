@@ -474,7 +474,9 @@
     display: none;
 }
 .purchase-info-one{
+    max-height: 400px;
     position: fixed;
+    overflow: scroll;
     bottom: 50px;
     z-index: 2999;
     width: 100%;
@@ -487,6 +489,7 @@
     border-radius: 5px;
     background-color: #f8f8f8;
     padding: 10px;
+    font-size: 0.8rem;
 }
 .purchase-info-one .product-add{
     display: flex;
@@ -504,6 +507,7 @@
 .purchase-info-one .product-qty div{
     display: flex;
     justify-content: space-between;
+    text-align: left;
 }
 .purchase-info-one .product-total-price{
     font-weight: bold;
@@ -518,6 +522,9 @@
     font-size: 1.5rem;
     color: red;
     padding: 10px 0;
+}
+.product-qty{
+    margin: 10px 0;
 }
 .product-qty div div{
     display: flex;
