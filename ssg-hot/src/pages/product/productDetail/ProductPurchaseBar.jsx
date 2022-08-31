@@ -20,7 +20,7 @@ function ProductPurchaseBar({stockList}) {
     const [color, setColor] = useState("");
     const [sizeName, setSizeName] = useState("선택하세요(사이즈)")
     const [colorName, setColorName] = useState("선택하세요(색상)");
-    const url = `${baseURL}/option1/option2/${color}`
+    const url = `${baseURL}/option1/option2/${color}/${id}`
     const [cartData, setCartData] = useRecoilState(cartState);
     const [show, setShow] = useState(false);
     const [stockChoice, setStockChoice] = useState(false);
@@ -28,7 +28,7 @@ function ProductPurchaseBar({stockList}) {
     const [sizeChoice, setSizeChoice] = useState(false);
     const [purchaseList, setPurChaseList] = useState([])
     const [deleteId, setDeleteId] = useState('')
-    console.log('목록들',purchaseList)
+    // console.log('목록들',purchaseList)
     const handleShow = () => {
       setShow(true);
       console.log(show);
