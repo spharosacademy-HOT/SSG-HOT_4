@@ -8,6 +8,7 @@ import org.springframework.data.repository.query.Param;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 public interface IStockRepository extends JpaRepository<Stock, Long> {
 
@@ -32,4 +33,8 @@ public interface IStockRepository extends JpaRepository<Stock, Long> {
 
     @Query("select s from Stock s where s.optionSecond.id = :oprtionsecondid")
     List<Stock> findOptionFirstAndStockQty(@Param("oprtionsecondid") int id);
+
+    Optional<Stock> findByProductIdAndOptionFirstIdAndOptionSecondId(Long productId,int optionFirstId, int optionSecondId);
+//    @Query("select s from Stock s where s.product.id = :productId and s.optionFirst.id = :optionFirstId and s.optionSecond.id = :optionSecondId")
+//    Optional<Stock> findStockByProductIdAndOptionFirstIdAndOptionSecondId(Long productId,int optionFirstId, int optionSecondId);
 }

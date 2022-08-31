@@ -57,6 +57,13 @@ public class CartController {
         cartEditStockDtoInput.setUserId(userId);
         return iCartService.editStockCart(cartEditStockDtoInput);
     }
+    @PutMapping("/stock/v2")
+    @PreAuthorize("hasRole('ROLE_USER')")
+    public ResultDtoOutput<CartDtoOutput> editStockCartV2(@RequestBody CartEditV2DtoInput cartEditV2DtoInput,HttpServletRequest request){
+        Long userId = iUserService.getUserByToken(request);
+        cartEditV2DtoInput.setUserId(userId);
+        return iCartService.editStockCartV2(cartEditV2DtoInput);
+    }
     @DeleteMapping("/{id}")
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public void deleteCart(@PathVariable Long id){
