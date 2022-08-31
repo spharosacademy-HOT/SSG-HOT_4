@@ -3,9 +3,7 @@ package com.ssghot.ssg.optionList.controller;
 import com.ssghot.ssg.optionList.domain.OptionFirst;
 import com.ssghot.ssg.optionList.domain.OptionSecond;
 import com.ssghot.ssg.optionList.domain.Stock;
-import com.ssghot.ssg.optionList.dto.StockDtoOutputOptFirstQty;
-import com.ssghot.ssg.optionList.dto.StockDtoOutputOptSecondQty;
-import com.ssghot.ssg.optionList.dto.StockDtoOutputProductIdName;
+import com.ssghot.ssg.optionList.dto.*;
 import com.ssghot.ssg.optionList.service.IOptionFirstService;
 import com.ssghot.ssg.optionList.service.IOptionSecondService;
 import com.ssghot.ssg.optionList.service.IStockService;
@@ -40,6 +38,9 @@ public class OptionListController {
 
         4-1. 옵션2와 재고 조회하기
         4-2. 옵션1과 재고 조회하기
+        4-3. 옵션2와 재고 조회하기 (심플)
+        4-4. 옵션1과 재고 조회하기 (심플)
+
      */
 
     // 1-1. 옵션1 등록
@@ -113,5 +114,17 @@ public class OptionListController {
     @GetMapping("/option2/option1/{id}")
     public List<StockDtoOutputOptFirstQty> getOption1AndStockQty(@PathVariable int id){
         return iStockService.getOptFirstAndQty(id);
+    }
+
+    // 4-3. 옵션2와 재고 조회하기 (심플)
+    @GetMapping("/option1/option2/simple/{id}")
+    public List<StockDtoOutputOptSecondQtySimple> getOption2AndStockQtySimple(@PathVariable int id){
+        return iStockService.getOptSecondAndQtySimple(id);
+    }
+
+    //4-4. 옵션1과 재고 조회하기 (심플)
+    @GetMapping("/option2/option1/simple/{id}")
+    public List<StockDtoOutputOptFirstQtySimple> getOption1AndStockQtySimple(@PathVariable int id){
+        return iStockService.getOptFirstAndQtySimple(id);
     }
 }

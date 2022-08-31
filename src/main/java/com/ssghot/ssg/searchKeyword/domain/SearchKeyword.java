@@ -20,6 +20,6 @@ public class SearchKeyword {
 
     private String searchKeyword;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 }

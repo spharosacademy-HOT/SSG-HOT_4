@@ -79,12 +79,11 @@ public class CategoryMServiceImple implements ICategoryMService{
     @Override
     public List<CategoryMDtoOutputIdAndName> getAllCategoryM() {
 
-        List<CategoryM> categoryMList = iCategoryMRepository.findAll();
-        List<CategoryMDtoOutputIdAndName> categoryMDtoOutputIdAndNameList = new ArrayList<>();
+        List<CategoryM> categoryMList = iCategoryMRepository.findAll(); // 카테고리 중분류 리스트 조회
+        List<CategoryMDtoOutputIdAndName> categoryMDtoOutputIdAndNameList = new ArrayList<>(); // DTO 비어있는 리스트 생성
 
 
-
-        categoryMList.forEach(
+        categoryMList.forEach( // 카테고리 중분류 리스트를 하나씩 풀어 넣는다.
                 categoryM -> {
 
                     // Product
@@ -179,14 +178,17 @@ public class CategoryMServiceImple implements ICategoryMService{
     }
     @Override
     public CategoryMDtoOutput getOneCategoryMWithUser(Long id, Long userId) {
-        Optional<CategoryM> categoryM = iCategoryMRepository.findById(id);
-        CategoryMDtoOutput categoryMDtoOutput = null;
+        Optional<CategoryM> categoryM = iCategoryMRepository.findById(id); // 카테고리중 ID 받아 단건 조회
+        CategoryMDtoOutput categoryMDtoOutput = null; // DTO 초기화
 
+        // CategoryM 테이블의 ID와 Product 테이블의 categoryMId와 일치하는 Product 리스트 조회
         List<Product> productList = iProductRepository.findAllByCategoryMId(categoryM.get().getId());
-        List<ProductDtoOutputAll> productDtoOutputAllList = new ArrayList<>();
-        productList.forEach(product -> {
+        List<ProductDtoOutputAll> productDtoOutputAllList = new ArrayList<>(); // DTO 인스턴스 생성
+        productList.forEach(product -> { // categoryMID와 일치하는 Product 리스트를 하나씩 풀어서 넣음
 
             // Stock
+
+            // Product 테이블의 ID와 Stock 테이블의 productId와 일치하는 Stock 리스트 조회
             List<Stock> stockList = iStockRepository.findAllByProductId(product.getId());
             List<StockDtoOutputProductIdName> stockDtoOutputProductIdNameList = new ArrayList<>();
             stockList.forEach(stock -> {

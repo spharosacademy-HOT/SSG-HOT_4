@@ -28,7 +28,7 @@ public class Review extends CommonDTO {
     private int star;
     private int viewCount;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     private Product product;
 
     @ManyToOne

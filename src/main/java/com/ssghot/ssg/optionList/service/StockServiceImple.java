@@ -1,9 +1,7 @@
 package com.ssghot.ssg.optionList.service;
 
 import com.ssghot.ssg.optionList.domain.Stock;
-import com.ssghot.ssg.optionList.dto.StockDtoOutputOptFirstQty;
-import com.ssghot.ssg.optionList.dto.StockDtoOutputOptSecondQty;
-import com.ssghot.ssg.optionList.dto.StockDtoOutputProductIdName;
+import com.ssghot.ssg.optionList.dto.*;
 import com.ssghot.ssg.optionList.repository.IStockRepository;
 import com.ssghot.ssg.product.domain.Product;
 import com.ssghot.ssg.product.dto.ProductDtoOutputIdName;
@@ -30,6 +28,8 @@ public class StockServiceImple implements IStockService{
 
         5-1. 옵션2와 재고 조회하기
         5-2. 옵션1과 재고 조회하기
+        5-3. 옵션2와 재고 조회하기 (심플)
+        5-4. 옵션1과 재고 조회하기 (심플)
      */
 
     // 1. 재고 등록하기
@@ -148,6 +148,45 @@ public class StockServiceImple implements IStockService{
                             .productId(stock.getProduct().getId())
                             .productName(stock.getProduct().getName())
                             .titleImgUrl(stock.getProduct().getTitleImgUrl())
+                            .build()
+            );
+        });
+
+        return stockDtoOutputOptFirstQties;
+    }
+
+    // 5-3. 옵션2와 재고 조회하기 (심플)
+    @Override
+    public List<StockDtoOutputOptSecondQtySimple> getOptSecondAndQtySimple(int optionFirstId) {
+
+        List<Stock> stockList = iStockRepository.findOptionSecondAndStockQty(optionFirstId);
+        List<StockDtoOutputOptSecondQtySimple> stockDtoOutputOptSecondQtyList = new ArrayList<>();
+        stockList.forEach(stock -> {
+            stockDtoOutputOptSecondQtyList.add(
+                    StockDtoOutputOptSecondQtySimple.builder()
+                            .stockId(stock.getId())
+                            .optionSecondId(stock.getOptionSecond().getId())
+                            .optionSecondName(stock.getOptionSecond().getName())
+                            .qty(stock.getQty())
+                            .build()
+            );
+        });
+
+        return stockDtoOutputOptSecondQtyList;
+    }
+
+    // 5-4. 옵션1과 재고 조회하기 (심플)
+    @Override
+    public List<StockDtoOutputOptFirstQtySimple> getOptFirstAndQtySimple(int optionSecondId) {
+        List<Stock> stockList = iStockRepository.findOptionFirstAndStockQty(optionSecondId);
+        List<StockDtoOutputOptFirstQtySimple> stockDtoOutputOptFirstQties = new ArrayList<>();
+        stockList.forEach(stock -> {
+            stockDtoOutputOptFirstQties.add(
+                    StockDtoOutputOptFirstQtySimple.builder()
+                            .stockId(stock.getId())
+                            .optionFirstId(stock.getOptionFirst().getId())
+                            .optionFirstName(stock.getOptionFirst().getName())
+                            .qty(stock.getQty())
                             .build()
             );
         });
