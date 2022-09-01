@@ -178,7 +178,7 @@ public class CartServiceImpl implements ICartService{
         if(stocks.size()==1){
             Optional<User> user = iUserRepository.findById(userId);
             if(user.isEmpty()){
-                result.put("code",400);
+                result.put("code",401);
                 result.put("Message","유저 정보가 존재하지 않습니다.");
                 return result;
             }
@@ -190,11 +190,11 @@ public class CartServiceImpl implements ICartService{
                 int newCount = 1 + oldCount;
                 int replaceCount = iCartRepository.replaceCount(cart.get().getId(), newCount);
                 if (replaceCount == 1) {
-                    result.put("code", 200);
+                    result.put("code", 201);
                     result.put("Message", "한 번 더 담으셨네요! 장바구니 수량이 " + newCount + "개가 되었습니다.");
                     return result;
                 }
-                result.put("code", 400);
+                result.put("code", 402);
                 result.put("Message", "장바구니 수량이 변경되지 않았습니다.");
                 return result;
             }
@@ -211,11 +211,11 @@ public class CartServiceImpl implements ICartService{
 
 
         if(stocks.size()>1){
-            result.put("code",300);
+            result.put("code",202);
             result.put("Message","이 상품은 옵션이 있는 상품 입니다. 상품상세에서 옵션을 선택해주세요.");
             return result;
         }
-        result.put("code",404);
+        result.put("code",403);
         result.put("Message","에러.");
         return result;
     }
