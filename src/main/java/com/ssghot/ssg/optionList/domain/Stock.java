@@ -28,4 +28,11 @@ public class Stock {
 
     @ManyToOne
     private Product product;
+
+    //=== qty 증가 ===///
+    public int addQty(int qty){
+        this.qty += qty;
+
+        return this.qty;
+    }
 }
