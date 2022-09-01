@@ -12,6 +12,8 @@ public interface IRecentlyViewedProductRepository extends JpaRepository<Recently
 
     List<RecentlyViewedProduct> findAllByProductId(Long productId);
 
+    RecentlyViewedProduct findByProductId(Long productId);
+
     Page<RecentlyViewedProduct> findByIsDeleted(String keyword, Pageable pageable);
 
 }

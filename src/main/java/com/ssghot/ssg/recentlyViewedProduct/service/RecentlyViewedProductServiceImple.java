@@ -40,13 +40,14 @@ public class RecentlyViewedProductServiceImple implements IRecentlyViewedProduct
         Optional<Product> product = iProductRepository.findById(recentlyViewedProductDtoInput.getProduct().getId());
         Optional<User> user = iUserRepository.findById(recentlyViewedProductDtoInput.getUser().getId());
 
-        List<RecentlyViewedProduct> recentlyViewedProductList = iRecentlyViewedProductRepository.findAll();
-        int rvpListSize = recentlyViewedProductList.size();
+        List<RecentlyViewedProduct> recentlyViewedProductList = iRecentlyViewedProductRepository.findAll(); // RVP 리스트 조회
+        int rvpListSize = recentlyViewedProductList.size(); // RVP 리스트 사이즈 조회
         System.out.println("rvpListSize = " + rvpListSize);
-        Long maxId = recentlyViewedProductList.get(rvpListSize-1).getId();
+        Long maxId = recentlyViewedProductList.get(rvpListSize-1).getId(); // RVP 리스트의 마지막 ID 번호 조회
         System.out.println("maxId = " + maxId);
         int size = 0;
 
+        // boolean[] check 배열의 크기 설정
         if(rvpListSize >= maxId){
             size = rvpListSize;
         } else {
@@ -54,9 +55,10 @@ public class RecentlyViewedProductServiceImple implements IRecentlyViewedProduct
         }
         System.out.println("size = " + size);
         boolean[] check = new boolean[size];
+
         recentlyViewedProductList.forEach(recentlyViewedProduct -> {
-            Long id = recentlyViewedProduct.getProduct().getId();
-            System.out.println("id = " + id);
+            Long id = recentlyViewedProduct.getProduct().getId(); // product 아이디 조회
+            System.out.println("recentlyViewedProduct.getProduct().getId() = " + id);
             System.out.println("check[Math.toIntExact(id)] = " + check[Math.toIntExact(id)]);
             if(product.isPresent() && user.isPresent() && check[Math.toIntExact(id)] == false) {
                 check[Math.toIntExact(id)] = true;
@@ -64,7 +66,33 @@ public class RecentlyViewedProductServiceImple implements IRecentlyViewedProduct
 
             }
         });
-        if(product.isPresent() && user.isPresent() && check[Math.toIntExact(product.get().getId())] == false) {
+
+        RecentlyViewedProduct byProductId = iRecentlyViewedProductRepository.findByProductId(product.get().getId());
+        String byProductIdIsDeleted = byProductId.getIsDeleted();
+        Long productId = byProductId.getProduct().getId();
+
+        System.out.println("productId = " + productId);
+        System.out.println("byProductIdIsDeleted = " + byProductIdIsDeleted);
+        System.out.println("check[Math.toIntExact(productId)] = " + check[Math.toIntExact(productId)]);
+        System.out.println("product.isPresent() = " + product.isPresent());
+        System.out.println("user.isPresent() = " + user.isPresent());
+
+        System.out.println("(check[Math.toIntExact(productId)] == true) = " + (check[Math.toIntExact(productId)] == true));
+        System.out.println("byProductIdIsDeleted = Y : " + byProductIdIsDeleted.equals("Y"));
+        System.out.println(product.isPresent() && user.isPresent() && check[Math.toIntExact(productId)] == true && byProductIdIsDeleted == "Y");
+        if(product.isPresent() && user.isPresent() && check[Math.toIntExact(productId)] == false) {
+            System.out.println("위 실행됨");
+            RecentlyViewedProduct recentlyViewedProduct1 = iRecentlyViewedProductRepository.save(
+                    RecentlyViewedProduct.builder()
+                            .product(recentlyViewedProductDtoInput.getProduct())
+                            .user(recentlyViewedProductDtoInput.getUser())
+                            .isDeleted("N")
+                            .build()
+            );
+        } else if (product.isPresent() && user.isPresent()
+                && check[Math.toIntExact(productId)] == true
+                && byProductIdIsDeleted.equals("Y")){
+            System.out.println(" 아래 실행됨 ");
             RecentlyViewedProduct recentlyViewedProduct1 = iRecentlyViewedProductRepository.save(
                     RecentlyViewedProduct.builder()
                             .product(recentlyViewedProductDtoInput.getProduct())
@@ -92,6 +120,7 @@ public class RecentlyViewedProductServiceImple implements IRecentlyViewedProduct
     @Override
     public RecentlyViewedProduct deleteRecentlyViewedProduct(Long id, RecentlyViewedProductDtoInput recentlyViewedProductDtoInput) {
         Optional<RecentlyViewedProduct> recentlyViewedProduct = iRecentlyViewedProductRepository.findById(id);
+
         if(recentlyViewedProduct.isPresent()){
             return iRecentlyViewedProductRepository.save(
                     RecentlyViewedProduct.builder()

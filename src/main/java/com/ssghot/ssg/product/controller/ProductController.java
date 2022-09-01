@@ -84,7 +84,7 @@ public class ProductController {
 
     // 3-4. 상품 전체 조회하기 (페이지 DTO)
     @GetMapping("/product/page")
-    public Page<ProductDtoOutputAll> getAllProductPage2(@PageableDefault(size = 30) Pageable pageable){
+    public Page<ProductDtoOutputAll> getAllProductPage2(@PageableDefault(size = 40) Pageable pageable){
         Page<ProductDtoOutputAll> productPage = iProductService.getProductAllPage(pageable);
 //        Page<ProductDtoOutputAll> productDtoOutputAllList = iProductService.getProductAll(pageable);
         return productPage;
@@ -171,7 +171,7 @@ public class ProductController {
     // 11-4. 상품 검색하기
     @GetMapping("/product/search")
     public Page<ProductDtoOutputAll> getSearchNameAndPrice1(
-            String name, Long category, Integer minPrice, Integer maxPrice, Pageable pageable){
+            String name, Long category, Integer minPrice, Integer maxPrice, @PageableDefault(size = 30) Pageable pageable){
         // @PageableDefault(sort = "id", direction = Sort.Direction.DESC)
         if(category == null && minPrice == null && maxPrice == null){
             return iProductService.getSearchNameListPage(name, pageable);

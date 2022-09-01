@@ -22,7 +22,7 @@ public class CategoryM {
     private Long id;
     private String name; // 중분류 이름
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne//(fetch = FetchType.LAZY)
     //@JsonBackReference
     private Category category;
 
