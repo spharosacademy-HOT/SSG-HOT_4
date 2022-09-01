@@ -88,7 +88,7 @@ public class RecentlyViewedProductServiceImpl implements IRecentlyViewedProductS
                     .isWished(false)
                     .build();
             for (WishList wishList: wishLists) {
-                if(wishList.getProduct().getId() == view.getProduct().getId()){
+                if(wishList.getProduct().getId().equals(view.getProduct().getId())){
                     viewDto.setIsWished(true);
                     break;
                 }
