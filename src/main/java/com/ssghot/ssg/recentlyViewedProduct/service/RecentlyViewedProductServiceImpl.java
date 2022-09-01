@@ -41,7 +41,7 @@ public class RecentlyViewedProductServiceImpl implements IRecentlyViewedProductS
         }
         Optional<Product> product = iProductRepository.findById(recentlyViewedProductDtoInput.getProductId());
         if(product.isEmpty()){
-            result.put("code",400);
+            result.put("code",401);
             result.put("Message","해당 제품이 존재하지 않습니다.");
             return result;
         }
@@ -73,7 +73,7 @@ public class RecentlyViewedProductServiceImpl implements IRecentlyViewedProductS
         Map<String,Object> result = new HashMap<>();
         Optional<User> user = iUserRepository.findById(id);
         if(user.isEmpty()){
-            result.put("code",1);
+            result.put("code",400);
             result.put("Message","해당 유저가 존재하지 않습니다.");
             return result;
         }
