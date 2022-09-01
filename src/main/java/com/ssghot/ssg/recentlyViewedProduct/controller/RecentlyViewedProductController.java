@@ -34,9 +34,8 @@ public class RecentlyViewedProductController {
     // 2. 최근 본 상품 삭제하기
     @PutMapping("/recentlyviewedproduct/{id}")
     @PreAuthorize("hasRole('ROLE_USER')")
-    public RecentlyViewedProduct deleteRecentlyViewedProduct(@PathVariable Long id,
-                                                             @RequestBody RecentlyViewedProductDtoInput recentlyViewedProductDtoInput){
-        return iRecentlyViewedProductService.deleteRecentlyViewedProduct(id, recentlyViewedProductDtoInput);
+    public RecentlyViewedProduct deleteRecentlyViewedProduct(@PathVariable Long id){
+        return iRecentlyViewedProductService.deleteRecentlyViewedProduct(id);
     }
 
 //    // 3. 최근 본 상품 전체 조회하기 (슬라이스 적용 X)

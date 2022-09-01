@@ -118,7 +118,7 @@ public class RecentlyViewedProductServiceImple implements IRecentlyViewedProduct
 
     // 2. 최근 본 상품 삭제하기
     @Override
-    public RecentlyViewedProduct deleteRecentlyViewedProduct(Long id, RecentlyViewedProductDtoInput recentlyViewedProductDtoInput) {
+    public RecentlyViewedProduct deleteRecentlyViewedProduct(Long id) {
         Optional<RecentlyViewedProduct> recentlyViewedProduct = iRecentlyViewedProductRepository.findById(id);
 
         if(recentlyViewedProduct.isPresent()){
