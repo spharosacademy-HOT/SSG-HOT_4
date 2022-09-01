@@ -32,40 +32,50 @@ public class StockServiceImple implements IStockService{
         5-4. 옵션1과 재고 조회하기 (심플)
      */
 
+    static Long validateId = 0L;
+
     // 1. 재고 등록하기
     @Override
     public Stock addStock(Stock stock) {
-//        List<Stock> stockList = iStockRepository.findAll();
-//        stockList.forEach(stocks -> {
-//            if(stocks.getProduct().getId() == stock.getProduct().getId()
-//            && stocks.getOptionFirst().getId() == stock.getOptionFirst().getId()
-//            && stocks.getOptionSecond().getId() == stock.getOptionSecond().getId()) {
-//                System.out.println("stocks.getQty() = " + stocks.getQty());
-//                System.out.println("stock.getQty() = " + stock.getQty());
-//                int addQty = stocks.addQty(stock.getQty());
-//                System.out.println("stocks.getQty() = " + stocks.getQty());
-//                System.out.println("stocks.getId() = " + stocks.getId());
-//                iStockRepository.save(Stock.builder()
-//                        .id(stocks.getId())
-//                        .qty(addQty)
-//                        .product(stocks.getProduct())
-//                        .optionFirst(stocks.getOptionFirst())
-//                        .optionSecond(stocks.getOptionSecond())
-//                        .build()
-//                );
-//            } else {
-//                iStockRepository.save(Stock.builder()
-//                        .id(stock.getId())
-//                        .qty(stock.getQty())
-//                        .product(stock.getProduct())
-//                        .optionFirst(stock.getOptionFirst())
-//                        .optionSecond(stock.getOptionSecond())
-//                        .build()
-//                );
-//            }
-//        });
+        List<Stock> stockList = iStockRepository.findAll();
 
-        return iStockRepository.save(stock);
+        stockList.forEach(stocks -> {
+            if(stocks.getProduct().getId() == stock.getProduct().getId()
+            && stocks.getOptionFirst().getId() == stock.getOptionFirst().getId()
+            && stocks.getOptionSecond().getId() == stock.getOptionSecond().getId()) {
+                System.out.println("stocks.getId() = " + stocks.getId());
+                validateId = stocks.getId();
+            }
+        });
+
+        if(validateId > 0){
+            System.out.println("0 이상일 때");
+            System.out.println("validateId = " + validateId);
+
+            Optional<Stock> byId = iStockRepository.findById(validateId);
+            iStockRepository.save(
+                    Stock.builder()
+                            .id(validateId)
+                            .qty(byId.get().getQty() + stock.getQty())
+                            .product(stock.getProduct())
+                            .optionFirst(stock.getOptionFirst())
+                            .optionSecond(stock.getOptionSecond())
+                            .build()
+            );
+            validateId = 0L;
+        } else {
+            System.out.println("0 이상 아닐 때");
+            iStockRepository.save(
+                    Stock.builder()
+                            .qty(stock.getQty())
+                            .product(stock.getProduct())
+                            .optionFirst(stock.getOptionFirst())
+                            .optionSecond(stock.getOptionSecond())
+                            .build()
+            );
+        }
+//        return iStockRepository.save(stock);
+        return null;
     }
 
     // 2. 재고 수정하기
