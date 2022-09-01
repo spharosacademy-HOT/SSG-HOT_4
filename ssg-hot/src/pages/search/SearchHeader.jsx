@@ -3,6 +3,7 @@ import cartLogo2 from "../../assets/img/svg/cartLogo2.svg";
 import searchIcon from "../../assets/img/svg/searchIcon.svg";
 
 import { Link, useNavigate } from "react-router-dom";
+import { postRecentSearch } from "../../store/apis/recent";
 export default function SearchHeader() {
   const navigate = useNavigate();
   const [search, setSearch] = useState("");
@@ -16,6 +17,13 @@ export default function SearchHeader() {
     if (search === null || search === "") {
       alert("검색어를 입력해 주세요");
     } else {
+      const recentData = {
+        searchKeyword: search,
+        userId: sessionStorage.getItem("id"),
+      };
+      postRecentSearch(recentData).then((res) => {
+        console.log(res, "최근검색어 등록");
+      });
       navigate(`/search/${search}`);
     }
   };

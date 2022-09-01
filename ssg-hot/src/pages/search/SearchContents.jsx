@@ -1,14 +1,22 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleExclamation } from "@fortawesome/free-solid-svg-icons";
-import searchDatas from "./../../datas/json/searchDatas.json";
 import SearchList from "./SearchList";
+import { getRecentSearch } from "../../store/apis/recent";
+
 export default function SearchContents() {
+  const [searchData, setSearchData] = useState();
+  useEffect(() => {
+    getRecentSearch().then((res) => {
+      console.log(res, "최근검색목록가져옴");
+      setSearchData(res.data);
+    });
+  }, []);
   return (
     <div className="searchItem">
-      {searchDatas.length > 0 ? (
-        <SearchList />
+      {searchData !== [] ? (
+        <SearchList searchData={searchData} setSearchData={setSearchData} />
       ) : (
         <div className="recentNoItem">
           <div>

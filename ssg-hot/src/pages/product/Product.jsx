@@ -39,7 +39,7 @@ function Product() {
         },
       };
       postRecent(recentDta).then((res) => {
-        console.log(res, "최근본아이템등록");
+        console.log(res, recentDta, "최근본아이템등록");
       });
     });
   }, [url]);

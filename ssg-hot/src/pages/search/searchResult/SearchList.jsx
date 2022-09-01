@@ -3,8 +3,6 @@ import { useParams } from "react-router-dom";
 import { getSearch } from "../../../store/apis/search";
 import ProductCard from "../../product/ProductCard";
 import SearchFilter from "./SearchFilter";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircleExclamation } from "@fortawesome/free-solid-svg-icons";
 
 export default function SearchList() {
   const [searchData, setSearchData] = useState([]);

@@ -40,7 +40,7 @@ export default function RecentItem({
     deleteRecent(recentDta, id).then((res) => {
       console.log(res);
       getRecent().then((res) => {
-        setRcData(res);
+        setRcData(res.content);
       });
     });
   };

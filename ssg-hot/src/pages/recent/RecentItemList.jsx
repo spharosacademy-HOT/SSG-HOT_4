@@ -11,8 +11,8 @@ export default function RecentItemList() {
   useEffect(() => {
     getRecent()
       .then((res) => {
-        setRcData(res);
-        console.log(res, "데이터 가져옴");
+        setRcData(res.content);
+        console.log(res, "최근본 데이터 가져옴");
       })
       .catch((err) => {
         console.log(err);
