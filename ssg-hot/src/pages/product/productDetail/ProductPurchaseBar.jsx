@@ -8,10 +8,11 @@ import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 import { addMyCart, getMyCart } from "../../../store/apis/cart";
 import { cartState } from "../../../store/atom/cartState";
 import { useParams } from "react-router-dom";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import axios from 'axios';
 import { baseURL } from '../../../store/apis/apiClient';
 import { addOption } from '../../../store/apis/product';
+import { purchaseState, totalPriceState } from '../../../store/atom/purchaseState';
 
 function ProductPurchaseBar({stockList}) {
     let params = useParams();
@@ -24,10 +25,13 @@ function ProductPurchaseBar({stockList}) {
     const [stockChoice, setStockChoice] = useState(false);
     const [sizeDatas, setSizeDatas] = useState([]);
     const [sizeChoice, setSizeChoice] = useState(false);
-    const [purchaseList, setPurChaseList] = useState([])
+    const [purchaseList, setPurChaseList] = useRecoilState(purchaseState)
+    const purchaseDatas = useRecoilValue(purchaseState)
     const [deleteId, setDeleteId] = useState('')
-    const [totalPrice, setTotalPrice]  = useState(0);
-    // console.log('목록들',purchaseList)
+    const [totalPrice, setTotalPrice] = useRecoilState(totalPriceState)
+    const totalPurchasePrice = useRecoilValue(totalPriceState)
+
+    // const totalPrice 
     const handleShow = () => {
       setShow(true);
       console.log(show);
@@ -64,7 +68,10 @@ function ProductPurchaseBar({stockList}) {
             alert('동일한 옵션 상품이 이미 선택되어 있습니다.')
             : setPurChaseList([item,...purchaseList])
             setTotalPrice(totalPrice + price)
+
+        
     }
+    console.log('현재 데이터',purchaseDatas)
       //장바구니 담고 장바구니 새로 가져오기
     const goCart = () => {
         const itemData = {
@@ -89,8 +96,6 @@ function ProductPurchaseBar({stockList}) {
         <>
             <div className={barState === 0 ?
                 'product-purchase-bar'
-                // 'product-purchase-like'
-                // 'product-purchase-buy'
                 : barState === 1 ?
                 'product-purchase-like'
                 : 'product-purchase-buy'}>
@@ -163,9 +168,8 @@ function ProductPurchaseBar({stockList}) {
                         <ProductPurchaseItem purchase={purchase} key={purchase.stockId} setDeleteId={setDeleteId}/>
                     ))
                 }
-                {/* <ProductPurchaseItem purchaseList={purchaseList} /> */}
                 <div className='product-total-price'>
-                    총 합계 <span>{totalPrice}</span>원
+                    총 합계 <span>{totalPurchasePrice}</span>원
                 </div>
             </div>
             <div className={stockChoice ? 'stock-choice-open' : 'stock-choice-close'}>

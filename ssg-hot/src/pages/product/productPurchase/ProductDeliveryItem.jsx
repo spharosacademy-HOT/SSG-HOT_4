@@ -4,18 +4,21 @@ function ProductDeliveryItem({item}) {
     return ( 
         <>
             <div className='product-delivery-item'>
-                <div className='delivery-item-image'><img src={item.imgUrl} alt="" /></div>
+                <div className='delivery-item-image'><img src={item.titleImgUrl} alt="" /></div>
                 <div>
-                    <div>{item.desc.comName} - {item.desc.brandName}</div>
+                    <div></div>
                     <div className='purchase-info-box'>
-                        {item.desc.name}{item.desc.info}
-                    </div>  
+                        {item.productName}
+                    </div>
+                    <div>
+                        옵션 : {item.optionFirst.name} {item.optionSecond.name}
+                    </div>
                     <div>
                         <div>
-                            <div className='reguler-price'>{item.desc.oldPrice}원</div>
-                            <div className='pay-price'>{item.desc.newPrice}원</div>
+                            <div className='reguler-price'>{item.discountPrice}원</div>
+                            <div className='pay-price'>{item.discountPrice}원</div>
                         </div>
-                        <div className='product-qty'>수량 1개</div>
+                        <div className='product-qty'>수량 개</div>
                     </div>
                 </div>
             </div>

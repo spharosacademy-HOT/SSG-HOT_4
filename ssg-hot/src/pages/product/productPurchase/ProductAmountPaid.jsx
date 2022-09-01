@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
 import { cartState } from "../../../store/atom/cartState";
+import { totalPriceState } from "../../../store/atom/purchaseState";
 
 function ProductAmountPaid() {
   const cartData = useRecoilValue(cartState);
   const totalPricee = useState(0);
   const totalDeliveryCost = useState(0);
-  const totalDiscountPrice = useState(0);
+  const totalDiscountPrice = useRecoilValue(totalPriceState)
   return (
     <>
       <div className="purchase-card-box product-amount-paid">
@@ -25,7 +26,7 @@ function ProductAmountPaid() {
         </div>
         <div>
           <div>총 결제예정금액</div>
-          <div>+ 110,400원</div>
+          <div>+ {totalDiscountPrice}원</div>
         </div>
       </div>
     </>
