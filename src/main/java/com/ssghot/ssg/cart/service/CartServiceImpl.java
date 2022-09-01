@@ -15,10 +15,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -95,17 +92,7 @@ public class CartServiceImpl implements ICartService{
             for (Cart cart: carts) {
 
                 List<Stock> allByProductId = iStockRepository.findAllByProductId(cart.getStock().getProduct().getId());
-//              version 1
-//                for (Stock stock : allByProductId) {
-//                    OptionFirst optionFirst = stock.getOptionFirst();
-//                    OptionSecond optionSecond = stock.getOptionSecond();
-//                    Long id = stock.getId();
-//                    OptionListDtoOutput optionListDtoOutput = OptionListDtoOutput.builder()
-//                            .optionFirst(optionFirst).optionSecond(optionSecond)
-//                            .stockId(id)
-//                            .build();
-//                    optionListDtoOutputs.add(optionListDtoOutput);
-//                }
+
                 List<OptionFirst> optionFirsts = new ArrayList<>();
                 List<OptionSecond> optionSeconds = new ArrayList<>();
                 // 첫번째 값 넣기
@@ -177,6 +164,60 @@ public class CartServiceImpl implements ICartService{
             return getCartDtoOutput(200,"재고가 변경되었습니다.",null);
         }
         return getCartDtoOutput(400,"재고가 변경되지 않았습니다.",null);
+    }
+
+    @Override
+    public Map<String, Object> findCartByProductId(Long userId, Long productId) {
+        List<Stock> stocks = iStockRepository.findAllByProductId(productId);
+        Map<String,Object> result = new HashMap<>();
+        if(stocks==null){
+            result.put("code",400);
+            result.put("Message","해당 재고가 아직 등록되지 않았습니다.");
+            return result;
+        }
+        if(stocks.size()==1){
+            Optional<User> user = iUserRepository.findById(userId);
+            if(user.isEmpty()){
+                result.put("code",400);
+                result.put("Message","유저 정보가 존재하지 않습니다.");
+                return result;
+            }
+
+            Optional<Cart> cart = iCartRepository.findByUserAndStock(user.get(), stocks.get(0));
+
+            if(cart.isPresent()) {
+                int oldCount = cart.get().getCount();
+                int newCount = 1 + oldCount;
+                int replaceCount = iCartRepository.replaceCount(cart.get().getId(), newCount);
+                if (replaceCount == 1) {
+                    result.put("code", 200);
+                    result.put("Message", "한 번 더 담으셨네요! 장바구니 수량이 " + newCount + "개가 되었습니다.");
+                    return result;
+                }
+                result.put("code", 400);
+                result.put("Message", "장바구니 수량이 변경되지 않았습니다.");
+                return result;
+            }
+
+            iCartRepository.save(Cart.builder()
+                    .count(1)
+                    .stock(stocks.get(0))
+                    .user(user.get())
+                    .build());
+            result.put("code", 200);
+            result.put("Message", "장바구니에 상품이 담겼습니다.");
+            return result;
+            }
+
+
+        if(stocks.size()>1){
+            result.put("code",300);
+            result.put("Message","이 상품은 옵션이 있는 상품 입니다. 상품상세에서 옵션을 선택해주세요.");
+            return result;
+        }
+        result.put("code",404);
+        result.put("Message","에러.");
+        return result;
     }
 
     private ResultDtoOutput<CartDtoOutput> getCartDtoOutput(int status, String message, Cart cart){

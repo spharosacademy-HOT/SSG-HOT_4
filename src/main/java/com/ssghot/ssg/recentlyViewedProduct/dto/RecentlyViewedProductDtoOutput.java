@@ -9,8 +9,6 @@ import lombok.Data;
 public class RecentlyViewedProductDtoOutput {
 
     private Long id;
-    private Long userId;
-    private String isDeleted;
-
+    private Boolean isWished;
     private Product product;
 }
