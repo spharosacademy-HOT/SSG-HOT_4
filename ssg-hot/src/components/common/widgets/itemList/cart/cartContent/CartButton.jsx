@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Modal from "react-modal";
 import { useRecoilState } from "recoil";
-import {
-  getOption1,
-  getOption2,
-  putOption,
-} from "../../../../../../store/apis/option";
+import { getOption1, putOption } from "../../../../../../store/apis/option";
+import { cartState } from "../../../../../../store/atom/cartState";
 
 const customStyles = {
   content: {
@@ -26,7 +23,9 @@ export default function CartButton({ optionList, productId, cartId }) {
   const [option1, setOption1] = useState();
   const [option2, setOption2] = useState();
 
-  const [cartData, setCartData] = useRecoilState();
+  // const [cartData, setCartData] = useRecoilState(cartState);
+
+  // console.log(cartData);
 
   // let subtitle;
   const [modalIsOpen, setIsOpen] = useState(false);
@@ -51,6 +50,7 @@ export default function CartButton({ optionList, productId, cartId }) {
     getOption1(e.target.value, productId).then((res) => {
       console.log(res.data, "1로2조회");
       setOptionSecond(res.data);
+      setOption2(res.data[0].id);
     });
   };
   const handleSelect2 = (e) => {
@@ -64,8 +64,11 @@ export default function CartButton({ optionList, productId, cartId }) {
       optionFirstId: option1,
       optionSecondId: option2,
     };
+
     putOption(oData).then((res) => {
       console.log(res);
+      // setCartData(cartData.map((cart) =>
+      //   cart.id === cartId ? {...cart,optionFirst:}))
       alert(res.message);
       closeModal();
     });
