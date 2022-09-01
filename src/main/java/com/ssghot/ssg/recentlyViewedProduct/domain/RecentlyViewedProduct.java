@@ -26,6 +26,5 @@ public class RecentlyViewedProduct extends CommonDTO {
     @ManyToOne
     private User user;
 
-    private String isDeleted;
 
 }

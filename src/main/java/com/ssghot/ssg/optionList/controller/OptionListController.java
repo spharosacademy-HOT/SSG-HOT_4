@@ -127,4 +127,6 @@ public class OptionListController {
     public List<StockDtoOutputOptFirstQtySimple> getOption1AndStockQtySimple(@PathVariable int id, @PathVariable Long productId){
         return iStockService.getOptFirstAndQtySimple(id, productId);
     }
+
+
 }

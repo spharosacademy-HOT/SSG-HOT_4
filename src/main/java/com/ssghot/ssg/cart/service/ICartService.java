@@ -5,6 +5,7 @@ import com.ssghot.ssg.common.ResultDtoOutput;
 import com.ssghot.ssg.common.ResultsDtoOutput;
 
 import java.util.List;
+import java.util.Map;
 
 public interface ICartService {
     /*
@@ -30,6 +31,9 @@ public interface ICartService {
     ResultDtoOutput<CartDtoOutput> editStockCart(CartEditStockDtoInput cartEditStockDtoInput);
 
     ResultDtoOutput<CartDtoOutput> editStockCartV2(CartEditV2DtoInput cartEditV2DtoInput);
+
+
+    Map<String,Object> findCartByProductId(Long userId,Long productId);
 
 
 }
