@@ -12,4 +12,3 @@ export const addOption = async()=>{
     const res = await apiClient.post(`/carts`)
     return res.data
 }
-

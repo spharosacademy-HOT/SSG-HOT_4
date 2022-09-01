@@ -1,8 +1,11 @@
 import React from 'react'
-import purchaseDatas from '../../../datas/js/purchaseDatas';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { purchaseState } from '../../../store/atom/purchaseState';
+// import purchaseDatas from '../../../datas/js/purchaseDatas';
 import ProductDeliveryItem from './ProductDeliveryItem';
 
 function ProductDeliveryItems() {
+    const purchaseDatas = useRecoilValue(purchaseState)
     return ( 
         <>
             <div className='purchase-card-box product-delivery-items'>

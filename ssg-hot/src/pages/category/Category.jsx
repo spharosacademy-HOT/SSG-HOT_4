@@ -43,7 +43,7 @@ function Category() {
         {
           cateDatas && cateDatas.map(cateData => (
             <CategoryGroup
-              key={cateData.id}
+              key={cateData.row}
               cateData={cateData}
               viewIsTrue={false}
               cateNumber = {cateNumber}
