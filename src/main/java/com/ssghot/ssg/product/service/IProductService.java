@@ -38,8 +38,11 @@ public interface IProductService {
     // 3-3. 상품 전체 조회하기 (페이지)
     Page<ProductDtoOutputAll> getProductAllPage(Pageable pageable);
 
-    // 3-4. 상품 전체 조회하기 (슬라이스)
+    // 3-4. 상품 전체 조회하기 (슬라이스) - 유저 정보 X
     Slice<ProductDtoOutputAll> getProductAllSlice(Pageable pageable);
+
+    // 3-4. 상품 전체 조회하기 (슬라이스) - 유저 정보 O, 좋아요 정보 받기
+    Slice<ProductDtoOutputAll> getProductAllWithUserWishedSlice(Pageable pageable, Long userId);
 
     // 4. 상품 단일 조회하기
     ProductDtoOutputAllDetail getProductOne(Long productId);

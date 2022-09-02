@@ -71,9 +71,14 @@ public class CategoryController {
     }
 
     // 3-2. 카테고리 중분류 전체 조회하기
-    @GetMapping("/categorym")
-    public List<CategoryMDtoOutputIdAndName> getAllCategoryM(){
-        return iCategoryMService.getAllCategoryM();
+    @GetMapping("/categorym/all/{categoryLId}")
+    public List<CategoryMDtoOutputIdAndName> getAllCategoryM(@PathVariable Long categoryLId, @RequestHeader HttpHeaders headers){
+        Long userId = iUserService.getUserByTokenFix(headers);
+
+        if(userId != null){
+            return iCategoryMService.getAllCategoryMWithUserWished(categoryLId, userId);
+        }
+        return iCategoryMService.getAllCategoryM(categoryLId);
     }
 
     // 4-1. 카테고리 대분류 단일 조회하기

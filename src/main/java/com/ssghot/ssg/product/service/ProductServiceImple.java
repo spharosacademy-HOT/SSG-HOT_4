@@ -18,6 +18,7 @@ import com.ssghot.ssg.review.domain.Review;
 import com.ssghot.ssg.review.dto.ReviewDtoOutputDetail;
 import com.ssghot.ssg.review.repository.IReviewRepository;
 import com.ssghot.ssg.wish_list.repository.IWishListRepository;
+import com.ssghot.ssg.wish_list.service.IWishListService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -47,6 +48,8 @@ public class ProductServiceImple implements IProductService{
     private final IReviewRepository iReviewRepository;
 
     private final IWishListRepository iWishListRepository;
+
+    private final IWishListService iWishListService;
 
     /*
         1. 상품 등록하기
@@ -350,7 +353,7 @@ public class ProductServiceImple implements IProductService{
                 );
     }
 
-    // 3-3. 상품 전체 조회하기 (슬라이스)
+    // 3-3. 상품 전체 조회하기 (슬라이스) - 유저 아이디안받고 모든 유저
     @Override
     public Slice<ProductDtoOutputAll> getProductAllSlice(Pageable pageable) {
         return iProductRepository.findAll(pageable)
@@ -414,6 +417,96 @@ public class ProductServiceImple implements IProductService{
 //                            });
 
                             return ProductDtoOutputAll.builder()
+                                    .id(product.getId())
+                                    .name(product.getName())
+                                    .regularPrice(product.getRegularPrice())
+                                    .discountPrice(product.getDiscountPrice())
+                                    .discountRate(product.getDiscountRate())
+                                    .shippingFee(product.getShippingFee())
+                                    .star(product.getStar())
+                                    .detail(product.getDetail())
+                                    .deliveryCondition(product.getDeliveryCondition())
+                                    .viewCount(product.getViewCount())
+                                    .sellCount(product.getSellCount())
+                                    .brandName(product.getBrandName())
+                                    .titleImgUrl(product.getTitleImgUrl())
+                                    .titleImgTxt(product.getTitleImgTxt())
+//                                    .productSubImgList(productSubImgDtoOutputOnlyIds)
+//                                    .categoryProductList(categoryProductListDtoOutputList)
+//                                    .stockList(stockDtoOutputProductIdNameList)
+//                                    .wishLists(wishListDtoOutputList)
+                                    .build();
+                        }
+                );
+    }
+
+    // 3-3. 상품 전체 조회하기 (슬라이스) - 유저 아이디 받고 좋아요 표시
+    @Override
+    public Slice<ProductDtoOutputAll> getProductAllWithUserWishedSlice(Pageable pageable, Long userId) {
+        return iProductRepository.findAll(pageable)
+                .map(product ->
+                        {
+
+//                            // WishList
+//                            List<WishList> wishLists = iWishListRepository.findAllByProductId(product.getId());
+//                            List<WishListDtoOutput> wishListDtoOutputList = new ArrayList<>();
+//                            wishLists.forEach(wishList -> {
+//                                wishListDtoOutputList.add(
+//                                        WishListDtoOutput.builder()
+//                                                .id(wishList.getId())
+//                                                .userId(wishList.getUser().getId())
+//                                                .product(wishList.getProduct())
+//                                                .createdDate(wishList.getCreatedDate())
+//                                                .updatedDate(wishList.getUpdatedDate())
+//                                                .build()
+//                                );
+//                            });
+
+//                            // SubImg
+//                            List<ProductSubImg> productSubImgList = iProductSubImgRepository.findAllByProductId(product.getId());
+//                            List<ProductSubImgDtoOutputOnlyId> productSubImgDtoOutputOnlyIds = new ArrayList<>();
+//
+//                            productSubImgList.forEach(productSubImg -> {
+//                                productSubImgDtoOutputOnlyIds.add(
+//                                        ProductSubImgDtoOutputOnlyId.builder()
+//                                                .id(productSubImg.getId())
+//                                                .build()
+//                                );
+//                            });
+//
+//                            // Stock
+//                            List<Stock> stockList = iStockRepository.findAllByProductId(product.getId());
+//                            List<StockDtoOutputProductIdName> stockDtoOutputProductIdNameList = new ArrayList<>();
+//                            stockList.forEach(stock -> {
+//                                stockDtoOutputProductIdNameList.add(
+//                                        StockDtoOutputProductIdName.builder()
+//                                                .stockId(stock.getId())
+//                                                .qty(stock.getQty())
+//                                                .productId(stock.getProduct().getId())
+//                                                .optionFirstId(stock.getOptionFirst().getId())
+//                                                .optionSecondId(stock.getOptionSecond().getId())
+//                                                .build()
+//                                );
+//                            });
+//
+//                            // CategoryProductList
+//                            List<CategoryProductList> categoryProductListList = iCategoryProductListRepository.findAllByProductId(product.getId());
+//                            List<CategoryProductListDtoOutput> categoryProductListDtoOutputList = new ArrayList<>();
+//                            categoryProductListList.forEach(categoryProductList -> {
+//                                categoryProductListDtoOutputList.add(
+//                                        CategoryProductListDtoOutput.builder()
+//                                                .id(categoryProductList.getId())
+//                                                .productId(categoryProductList.getProduct().getId())
+//                                                .categoryId(categoryProductList.getCategory().getId())
+//                                                .categoryMId(categoryProductList.getCategoryM().getId())
+//                                                .build()
+//                                );
+//                            });
+
+                            boolean wish = iWishListService.wishByProductIdAndUserId(product.getId(), userId);
+
+                            return ProductDtoOutputAll.builder()
+                                    .isWished(wish)
                                     .id(product.getId())
                                     .name(product.getName())
                                     .regularPrice(product.getRegularPrice())
@@ -591,7 +684,7 @@ public class ProductServiceImple implements IProductService{
 //                    .stockList(iStockRepository.findAllByProductId(product.get().getId()))
                     .stockList(stockDtoOutputProductIdNameList)
                     .optionFirst(optionFirstList)
-//                    .reviewList(reviewDtoOutputDetailList)
+                    .reviewList(reviewDtoOutputDetailList)
                     .build();
         }
 

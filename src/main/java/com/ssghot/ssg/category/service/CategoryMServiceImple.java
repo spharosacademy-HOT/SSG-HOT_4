@@ -8,16 +8,10 @@ import com.ssghot.ssg.category.dto.CategoryMDtoOutput;
 import com.ssghot.ssg.category.dto.CategoryMDtoOutputIdAndName;
 import com.ssghot.ssg.category.repository.ICategoryMRepository;
 import com.ssghot.ssg.category.repository.ICategoryRepository;
-import com.ssghot.ssg.categoryProductList.domain.CategoryProductList;
-import com.ssghot.ssg.categoryProductList.dto.CategoryProductListDtoOutput;
 import com.ssghot.ssg.categoryProductList.repository.ICategoryProductListRepository;
-import com.ssghot.ssg.optionList.domain.Stock;
-import com.ssghot.ssg.optionList.dto.StockDtoOutputProductIdName;
 import com.ssghot.ssg.optionList.repository.IStockRepository;
 import com.ssghot.ssg.product.domain.Product;
-import com.ssghot.ssg.product.domain.ProductSubImg;
 import com.ssghot.ssg.product.dto.ProductDtoOutputAll;
-import com.ssghot.ssg.product.dto.ProductSubImgDtoOutputOnlyId;
 import com.ssghot.ssg.product.repository.IProductRepository;
 import com.ssghot.ssg.product.repository.IProductSubImgRepository;
 import com.ssghot.ssg.wish_list.service.IWishListService;
@@ -75,11 +69,11 @@ public class CategoryMServiceImple implements ICategoryMService{
         return null;
     }
 
-    // 3. 카테고리 중분류 전체 조회하기
+    // 3. 카테고리 중분류 전체 조회하기 (유저 정보 X)
     @Override
-    public List<CategoryMDtoOutputIdAndName> getAllCategoryM() {
+    public List<CategoryMDtoOutputIdAndName> getAllCategoryM(Long categoryLId) {
 
-        List<CategoryM> categoryMList = iCategoryMRepository.findAll(); // 카테고리 중분류 리스트 조회
+        List<CategoryM> categoryMList = iCategoryMRepository.findAllByCategoryId(categoryLId); // 카테고리 중분류 리스트 조회
         List<CategoryMDtoOutputIdAndName> categoryMDtoOutputIdAndNameList = new ArrayList<>(); // DTO 비어있는 리스트 생성
 
 
@@ -176,6 +170,111 @@ public class CategoryMServiceImple implements ICategoryMService{
 
         return categoryMDtoOutputIdAndNameList;
     }
+
+    // 3. 카테고리 중분류 전체 조회하기 (유저 정보 O, 좋아요 정보 받기)
+    @Override
+    public List<CategoryMDtoOutputIdAndName> getAllCategoryMWithUserWished(Long categoryLId, Long userId) {
+
+        List<CategoryM> categoryMList = iCategoryMRepository.findAllByCategoryId(categoryLId); // 카테고리 중분류 리스트 조회
+        List<CategoryMDtoOutputIdAndName> categoryMDtoOutputIdAndNameList = new ArrayList<>(); // DTO 비어있는 리스트 생성
+
+        categoryMList.forEach( // 카테고리 중분류 리스트를 하나씩 풀어 넣는다.
+                categoryM -> {
+
+                    // Product
+                    List<Product> productList = iProductRepository.findAllByCategoryMId(categoryM.getId());
+                    List<ProductDtoOutputAll> productDtoOutputAllList = new ArrayList<>();
+
+                    productList.forEach(product -> {
+
+//                        // Stock
+//                        List<Stock> stockList = iStockRepository.findAllByProductId(product.getId());
+//                        List<StockDtoOutputProductIdName> stockDtoOutputProductIdNameList = new ArrayList<>();
+//                        stockList.forEach(stock -> {
+//                            stockDtoOutputProductIdNameList.add(
+//                                    StockDtoOutputProductIdName.builder()
+//                                            .stockId(stock.getId())
+//                                            .qty(stock.getQty())
+//                                            .productId(stock.getProduct().getId())
+//                                            .optionFirstId(stock.getOptionFirst().getId())
+//                                            .optionSecondId(stock.getOptionSecond().getId())
+//                                            .build()
+//                            );
+//                        });
+
+//                        // SubImg
+//                        List<ProductSubImg> productSubImgList = iProductSubImgRepository.findAllByProductId(product.getId());
+//                        List<ProductSubImgDtoOutputOnlyId> productSubImgDtoOutputOnlyIdList = new ArrayList<>();
+//
+//                        productSubImgList.forEach(productSubImg -> {
+//                            productSubImgDtoOutputOnlyIdList.add(
+//                                    ProductSubImgDtoOutputOnlyId.builder()
+//                                            .id(productSubImg.getId())
+//                                            .build()
+//                            );
+//                        });
+
+//                        // CategoryProduct
+//                        List<CategoryProductList> categoryProductLists = iCategoryProductListRepository.findAllByProductId(product.getId());
+//                        List<CategoryProductListDtoOutput> categoryProductListDtoOutputList = new ArrayList<>();
+//
+//                        categoryProductLists.forEach(categoryProductList -> {
+//                            categoryProductListDtoOutputList.add(
+//                                    CategoryProductListDtoOutput.builder()
+//                                            .id(categoryProductList.getId())
+//                                            .categoryMId(categoryProductList.getCategoryM().getId())
+//                                            .categoryId(categoryProductList.getCategory().getId())
+//                                            .productId(categoryProductList.getProduct().getId())
+//                                            .build()
+//                            );
+//                        });
+
+                        boolean wish = iWishListService.wishByProductIdAndUserId(product.getId(), userId);
+
+                        productDtoOutputAllList.add(
+                                ProductDtoOutputAll.builder()
+                                        .isWished(wish)
+                                        .id(product.getId())
+                                        .name(product.getName())
+                                        .regularPrice(product.getRegularPrice())
+                                        .discountPrice(product.getDiscountPrice())
+                                        .discountRate(product.getDiscountRate())
+                                        .shippingFee(product.getShippingFee())
+                                        .detail(product.getDetail())
+                                        .star(product.getStar())
+                                        .deliveryCondition(product.getDeliveryCondition())
+                                        .viewCount(product.getViewCount())
+                                        .sellCount(product.getSellCount())
+                                        .brandName(product.getBrandName())
+                                        .titleImgUrl(product.getTitleImgUrl())
+                                        .titleImgTxt(product.getTitleImgTxt())
+//                                        .stockList(stockDtoOutputProductIdNameList)
+//                                        .productSubImgList(productSubImgDtoOutputOnlyIdList)
+//                                        .categoryProductList(categoryProductListDtoOutputList)
+                                        .build()
+                        );
+                    });
+
+                    Optional<Category> category = iCategoryRepository.findById(categoryM.getCategory().getId());
+                    CategoryDtoOutputLargeId categoryDtoOutputLargeId = CategoryDtoOutputLargeId.builder()
+                            .id(category.get().getId())
+                            .name(category.get().getName())
+                            .build();
+
+                    categoryMDtoOutputIdAndNameList.add(
+                            CategoryMDtoOutputIdAndName.builder()
+                                    .id(categoryM.getId())
+                                    .name(categoryM.getName())
+                                    .productList(productDtoOutputAllList)
+                                    .category(categoryDtoOutputLargeId)
+                                    .build()
+                    );
+                }
+        );
+
+        return categoryMDtoOutputIdAndNameList;
+    }
+
     @Override
     public CategoryMDtoOutput getOneCategoryMWithUser(Long id, Long userId) {
         Optional<CategoryM> categoryM = iCategoryMRepository.findById(id); // 카테고리중 ID 받아 단건 조회
@@ -186,49 +285,50 @@ public class CategoryMServiceImple implements ICategoryMService{
         List<ProductDtoOutputAll> productDtoOutputAllList = new ArrayList<>(); // DTO 인스턴스 생성
         productList.forEach(product -> { // categoryMID와 일치하는 Product 리스트를 하나씩 풀어서 넣음
 
-            // Stock
+//            // Stock
+//
+//            // Product 테이블의 ID와 Stock 테이블의 productId와 일치하는 Stock 리스트 조회
+//            List<Stock> stockList = iStockRepository.findAllByProductId(product.getId());
+//            List<StockDtoOutputProductIdName> stockDtoOutputProductIdNameList = new ArrayList<>();
+//            stockList.forEach(stock -> {
+//                stockDtoOutputProductIdNameList.add(
+//                        StockDtoOutputProductIdName.builder()
+//                                .stockId(stock.getId())
+//                                .qty(stock.getQty())
+//                                .productId(stock.getProduct().getId())
+//                                .optionFirstId(stock.getOptionFirst().getId())
+//                                .optionSecondId(stock.getOptionSecond().getId())
+//                                .build()
+//                );
+//            });
 
-            // Product 테이블의 ID와 Stock 테이블의 productId와 일치하는 Stock 리스트 조회
-            List<Stock> stockList = iStockRepository.findAllByProductId(product.getId());
-            List<StockDtoOutputProductIdName> stockDtoOutputProductIdNameList = new ArrayList<>();
-            stockList.forEach(stock -> {
-                stockDtoOutputProductIdNameList.add(
-                        StockDtoOutputProductIdName.builder()
-                                .stockId(stock.getId())
-                                .qty(stock.getQty())
-                                .productId(stock.getProduct().getId())
-                                .optionFirstId(stock.getOptionFirst().getId())
-                                .optionSecondId(stock.getOptionSecond().getId())
-                                .build()
-                );
-            });
+//            // SubImg
+//            List<ProductSubImg> productSubImgList = iProductSubImgRepository.findAllByProductId(product.getId());
+//            List<ProductSubImgDtoOutputOnlyId> productSubImgDtoOutputOnlyIdList = new ArrayList<>();
+//
+//            productSubImgList.forEach(productSubImg -> {
+//                productSubImgDtoOutputOnlyIdList.add(
+//                        ProductSubImgDtoOutputOnlyId.builder()
+//                                .id(productSubImg.getId())
+//                                .build()
+//                );
+//            });
 
-            // SubImg
-            List<ProductSubImg> productSubImgList = iProductSubImgRepository.findAllByProductId(product.getId());
-            List<ProductSubImgDtoOutputOnlyId> productSubImgDtoOutputOnlyIdList = new ArrayList<>();
+//            // CategoryProduct
+//            List<CategoryProductList> categoryProductLists = iCategoryProductListRepository.findAllByProductId(product.getId());
+//            List<CategoryProductListDtoOutput> categoryProductListDtoOutputList = new ArrayList<>();
+//
+//            categoryProductLists.forEach(categoryProductList -> {
+//                categoryProductListDtoOutputList.add(
+//                        CategoryProductListDtoOutput.builder()
+//                                .id(categoryProductList.getId())
+//                                .categoryMId(categoryProductList.getCategoryM().getId())
+//                                .categoryId(categoryProductList.getCategory().getId())
+//                                .productId(categoryProductList.getProduct().getId())
+//                                .build()
+//                );
+//            });
 
-            productSubImgList.forEach(productSubImg -> {
-                productSubImgDtoOutputOnlyIdList.add(
-                        ProductSubImgDtoOutputOnlyId.builder()
-                                .id(productSubImg.getId())
-                                .build()
-                );
-            });
-
-            // CategoryProduct
-            List<CategoryProductList> categoryProductLists = iCategoryProductListRepository.findAllByProductId(product.getId());
-            List<CategoryProductListDtoOutput> categoryProductListDtoOutputList = new ArrayList<>();
-
-            categoryProductLists.forEach(categoryProductList -> {
-                categoryProductListDtoOutputList.add(
-                        CategoryProductListDtoOutput.builder()
-                                .id(categoryProductList.getId())
-                                .categoryMId(categoryProductList.getCategoryM().getId())
-                                .categoryId(categoryProductList.getCategory().getId())
-                                .productId(categoryProductList.getProduct().getId())
-                                .build()
-                );
-            });
             boolean wish = iWishListService.wishByProductIdAndUserId(product.getId(), userId);
             productDtoOutputAllList.add(
                     ProductDtoOutputAll.builder()
@@ -246,9 +346,9 @@ public class CategoryMServiceImple implements ICategoryMService{
                             .brandName(product.getBrandName())
                             .titleImgUrl(product.getTitleImgUrl())
                             .titleImgTxt(product.getTitleImgTxt())
-                            .stockList(stockDtoOutputProductIdNameList)
-                            .productSubImgList(productSubImgDtoOutputOnlyIdList)
-                            .categoryProductList(categoryProductListDtoOutputList)
+//                            .stockList(stockDtoOutputProductIdNameList)
+//                            .productSubImgList(productSubImgDtoOutputOnlyIdList)
+//                            .categoryProductList(categoryProductListDtoOutputList)
                             .isWished(wish)
                             .build()
             );
@@ -278,47 +378,47 @@ public class CategoryMServiceImple implements ICategoryMService{
 
         productList.forEach(product -> {
 
-            // Stock
-            List<Stock> stockList = iStockRepository.findAllByProductId(product.getId());
-            List<StockDtoOutputProductIdName> stockDtoOutputProductIdNameList = new ArrayList<>();
-            stockList.forEach(stock -> {
-                stockDtoOutputProductIdNameList.add(
-                        StockDtoOutputProductIdName.builder()
-                                .stockId(stock.getId())
-                                .qty(stock.getQty())
-                                .productId(stock.getProduct().getId())
-                                .optionFirstId(stock.getOptionFirst().getId())
-                                .optionSecondId(stock.getOptionSecond().getId())
-                                .build()
-                );
-            });
-
-            // SubImg
-            List<ProductSubImg> productSubImgList = iProductSubImgRepository.findAllByProductId(product.getId());
-            List<ProductSubImgDtoOutputOnlyId> productSubImgDtoOutputOnlyIdList = new ArrayList<>();
-
-            productSubImgList.forEach(productSubImg -> {
-                productSubImgDtoOutputOnlyIdList.add(
-                        ProductSubImgDtoOutputOnlyId.builder()
-                                .id(productSubImg.getId())
-                                .build()
-                );
-            });
-
-            // CategoryProduct
-            List<CategoryProductList> categoryProductLists = iCategoryProductListRepository.findAllByProductId(product.getId());
-            List<CategoryProductListDtoOutput> categoryProductListDtoOutputList = new ArrayList<>();
-
-            categoryProductLists.forEach(categoryProductList -> {
-                categoryProductListDtoOutputList.add(
-                        CategoryProductListDtoOutput.builder()
-                                .id(categoryProductList.getId())
-                                .categoryMId(categoryProductList.getCategoryM().getId())
-                                .categoryId(categoryProductList.getCategory().getId())
-                                .productId(categoryProductList.getProduct().getId())
-                                .build()
-                );
-            });
+//            // Stock
+//            List<Stock> stockList = iStockRepository.findAllByProductId(product.getId());
+//            List<StockDtoOutputProductIdName> stockDtoOutputProductIdNameList = new ArrayList<>();
+//            stockList.forEach(stock -> {
+//                stockDtoOutputProductIdNameList.add(
+//                        StockDtoOutputProductIdName.builder()
+//                                .stockId(stock.getId())
+//                                .qty(stock.getQty())
+//                                .productId(stock.getProduct().getId())
+//                                .optionFirstId(stock.getOptionFirst().getId())
+//                                .optionSecondId(stock.getOptionSecond().getId())
+//                                .build()
+//                );
+//            });
+//
+//            // SubImg
+//            List<ProductSubImg> productSubImgList = iProductSubImgRepository.findAllByProductId(product.getId());
+//            List<ProductSubImgDtoOutputOnlyId> productSubImgDtoOutputOnlyIdList = new ArrayList<>();
+//
+//            productSubImgList.forEach(productSubImg -> {
+//                productSubImgDtoOutputOnlyIdList.add(
+//                        ProductSubImgDtoOutputOnlyId.builder()
+//                                .id(productSubImg.getId())
+//                                .build()
+//                );
+//            });
+//
+//            // CategoryProduct
+//            List<CategoryProductList> categoryProductLists = iCategoryProductListRepository.findAllByProductId(product.getId());
+//            List<CategoryProductListDtoOutput> categoryProductListDtoOutputList = new ArrayList<>();
+//
+//            categoryProductLists.forEach(categoryProductList -> {
+//                categoryProductListDtoOutputList.add(
+//                        CategoryProductListDtoOutput.builder()
+//                                .id(categoryProductList.getId())
+//                                .categoryMId(categoryProductList.getCategoryM().getId())
+//                                .categoryId(categoryProductList.getCategory().getId())
+//                                .productId(categoryProductList.getProduct().getId())
+//                                .build()
+//                );
+//            });
 
             productDtoOutputAllList.add(
                     ProductDtoOutputAll.builder()
@@ -336,9 +436,9 @@ public class CategoryMServiceImple implements ICategoryMService{
                             .brandName(product.getBrandName())
                             .titleImgUrl(product.getTitleImgUrl())
                             .titleImgTxt(product.getTitleImgTxt())
-                            .stockList(stockDtoOutputProductIdNameList)
-                            .productSubImgList(productSubImgDtoOutputOnlyIdList)
-                            .categoryProductList(categoryProductListDtoOutputList)
+//                            .stockList(stockDtoOutputProductIdNameList)
+//                            .productSubImgList(productSubImgDtoOutputOnlyIdList)
+//                            .categoryProductList(categoryProductListDtoOutputList)
                             .isWished(false)
                             .build()
             );
