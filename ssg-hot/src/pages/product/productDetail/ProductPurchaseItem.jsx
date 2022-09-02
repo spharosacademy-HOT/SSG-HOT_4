@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { useRecoilState } from 'recoil';
 import { totalPriceState } from '../../../store/atom/purchaseState';
 
-function ProductPurchaseItem({purchase, setDeleteId}) {
+function ProductPurchaseItem({purchase, setDeleteId, setCountData, count, setCurrKey}) {
     const[productQty,setProductQty] = useState(1);
     const[totalPrice,setTotalPrice] = useRecoilState(totalPriceState) 
     const handleDelete = () =>{
@@ -23,10 +23,17 @@ function ProductPurchaseItem({purchase, setDeleteId}) {
         }
         setProductQty(newProduct)
         setTotalPrice(totalPrice + (purchase.discountPrice * num))
+        setCountData(productQty)
+        setCurrKey(purchase.stockId)
     }
-    console.log('ddd')
-    console.log(purchase.discountPrice * productQty)
+    console.log('count',count)
+    console.log('purchase.count',purchase.count)
+
     console.log(totalPrice)
+
+    useEffect(() => {
+
+    },[productQty]);
 
     return ( 
         <>
