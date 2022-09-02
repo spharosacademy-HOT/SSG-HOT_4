@@ -10,7 +10,7 @@ function LikeModal2() {
 
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>
+      <button onClick={handleShow}>
         <a
           href="#;"
           className="mylike_folder_btn ty_manage clickable"
@@ -22,7 +22,7 @@ function LikeModal2() {
           <span className="mylike_folder_thmb"></span>
           <em className="mylike_folder_name">폴더관리</em>
         </a>
-      </Button>
+      </button>
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>

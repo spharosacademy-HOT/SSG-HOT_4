@@ -36,7 +36,9 @@ function ProductCardList() {
       </div>
       <div className="product-list">
         {productDatas &&
-          productDatas.map((item) => <ProductCard item={item} key={item.id} />)}
+          productDatas.map((item) => (
+            <ProductCard item={item} key={item.id} isWished={item.isWished} />
+          ))}
       </div>
     </>
   );

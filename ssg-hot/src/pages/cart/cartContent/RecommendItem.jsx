@@ -30,7 +30,6 @@ export default function RecommendItem() {
                           src={item.imgUrl}
                           alt="노브랜드 미네랄워터 2L*6"
                           className="cmitem_thmb_img ssg_lazy"
-                          onerror="javascript:this.src='https://sui.ssgcdn.com/ui/sd/img/common/noImg_500.gif';this.alt='상품 이미지 준비중입니다.';"
                         />
                       </div>
                     </a>

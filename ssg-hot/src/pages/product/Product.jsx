@@ -11,9 +11,6 @@ import ProductQnA from "./productDetail/ProductQnA";
 import ProductGuide from "./productDetail/ProductGuide";
 import EventBanner from "./productDetail/EventBanner";
 import StoreInfo from "./productDetail/StoreInfo";
-
-import ProductCard from "./ProductCard";
-// import productDatas from "../../datas/js/productDatas";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import ProductPurchaseBar from "./productDetail/ProductPurchaseBar";
@@ -29,17 +26,10 @@ function Product() {
   useEffect(() => {
     axios.get(url).then((Response) => {
       setProductDatas(Response.data);
-      const userId = sessionStorage.getItem("id");
-      const recentDta = {
-        product: {
-          id: Response.data.id,
-        },
-        user: {
-          id: userId,
-        },
-      };
-      postRecent(recentDta).then((res) => {
-        console.log(res, "최근본아이템등록");
+      const productId = Response.data.id;
+
+      postRecent(productId).then((res) => {
+        console.log(res, productId, "최근본아이템등록");
       });
     });
   }, [url]);

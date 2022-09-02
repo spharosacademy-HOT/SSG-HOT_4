@@ -1,22 +1,28 @@
 import React, { useEffect, useState } from "react";
 import RecentItem from "../../components/common/widgets/itemList/recent/RecentItem";
-import { getRecent } from "../../store/apis/recent";
+import { getRecent, getRecentSearch } from "../../store/apis/recent";
 import RecentModal from "./RecentModal";
-export default function RecentItemList() {
+import RecentSearchItem from "./RecentSearchItem";
+export default function RecentItemList({ isChecked }) {
   const [rcData, setRcData] = useState();
   const [isTrue, setIsTrue] = useState(false);
   const [dataId, setDataId] = useState();
   const [modalData, setModalData] = useState();
+  const [rcSearchData, setRcSearchData] = useState();
 
   useEffect(() => {
     getRecent()
       .then((res) => {
-        setRcData(res);
-        console.log(res, "데이터 가져옴");
+        setRcData(res.views);
+        console.log(res, "최근본 데이터 가져옴");
       })
       .catch((err) => {
         console.log(err);
       });
+    getRecentSearch().then((res) => {
+      console.log(res.data, "최근검색어 겟");
+      setRcSearchData(res.data);
+    });
   }, []);
 
   return (
@@ -26,7 +32,22 @@ export default function RecentItemList() {
         setIsTrue={setIsTrue}
         modalData={modalData}
       />
+
       <div className="recentItem">
+        {isChecked && rcSearchData ? (
+          <div>
+            {rcSearchData.map((data) => (
+              <RecentSearchItem
+                key={data.searchKeywordId}
+                id={data.searchKeywordId}
+                keyword={data.searchKeyword}
+                setRcSearchData={setRcSearchData}
+              />
+            ))}
+          </div>
+        ) : (
+          ""
+        )}
         {rcData ? (
           <div>
             <ul>

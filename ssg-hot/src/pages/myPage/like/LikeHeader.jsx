@@ -8,7 +8,7 @@ function LikeHeader() {
         <input type="hidden" name="modifyMod" value="" id="modifyMod" />
         <div div className="mylike_wrap">
           <div className="mylike_folder">
-            <div className="mylike_folder_slider">
+            <div className="mylike_folder_slider" style={{ height: "100px" }}>
               <ul className="mylike_folder_list" role="tablist">
                 <li className="mylike_folder_item" role="presentation">
                   <a

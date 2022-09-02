@@ -12,15 +12,16 @@ export default function Cart() {
   const ACCESS_TOKEN = localStorage.getItem("token");
   const isLogin = ACCESS_TOKEN != null && true;
   const [cartData, setCartData] = useRecoilState(cartState);
-  const [isItem, setIsItem] = useState(cartData && true);
+  const [isItem, setIsItem] = useState(cartData !== {});
+  console.log(isItem, cartData, cartState, "아이템여부");
 
   return (
     <div className="bgGray" id="cart">
       <CartHeader />
-      <CartContents isLogin={isLogin} isItem={isLogin} />
+      <CartContents isLogin={isLogin} isItem={isItem} />
       <CartFooter />
       <CartNotice />
-      <CartToolBar isLogin={isLogin} isItem={isLogin} />
+      <CartToolBar isLogin={isLogin} isItem={isItem} />
     </div>
   );
 }

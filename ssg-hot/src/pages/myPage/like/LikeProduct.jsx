@@ -27,8 +27,7 @@ function LikeProduct() {
                 <div className="cmitem_tx_thmb">
                   <div className="cmitem_mall">
                     <span class="cmlike _js_cmlike interestIt">
-                      <button className="cmlike_btn _js_cmlike_btn clickable"
-                      >
+                      <button className="cmlike_btn _js_cmlike_btn clickable">
                         <span className="cmlike_ico">
                           <i className="cmlike_primary_m"></i>
                         </span>

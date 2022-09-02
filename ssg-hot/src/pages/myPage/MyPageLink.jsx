@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 function MyPageLink() {
   return (
     <div>
@@ -126,13 +126,7 @@ function MyPageLink() {
           <h3 className="myssg_manage_title">나의 활동관리</h3>
           <ul className="myssg_manage_list">
             <li>
-              <a
-                href="https://m.ssg.com/myssg/myClip/main.ssg?_mpop=new"
-                className="clickable"
-                data-react-tarea="MYSSG|M_MY_SSG_카테고리_MY클립"
-              >
-                좋아요
-              </a>
+              <Link to="/like">좋아요</Link>
             </li>
             <li>
               <a
