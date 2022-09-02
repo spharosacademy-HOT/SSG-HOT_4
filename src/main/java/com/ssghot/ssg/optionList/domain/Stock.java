@@ -1,5 +1,6 @@
 package com.ssghot.ssg.optionList.domain;
 
+import com.ssghot.ssg.common.CommonDTO;
 import com.ssghot.ssg.product.domain.Product;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -13,7 +14,7 @@ import javax.persistence.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Stock {
+public class Stock extends CommonDTO {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
