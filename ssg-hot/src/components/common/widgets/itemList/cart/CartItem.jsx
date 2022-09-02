@@ -7,10 +7,11 @@ import CartSummary from "./CartSummary";
 
 import { useRecoilState } from "recoil";
 import { cartState } from "../../../../../store/atom/cartState";
+import { useNavigate } from "react-router-dom";
 
 export default function CartItem() {
   const [cartData, setCartData] = useRecoilState(cartState);
-
+  const navigate = useNavigate();
   console.log("여기보시오", cartData);
 
   return (

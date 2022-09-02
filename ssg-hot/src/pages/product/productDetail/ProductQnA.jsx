@@ -1,10 +1,25 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { getQna } from "../../../store/apis/qna";
 import ProductQnACard from "./ProductQnACard";
 
 function ProductQnA({ item }) {
   let navigate = useNavigate();
+  let params = useParams();
+
   const isLogin = localStorage.getItem("token");
+  const [qaData, setQaData] = useState();
+  const getProductQna = () => {
+    getQna(params.productId).then((res) => {
+      console.log(res, "???????????");
+      setQaData(res.data.data);
+    });
+  };
+  useEffect(() => {
+    getProductQna();
+  }, []);
   console.log(item, "아이템 정보");
   return (
     <>
@@ -21,7 +36,7 @@ function ProductQnA({ item }) {
         </div>
         <hr />
         <div>
-          <ProductQnACard />
+          <ProductQnACard qaData={qaData} setQaData={setQaData} />
         </div>
       </div>
     </>

@@ -18,7 +18,7 @@ export const getRecent = async () => {
 
 //최근본아이템 삭제하기
 export const deleteRecent = async (productId, id) => {
-  const res = await apiClient.put(`/recentlyviewedproduct/${id}`, {
+  const res = await apiClient.delete(`/recentlyviewedproduct/${id}`, {
     productId: productId,
   });
 };

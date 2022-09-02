@@ -7,6 +7,9 @@ import CartOption from "./cartContent/CartOption";
 import CartOrderState from "./cartContent/CartOrderState";
 import CartTitle from "./cartContent/CartTitle";
 import CartUtil from "./cartContent/CartUtil";
+import UseCounter from "../../UseCounter";
+import { changeCartCnt } from "../../../../../store/apis/cart";
+
 
 export default function CartContent({
   id,
@@ -34,11 +37,12 @@ export default function CartContent({
   };
 
   return (
-    <div className="cartContent">
+   <div className="cartContent">
       <CartInfo comName={desc.brandName} />
-      <CartUtil />
-      <CartTitle name={desc.name} info={desc.detail} />
+      <CartUtil id={id} />
+      <CartTitle name={desc.name} info={desc.detail} productId={desc.id} />
       <CartOption optionFirst={optionFirst} optionSecond={optionSecond} />
+      {count}
       <div className="cartItemPrice">
         <div>
           <div className="oldPrice">

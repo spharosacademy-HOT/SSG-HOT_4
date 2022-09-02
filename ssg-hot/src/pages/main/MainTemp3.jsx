@@ -28,7 +28,6 @@ export default function MainTemp3() {
                       <img
                         className="ssg_lazy"
                         src="//sui.ssgcdn.com/ui/m_ssg/img/common/b.gif"
-                        data-src="https://simg.ssgcdn.com/trans.ssg?src=/cmpt/banner/202208/2022081215110709430360317036_426.jpg&amp;w=750&amp;t=08dba4440ee3eb09f8d55b242adb6cffd2aa4c81"
                         alt="한정판 슈즈 DRAW"
                         data-ll-status="observed"
                       />
@@ -60,7 +59,6 @@ export default function MainTemp3() {
                       <img
                         className="ssg_lazy"
                         src="//sui.ssgcdn.com/ui/m_ssg/img/common/b.gif"
-                        data-src="https://simg.ssgcdn.com/trans.ssg?src=/cmpt/banner/202208/2022081214361815403830544383_744.jpg&amp;w=750&amp;t=5e09970bb0bb4425ae7f96c75f159faafec6d72c"
                         alt="스마일클럽 100일 축하해!"
                         data-ll-status="observed"
                       />
@@ -92,7 +90,6 @@ export default function MainTemp3() {
                       <img
                         className="ssg_lazy"
                         src="//sui.ssgcdn.com/ui/m_ssg/img/common/b.gif"
-                        data-src="https://simg.ssgcdn.com/trans.ssg?src=/cmpt/banner/202208/2022081214384712325204126520_757.jpg&amp;w=750&amp;t=e701f0d8a64cf932106b5e7c8a255bea5b64d8e0"
                         alt="가전 TOP25 브랜드전"
                         data-ll-status="observed"
                       />

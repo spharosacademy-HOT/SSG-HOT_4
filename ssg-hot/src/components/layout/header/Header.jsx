@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Badge } from "react-bootstrap";
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
+import * as Api from "../../../store/apis/address";
 
 import { useRecoilState, useRecoilValue } from "recoil";
 import { getMyCart } from "../../../store/apis/cart";
+import { addressState } from "../../../store/atom/addressState";
 import { cartState } from "../../../store/atom/cartState";
 
 import HomeLogo from "../../common/ui/logo/HomeLogo";
@@ -12,23 +14,68 @@ export default function Header() {
   let pageUrl = useLocation();
   let params = useParams();
   const navigate = useNavigate();
+
   const [pagePath, setPagePath] = useState();
   const [cartData, setCartData] = useRecoilState(cartState);
+  const [addressData, setAddressData] = useRecoilState(addressState);
+
   const cartSize = cartData.size;
+
+  const [changeExisted, setChangeExisted] = useState(0);
+
+  const getAxiosAddress = async () => {
+    try {
+      const getData = await Api.get("/address/users");
+      if (!getData) {
+        throw new Error(`${getData} not allowd`);
+      }
+
+      console.log(getData.data.data);
+      const getAddress = getData.data.data;
+      setChangeExisted(getData.data.data.id);
+      setAddressData([]);
+      getAddress.forEach((address) => {
+        console.log(address, "주소~~~");
+        setAddressData((addressList) => [
+          ...addressList,
+          {
+            alias: address.alias,
+            city: address.city,
+            createdDate: address.createdDate,
+            existed: address.existed,
+            homePhone: address.homePhone,
+            id: address.id,
+            phone: address.phone,
+            street: address.street,
+            taker: address.taker,
+            updatedDate: address.updatedDate,
+            userId: address.userId,
+            zipcode: address.zipcode,
+          },
+        ]);
+      });
+    } catch (e) {
+      console.log("Error" + e);
+    }
+  };
+
   const goCart = () => {
     if (localStorage.getItem("token") !== null) {
       console.log(localStorage.getItem("token"));
-      getMyCart().then((res) => {
-        console.log("장바구니가져오기", res);
-        setCartData(res.data);
+      getAxiosAddress().then((res) => {
+        getMyCart().then((res) => {
+          console.log("장바구니가져오기", res);
+          setCartData(res.data);
+          navigate("/cart");
+        });
       });
     }
-    navigate("/cart");
   };
 
   useEffect(() => {
     setPagePath(pageUrl.pathname);
   }, [pageUrl]);
+
   return (
     <>
       {pagePath === "/login" ? (
