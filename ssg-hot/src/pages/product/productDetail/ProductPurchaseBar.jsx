@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import LikeButton from '../../../components/common/widgets/button/LikeButton';
 import ProductPurchaseItem from './ProductPurchaseItem';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
+import { faAngleDown, faIgloo } from "@fortawesome/free-solid-svg-icons";
 import { addMyCart, getMyCart } from "../../../store/apis/cart";
 import { cartState } from "../../../store/atom/cartState";
 import { useParams } from "react-router-dom";
@@ -30,6 +30,8 @@ function ProductPurchaseBar({stockList}) {
     const [deleteId, setDeleteId] = useState('')
     const [totalPrice, setTotalPrice] = useRecoilState(totalPriceState)
     const totalPurchasePrice = useRecoilValue(totalPriceState)
+    const [countData, setCountData] = useState(0)
+    const [currKey, setCurrKey] = useState('')
 
     // const totalPrice 
     const handleShow = () => {
@@ -56,9 +58,16 @@ function ProductPurchaseBar({stockList}) {
         setColorName(itemName)
         setSizeName("선택하세요(사이즈)")
         setStockChoice(!stockChoice)
-        axios.get(`${baseURL}/option1/option2/${itemId}/${id}`).then((Response) =>{
+        axios.get(`${baseURL}/option1/option2/${itemId}/${id}`).then(async (Response) =>{
+            try{
+                Response.data.map((item) => {
+                    item.count = 1;
+                });
+            }catch(e){
+                console.log(e);
+            }
             setSizeDatas(Response.data)
-            console.log(sizeDatas)
+            console.log(sizeDatas);
         })
     }
     const handleAppendStock = (itemId, itemName, item, price) =>{
@@ -91,7 +100,16 @@ function ProductPurchaseBar({stockList}) {
         const newPurchaseList  = purchaseList.filter((item)=>item.stockId !== deleteId)
         setPurChaseList(newPurchaseList)
     },[deleteId])
-    
+    useEffect(()=>{
+        // purchaseList.count = countData
+        purchaseList && purchaseList.map(item => (
+            item.stockId === currKey ? { ...item, count:countData } : item
+            // item.stockId === currKey ? console.log('같음 : ', currKey, item.count, countData) : item
+        ))
+        console.log('카운터 데이터',countData,' ',currKey)
+        console.log('인덱스',)
+    },[countData, currKey])
+
     return ( 
         <>
             <div className={barState === 0 ?
@@ -165,7 +183,7 @@ function ProductPurchaseBar({stockList}) {
                 </div>
                 {
                     purchaseList && purchaseList.map((purchase)=>(
-                        <ProductPurchaseItem purchase={purchase} key={purchase.stockId} setDeleteId={setDeleteId}/>
+                        <ProductPurchaseItem purchase={purchase} key={purchase.stockId} setDeleteId={setDeleteId} setCountData={setCountData} count={purchase.count} setCurrKey={setCurrKey}/>
                     ))
                 }
                 <div className='product-total-price'>
