@@ -12,3 +12,9 @@ export const addOption = async()=>{
     const res = await apiClient.post(`/carts`)
     return res.data
 }
+
+// 상품 구매
+export const purchaseProduct = async (purchaseData) =>{
+    const res = await apiClient.post(`/orders`,purchaseData);
+    return res;
+}

@@ -23,7 +23,7 @@ function ProductPurchaseItem({purchase, setDeleteId, setCountData, count, setCur
         }
         setProductQty(newProduct)
         setTotalPrice(totalPrice + (purchase.discountPrice * num))
-        setCountData(productQty)
+        setCountData(newProduct)
         setCurrKey(purchase.stockId)
     }
     console.log('count',count)

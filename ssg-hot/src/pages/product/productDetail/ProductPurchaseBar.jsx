@@ -102,10 +102,11 @@ function ProductPurchaseBar({stockList}) {
     },[deleteId])
     useEffect(()=>{
         // purchaseList.count = countData
-        purchaseList && purchaseList.map(item => (
+        setPurChaseList(
+        purchaseList.map(item => (
             item.stockId === currKey ? { ...item, count:countData } : item
             // item.stockId === currKey ? console.log('같음 : ', currKey, item.count, countData) : item
-        ))
+        )))
         console.log('카운터 데이터',countData,' ',currKey)
         console.log('인덱스',)
     },[countData, currKey])
