@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { deleteRecent, getRecent } from "../../../../../store/apis/recent";
+import { postLike } from "../../../../../store/apis/like";
+import {
+  deleteRecent,
+  getRecent,
+  postRecentCart,
+} from "../../../../../store/apis/recent";
 import CartButton from "../../button/CartButton";
 import LikeButton from "../../button/LikeButton";
 import ItemDesc from "./ItemDesc";
@@ -14,34 +19,30 @@ export default function RecentItem({
   setModalData,
   setRcData,
 }) {
-  const [isLike, setIsLike] = useState(false);
-  const handleCartAdd = () => {
-    //axios//item.productid.
+  const [isLike, setIsLike] = useState(item.isWished);
+  const productId = item.product.id;
 
-    setIsTrue(true);
-    if (isTrue) {
-      setModalData("이미 있어요");
-    } else {
-      setModalData("많아요");
-    }
+  const handleCartAdd = () => {
+    postRecentCart(productId).then((res) => {
+      console.log(res, "장바구니 담기");
+      alert(res.Message);
+      // setIsTrue(true);
+      // setModalData(res.Message);
+    });
   };
+
   const handleRecent = () => {
-    const userId = sessionStorage.getItem("id");
     const id = item.id;
-    const recentDta = {
-      product: {
-        id: item.product.id,
-      },
-      user: {
-        id: userId,
-      },
-    };
-    console.log(id, recentDta, "dufidsjfklsdj");
-    deleteRecent(recentDta, id).then((res) => {
+    deleteRecent(productId, id).then((res) => {
       console.log(res);
       getRecent().then((res) => {
         setRcData(res.content);
       });
+    });
+  };
+  const changeLike = () => {
+    postLike(productId).then((res) => {
+      console.log(res);
     });
   };
 
@@ -61,7 +62,9 @@ export default function RecentItem({
       </div>
       <div className="recentBtn">
         <CartButton handleCartAdd={handleCartAdd} />
-        <LikeButton isLike={isLike} setIsLike={setIsLike} />
+        <div onClick={changeLike}>
+          <LikeButton isLike={isLike} setIsLike={setIsLike} />
+        </div>
       </div>
     </li>
   );

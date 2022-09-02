@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getUserDetail } from "../../store/apis/user";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 function MyPageUser() {
   const [userData, setUserData] = useState({});
   const navigate = useNavigate();
@@ -83,13 +83,10 @@ function MyPageUser() {
         </a>
       </div>
       <div className="myssg_user_manage">
-        <a
-          href="https://m.ssg.com/myssg/myClip/main.ssg?_mpop=new"
-          className="clickable"
-          data-react-tarea="MYSSG|M_MY_SSG_MY클립"
-        >
+        <Link to="/like">
           <span className="myssg_manage_text ty_like">좋아요</span>
-        </a>
+        </Link>
+
         <button
           onClick={() => {
             navigate("/cartcontrol");

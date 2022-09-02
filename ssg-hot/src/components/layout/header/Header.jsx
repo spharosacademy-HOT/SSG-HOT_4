@@ -21,9 +21,9 @@ export default function Header() {
       getMyCart().then((res) => {
         console.log("장바구니가져오기", res);
         setCartData(res.data);
-        navigate("/cart");
       });
     }
+    navigate("/cart");
   };
 
   useEffect(() => {

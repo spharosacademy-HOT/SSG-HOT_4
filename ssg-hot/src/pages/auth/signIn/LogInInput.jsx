@@ -20,7 +20,11 @@ function LogInInput() {
   const checkPassword = (e) => {
     setPassword(e.target.value);
   };
-
+  const onKeyDownEnter = (e) => {
+    if (e.key === "Enter") {
+      postLogin();
+    }
+  };
   const postLogin = async () => {
     if (userName && password) {
       const res = await basicApiClient
@@ -99,7 +103,8 @@ function LogInInput() {
                   id="inp_pw"
                   name="password"
                   placeholder="비밀번호"
-                  onBlur={checkPassword}
+                  onChange={checkPassword}
+                  onKeyDown={onKeyDownEnter}
                 />
                 <button type="button" className="inp_clear">
                   <span className="sp_cmem_login cmem_ico_clear">

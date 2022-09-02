@@ -5,10 +5,9 @@ import { Link, useNavigate } from "react-router-dom";
 import LikeButton from "../../components/common/widgets/button/LikeButton";
 import { getLike, postLike } from "../../store/apis/like";
 
-function ProductCard({ item }) {
+function ProductCard({ item, isWished }) {
   let navigate = useNavigate();
-  const [isLike, setIsLike] = useState(item.isWished);
-  console.log(item.isWished, "SDFL!!!!", item.id);
+  const [isLike, setIsLike] = useState(isWished);
   const addWish = (id, e) => {
     e.preventDefault();
     console.log(id);
