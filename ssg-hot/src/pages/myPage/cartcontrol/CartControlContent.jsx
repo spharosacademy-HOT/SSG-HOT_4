@@ -1,24 +1,24 @@
 import React, { useEffect, useState } from "react";
+import { useRecoilState } from "recoil";
 
 import * as Api from "../../../store/apis/address";
+import { addressState } from "../../../store/atom/addressState";
 import Address from "./Address";
 import CartControlFooter from "./CartControlFooter.jsx";
 function CartControlContent() {
   const [changeExisted, setChangeExisted] = useState(0);
   const [addressList, setAddressList] = useState([]);
+  const [addressData, setAddressData] = useRecoilState(addressState);
   const getAxiosAddress = async () => {
     try {
       const getData = await Api.get("/address/users");
       if (!getData) {
         throw new Error(`${getData} not allowd`);
       }
-
-      console.log(getData.data.data);
       const getAddress = getData.data.data;
       setChangeExisted(getData.data.data.id);
       setAddressList([]);
       getAddress.forEach((address) => {
-        console.log(address.id);
         setAddressList((addressList) => [
           ...addressList,
           {
@@ -78,7 +78,10 @@ function CartControlContent() {
       }
 
       alert("기본 배송지로 설정되었습니다.");
+
       getAxiosAddress();
+      setAddressData(addressList);
+
       //window.location.reload();
     } catch (e) {
       console.log(`Error: ${e}`);

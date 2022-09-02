@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import QnaWrite from "./QnaWrite";
 
 function QnaContent({ data, productId }) {
-  const [type, setType] = useState("");
+  const [type, setType] = useState("PRODUCT");
 
   const getType = (e) => {
     setType(e.target.value);

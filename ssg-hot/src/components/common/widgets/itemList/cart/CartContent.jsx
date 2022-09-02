@@ -9,6 +9,7 @@ import CartTitle from "./cartContent/CartTitle";
 import CartUtil from "./cartContent/CartUtil";
 import UseCounter from "../../UseCounter";
 import { changeCartCnt } from "../../../../../store/apis/cart";
+import { Navigate } from "react-router-dom";
 
 export default function CartContent({
   id,
@@ -66,7 +67,7 @@ export default function CartContent({
     <div className="cartContent">
       <CartInfo comName={desc.brandName} />
       <CartUtil id={id} />
-      <CartTitle name={desc.name} info={desc.detail} />
+      <CartTitle name={desc.name} info={desc.detail} productId={desc.id} />
       <CartOption optionFirst={optionFirst} optionSecond={optionSecond} />
       {count}
       <div className="cartItemPrice">

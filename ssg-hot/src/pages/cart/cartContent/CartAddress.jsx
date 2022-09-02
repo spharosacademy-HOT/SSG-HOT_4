@@ -1,53 +1,15 @@
 import React, { useEffect, useState } from "react";
-import * as Api from "../../../store/apis/address";
+import { useNavigate } from "react-router-dom";
+import { useRecoilState } from "recoil";
+import { addressState } from "../../../store/atom/addressState";
 
 export default function CartAddress() {
-  const [changeExisted, setChangeExisted] = useState(0);
-  const [addressList, setAddressList] = useState([]);
+  const navigate = useNavigate();
+  const [addressData, setAddressData] = useRecoilState(addressState);
 
-  const getAxiosAddress = async () => {
-    try {
-      const getData = await Api.get("/address/users");
-      if (!getData) {
-        throw new Error(`${getData} not allowd`);
-      }
-
-      console.log(getData.data.data);
-      const getAddress = getData.data.data;
-      setChangeExisted(getData.data.data.id);
-      setAddressList([]);
-      getAddress.forEach((address) => {
-        console.log(address, "아");
-        setAddressList((addressList) => [
-          ...addressList,
-          {
-            alias: address.alias,
-            city: address.city,
-            createdDate: address.createdDate,
-            existed: address.existed,
-            homePhone: address.homePhone,
-            id: address.id,
-            phone: address.phone,
-            street: address.street,
-            taker: address.taker,
-            updatedDate: address.updatedDate,
-            userId: address.userId,
-            zipcode: address.zipcode,
-          },
-        ]);
-      });
-    } catch (e) {
-      console.log("Error" + e);
-    }
-  };
-
-  useEffect(() => {
-    getAxiosAddress();
-  }, []);
-
-  const addressTitle = "자택";
+  const addressTitle = addressData[0].alias;
   const addressSub = "기본배송지";
-  const addressInfo = "[11111] 부산 남구  (문현동)";
+  const addressInfo = `[${addressData[0].zipcode}] ${addressData[0].street}`;
   return (
     <div className="cartAddress">
       <div className="addressHeader">
@@ -62,7 +24,12 @@ export default function CartAddress() {
       <div className="addressContents">
         <div className="addressBtnArea">
           <button className="addressBtn">여러곳으로 한방에</button>
-          <button className="addressBtn">배송지 변경</button>
+          <button
+            className="addressBtn"
+            onClick={() => navigate("/cartcontrol")}
+          >
+            배송지 변경
+          </button>
         </div>
       </div>
     </div>

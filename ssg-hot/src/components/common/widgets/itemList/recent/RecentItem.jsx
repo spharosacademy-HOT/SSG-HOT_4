@@ -36,7 +36,7 @@ export default function RecentItem({
     deleteRecent(productId, id).then((res) => {
       console.log(res);
       getRecent().then((res) => {
-        setRcData(res.content);
+        setRcData(res.views);
       });
     });
   };
@@ -50,7 +50,7 @@ export default function RecentItem({
     <li key={item.id} className="recentList">
       <div className="recentDesc">
         <button onClick={handleRecent}>x</button>
-        <Link to={`/product/${item.id}`}>
+        <Link to={`/product/${item.product.id}`}>
           <ItemDesc
             id={item.product.id}
             name={item.product.brandName}
