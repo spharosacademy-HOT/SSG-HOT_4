@@ -372,46 +372,46 @@ public class ProductServiceImple implements IProductService{
 //                                );
 //                            });
 
-                            // SubImg
-                            List<ProductSubImg> productSubImgList = iProductSubImgRepository.findAllByProductId(product.getId());
-                            List<ProductSubImgDtoOutputOnlyId> productSubImgDtoOutputOnlyIds = new ArrayList<>();
-
-                            productSubImgList.forEach(productSubImg -> {
-                                productSubImgDtoOutputOnlyIds.add(
-                                        ProductSubImgDtoOutputOnlyId.builder()
-                                                .id(productSubImg.getId())
-                                                .build()
-                                );
-                            });
-
-                            // Stock
-                            List<Stock> stockList = iStockRepository.findAllByProductId(product.getId());
-                            List<StockDtoOutputProductIdName> stockDtoOutputProductIdNameList = new ArrayList<>();
-                            stockList.forEach(stock -> {
-                                stockDtoOutputProductIdNameList.add(
-                                        StockDtoOutputProductIdName.builder()
-                                                .stockId(stock.getId())
-                                                .qty(stock.getQty())
-                                                .productId(stock.getProduct().getId())
-                                                .optionFirstId(stock.getOptionFirst().getId())
-                                                .optionSecondId(stock.getOptionSecond().getId())
-                                                .build()
-                                );
-                            });
-
-                            // CategoryProductList
-                            List<CategoryProductList> categoryProductListList = iCategoryProductListRepository.findAllByProductId(product.getId());
-                            List<CategoryProductListDtoOutput> categoryProductListDtoOutputList = new ArrayList<>();
-                            categoryProductListList.forEach(categoryProductList -> {
-                                categoryProductListDtoOutputList.add(
-                                        CategoryProductListDtoOutput.builder()
-                                                .id(categoryProductList.getId())
-                                                .productId(categoryProductList.getProduct().getId())
-                                                .categoryId(categoryProductList.getCategory().getId())
-                                                .categoryMId(categoryProductList.getCategoryM().getId())
-                                                .build()
-                                );
-                            });
+//                            // SubImg
+//                            List<ProductSubImg> productSubImgList = iProductSubImgRepository.findAllByProductId(product.getId());
+//                            List<ProductSubImgDtoOutputOnlyId> productSubImgDtoOutputOnlyIds = new ArrayList<>();
+//
+//                            productSubImgList.forEach(productSubImg -> {
+//                                productSubImgDtoOutputOnlyIds.add(
+//                                        ProductSubImgDtoOutputOnlyId.builder()
+//                                                .id(productSubImg.getId())
+//                                                .build()
+//                                );
+//                            });
+//
+//                            // Stock
+//                            List<Stock> stockList = iStockRepository.findAllByProductId(product.getId());
+//                            List<StockDtoOutputProductIdName> stockDtoOutputProductIdNameList = new ArrayList<>();
+//                            stockList.forEach(stock -> {
+//                                stockDtoOutputProductIdNameList.add(
+//                                        StockDtoOutputProductIdName.builder()
+//                                                .stockId(stock.getId())
+//                                                .qty(stock.getQty())
+//                                                .productId(stock.getProduct().getId())
+//                                                .optionFirstId(stock.getOptionFirst().getId())
+//                                                .optionSecondId(stock.getOptionSecond().getId())
+//                                                .build()
+//                                );
+//                            });
+//
+//                            // CategoryProductList
+//                            List<CategoryProductList> categoryProductListList = iCategoryProductListRepository.findAllByProductId(product.getId());
+//                            List<CategoryProductListDtoOutput> categoryProductListDtoOutputList = new ArrayList<>();
+//                            categoryProductListList.forEach(categoryProductList -> {
+//                                categoryProductListDtoOutputList.add(
+//                                        CategoryProductListDtoOutput.builder()
+//                                                .id(categoryProductList.getId())
+//                                                .productId(categoryProductList.getProduct().getId())
+//                                                .categoryId(categoryProductList.getCategory().getId())
+//                                                .categoryMId(categoryProductList.getCategoryM().getId())
+//                                                .build()
+//                                );
+//                            });
 
                             return ProductDtoOutputAll.builder()
                                     .id(product.getId())
@@ -428,9 +428,9 @@ public class ProductServiceImple implements IProductService{
                                     .brandName(product.getBrandName())
                                     .titleImgUrl(product.getTitleImgUrl())
                                     .titleImgTxt(product.getTitleImgTxt())
-                                    .productSubImgList(productSubImgDtoOutputOnlyIds)
-                                    .categoryProductList(categoryProductListDtoOutputList)
-                                    .stockList(stockDtoOutputProductIdNameList)
+//                                    .productSubImgList(productSubImgDtoOutputOnlyIds)
+//                                    .categoryProductList(categoryProductListDtoOutputList)
+//                                    .stockList(stockDtoOutputProductIdNameList)
 //                                    .wishLists(wishListDtoOutputList)
                                     .build();
                         }

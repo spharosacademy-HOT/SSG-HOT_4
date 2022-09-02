@@ -107,17 +107,17 @@ public class CategoryMServiceImple implements ICategoryMService{
 //                            );
 //                        });
 
-                        // SubImg
-                        List<ProductSubImg> productSubImgList = iProductSubImgRepository.findAllByProductId(product.getId());
-                        List<ProductSubImgDtoOutputOnlyId> productSubImgDtoOutputOnlyIdList = new ArrayList<>();
-
-                        productSubImgList.forEach(productSubImg -> {
-                            productSubImgDtoOutputOnlyIdList.add(
-                                    ProductSubImgDtoOutputOnlyId.builder()
-                                            .id(productSubImg.getId())
-                                            .build()
-                            );
-                        });
+//                        // SubImg
+//                        List<ProductSubImg> productSubImgList = iProductSubImgRepository.findAllByProductId(product.getId());
+//                        List<ProductSubImgDtoOutputOnlyId> productSubImgDtoOutputOnlyIdList = new ArrayList<>();
+//
+//                        productSubImgList.forEach(productSubImg -> {
+//                            productSubImgDtoOutputOnlyIdList.add(
+//                                    ProductSubImgDtoOutputOnlyId.builder()
+//                                            .id(productSubImg.getId())
+//                                            .build()
+//                            );
+//                        });
 
 //                        // CategoryProduct
 //                        List<CategoryProductList> categoryProductLists = iCategoryProductListRepository.findAllByProductId(product.getId());
@@ -151,7 +151,7 @@ public class CategoryMServiceImple implements ICategoryMService{
                                         .titleImgUrl(product.getTitleImgUrl())
                                         .titleImgTxt(product.getTitleImgTxt())
 //                                        .stockList(stockDtoOutputProductIdNameList)
-                                        .productSubImgList(productSubImgDtoOutputOnlyIdList)
+//                                        .productSubImgList(productSubImgDtoOutputOnlyIdList)
 //                                        .categoryProductList(categoryProductListDtoOutputList)
                                         .build()
                         );
