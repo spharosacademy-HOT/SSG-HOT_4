@@ -15,10 +15,10 @@ function ProductDeliveryItem({item}) {
                     </div>
                     <div>
                         <div>
-                            <div className='reguler-price'>{item.discountPrice}원</div>
-                            <div className='pay-price'>{item.discountPrice}원</div>
+                            <div className='reguler-price'>{item.discountPrice * item.count}원</div>
+                            <div className='pay-price'>{item.discountPrice * item.count}원</div>
                         </div>
-                        <div className='product-qty'>수량 개</div>
+                        <div className='product-qty'>수량{item.count}개</div>
                     </div>
                 </div>
             </div>

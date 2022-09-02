@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
 import { cartState } from "../../../store/atom/cartState";
-import { totalPriceState } from "../../../store/atom/purchaseState";
 
-function ProductAmountPaid() {
+
+function ProductAmountPaid({totalDiscountPrice}) {
   const cartData = useRecoilValue(cartState);
   const totalPricee = useState(0);
   const totalDeliveryCost = useState(0);
-  const totalDiscountPrice = useRecoilValue(totalPriceState)
   return (
     <>
       <div className="purchase-card-box product-amount-paid">

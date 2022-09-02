@@ -8,7 +8,14 @@ export const getProduct = async (id) => {
 };
 
 // 상품 옵션 추가
-export const addOption = async () => {
-  const res = await apiClient.post(`/carts`);
-  return res.data;
-};
+
+export const addOption = async()=>{
+    const res = await apiClient.post(`/carts`)
+    return res.data
+}
+
+// 상품 구매
+export const purchaseProduct = async (purchaseData) =>{
+    const res = await apiClient.post(`/orders`,purchaseData);
+    return res;
+}

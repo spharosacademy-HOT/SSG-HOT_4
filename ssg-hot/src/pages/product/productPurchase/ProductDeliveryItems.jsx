@@ -13,7 +13,7 @@ function ProductDeliveryItems() {
                 
                 {
                     purchaseDatas && purchaseDatas.map(item =>(
-                        <ProductDeliveryItem key={item.id} item={item}/>
+                        <ProductDeliveryItem key={item.stockId} item={item}/>
                     ))
                 }
             </div>
