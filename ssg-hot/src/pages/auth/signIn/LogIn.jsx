@@ -13,7 +13,7 @@ export default function LogIn() {
       <LogInSns />
       <div>
         <a
-          href="https://member.ssg.com/m/member/nonMemberLogin.ssg"
+          href="#"
           className="cmem_nomemarea .cmem_nomem_btn"
           style={{
             color: "#9b9b9b",

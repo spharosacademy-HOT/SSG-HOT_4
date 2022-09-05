@@ -6,7 +6,7 @@ function MyPageBenefit() {
       <div className="myssg_coupon_point myssg_layer_conts">
         <div className="myssg_coupon">
           <a
-            href="https://m.ssg.com/myssg/moneyMng/memberCpnOwnList.ssg?_mpop=new"
+            href="#"
             className="myssg_link clickable"
             data-react-tarea="MYSSG|M_MY_SSG_쿠폰"
           >
@@ -19,10 +19,7 @@ function MyPageBenefit() {
           </a>
         </div>
         <div className="myssg_point">
-          <a
-            href="https://m.ssg.com/myssg/moneyMng/spointMain.ssg?_mpop=new"
-            className="myssg_link myssg_point_link"
-          >
+          <a href="#" className="myssg_link myssg_point_link">
             <dl>
               <dt>신세계포인트</dt>
               <dd>
@@ -79,7 +76,7 @@ function MyPageBenefit() {
           <dl>
             <dt>
               <a
-                href="https://m.ssg.com/myssg/ssgmoneyMng/ssgmoneySavedList.ssg?menu=smoneySavedList"
+                href="#"
                 className="myssg_link myssg_ssgmoney_link"
                 data-react-tarea="MYSSG|M_MY_SSG_SSGMONEY"
               >
@@ -88,7 +85,7 @@ function MyPageBenefit() {
               </a>
             </dt>
             <dd>
-              <a href="https://m.ssg.com/myssg/ssgmoneyMng/ssgmoneySavedList.ssg?menu=smoneySavedList">
+              <a href="#">
                 <span className="myssg_benefit_score">0</span>원
               </a>
               <div
