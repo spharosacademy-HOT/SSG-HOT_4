@@ -142,7 +142,7 @@ function ProductPurchaseBar({ stockList }) {
             </div>
           </li>
           <li className="product-present">
-            <div onClick={handlePresent}>선물하기</div>
+            <div onClick={() => alert("준비 중입니다.")}>선물하기</div>
           </li>
           <li className="product-purchase">
             <div onClick={handlePurchase}>구매하기</div>

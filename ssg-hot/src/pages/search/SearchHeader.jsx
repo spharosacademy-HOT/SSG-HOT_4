@@ -21,9 +21,11 @@ export default function SearchHeader() {
         searchKeyword: search,
         userId: sessionStorage.getItem("id"),
       };
-      postRecentSearch(recentData).then((res) => {
-        console.log(res, "최근검색어 등록");
-      });
+      if (localStorage.getItem("token") !== null) {
+        postRecentSearch(recentData).then((res) => {
+          console.log(res, "최근검색어 등록");
+        });
+      }
       navigate(`/search/${search}`);
     }
   };

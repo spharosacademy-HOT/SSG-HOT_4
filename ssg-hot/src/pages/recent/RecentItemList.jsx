@@ -11,18 +11,20 @@ export default function RecentItemList({ isChecked }) {
   const [rcSearchData, setRcSearchData] = useState([]);
 
   useEffect(() => {
-    getRecent()
-      .then((res) => {
-        setRcData(res.views);
-        console.log(res, "최근본 데이터 가져옴");
-      })
-      .catch((err) => {
-        console.log(err);
+    if (localStorage.getItem("token") !== null) {
+      getRecent()
+        .then((res) => {
+          setRcData(res.views);
+          console.log(res, "최근본 데이터 가져옴");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+      getRecentSearch().then((res) => {
+        console.log(res.data, "최근검색어 겟");
+        setRcSearchData(res.data);
       });
-    getRecentSearch().then((res) => {
-      console.log(res.data, "최근검색어 겟");
-      setRcSearchData(res.data);
-    });
+    }
   }, []);
 
   return (

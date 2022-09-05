@@ -3,10 +3,8 @@ import { deleteRecentSearch, getRecentSearch } from "../../store/apis/recent";
 export default function SearchList({ searchData, setSearchData }) {
   const deleteSearch = (id) => {
     deleteRecentSearch(id).then((res) => {
-      console.log(res, "검색어삭제");
       getRecentSearch().then((response) => {
         setSearchData(response.data);
-        console.log(response, "삭제후 다시들고옴");
       });
     });
   };

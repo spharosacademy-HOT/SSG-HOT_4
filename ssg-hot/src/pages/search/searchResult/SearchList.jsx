@@ -10,11 +10,9 @@ export default function SearchList() {
 
   useEffect(() => {
     getSearch(params.productName).then((res) => {
-      console.log(res, "검색어 가져오기");
       setSearchData(res);
     });
   }, []);
-  console.log(searchData);
 
   return (
     <>
