@@ -17,6 +17,7 @@ import ProductPurchaseBar from "./productDetail/ProductPurchaseBar";
 import { baseURL } from "../../store/apis/apiClient";
 import { postRecent } from "../../store/apis/recent";
 import { useScroll } from "../../components/common/ui/UseScroll";
+import { RESPONSE } from "../auth/oauth";
 
 function Product() {
   const param = useParams();
@@ -27,6 +28,7 @@ function Product() {
     axios.get(url).then((Response) => {
       setProductDatas(Response.data);
       const productId = Response.data.id;
+      console.log(Response, "kdjKsljkl");
 
       if (localStorage.getItem("token") !== null) {
         postRecent(productId).then((res) => {
@@ -35,6 +37,7 @@ function Product() {
       }
     });
   }, [url]);
+  console.log(productDatas, "1!!!!!!!!!!!!!");
   return (
     <>
       {productDatas && (
@@ -51,7 +54,10 @@ function Product() {
           <ProductGuide />
           <EventBanner />
           <StoreInfo />
-          <ProductPurchaseBar stockList={productDatas.optionFirst} />
+          <ProductPurchaseBar
+            stockList={productDatas.optionFirst}
+            isWwished={productDatas.isWwished}
+          />
         </>
       )}
 

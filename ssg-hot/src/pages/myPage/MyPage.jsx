@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import React from "react";
+
 import MyPageBenefit from "./MyPageBenefit";
 import MyPageOrder from "./MyPageOrder";
 import MyPageTop from "./MyPageTop";
@@ -9,13 +9,6 @@ import ImageSlider from "./ImageSlider";
 import MyPageLink from "./MyPageLink";
 
 export default function MyPage() {
-  let navigate = useNavigate();
-  const ACCESS_TOKEN = localStorage.getItem("token");
-  useEffect(() => {
-    if (ACCESS_TOKEN == null) {
-      navigate("/login");
-    }
-  }, []);
   return (
     <>
       <MyPageTop />

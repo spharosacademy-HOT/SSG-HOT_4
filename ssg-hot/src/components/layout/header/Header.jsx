@@ -69,6 +69,8 @@ export default function Header() {
           navigate("/cart");
         });
       });
+    } else {
+      navigate("/login");
     }
   };
 
