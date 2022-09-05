@@ -9,11 +9,12 @@ import ProductPaying from './ProductPaying';
 import ProductPaymentMethod from './ProductPaymentMethod';
 import ProductPoint from './ProductPoint';
 import ProductShippingRequest from './ProductShippingRequest';
-import { totalPriceState } from "../../../store/atom/purchaseState";
+import { purchaseState, totalPriceState } from "../../../store/atom/purchaseState";
 import { purchaseProduct } from '../../../store/apis/product';
 
 function Purchase() {
     const totalDiscountPrice = useRecoilValue(totalPriceState)
+    const purchaseProductData = useRecoilValue(purchaseState)
     const purchaseData = {
         amountPaid : totalDiscountPrice,
         orderTotal:10000,
