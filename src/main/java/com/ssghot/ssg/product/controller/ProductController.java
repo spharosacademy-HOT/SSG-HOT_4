@@ -118,7 +118,12 @@ public class ProductController {
 
     // 4. 상품 단일 조회하기
     @GetMapping("/product/{id}")
-    public ProductDtoOutputAllDetail getOneProduct(@PathVariable Long id){
+    public ProductDtoOutputAllDetail getOneProduct(@PathVariable Long id, @RequestHeader HttpHeaders headers){
+        Long userId = iUserService.getUserByTokenFix(headers);
+
+        if(userId != null){
+            return iProductService.getProductOneWithUserWished(id, userId);
+        }
         return iProductService.getProductOne(id);
     }
 

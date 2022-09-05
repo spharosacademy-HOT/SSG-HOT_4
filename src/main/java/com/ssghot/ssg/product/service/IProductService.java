@@ -16,8 +16,10 @@ public interface IProductService {
         3-1. 상품 전체 조회하기 (전체 컬럼)
         3-2. 상품 전체 조회하기 (각각의 아이디만)
         3-3. 상품 전체 조회하기 (페이지)
-        3-4. 상품 전체 조회하기 (슬라이스)
-        4. 상품 단일 조회하기
+        3-4-1. 상품 전체 조회하기 (슬라이스) - 유저 정보 X
+        3-4-2. 상품 전체 조회하기 (슬라이스) - 유저 정보 O, 좋아요 정보 받기
+        4-1. 상품 단일 조회하기 (유저 아이디 X)
+        4-2. 상품 단일 조회하기 (유저 아이디 O)
         5. 상품-재고 현황 조회하기
         6. 상품 Id, Name 조회하기
         7. 상품 검색하기
@@ -44,8 +46,11 @@ public interface IProductService {
     // 3-4. 상품 전체 조회하기 (슬라이스) - 유저 정보 O, 좋아요 정보 받기
     Slice<ProductDtoOutputAll> getProductAllWithUserWishedSlice(Pageable pageable, Long userId);
 
-    // 4. 상품 단일 조회하기
+    // 4-1. 상품 단일 조회하기 (유저 아이디 X)
     ProductDtoOutputAllDetail getProductOne(Long productId);
+
+    // 4-2. 상품 단일 조회하기 (유저 아이디 O)
+    ProductDtoOutputAllDetail getProductOneWithUserWished(Long productId, Long userId);
 
     // 5. 상품-재고 현황 조회하기
     ProductDtoOutputStockByProductId getStockByProductId(Long id);

@@ -529,7 +529,7 @@ public class ProductServiceImple implements IProductService{
                 );
     }
 
-    // 4. 상품 단일 조회하기
+    // 4. 상품 단일 조회하기 (유저 아이디 X)
     @Override
     public ProductDtoOutputAllDetail getProductOne(Long productId) {
         Optional<Product> product = iProductRepository.findById(productId);
@@ -661,8 +661,159 @@ public class ProductServiceImple implements IProductService{
                 );
             });
 
+
+
             return ProductDtoOutputAllDetail.builder()
                     .id(productId)
+                    .name(product.get().getName())
+                    .star(product.get().getStar())
+                    .discountPrice(product.get().getDiscountPrice())
+                    .discountRate(product.get().getDiscountRate())
+                    .shippingFee(product.get().getShippingFee())
+                    .titleImgTxt(product.get().getTitleImgTxt())
+                    .titleImgUrl(product.get().getTitleImgUrl())
+                    .brandName(product.get().getBrandName())
+                    .sellCount(product.get().getSellCount())
+                    .viewCount(product.get().getViewCount())
+                    .deliveryCondition(product.get().getDeliveryCondition())
+                    .detail(product.get().getDetail())
+                    .regularPrice(product.get().getRegularPrice())
+//                    .categoryProductList(iCategoryProductListRepository.findAllByProductId(product.get().getId()))
+                    .categoryProductList(categoryProductListDtoOutputList)
+//                    .productSubImgList(iProductSubImgRepository.findAllByProductId(product.get().getId()))
+                    .productSubImgList(productSubImgDtoOutputOnlyIdList)
+//                    .stockList(iStockRepository.findAllByProductId(product.get().getId()))
+                    .stockList(stockDtoOutputProductIdNameList)
+                    .optionFirst(optionFirstList)
+                    .reviewList(reviewDtoOutputDetailList)
+                    .build();
+        }
+
+        throw new Error(productId + "번 상품이 존재하지 않습니다.");
+    }
+
+    // 4. 상품 단일 조회하기 (유저 아이디 O)
+    @Override
+    public ProductDtoOutputAllDetail getProductOneWithUserWished(Long productId, Long userId) {
+        Optional<Product> product = iProductRepository.findById(productId);
+
+        if(product.isPresent()){
+
+            // viewCount 증가
+            Product saveProduct = iProductRepository.save(
+                    Product.builder()
+                            .id(product.get().getId())
+                            .name(product.get().getName())
+                            .regularPrice(product.get().getRegularPrice())
+                            .discountPrice(product.get().getDiscountPrice())
+                            .discountRate(product.get().getDiscountRate())
+                            .shippingFee(product.get().getShippingFee())
+                            .detail(product.get().getDetail())
+                            .deliveryCondition(product.get().getDeliveryCondition())
+                            .brandName(product.get().getBrandName())
+                            .titleImgUrl(product.get().getTitleImgUrl())
+                            .titleImgTxt(product.get().getTitleImgTxt())
+                            .viewCount(product.get().getViewCount()+1)
+                            .categoryM(product.get().getCategoryM())
+                            .build()
+            );
+
+            // ProductSubImg
+            List<ProductSubImg> productSubImgList = iProductSubImgRepository.findAllByProductId(product.get().getId());
+            List<ProductSubImgDtoOutputOnlyId> productSubImgDtoOutputOnlyIdList = new ArrayList<>();
+            productSubImgList.forEach(productSubImg -> {
+                productSubImgDtoOutputOnlyIdList.add(
+                        ProductSubImgDtoOutputOnlyId.builder()
+                                .id(productSubImg.getId())
+                                .build()
+                );
+            });
+
+            // CategoryProductList
+            List<CategoryProductList> categoryProductLists = iCategoryProductListRepository.findAllByProductId(product.get().getId());
+            List<CategoryProductListDtoOutput> categoryProductListDtoOutputList = new ArrayList<>();
+            categoryProductLists.forEach(categoryProductList -> {
+                categoryProductListDtoOutputList.add(
+                        CategoryProductListDtoOutput.builder()
+                                .id(categoryProductList.getId())
+                                .productId(categoryProductList.getProduct().getId())
+                                .categoryId(categoryProductList.getCategory().getId())
+                                .categoryMId(categoryProductList.getCategoryM().getId())
+                                .build()
+                );
+            });
+
+            // Stock
+            List<Stock> stockList = iStockRepository.findAllByProductId(product.get().getId());
+            List<StockDtoOutputProductIdName> stockDtoOutputProductIdNameList = new ArrayList<>();
+            stockList.forEach(stock -> {
+                stockDtoOutputProductIdNameList.add(
+                        StockDtoOutputProductIdName.builder()
+                                .stockId(stock.getId())
+                                .qty(stock.getQty())
+                                .productId(stock.getProduct().getId())
+                                .optionFirstId(stock.getOptionFirst().getId())
+                                .optionSecondId(stock.getOptionSecond().getId())
+                                .build()
+                );
+            });
+
+            // 첫번째 옵션 리스트
+            List<OptionFirst> optionFirstList = new ArrayList<>();
+            int productSize = Math.toIntExact(product.get().getId()); // 상품 id
+//            System.out.println("productSize = " + productSize);
+            int stockSize = stockList.size();
+//            System.out.println("stockSize = " + stockSize);
+            int size = 0;
+            if(productSize >= stockSize){
+                size = productSize;
+            } else{
+                size = stockSize;
+            }
+//            System.out.println("size = " + size);
+            boolean[] check = new boolean[size+1];
+//            System.out.println("check[0] = " + check[0]);
+            stockList.forEach(stock -> {
+//                System.out.println("stock.getOptionFirst().getId() = " + stock.getOptionFirst().getId());
+                if(check[(stock.getOptionFirst().getId())] == false ){
+//                    System.out.println("check[(stock.getOptionFirst().getId())] = " + check[(stock.getOptionFirst().getId())]);
+                    check[stock.getOptionFirst().getId()] = true;
+//                    System.out.println("check[(stock.getOptionFirst().getId())] = " + check[(stock.getOptionFirst().getId())]);
+                    optionFirstList.add(
+                            OptionFirst.builder()
+                                    .id(stock.getOptionFirst().getId())
+                                    .name(stock.getOptionFirst().getName())
+                                    .build()
+                    );
+                }
+            });
+
+            // Review
+            List<Review> reviewList = iReviewRepository.findAllByProductId(product.get().getId());
+            List<ReviewDtoOutputDetail> reviewDtoOutputDetailList = new ArrayList<>();
+
+            reviewList.forEach(review -> {
+                reviewDtoOutputDetailList.add(
+                        ReviewDtoOutputDetail.builder()
+                                .id(review.getId())
+                                .content(review.getContent())
+                                .title(review.getTitle())
+                                .imgUrl(review.getImgUrl())
+                                .imgUrl2(review.getImgUrl2())
+                                .createdDate(review.getCreatedDate())
+                                .orderItemId(review.getOrderItem().getId())
+                                .optionFirst(review.getOrderItem().getStock().getOptionFirst())
+                                .optionSecond(review.getOrderItem().getStock().getOptionSecond())
+                                .userId(review.getUser().getId())
+                                .build()
+                );
+            });
+
+            boolean wish = iWishListService.wishByProductIdAndUserId(productId, userId);
+
+            return ProductDtoOutputAllDetail.builder()
+                    .id(productId)
+                    .isWished(wish)
                     .name(product.get().getName())
                     .star(product.get().getStar())
                     .discountPrice(product.get().getDiscountPrice())

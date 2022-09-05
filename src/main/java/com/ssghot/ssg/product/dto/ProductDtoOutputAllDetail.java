@@ -17,6 +17,9 @@ import java.util.List;
 @NoArgsConstructor
 public class ProductDtoOutputAllDetail {
 
+    // 좋아요 추가
+    private Boolean isWished;
+
     private Long id; // 상품 id
     private String name; // 상품명
     private int regularPrice; // 정가
