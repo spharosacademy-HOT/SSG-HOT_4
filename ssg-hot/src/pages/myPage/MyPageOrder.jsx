@@ -1,16 +1,17 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function MyPageOrder() {
   return (
     <div className="myssg_sec">
       <div className="myssg_sec_conts" id="divMyOrderSecConts">
-        <a
-          href="https://pay.ssg.com/m/myssg/orderInfo.ssg?_mpop=new"
+        <Link
+          to="/order"
           className="myssg_sec_title ty_order clickable"
           data-react-tarea="MYSSG|M_MY_SSG_주문배송조회"
         >
           주문/배송 조회
-        </a>
+        </Link>
         <div className="myssg_order_process">
           <ul className="myssg_process_list">
             <li>
