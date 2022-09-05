@@ -5,10 +5,12 @@ function MyPageUser() {
   const [userData, setUserData] = useState({});
   const navigate = useNavigate();
   useEffect(() => {
-    getUserDetail().then((res) => {
-      console.log(res);
-      setUserData(res);
-    });
+    if (localStorage.getItem("token") !== null) {
+      getUserDetail().then((res) => {
+        console.log(res);
+        setUserData(res);
+      });
+    }
   }, []);
 
   return (

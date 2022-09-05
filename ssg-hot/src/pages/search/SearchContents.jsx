@@ -8,10 +8,11 @@ import { getRecentSearch } from "../../store/apis/recent";
 export default function SearchContents() {
   const [searchData, setSearchData] = useState([]);
   useEffect(() => {
-    getRecentSearch().then((res) => {
-      console.log(res, "최근검색목록가져옴");
-      setSearchData(res.data);
-    });
+    if (localStorage.getItem("token") !== null) {
+      getRecentSearch().then((res) => {
+        setSearchData(res.data);
+      });
+    }
   }, []);
   return (
     <div className="searchItem">

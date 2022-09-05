@@ -16,6 +16,7 @@ import {
   purchaseState,
   totalPriceState,
 } from "../../../store/atom/purchaseState";
+import { postLike } from "../../../store/apis/like";
 
 function ProductPurchaseBar({ stockList }) {
   let params = useParams();
@@ -36,6 +37,7 @@ function ProductPurchaseBar({ stockList }) {
   const [countData, setCountData] = useState(1);
   const [currKey, setCurrKey] = useState("");
   const [stockId, setStockId] = useState(0);
+  const [isLike, setIsLike] = useState(false);
   const navigate = useNavigate();
 
   // const totalPrice
@@ -105,6 +107,15 @@ function ProductPurchaseBar({ stockList }) {
       navigate("/login");
     }
   };
+  const changeLike = () => {
+    if (localStorage.getItem("token") !== null) {
+      postLike(id).then((res) => {
+        console.log(res);
+      });
+    } else {
+      navigate("/login");
+    }
+  };
   useEffect(() => {
     const newPurchaseList = purchaseList.filter(
       (item) => item.stockId !== deleteId
@@ -112,7 +123,6 @@ function ProductPurchaseBar({ stockList }) {
     setPurChaseList(newPurchaseList);
   }, [deleteId]);
   useEffect(() => {
-    // purchaseList.count = countData
     setPurChaseList(
       purchaseList.map((item) =>
         item.stockId === currKey ? { ...item, count: countData } : item
@@ -134,8 +144,8 @@ function ProductPurchaseBar({ stockList }) {
         <ul>
           <li className="product-choice">
             {/* 찜하기 컴포넌트 만들어서 넣기 */}
-            <div>
-              <LikeButton />
+            <div onClick={changeLike}>
+              <LikeButton isLike={isLike} setIsLike={setIsLike} />
             </div>
           </li>
           <li className="product-present">
