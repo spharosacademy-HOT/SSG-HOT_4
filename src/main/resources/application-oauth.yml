@@ -8,6 +8,7 @@ spring:
           scope:
             - email
             - profile
+          redirect-uri: https://ssghot.shop/api/login/oauth2/code/google
         naver:
           client-id: PZYVhA2vsSBeEKhw0f0Y
           client-secret: ZOqyVtdWjc
@@ -17,13 +18,13 @@ spring:
             - profile_image
           client-name: Naver # 클라이언트 네임은 구글 페이스북도 대문자로 시작하더라.
           authorization-grant-type: authorization_code
-          redirect-uri: http://localhost:8080/login/oauth2/code/naver
+          redirect-uri: https://ssghot.shop/api/login/oauth2/code/naver
         kakao:
           clientId: 82662a6dc7085a2a3ef6a3f789996fa5
           clientSecret: 4uF4s8dqUzViXuaNPiqj3I6tix27w2Jv
           clientAuthenticationMethod: post
           authorizationGrantType: authorization_code
-          redirectUri: http://localhost:8080/login/oauth2/code/kakao
+          redirectUri: https://ssghot.shop/api/login/oauth2/code/kakao
           scope:
             - profile_nickname
             - profile_image

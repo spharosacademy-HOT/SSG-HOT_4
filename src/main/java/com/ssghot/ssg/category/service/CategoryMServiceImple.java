@@ -285,9 +285,7 @@ public class CategoryMServiceImple implements ICategoryMService{
         List<ProductDtoOutputAll> productDtoOutputAllList = new ArrayList<>(); // DTO 인스턴스 생성
         productList.forEach(product -> { // categoryMID와 일치하는 Product 리스트를 하나씩 풀어서 넣음
 
-//            // Stock
-//
-//            // Product 테이블의 ID와 Stock 테이블의 productId와 일치하는 Stock 리스트 조회
+
 //            List<Stock> stockList = iStockRepository.findAllByProductId(product.getId());
 //            List<StockDtoOutputProductIdName> stockDtoOutputProductIdNameList = new ArrayList<>();
 //            stockList.forEach(stock -> {
@@ -302,7 +300,7 @@ public class CategoryMServiceImple implements ICategoryMService{
 //                );
 //            });
 
-//            // SubImg
+
 //            List<ProductSubImg> productSubImgList = iProductSubImgRepository.findAllByProductId(product.getId());
 //            List<ProductSubImgDtoOutputOnlyId> productSubImgDtoOutputOnlyIdList = new ArrayList<>();
 //
