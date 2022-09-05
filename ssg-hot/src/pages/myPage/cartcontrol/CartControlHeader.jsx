@@ -34,7 +34,7 @@ function CartControlHeader() {
                   href="#"
                   role="tab"
                   aria-selected="false"
-                  onClick={() => alert("준비중입니다.")}
+                  onClick={() => alert("준비 중입니다.")}
                 >
                   <span className="myodr_tab_tx">함께장보기 배송지</span>
                 </a>

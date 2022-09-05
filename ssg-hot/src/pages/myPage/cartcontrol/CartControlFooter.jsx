@@ -20,7 +20,7 @@ function CartControlFooter({ changeExisted, changeExistedHandle }) {
             <button
               type="button"
               className="myodr_btn myodr_btn_gray"
-              onClick={() => alert("준비중입니다.")}
+              onClick={() => alert("준비 중입니다.")}
             >
               <span>이번만배송지 설정</span>
             </button>
