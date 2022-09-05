@@ -1,11 +1,11 @@
 import React from "react";
 
-export default function CartListHeader() {
+export default function CartListHeader({ showAll, setShowAll }) {
   return (
     <div className="cartListHeader cartControl">
       <div className="cartControlGroup">
         <span className="cartControlCheck">
-          <input type="checkbox" />
+          <input type="checkbox" onClick={() => setShowAll(!showAll)} />
         </span>
         <label htmlFor="">
           <span>전체</span>

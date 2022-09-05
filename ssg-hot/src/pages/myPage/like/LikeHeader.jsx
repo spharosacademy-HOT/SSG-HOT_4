@@ -15,7 +15,7 @@ function LikeHeader() {
                     href="#;"
                     className="mylike_folder_btn ty_all clickable on "
                     role="tab"
-                    aria-selected="true"
+                    aria-selected={true}
                     data-react-tarea="좋아요|상단_폴더리스트|전체보기_클릭"
                   >
                     <span className="mylike_folder_thmb"></span>

@@ -28,7 +28,7 @@ function Product() {
     axios.get(url).then((Response) => {
       setProductDatas(Response.data);
       const productId = Response.data.id;
-      // console.log(Response, "kdjKsljkl");
+      console.log(Response, "kdjKsljkl");
 
       if (localStorage.getItem("token") !== null) {
         postRecent(productId).then((res) => {
@@ -37,7 +37,7 @@ function Product() {
       }
     });
   }, [url]);
-  // console.log(productDatas, "1!!!!!!!!!!!!!");
+  console.log(productDatas, "1!!!!!!!!!!!!!");
   return (
     <>
       {productDatas && (
@@ -56,7 +56,7 @@ function Product() {
           <StoreInfo />
           <ProductPurchaseBar
             stockList={productDatas.optionFirst}
-            isWwished={productDatas.isWwished}
+            isWished={productDatas.isWished}
           />
         </>
       )}

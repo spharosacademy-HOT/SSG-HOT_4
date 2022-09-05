@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Modal from "react-modal";
 import { useRecoilState } from "recoil";
+import { getMyCart } from "../../../../../../store/apis/cart";
 import { getOption1, putOption } from "../../../../../../store/apis/option";
 import { cartState } from "../../../../../../store/atom/cartState";
 
@@ -22,10 +23,7 @@ export default function CartButton({ optionList, productId, cartId }) {
   const [option1, setOption1] = useState("");
   const [option2, setOption2] = useState("");
   const isOption = useState(optionFirst.length * optionSecond.length);
-
-  // const [cartData, setCartData] = useRecoilState(cartState);
-
-  // console.log(cartData);
+  const [cartData, setCartData] = useRecoilState(cartState);
 
   // let subtitle;
   const [modalIsOpen, setIsOpen] = useState(false);
@@ -66,10 +64,12 @@ export default function CartButton({ optionList, productId, cartId }) {
     };
 
     putOption(oData).then((res) => {
-      console.log(res);
-      // setCartData(cartData.map((cart) =>
-      //   cart.id === cartId ? {...cart,optionFirst:}))
+      // console.log(res);
+
       alert(res.message);
+      getMyCart().then((res) => {
+        setCartData(res.data);
+      });
       closeModal();
     });
   };
@@ -152,7 +152,7 @@ export default function CartButton({ optionList, productId, cartId }) {
                 >
                   {optionSecond &&
                     optionSecond.map((option) => (
-                      <option key={option.stockId} value={option.id}>
+                      <option key={option.id} value={option.id}>
                         {option.name}
                       </option>
                     ))}

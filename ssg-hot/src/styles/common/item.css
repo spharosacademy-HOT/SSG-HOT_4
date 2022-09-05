@@ -60,7 +60,7 @@
   padding-top: 50px;
   margin-top: -50px;
 }
-.cartCheck input::before {
+.cartCheck input {
   content: "";
   z-index: 2;
   position: absolute;
