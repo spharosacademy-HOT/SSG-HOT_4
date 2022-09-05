@@ -9,7 +9,6 @@ import com.ssghot.ssg.security.jwt.JwtProperties;
 import com.ssghot.ssg.users.domain.User;
 import com.ssghot.ssg.users.repository.IUserRepository;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +22,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static com.ssghot.ssg.security.jwt.JwtProperties.HEADER_STRING;
-@Slf4j
+//@Slf4j
 @RequiredArgsConstructor
 @Service
 public class RefreshService implements IRefreshService{
@@ -39,7 +38,7 @@ public class RefreshService implements IRefreshService{
                 String username = decodedJWT.getSubject();
                 Optional<User> user = iUserRepository.findByEmail(username);
                 if(user.isPresent()) {
-                    System.out.println(username);
+//                    System.out.println(username);
                     PrincipalDetails principalDetails = new PrincipalDetails(user.get());
                     String access_token = JWT.create()
                             .withSubject(user.get().getEmail())

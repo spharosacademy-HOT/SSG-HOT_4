@@ -7,7 +7,6 @@ import com.ssghot.ssg.category.service.ICategoryMService;
 import com.ssghot.ssg.category.service.ICategoryService;
 import com.ssghot.ssg.users.sevice.IUserService;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,7 +15,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api")
 @RequiredArgsConstructor
-@Slf4j
+//@Slf4j
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class CategoryController {
     private final IUserService iUserService;
@@ -89,7 +88,7 @@ public class CategoryController {
     // 4-2. 카테고리 중분류 단일 조회하기
     @GetMapping("/categorym/{id}")
     public CategoryMDtoOutput getOneCategoryM(@PathVariable Long id, @RequestHeader HttpHeaders headers){
-        log.info(headers.toSingleValueMap().toString());
+//        log.info(headers.toSingleValueMap().toString());
         Long userId = iUserService.getUserByTokenFix(headers);
 //        Long userId = iUserService.getUserByToken(request);
         if(userId != null)

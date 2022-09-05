@@ -54,7 +54,7 @@ public class CartController {
     public ResultDtoOutput<CartDtoOutput> editStockCart(@RequestBody CartEditStockDtoInput cartEditStockDtoInput,HttpServletRequest request){
 
         Long userId = iUserService.getUserByToken(request);
-        System.out.println(userId);
+//        System.out.println(userId);
         cartEditStockDtoInput.setUserId(userId);
         return iCartService.editStockCart(cartEditStockDtoInput);
     }

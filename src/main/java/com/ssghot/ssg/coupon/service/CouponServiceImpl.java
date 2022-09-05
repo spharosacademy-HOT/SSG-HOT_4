@@ -8,7 +8,6 @@ import com.ssghot.ssg.coupon.dto.CouponDtoOutput;
 import com.ssghot.ssg.coupon.dto.CouponEditDtoInput;
 import com.ssghot.ssg.coupon.repository.ICouponRepository;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -16,7 +15,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-@Slf4j
+//@Slf4j
 @RequiredArgsConstructor
 @Service
 public class CouponServiceImpl implements ICouponService{

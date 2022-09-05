@@ -8,14 +8,13 @@ import com.ssghot.ssg.categoryProductList.dto.CategoryProductListDtoOutput;
 import com.ssghot.ssg.categoryProductList.repository.ICategoryProductListRepository;
 import com.ssghot.ssg.product.repository.IProductRepository;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@Slf4j
+//@Slf4j
 @Service
 @RequiredArgsConstructor
 public class CategoryProductListServiceImple implements ICategoryProductListService{
@@ -36,13 +35,13 @@ public class CategoryProductListServiceImple implements ICategoryProductListServ
     @Override
     public CategoryProductList addCategoryProductList(CategoryProductListDtoInput categoryProductListDtoInput) {
 
-        log.info("{}", categoryProductListDtoInput);
+//        log.info("{}", categoryProductListDtoInput);
         CategoryProductList categoryProductList = iCategoryProductListRepository.save(CategoryProductList.builder()
                         .product(iProductRepository.findById(categoryProductListDtoInput.getProductId()).get())
                         .category(iCategoryRepository.findById(categoryProductListDtoInput.getCategoryId()).get())
                         .categoryM(iCategoryMRepository.findById(categoryProductListDtoInput.getCategoryMId()).get())
                 .build());
-        log.info("{}", categoryProductList);
+//        log.info("{}", categoryProductList);
         return categoryProductList;
     }
 

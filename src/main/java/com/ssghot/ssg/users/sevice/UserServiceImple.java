@@ -8,7 +8,6 @@ import com.ssghot.ssg.users.domain.User;
 import com.ssghot.ssg.users.dto.*;
 import com.ssghot.ssg.users.repository.IUserRepository;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -18,10 +17,9 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-@Slf4j
+//@Slf4j
 @RequiredArgsConstructor
 @Service
-
 public class UserServiceImple implements IUserService {
 
     private final IUserRepository iUserRepository;
@@ -116,7 +114,7 @@ public class UserServiceImple implements IUserService {
     // 회원 전체 조회
     @Override
     public ResultListDtoOutput<List<UserDtoOutput>> getAll() {
-        log.info("getAll User");
+//        log.info("getAll User");
         List<User> userList = iUserRepository.findAll();
         List<UserDtoOutput>  userDtoOutputs = userList.stream().map(user->
                 UserDtoOutput.builder()

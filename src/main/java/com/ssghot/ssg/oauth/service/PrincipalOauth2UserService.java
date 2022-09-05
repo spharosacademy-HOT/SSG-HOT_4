@@ -40,7 +40,7 @@ public class PrincipalOauth2UserService implements OAuth2UserService<OAuth2UserR
         }else if (userRequest.getClientRegistration().getRegistrationId().equals("kakao")) {
             ioAuth2UserInfo = new KakaoUserInfo(oAuth2User.getAttributes());
         }else{
-            System.out.println("아직 제공하지 않습니다.");
+//            System.out.println("아직 제공하지 않습니다.");
         }
         String provider = ioAuth2UserInfo.getProvider();
         String providerId = ioAuth2UserInfo.getProviderId();

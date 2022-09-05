@@ -13,7 +13,6 @@ import com.ssghot.ssg.userCoupon.repository.IUserCouponRepository;
 import com.ssghot.ssg.users.domain.User;
 import com.ssghot.ssg.users.repository.IUserRepository;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -21,7 +20,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-@Slf4j
+//@Slf4j
 @RequiredArgsConstructor
 @Service
 public class UserCouponServiceImpl implements IUserCouponService{

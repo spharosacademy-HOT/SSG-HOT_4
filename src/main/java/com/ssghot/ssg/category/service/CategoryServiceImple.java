@@ -6,7 +6,6 @@ import com.ssghot.ssg.category.dto.*;
 import com.ssghot.ssg.category.repository.ICategoryMRepository;
 import com.ssghot.ssg.category.repository.ICategoryRepository;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -15,7 +14,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-@Slf4j
+//@Slf4j
 public class CategoryServiceImple implements ICategoryService{
 
     private final ICategoryRepository iCategoryRepository;
@@ -87,7 +86,7 @@ public class CategoryServiceImple implements ICategoryService{
                     );
                 }
         );
-        System.out.println("categoryList.size() : " + categoryList.size());
+//        System.out.println("categoryList.size() : " + categoryList.size());
 
 //        ArrayList<Object> arrayList = new ArrayList<>();
 //
@@ -144,7 +143,7 @@ public class CategoryServiceImple implements ICategoryService{
             categoryDtoOutput = CategoryDtoOutput.builder()
                     .id(category.get().getId())
                     .name(category.get().getName())
-                    .categoryMList(iCategoryMRepository.findAllByCategoryId(category.get().getId()))
+                    .categoryMList(allByCategoryId)
                     .build();
         }
 

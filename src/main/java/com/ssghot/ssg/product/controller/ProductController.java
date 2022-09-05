@@ -193,7 +193,7 @@ public class ProductController {
         if(category == null && minPrice == null && maxPrice == null){
             return iProductService.getSearchNameListPage(name, pageable);
         } else if (category != null && minPrice == null && maxPrice == null) {
-            System.out.println("category = " + category);
+//            System.out.println("category = " + category);
             return iProductService.getSearchNameAndCategoryMIdListPage(name, category, pageable);
         } else if (category == null) {
             return iProductService.getSearchNameAndBetweenDiscountPrice(name, minPrice, maxPrice, pageable);

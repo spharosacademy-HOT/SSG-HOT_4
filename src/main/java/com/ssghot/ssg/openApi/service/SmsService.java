@@ -6,7 +6,6 @@ import com.ssghot.ssg.openApi.dto.MessageDto;
 import com.ssghot.ssg.openApi.dto.SmsRequestDto;
 import com.ssghot.ssg.openApi.dto.SmsResponseDto;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
@@ -27,7 +26,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 
-@Slf4j
+//@Slf4j
 @RequiredArgsConstructor
 @Service
 public class SmsService {

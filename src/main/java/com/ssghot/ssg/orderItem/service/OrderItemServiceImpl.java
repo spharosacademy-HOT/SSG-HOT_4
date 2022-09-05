@@ -7,7 +7,6 @@ import com.ssghot.ssg.orderItem.dto.OrderItemDtoInput;
 import com.ssghot.ssg.orderItem.dto.OrderItemDtoOutput;
 import com.ssghot.ssg.orderItem.repository.IOrderItemRepository;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -15,7 +14,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-@Slf4j
+//@Slf4j
 @RequiredArgsConstructor
 @Service
 public class OrderItemServiceImpl implements IOrderItemService{

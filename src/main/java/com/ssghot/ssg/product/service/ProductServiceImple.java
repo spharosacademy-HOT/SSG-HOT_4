@@ -20,7 +20,6 @@ import com.ssghot.ssg.review.repository.IReviewRepository;
 import com.ssghot.ssg.wish_list.repository.IWishListRepository;
 import com.ssghot.ssg.wish_list.service.IWishListService;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
@@ -32,7 +31,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-@Slf4j
+//@Slf4j
 public class ProductServiceImple implements IProductService{
 
     private final IProductRepository iProductRepository;
@@ -556,7 +555,7 @@ public class ProductServiceImple implements IProductService{
                             .build()
             );
 
-            System.out.println("getViewCount() : " + product.get().getViewCount());
+//            System.out.println("getViewCount() : " + product.get().getViewCount());
 
 //            // WishList
 //            List<WishList> wishLists = iWishListRepository.findAllByProductId(product.get().getId());
@@ -614,24 +613,24 @@ public class ProductServiceImple implements IProductService{
             // 첫번째 옵션 리스트
             List<OptionFirst> optionFirstList = new ArrayList<>();
             int productSize = Math.toIntExact(product.get().getId()); // 상품 id
-            System.out.println("productSize = " + productSize);
+//            System.out.println("productSize = " + productSize);
             int stockSize = stockList.size();
-            System.out.println("stockSize = " + stockSize);
+//            System.out.println("stockSize = " + stockSize);
             int size = 0;
             if(productSize >= stockSize){
                 size = productSize;
             } else{
                 size = stockSize;
             }
-            System.out.println("size = " + size);
+//            System.out.println("size = " + size);
             boolean[] check = new boolean[size+1];
-            System.out.println("check[0] = " + check[0]);
+//            System.out.println("check[0] = " + check[0]);
             stockList.forEach(stock -> {
-                System.out.println("stock.getOptionFirst().getId() = " + stock.getOptionFirst().getId());
+//                System.out.println("stock.getOptionFirst().getId() = " + stock.getOptionFirst().getId());
                 if(check[(stock.getOptionFirst().getId())] == false ){
-                    System.out.println("check[(stock.getOptionFirst().getId())] = " + check[(stock.getOptionFirst().getId())]);
+//                    System.out.println("check[(stock.getOptionFirst().getId())] = " + check[(stock.getOptionFirst().getId())]);
                     check[stock.getOptionFirst().getId()] = true;
-                    System.out.println("check[(stock.getOptionFirst().getId())] = " + check[(stock.getOptionFirst().getId())]);
+//                    System.out.println("check[(stock.getOptionFirst().getId())] = " + check[(stock.getOptionFirst().getId())]);
                     optionFirstList.add(
                         OptionFirst.builder()
                                 .id(stock.getOptionFirst().getId())

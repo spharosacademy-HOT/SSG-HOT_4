@@ -43,14 +43,14 @@ public class StockServiceImple implements IStockService{
             if(stocks.getProduct().getId() == stock.getProduct().getId()
             && stocks.getOptionFirst().getId() == stock.getOptionFirst().getId()
             && stocks.getOptionSecond().getId() == stock.getOptionSecond().getId()) {
-                System.out.println("stocks.getId() = " + stocks.getId());
+//                System.out.println("stocks.getId() = " + stocks.getId());
                 validateId = stocks.getId();
             }
         });
 
         if(validateId > 0){
-            System.out.println("0 이상일 때");
-            System.out.println("validateId = " + validateId);
+//            System.out.println("0 이상일 때");
+//            System.out.println("validateId = " + validateId);
 
             Optional<Stock> byId = iStockRepository.findById(validateId);
             iStockRepository.save(
@@ -64,7 +64,7 @@ public class StockServiceImple implements IStockService{
             );
             validateId = 0L;
         } else {
-            System.out.println("0 이상 아닐 때");
+//            System.out.println("0 이상 아닐 때");
             iStockRepository.save(
                     Stock.builder()
                             .qty(stock.getQty())

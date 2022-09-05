@@ -13,12 +13,11 @@ import com.ssghot.ssg.users.repository.IUserRepository;
 import com.ssghot.ssg.wish_list.domain.WishList;
 import com.ssghot.ssg.wish_list.repository.IWishListRepository;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
 
-@Slf4j
+//@Slf4j
 @RequiredArgsConstructor
 @Service
 public class RecentlyViewedProductServiceImpl implements IRecentlyViewedProductService{

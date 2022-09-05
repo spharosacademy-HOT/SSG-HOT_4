@@ -11,14 +11,13 @@ import com.ssghot.ssg.wish_list.dto.WishListDtoInput;
 import com.ssghot.ssg.wish_list.dto.WishListDtoOutput;
 import com.ssghot.ssg.wish_list.repository.IWishListRepository;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-@Slf4j
+//@Slf4j
 @RequiredArgsConstructor
 @Service
 public class WishServiceImpl implements IWishListService{

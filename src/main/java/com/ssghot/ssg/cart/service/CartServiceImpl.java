@@ -12,7 +12,6 @@ import com.ssghot.ssg.optionList.repository.IStockRepository;
 import com.ssghot.ssg.users.domain.User;
 import com.ssghot.ssg.users.repository.IUserRepository;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -21,7 +20,7 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-@Slf4j
+//@Slf4j
 @RequiredArgsConstructor
 @Service
 public class CartServiceImpl implements ICartService{
