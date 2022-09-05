@@ -22,5 +22,5 @@ public interface ISearchKeywordService {
 
     // 3. 검색어 전체 조회
     List<SearchKeywordDtoOutput> getAllSearchKeyword();
-
+    List<SearchKeywordDtoOutput> getAllSearchKeywordByUserId(Long userId);
 }

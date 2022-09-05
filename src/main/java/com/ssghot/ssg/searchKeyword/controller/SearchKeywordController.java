@@ -4,7 +4,9 @@ import com.ssghot.ssg.searchKeyword.domain.SearchKeyword;
 import com.ssghot.ssg.searchKeyword.dto.SearchKeywordDtoInput;
 import com.ssghot.ssg.searchKeyword.dto.SearchKeywordDtoOutput;
 import com.ssghot.ssg.searchKeyword.service.ISearchKeywordService;
+import com.ssghot.ssg.users.sevice.IUserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpHeaders;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,7 +18,7 @@ import java.util.List;
 public class SearchKeywordController {
 
     private final ISearchKeywordService iSearchKeywordService;
-
+    private final IUserService iUserService;
     /*
         1. 검색어 등록
         2. 검색어 삭제
@@ -25,7 +27,12 @@ public class SearchKeywordController {
 
     // 1. 검색어 등록
     @PostMapping("/searchkeyword")
-    public SearchKeyword addSearchKeyword(@RequestBody SearchKeywordDtoInput searchKeywordDtoInput){
+    public SearchKeyword addSearchKeyword(@RequestHeader HttpHeaders headers,@RequestBody SearchKeywordDtoInput searchKeywordDtoInput){
+        Long userId = iUserService.getUserByTokenFix(headers);
+        if(userId==null){
+            return SearchKeyword.builder().user(null).build();
+        }
+        searchKeywordDtoInput.setUserId(userId);
         return iSearchKeywordService.addSearchKeyword(searchKeywordDtoInput);
     }
 
@@ -39,5 +46,14 @@ public class SearchKeywordController {
     @GetMapping("/searchkeyword")
     public List<SearchKeywordDtoOutput> getAllSearchKeyword(){
         return iSearchKeywordService.getAllSearchKeyword();
+    }
+
+    @GetMapping("/searchkeyword/v2")
+    public List<SearchKeywordDtoOutput> getAllSearchKeyword(@RequestHeader HttpHeaders headers){
+        Long userId = iUserService.getUserByTokenFix(headers);
+        if(userId==null){
+            return null;
+        }
+        return iSearchKeywordService.getAllSearchKeywordByUserId(userId);
     }
 }
