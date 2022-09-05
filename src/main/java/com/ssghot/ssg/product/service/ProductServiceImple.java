@@ -9,6 +9,8 @@ import com.ssghot.ssg.optionList.domain.OptionFirst;
 import com.ssghot.ssg.optionList.domain.Stock;
 import com.ssghot.ssg.optionList.dto.StockDtoOutputProductIdName;
 import com.ssghot.ssg.optionList.repository.IStockRepository;
+import com.ssghot.ssg.orderItem.domain.OrderItem;
+import com.ssghot.ssg.orderItem.repository.IOrderItemRepository;
 import com.ssghot.ssg.product.domain.Product;
 import com.ssghot.ssg.product.domain.ProductSubImg;
 import com.ssghot.ssg.product.dto.*;
@@ -49,7 +51,7 @@ public class ProductServiceImple implements IProductService{
     private final IWishListRepository iWishListRepository;
 
     private final IWishListService iWishListService;
-
+    private final IOrderItemRepository iOrderItemRepository;
     /*
         1. 상품 등록하기
         2. 상품 수정하기
@@ -688,6 +690,7 @@ public class ProductServiceImple implements IProductService{
                     .stockList(stockDtoOutputProductIdNameList)
                     .optionFirst(optionFirstList)
                     .reviewList(reviewDtoOutputDetailList)
+                    .isReviewed(false)
                     .build();
         }
 
@@ -812,6 +815,11 @@ public class ProductServiceImple implements IProductService{
             });
 
             boolean wish = iWishListService.wishByProductIdAndUserId(productId, userId);
+            List<OrderItem> orderValid = iOrderItemRepository.findByOrderUserIdAndStockProductId(userId, productId);
+            boolean isOrderItemValid = false;
+            if(!orderValid.isEmpty()){
+                isOrderItemValid = true;
+            }
 
             return ProductDtoOutputAllDetail.builder()
                     .id(productId)
@@ -837,6 +845,7 @@ public class ProductServiceImple implements IProductService{
                     .stockList(stockDtoOutputProductIdNameList)
                     .optionFirst(optionFirstList)
                     .reviewList(reviewDtoOutputDetailList)
+                    .isReviewed(isOrderItemValid)
                     .build();
         }
 

@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
+import java.util.List;
 
 public interface IOrderItemRepository extends JpaRepository<OrderItem,Long> {
 
@@ -15,4 +16,5 @@ public interface IOrderItemRepository extends JpaRepository<OrderItem,Long> {
     @Query("update OrderItem o set o.deliveryInfo = :update where o.deliveryInfo >= :now")
     int bulkDeliveryInfo(LocalDateTime update,LocalDateTime now);
 
+    List<OrderItem> findByOrderUserIdAndStockProductId(Long userId, Long productId);
 }
