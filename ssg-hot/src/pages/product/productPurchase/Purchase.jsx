@@ -80,6 +80,9 @@ function Purchase() {
                 <ProductMyInfo/>
                 <ProductShippingRequest/>
                 <ProductDeliveryItems/>
+                <div className='purchase-bar' onClick={handlePurchase}>
+                    결제하기
+                </div>
             </div>
         </>
      );

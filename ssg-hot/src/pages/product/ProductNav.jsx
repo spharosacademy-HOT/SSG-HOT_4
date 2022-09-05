@@ -15,7 +15,7 @@ function ProductNav() {
 
     return ( 
         <>
-            <div className="mcom_tit_renew  react-area">
+            {/* <div className="mcom_tit_renew  react-area">
 			    <div id="mcom_path_cate" className="mcom_category">
                     <div className="cate_path">
                         <span className="depth previous">
@@ -34,6 +34,15 @@ function ProductNav() {
                 <div>
                     하트, 공유
                 </div>
+                </div> */}
+                <div className='product-nav'>
+                    <div>뒤로</div>
+                    <div>명품/잡화/쥬얼리</div>
+                    <div>가방/지갑</div>
+                </div>
+                <div className='product-nav-list'>
+                    <div></div>
+                    <div></div>
                 </div>
         </>
      );

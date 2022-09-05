@@ -53,7 +53,6 @@ function Product() {
           <ProductQnA item={productDatas} />
           <ProductGuide />
           <EventBanner />
-          <StoreInfo />
           <ProductPurchaseBar
             stockList={productDatas.optionFirst}
             isWwished={productDatas.isWwished}

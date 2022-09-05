@@ -70,7 +70,7 @@ function ProductPurchaseItem({
               </button>
             </div>
           </div>
-          <div>{purchase.discountPrice * productQty}원</div>
+          <div>{addCommas(purchase.discountPrice * productQty)}원</div>
         </div>
         <div className="cartAmount">
           <div className="qtyValue"></div>

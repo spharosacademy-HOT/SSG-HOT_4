@@ -7,7 +7,6 @@ function CategoryGroup({cateData, viewIsTrue,cateNumber, setCateNumber, isClick,
     const [getNum , setGetNum] = useState(1)
     const [viewerData, setViewerData] = useState([])
     const [viewerView, setViewerView] = useState(false)
-    const [differ, setDiffer] = useState(false)
     useEffect(() => {
         
         let tempData = false;
@@ -36,7 +35,6 @@ function CategoryGroup({cateData, viewIsTrue,cateNumber, setCateNumber, isClick,
                             setViewerView={setViewerView}
                             isClick={isClick}
                             setIsClick={setIsClick}
-                            setDiffer={setDiffer}
                         
                             // Custom
                             setRowData={setRowData}
@@ -45,7 +43,7 @@ function CategoryGroup({cateData, viewIsTrue,cateNumber, setCateNumber, isClick,
                     ))
                 }
             </ul>
-           <CategoryViewer item={viewerData} isTrue={viewerView} differ={differ} rowData={rowData} row={cateData?.row}/>
+           <CategoryViewer item={viewerData} isTrue={viewerView} rowData={rowData} row={cateData?.row}/>
         </>
     );
 }

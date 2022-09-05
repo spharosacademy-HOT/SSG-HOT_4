@@ -214,7 +214,7 @@ function ProductPurchaseBar({ stockList }) {
             />
           ))}
         <div className="product-total-price">
-          총 합계 <span>{totalPurchasePrice}</span>원
+          총 합계 <span>{addCommas(totalPurchasePrice)}</span>원
         </div>
       </div>
       <div className={stockChoice ? "stock-choice-open" : "stock-choice-close"}>

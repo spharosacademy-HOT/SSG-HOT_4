@@ -1,11 +1,7 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 
-function CategoryViewer({ row, isTrue, item, differ, rowData }) {
-  // useEffect(() => {
-  //   console.log(item);
-  // }, []);
-  // console.log('비교',differ)
+function CategoryViewer({ row, isTrue, item, rowData }) {
   return (
     <div className={(row === rowData) ? "category-group" : "non-category-group"}>
       <div>
@@ -17,7 +13,6 @@ function CategoryViewer({ row, isTrue, item, differ, rowData }) {
                   {list.name}
                 </Link>
               </li>
-              // <li key={list.id}></li>
             ))}
         </ul>
       </div>

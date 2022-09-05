@@ -1,8 +1,7 @@
 import React from "react";
 
-function CategoryItem({ setViewerView, item,cateNumber, setGetNum, isClick, setIsClick, setDiffer, setRowData, row }) {
+function CategoryItem({ setViewerView, item,cateNumber, setGetNum, isClick, setIsClick, setRowData, row }) {
   const handleCateItem = () => {
-    cateNumber !== item.id ? setDiffer(true) : setDiffer(false)
     setGetNum(item.id)
     setViewerView(true)
     // custom
