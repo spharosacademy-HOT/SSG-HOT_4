@@ -11,13 +11,13 @@ export default function CartListHeader() {
           <span>전체</span>
         </label>
         <span className="controlTxt">
-          <a href="">
+          <a>
             <span>배송방법바꾸기</span>
           </a>
         </span>
       </div>
       <span className="cartControlDelete">
-        <a href="">품절상품삭제</a>
+        <a>품절상품삭제</a>
       </span>
     </div>
   );

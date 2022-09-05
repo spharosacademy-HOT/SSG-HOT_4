@@ -7,7 +7,7 @@ function MyPageUser() {
   useEffect(() => {
     if (localStorage.getItem("token") !== null) {
       getUserDetail().then((res) => {
-        console.log(res);
+        // console.log(res);
         setUserData(res);
       });
     }

@@ -7,7 +7,7 @@ function LikeContnent() {
   const [size, setSize] = useState(0);
   useEffect(() => {
     getLike().then((res) => {
-      console.log(res, "좋아요 리스트 들고오기");
+      // console.log(res, "좋아요 리스트 들고오기");
       setLikeData(res.data);
       setSize(res.size);
     });

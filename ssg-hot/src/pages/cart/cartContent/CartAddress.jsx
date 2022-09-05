@@ -23,7 +23,9 @@ export default function CartAddress() {
       </div>
       <div className="addressContents">
         <div className="addressBtnArea">
-          <button className="addressBtn">여러곳으로 한방에</button>
+          <button className="addressBtn" disabled>
+            여러곳으로 한방에
+          </button>
           <button
             className="addressBtn"
             onClick={() => navigate("/cartcontrol")}

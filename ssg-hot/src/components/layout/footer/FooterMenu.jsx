@@ -21,14 +21,16 @@ export default function FooterMenu() {
               </Link>
             </li>
           ) : (
-            <li id="footerLoginBtn">
-              <Link to="/login">로그인</Link>
-            </li>
+            <>
+              <li id="footerLoginBtn">
+                <Link to="/login">로그인</Link>
+              </li>
+              <li id="footerJoinMemberBtn" style={{}}>
+                <Link to="/signup">회원가입</Link>
+              </li>
+            </>
           )}
 
-          <li id="footerJoinMemberBtn" style={{}}>
-            <Link to="/signup">회원가입</Link>
-          </li>
           <li>
             <a
               // href="https://m.ssg.com/comm/app/appLink.ssg?mobilAppSvcNo=3"

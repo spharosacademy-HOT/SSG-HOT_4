@@ -13,7 +13,7 @@ export default function Cart() {
   const isLogin = ACCESS_TOKEN != null && true;
   const [cartData, setCartData] = useRecoilState(cartState);
   const [isItem, setIsItem] = useState(cartData !== {});
-  console.log(isItem, cartData, cartState, "아이템여부");
+  // console.log(isItem, cartData, cartState, "아이템여부");
 
   return (
     <div className="bgGray" id="cart">

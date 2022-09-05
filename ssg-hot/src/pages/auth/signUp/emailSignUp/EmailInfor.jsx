@@ -49,10 +49,8 @@ function EmailInhtmlFor() {
   const checkEmail = (e) => {
     var regExp =
       /([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
-    console.log(
-      "이메일 유효성 검사",
-      setEmailTest(regExp.test(e.target.value))
-    );
+    // console.log("이메일 유효성 검사");
+    setEmailTest(regExp.test(e.target.value));
     setUserInfo(() => ({
       ...userInfo,
       email: e.target.value,
@@ -64,7 +62,7 @@ function EmailInhtmlFor() {
     const res = await basicApiClient.post(`/auth/email`, {
       email: userInfo.email,
     });
-    console.log(res);
+    // console.log(res);
     if (res.data.status == 200) {
       alert("사용가능한 이메일입니다.");
       setEmailCheck(true);
@@ -77,7 +75,8 @@ function EmailInhtmlFor() {
   // 비밀번호 유효성 검사
   const checkPassword = (e) => {
     var regExp = /^(?=.*[a-zA-Z])((?=.*\d)(?=.*\W)).{8,20}$/;
-    console.log("비밀번호 유효성 검사", setPwTest(regExp.test(e.target.value)));
+    // console.log("비밀번호 유효성 검사");
+    setPwTest(regExp.test(e.target.value));
     setUserInfo(() => ({
       ...userInfo,
       password: e.target.value,
@@ -126,7 +125,7 @@ function EmailInhtmlFor() {
         phone: e.target.value,
       }));
     }
-    console.log("휴대폰 유효성 검사", test1 || test2);
+    // console.log("휴대폰 유효성 검사", test1 || test2);
   };
 
   //회원가입 api 요청
@@ -145,7 +144,7 @@ function EmailInhtmlFor() {
         navigate("/login");
       } else {
         alert("회원가입에 실패하셨습니다.");
-        console.log(res);
+        // console.log(res);
       }
     } else {
       alert("입력을 확인해주세요");

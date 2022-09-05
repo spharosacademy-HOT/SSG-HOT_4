@@ -9,7 +9,7 @@ export const getLike = async () => {
 
 //위시리스트 담기
 export const postLike = async (productId) => {
-  console.log(productId);
+  // console.log(productId);
   const res = await apiClient.post(`/wish`, { productId: productId });
   return res.data;
 };

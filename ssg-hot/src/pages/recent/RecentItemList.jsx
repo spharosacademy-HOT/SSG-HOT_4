@@ -15,13 +15,13 @@ export default function RecentItemList({ isChecked }) {
       getRecent()
         .then((res) => {
           setRcData(res.views);
-          console.log(res, "최근본 데이터 가져옴");
+          // console.log(res, "최근본 데이터 가져옴");
         })
         .catch((err) => {
           console.log(err);
         });
       getRecentSearch().then((res) => {
-        console.log(res.data, "최근검색어 겟");
+        // console.log(res.data, "최근검색어 겟");
         setRcSearchData(res.data);
       });
     }

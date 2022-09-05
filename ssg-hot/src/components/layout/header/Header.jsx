@@ -30,12 +30,12 @@ export default function Header() {
         throw new Error(`${getData} not allowd`);
       }
 
-      console.log(getData.data.data);
+      // console.log(getData.data.data);
       const getAddress = getData.data.data;
       setChangeExisted(getData.data.data.id);
       setAddressData([]);
       getAddress.forEach((address) => {
-        console.log(address, "주소~~~");
+        // console.log(address, "주소~~~");
         setAddressData((addressList) => [
           ...addressList,
           {
@@ -61,10 +61,10 @@ export default function Header() {
 
   const goCart = () => {
     if (localStorage.getItem("token") !== null) {
-      console.log(localStorage.getItem("token"));
+      // console.log(localStorage.getItem("token"));
       getAxiosAddress().then((res) => {
         getMyCart().then((res) => {
-          console.log("장바구니가져오기", res);
+          // console.log("장바구니가져오기", res);
           setCartData(res.data);
           navigate("/cart");
         });

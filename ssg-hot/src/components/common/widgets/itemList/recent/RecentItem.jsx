@@ -24,7 +24,7 @@ export default function RecentItem({
 
   const handleCartAdd = () => {
     postRecentCart(productId).then((res) => {
-      console.log(res, "장바구니 담기");
+      // console.log(res, "장바구니 담기");
       alert(res.Message);
       // setIsTrue(true);
       // setModalData(res.Message);
@@ -34,7 +34,7 @@ export default function RecentItem({
   const handleRecent = () => {
     const id = item.id;
     deleteRecent(productId, id).then((res) => {
-      console.log(res);
+      // console.log(res);
       getRecent().then((res) => {
         setRcData(res.views);
       });
@@ -42,7 +42,7 @@ export default function RecentItem({
   };
   const changeLike = () => {
     postLike(productId).then((res) => {
-      console.log(res);
+      // console.log(res);
     });
   };
 

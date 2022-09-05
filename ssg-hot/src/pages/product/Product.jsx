@@ -28,16 +28,16 @@ function Product() {
     axios.get(url).then((Response) => {
       setProductDatas(Response.data);
       const productId = Response.data.id;
-      console.log(Response, "kdjKsljkl");
+      // console.log(Response, "kdjKsljkl");
 
       if (localStorage.getItem("token") !== null) {
         postRecent(productId).then((res) => {
-          console.log(res, productId, "최근본아이템등록");
+          // console.log(res, productId, "최근본아이템등록");
         });
       }
     });
   }, [url]);
-  console.log(productDatas, "1!!!!!!!!!!!!!");
+  // console.log(productDatas, "1!!!!!!!!!!!!!");
   return (
     <>
       {productDatas && (

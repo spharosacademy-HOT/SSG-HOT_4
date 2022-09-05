@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 function SignUpInput() {
   return (
     <div id="m_content" className="cmem_ct_join">
@@ -41,9 +41,9 @@ function SignUpInput() {
             </li>
           </ul>
           <div className="cmem_btn_area" style={{ margin: "30px 0" }}>
-            <a href="#" className="cmem_btn cmem_btn_orange">
+            <Link to="/emailsignup" className="cmem_btn cmem_btn_orange">
               통합회원가입
-            </a>
+            </Link>
           </div>
         </div>
       </div>
