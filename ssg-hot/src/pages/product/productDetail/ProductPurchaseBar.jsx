@@ -13,6 +13,7 @@ import axios from 'axios';
 import { baseURL } from '../../../store/apis/apiClient';
 import { addOption } from '../../../store/apis/product';
 import { purchaseState, totalPriceState } from '../../../store/atom/purchaseState';
+import { addCommas } from "../../../store/utils/useful-funtions"
 
 function ProductPurchaseBar({stockList}) {
     let params = useParams();
@@ -52,6 +53,7 @@ function ProductPurchaseBar({stockList}) {
         setStockChoice(!stockChoice)
     }
     const handleSizeChoice = () =>{
+        colorName === "선택하세요(색상)" ? alert("윗 옵션을 우선 선택해주세요"):
         setSizeChoice(!sizeChoice)
     }
     const handleColor = (itemId,itemName) =>{
@@ -75,8 +77,7 @@ function ProductPurchaseBar({stockList}) {
         setSizeName(itemName)
         purchaseList.includes(item) ?
             alert('동일한 옵션 상품이 이미 선택되어 있습니다.')
-            : setPurChaseList([item,...purchaseList])
-            setTotalPrice(totalPrice + price)
+            : setPurChaseList([item,...purchaseList]) || setTotalPrice(totalPrice + price)
 
         
     }
@@ -188,7 +189,7 @@ function ProductPurchaseBar({stockList}) {
                     ))
                 }
                 <div className='product-total-price'>
-                    총 합계 <span>{totalPurchasePrice}</span>원
+                    총 합계 <span>{addCommas(totalPurchasePrice)}</span>원
                 </div>
             </div>
             <div className={stockChoice ? 'stock-choice-open' : 'stock-choice-close'}>

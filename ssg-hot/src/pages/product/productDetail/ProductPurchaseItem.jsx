@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { useRecoilState } from 'recoil';
 import { totalPriceState } from '../../../store/atom/purchaseState';
+import { addCommas } from '../../../store/utils/useful-funtions';
 
 function ProductPurchaseItem({purchase, setDeleteId, setCountData, count, setCurrKey}) {
     const[productQty,setProductQty] = useState(1);
@@ -69,7 +70,7 @@ function ProductPurchaseItem({purchase, setDeleteId, setCountData, count, setCur
                         </div>
                     </div>
                     <div>
-                        {purchase.discountPrice * productQty}원
+                        {addCommas(purchase.discountPrice * productQty)}원
                     </div>
                 </div>
                 <div className="cartAmount">
