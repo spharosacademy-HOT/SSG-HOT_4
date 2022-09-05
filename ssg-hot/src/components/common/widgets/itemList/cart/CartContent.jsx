@@ -28,12 +28,12 @@ export default function CartContent({
 
   const updateCartCnt = (id, count) => {
     changeCartCnt(id, count).then((res) => {
-      console.log(res);
+      // console.log(res);
     });
   };
   const handleCount = (num) => {
-    console.log(num, idx);
-    console.log(cartData);
+    // console.log(num, idx);
+    // console.log(cartData);
     const newCnt = cartData[idx].count + num;
     if (newCnt > qty) {
       alert(`최대 구매 수량은 ${qty}개 입니다.`);
@@ -43,7 +43,7 @@ export default function CartContent({
       alert(`최소 구매 수량은 1개 입니다.`);
       return;
     }
-    console.log(newCnt);
+    // console.log(newCnt);
     setCartData(
       cartData.map((cart) =>
         cart.id === id ? { ...cart, count: newCnt } : cart
@@ -59,7 +59,7 @@ export default function CartContent({
     reset();
     stop();
     const count = cartData[idx].count;
-    console.log(id, count);
+    // console.log(id, count);
     updateCartCnt(id, count);
   }
 

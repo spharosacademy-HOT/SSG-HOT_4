@@ -11,9 +11,9 @@ function ProductCard({ item, isWished }) {
   const [isLike, setIsLike] = useState(isWished);
   const addWish = (id, e) => {
     e.preventDefault();
-    console.log(id);
+    // console.log(id);
     if (localStorage.getItem("token")) {
-      postLike(id).then((res) => console.log(res, "좋아요요청"));
+      // postLike(id).then((res) => console.log(res, "좋아요요청"));
     } else {
       navigate("/login");
     }

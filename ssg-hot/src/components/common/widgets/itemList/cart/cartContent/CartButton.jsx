@@ -21,6 +21,7 @@ export default function CartButton({ optionList, productId, cartId }) {
   const [optionSecond, setOptionSecond] = useState(optionList.optionSeconds);
   const [option1, setOption1] = useState("");
   const [option2, setOption2] = useState("");
+  const isOption = useState(optionFirst.length * optionSecond.length);
 
   // const [cartData, setCartData] = useRecoilState(cartState);
 
@@ -43,11 +44,11 @@ export default function CartButton({ optionList, productId, cartId }) {
     document.body.style.overflow = "unset";
   }
 
-  console.log(optionList);
+  // console.log(optionList);
   const handleSelect1 = (e) => {
     setOption1(e.target.value);
     getOption1(e.target.value, productId).then((res) => {
-      console.log(res.data, "1로2조회");
+      // console.log(res.data, "1로2조회");
       setOptionSecond(res.data);
       setOption2(res.data[0].id);
     });
@@ -77,7 +78,7 @@ export default function CartButton({ optionList, productId, cartId }) {
   return (
     <>
       <div className="cartButton">
-        {optionList ? (
+        {isOption[0] > 1 ? (
           <button type="button" onClick={openModal}>
             <span>옵션변경</span>
           </button>
@@ -163,13 +164,10 @@ export default function CartButton({ optionList, productId, cartId }) {
             type="button"
             className="mnodr_btn ty_point ty_m cartTracking"
             name="btOrdCheckbox"
-            data-prom-yn=""
-            data-tracking-cd="00044_000000094_t00060"
             data-tracking-value="변경하기"
+            onClick={handleOption}
           >
-            <span className="mnodr_btn_tx" onClick={handleOption}>
-              변경하기
-            </span>
+            <span className="mnodr_btn_tx">변경하기</span>
           </button>
         </Modal>
       </div>

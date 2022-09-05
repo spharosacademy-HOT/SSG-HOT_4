@@ -1,7 +1,9 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { deleteRecentSearch, getRecentSearch } from "../../store/apis/recent";
 
 export default function RecentSearchItem({ keyword, id, setRcSearchData }) {
+  const navigate = useNavigate();
   const deleteSearch = () => {
     deleteRecentSearch(id).then((res) => {
       console.log(res, "검색어삭제");
@@ -30,12 +32,14 @@ export default function RecentSearchItem({ keyword, id, setRcSearchData }) {
           padding: "4px 20px",
         }}
       >
-        <div>
-          <p>
-            <strong>SSG.COM</strong>
-          </p>
+        <div onClick={() => navigate(`/search/${keyword}`)}>
+          <div>
+            <p>
+              <strong>SSG.COM</strong>
+            </p>
 
-          <span>{keyword}</span>
+            <span>{keyword}</span>
+          </div>
         </div>
         <div
           style={{

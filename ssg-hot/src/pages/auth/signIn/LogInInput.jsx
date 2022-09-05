@@ -33,7 +33,7 @@ function LogInInput() {
           password: password,
         })
         .then((res) => {
-          console.log(res);
+          // console.log(res);
           const ACCESS_TOKEN = res.data.access_token;
           const decoded = jwt_decode(ACCESS_TOKEN);
 

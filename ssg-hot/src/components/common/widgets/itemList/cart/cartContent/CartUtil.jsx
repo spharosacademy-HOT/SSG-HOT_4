@@ -9,11 +9,11 @@ export default function CartUtil({ id }) {
   const delCart = () => {
     if (window.confirm("해당 상품을 삭제하시겠습니까?")) {
       deleteCart(id).then((res) => {
-        console.log(res);
+        // console.log(res);
         alert("삭제되었습니다;");
         getMyCart().then((res) => {
           setCartData(res.data);
-          console.log("다시가져오기");
+          // console.log("다시가져오기");
         });
       });
     }

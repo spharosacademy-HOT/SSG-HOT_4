@@ -12,7 +12,7 @@ import { useNavigate } from "react-router-dom";
 export default function CartItem() {
   const [cartData, setCartData] = useRecoilState(cartState);
   const navigate = useNavigate();
-  console.log("여기보시오", cartData);
+  // console.log("여기보시오", cartData);
 
   return (
     <div className="cartItemTotal">
