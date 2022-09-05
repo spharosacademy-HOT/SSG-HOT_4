@@ -8,13 +8,13 @@ function MyPageLink() {
           <h3 className="myssg_manage_title">나의 주문관리</h3>
           <ul className="myssg_manage_list">
             <li>
-              <a
-                href="https://pay.ssg.com/m/myssg/orderInfo.ssg?_mpop=new"
+              <Link
+                to="/order"
                 className="clickable"
                 data-react-tarea="MYSSG|M_MY_SSG_카테고리_주문배송조회"
               >
                 주문/배송조회
-              </a>
+              </Link>
             </li>
             <li>
               <a
