@@ -28,8 +28,8 @@ export default function CartItem() {
                   id={item.id}
                   desc={item.stock.product}
                   qty={item.stock.qty}
-                  optionFirst={item.optionFirst}
-                  optionSecond={item.optionSecond}
+                  optionFirst={item.optionList.optionFirsts}
+                  optionSecond={item.optionList.optionSeconds}
                   optionList={item.optionList}
                   oldPrice={item.stock.product.regularPrice}
                   newPrice={item.stock.product.discountPrice}
