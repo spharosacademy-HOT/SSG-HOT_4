@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Badge } from "react-bootstrap";
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import * as Api from "../../../store/apis/address";
+import Badge from "@mui/material/Badge";
 
 import { useRecoilState, useRecoilValue } from "recoil";
 import { getMyCart } from "../../../store/apis/cart";
@@ -19,7 +19,7 @@ export default function Header() {
   const [cartData, setCartData] = useRecoilState(cartState);
   const [addressData, setAddressData] = useRecoilState(addressState);
 
-  const cartSize = cartData.size;
+  const cartSize = cartData.length;
 
   const [changeExisted, setChangeExisted] = useState(0);
 
@@ -78,6 +78,13 @@ export default function Header() {
     setPagePath(pageUrl.pathname);
   }, [pageUrl]);
 
+  useEffect(() => {
+    if (localStorage.getItem("token") !== null) {
+      getMyCart().then((res) => {
+        setCartData(res.data);
+      });
+    }
+  }, []);
   return (
     <>
       {pagePath === "/login" ? (
@@ -110,7 +117,11 @@ export default function Header() {
         >
           <div id="m_header_banner" style={{ display: "none" }}></div>
 
-          <div id="m_gnb" className="mcom_gnb v2">
+          <div
+            id="m_gnb"
+            className="mcom_gnb v2"
+            style={{ marginRight: "20px" }}
+          >
             <div className="gnb_mall">
               <h1>
                 <span className="gnb_mall_logo v3">
@@ -165,18 +176,21 @@ export default function Header() {
                   </form>
                 </fieldset>
               </div>
-              {/* <Link to="/cart"> */}
+
               <span
                 id="mHeaderCartBtn"
                 className="gnb_util_mn ty_cart clickable"
                 data-react-tarea="웹공통_N|GNB|장바구니"
                 onClick={goCart}
               >
-                <i className="icon icon_cart">
-                  <span id="mHeaderCartNm" className="blind">
-                    장바구니
-                  </span>
-                </i>
+                {" "}
+                <Badge badgeContent={cartSize} color="primary">
+                  <i className="icon icon_cart">
+                    <span id="mHeaderCartNm" className="blind">
+                      장바구니
+                    </span>
+                  </i>
+                </Badge>
                 <span
                   className="cmnoti_cartshare"
                   id="cmnoti_cartshare"
@@ -190,7 +204,6 @@ export default function Header() {
                   </span>
                 </span>
               </span>
-              {/* </Link> */}
             </div>
           </div>
 

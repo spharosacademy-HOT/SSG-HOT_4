@@ -1,12 +1,16 @@
 import React, { useState } from "react";
 import cartLogo2 from "../../assets/img/svg/cartLogo2.svg";
 import searchIcon from "../../assets/img/svg/searchIcon.svg";
+import Badge from "@mui/material/Badge";
 
 import { Link, useNavigate } from "react-router-dom";
 import { postRecentSearch } from "../../store/apis/recent";
+import { useRecoilValue } from "recoil";
+import { cartState } from "../../store/atom/cartState";
 export default function SearchHeader() {
   const navigate = useNavigate();
   const [search, setSearch] = useState("");
+  const cartData = useRecoilValue(cartState);
 
   const goCart = () => {
     if (localStorage.getItem("token")) {
@@ -58,9 +62,10 @@ export default function SearchHeader() {
       <button type="submit" style={{ color: "black" }}>
         <img src={searchIcon} alt="검색아이콘" />
       </button>
-
-      <div onClick={goCart} style={{ color: "black" }}>
-        <img src={cartLogo2} alt="장바구니" />
+      <div onClick={goCart} style={{ color: "black", width: "60px" }}>
+        <Badge badgeContent={cartData.length} color="primary">
+          <img src={cartLogo2} alt="장바구니" />
+        </Badge>
       </div>
     </form>
   );

@@ -6,6 +6,7 @@ import { useRecoilState } from "recoil";
 import { cartState } from "../../store/atom/cartState";
 import { addressState } from "../../store/atom/addressState";
 import { useState } from "react";
+import Badge from "@mui/material/Badge";
 
 function MyPageTop() {
   const [cartData, setCartData] = useRecoilState(cartState);
@@ -85,13 +86,15 @@ function MyPageTop() {
       <div className="mcom_tit_rgt">
         <div className="btn_cate btn_cart">
           <button type="button" className="clickable" onClick={goCart}>
-            <span className="sp_ctg_icon ctg_icon_cart">
-              <span className="cmnoti_push">
-                <span className="blind" id="topCartCnt">
-                  담은 상품 수
+            <Badge badgeContent={cartData.length} color="primary">
+              <span className="sp_ctg_icon ctg_icon_cart">
+                <span className="cmnoti_push">
+                  <span className="blind" id="topCartCnt">
+                    담은 상품 수
+                  </span>
                 </span>
               </span>
-            </span>
+            </Badge>
           </button>
         </div>
         <div className="btn_cate btn_home">

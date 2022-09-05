@@ -31,7 +31,7 @@ export const postRecentSearch = async (recentData) => {
 
 //최근 검색어 가져오기
 export const getRecentSearch = async () => {
-  const res = await apiClient.get(`/searchkeyword`);
+  const res = await apiClient.get(`/searchkeyword/v2`);
   return res;
 };
 

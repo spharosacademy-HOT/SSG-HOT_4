@@ -17,7 +17,7 @@ import {
   totalPriceState,
 } from "../../../store/atom/purchaseState";
 import { postLike } from "../../../store/apis/like";
-import { addCommas } from "../../../store/utils/useful-funtions"
+import { addCommas } from "../../../store/utils/useful-funtions";
 
 function ProductPurchaseBar({ stockList }) {
   let params = useParams();
@@ -59,8 +59,9 @@ function ProductPurchaseBar({ stockList }) {
     setStockChoice(!stockChoice);
   };
   const handleSizeChoice = () => {
-    colorName === "선택하세요(색상)" ? alert("윗 옵션을 우선 선택해주세요"):
-    setSizeChoice(!sizeChoice);
+    colorName === "선택하세요(색상)"
+      ? alert("윗 옵션을 우선 선택해주세요")
+      : setSizeChoice(!sizeChoice);
   };
   const handleColor = (itemId, itemName) => {
     setColorName(itemName);
@@ -85,7 +86,8 @@ function ProductPurchaseBar({ stockList }) {
     setSizeName(itemName);
     purchaseList.includes(item)
       ? alert("동일한 옵션 상품이 이미 선택되어 있습니다.")
-      : setPurChaseList([item, ...purchaseList]) || setTotalPrice(totalPrice + price);
+      : setPurChaseList([item, ...purchaseList]) ||
+        setTotalPrice(totalPrice + price);
   };
 
   //장바구니 담고 장바구니 새로 가져오기
@@ -99,9 +101,9 @@ function ProductPurchaseBar({ stockList }) {
         };
         addMyCart(itemData).then((res) => {
           alert(res.data.message);
-        });
-        getMyCart().then((res) => {
-          setCartData(res.data);
+          getMyCart().then((res) => {
+            setCartData(res.data);
+          });
         });
       });
     } else {
