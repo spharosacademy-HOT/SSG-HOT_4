@@ -8,11 +8,13 @@ import com.ssghot.ssg.review.service.IReviewService;
 import com.ssghot.ssg.users.domain.User;
 import com.ssghot.ssg.users.sevice.IUserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -53,10 +55,16 @@ public class ReviewController {
         return iReviewService.editReview(id, reviewDtoInput);
     }
 
-    // 3. 리뷰 전체 조회하기
-    @GetMapping("/review")
-    public List<ReviewDtoOutput> getAllReview(){
-        return iReviewService.getAllReview();
+//    // 3. 리뷰 전체 조회하기 (페이지 적용 X)
+//    @GetMapping("/review")
+//    public List<ReviewDtoOutput> getAllReview(){
+//        return iReviewService.getAllReview();
+//    }
+
+    // 3. 리뷰 전체 조회하기 (페이지 적용 O)
+    @GetMapping("/review/product/{productId}")
+    public Page<ReviewDtoOutput> getAllReview(@PathVariable Long productId, @PageableDefault(size = 10) Pageable pageable){
+        return iReviewService.getAllReview(productId, pageable);
     }
 
     // 4. 리뷰 단건 조회하기

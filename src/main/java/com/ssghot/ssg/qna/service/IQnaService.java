@@ -3,6 +3,8 @@ package com.ssghot.ssg.qna.service;
 import com.ssghot.ssg.common.ResultDtoOutput;
 import com.ssghot.ssg.common.ResultsDtoOutput;
 import com.ssghot.ssg.qna.dto.*;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
@@ -24,6 +26,8 @@ public interface IQnaService {
     ResultsDtoOutput<List<QnaDtoOutput>> getAll();
 
     ResultsDtoOutput<List<QnaDtoOutput>> getQnaByProductId(Long productId);
+
+    Page<QnaDtoOutput> getQnaByProductId2(Long productId, Pageable pageable);
 
     ResultsDtoOutput<List<QnaDtoOutput>> getQnaByUserId(Long userId);
     ResultDtoOutput<QnaDtoOutput> getQnaById(Long id);

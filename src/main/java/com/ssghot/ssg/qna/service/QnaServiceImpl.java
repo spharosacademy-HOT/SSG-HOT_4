@@ -10,6 +10,8 @@ import com.ssghot.ssg.qna.repository.IQnaRepository;
 import com.ssghot.ssg.users.domain.User;
 import com.ssghot.ssg.users.repository.IUserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -50,6 +52,29 @@ public class QnaServiceImpl implements IQnaService{
             return getQnaDtoOutputList(400,"해당 제폼의 qna가 존재하지 않습니다.",null);
         }
         return getQnaDtoOutputList(200,"해당 제품의 qna정보를 모두 가져왔습니다.",allByProductId);
+    }
+
+    @Override
+    public Page<QnaDtoOutput> getQnaByProductId2(Long productId, Pageable pageable) {
+        Page<Qna> qnaList = iQnaRepository.findAllByProductIdAndParentId(productId, null, pageable);
+
+        return qnaList.map(qna -> {
+            return QnaDtoOutput.builder()
+                    .id(qna.getId())
+                    .answer(qna.isAnswer())
+                    .contents(qna.getContents())
+                    .email(qna.getUser().getEmail())
+                    .productId(qna.getProduct().getId())
+                    .secret(qna.isSecret())
+                    .phone(qna.getUser().getPhone())
+                    .title(qna.getTitle())
+                    .type(qna.getType())
+                    .userId(qna.getUser().getId())
+                    .createdDate(qna.getCreatedDate())
+                    .updatedDate(qna.getUpdatedDate())
+                    .children(qna.getChildren())
+                    .build();
+        });
     }
 
     @Override
@@ -157,4 +182,29 @@ public class QnaServiceImpl implements IQnaService{
         return new ResultsDtoOutput<>(status,message,0,null);
      }
 
+
+     // 페이지 적용
+    private ResultsDtoOutput<List<QnaDtoOutput>> getQnaDtoOutputList2(int status, String message, List<Qna> qnas) {
+        if (qnas != null) {
+            List<QnaDtoOutput> collect = qnas.stream().map(qna ->
+                    QnaDtoOutput.builder()
+                            .id(qna.getId())
+                            .answer(qna.isAnswer())
+                            .contents(qna.getContents())
+                            .email(qna.getUser().getEmail())
+                            .productId(qna.getProduct().getId())
+                            .secret(qna.isSecret())
+                            .phone(qna.getUser().getPhone())
+                            .title(qna.getTitle())
+                            .type(qna.getType())
+                            .userId(qna.getUser().getId())
+                            .createdDate(qna.getCreatedDate())
+                            .updatedDate(qna.getUpdatedDate())
+                            .children(qna.getChildren())
+                            .build()).collect(Collectors.toList());
+            return new ResultsDtoOutput<>(status, message, collect.size(), collect);
+
+        }
+        return new ResultsDtoOutput<>(status,message,0,null);
+    }
 }

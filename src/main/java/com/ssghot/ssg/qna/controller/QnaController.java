@@ -6,6 +6,9 @@ import com.ssghot.ssg.qna.dto.*;
 import com.ssghot.ssg.qna.service.IQnaService;
 import com.ssghot.ssg.users.sevice.IUserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -44,10 +47,16 @@ public class QnaController {
         return iQnaService.getQnaByUserId(userId);
     }
 
-    @GetMapping("/product/{id}")
+    @GetMapping("/product/v2/{id}")
     public ResultsDtoOutput<List<QnaDtoOutput>> getQnaListByProductId(@PathVariable Long id){
         return iQnaService.getQnaByProductId(id);
     }
+
+    @GetMapping("/product/{id}")
+    public Page<QnaDtoOutput> getQnaListByProductId2(@PathVariable Long id, @PageableDefault(size = 10) Pageable pageable){
+        return iQnaService.getQnaByProductId2(id, pageable);
+    }
+
     @PutMapping
     @PreAuthorize("hasRole('ROLE_USER')")
     public ResultDtoOutput<QnaDtoOutput> editQna(@RequestBody QnaEditDtoInput qnaEditDtoInput,HttpServletRequest request){
