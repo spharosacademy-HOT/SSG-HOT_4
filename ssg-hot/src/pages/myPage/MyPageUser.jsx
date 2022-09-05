@@ -27,7 +27,7 @@ function MyPageUser() {
           <div className="myssg_profile_info" style={{ padding: "10px 20px" }}>
             <div className="myssg_user_name">
               <a
-                href="https://member.ssg.com/m/myssg/myinfoMng/main.ssg?_mpop=new"
+                href="#"
                 className="clickable"
                 data-react-tarea="MYSSG|M_MY_SSG_회원명"
               >
@@ -40,10 +40,7 @@ function MyPageUser() {
               data-react-unit-id=""
               data-react-unit-text='[{"type":"tarea_addt_val","defaultValue": "FRIENDS"}]'
             >
-              <a
-                href="https://m.ssg.com/event/couponInfo.ssg?myssg=couponInfo"
-                className="clickable"
-              >
+              <a href="#" className="clickable">
                 <p style={{ marginBottom: "0px" }}>
                   <strong className="myssg_primary_text">
                     {userData.memberLevel}
@@ -59,10 +56,7 @@ function MyPageUser() {
         className="myssg_membership_info"
         data-react-tarea-cd="00040_000000233"
       >
-        <a
-          href="https://member.ssg.com/m/membership/gate.ssg"
-          className="clickable"
-        >
+        <a href="#" className="clickable">
           <div className="myssg_membership_header">
             <div className="myssg_membership_header_title justify_center">
               <i className="badge">

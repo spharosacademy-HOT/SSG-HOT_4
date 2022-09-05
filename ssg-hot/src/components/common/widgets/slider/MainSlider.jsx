@@ -79,10 +79,7 @@ export default function MainSlider() {
             style={{ width: "375px" }}
           >
             <div className="smhero_bn gate_unit">
-              <a
-                className="smhero_bnlink"
-                href="https://event.ssg.com/m/eventDetail.ssg?nevntId=1000000001510"
-              >
+              <a className="smhero_bnlink" href="#">
                 <div className="smhero_thumb">
                   <img
                     className="swiper-lazy swiper-lazy-loaded"
@@ -113,10 +110,7 @@ export default function MainSlider() {
             style={{ width: "375px" }}
           >
             <div className="smhero_bn gate_unit">
-              <a
-                className="smhero_bnlink"
-                href="https://event.ssg.com/m/eventDetail.ssg?nevntId=1000000001476"
-              >
+              <a className="smhero_bnlink" href="#">
                 <div className="smhero_thumb">
                   <img
                     className="swiper-lazy swiper-lazy-loaded"

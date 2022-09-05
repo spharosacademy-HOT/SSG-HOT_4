@@ -14,14 +14,14 @@ export default function FooterHeader() {
         </p>
         <div className="footerBtn">
           <a
-            href="tel:1577-3419"
+            href="#"
             className="footerBtnArea clickable"
             data-react-tarea="푸터|전화연결"
           >
             <em>전화걸기</em>
           </a>
           <a
-            href="http://talk.ssg.com/webchat?gateType=cs"
+            href="#"
             className="footerBtnArea clickable"
             data-react-tarea="푸터|고객상담톡"
           >
