@@ -2,8 +2,8 @@ import axios from "axios";
 import { getToken, isExistToken } from "../utils/useful-funtions";
 
 //baseurl
-// export const baseURL = "https://ssghot.shop/api/api";
-export const baseURL = "http://localhost:8080/api";
+export const baseURL = "https://ssghot.shop/api/api";
+// export const baseURL = "http://localhost:8080/api";
 
 const checkToken = () => {
   if (isExistToken()) {

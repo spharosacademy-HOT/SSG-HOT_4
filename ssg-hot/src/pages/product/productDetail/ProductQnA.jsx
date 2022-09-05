@@ -11,9 +11,10 @@ function ProductQnA({ item }) {
 
   const isLogin = localStorage.getItem("token");
   const [qaData, setQaData] = useState([]);
+  console.log('가지는거 맞나',qaData)
   const getProductQna = () => {
     getQna(params.productId).then((res) => {
-      setQaData(res.data.data);
+      setQaData(res.data.content);
     });
   };
   useEffect(() => {

@@ -1,7 +1,36 @@
 import React from "react";
+import { useState } from "react";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import * as Api from "../../store/apis/address";
+import { isExistToken } from "../../store/utils/useful-funtions";
 
 function MyPageOrder() {
+  const [orderValid, setOrderValid] = useState(false);
+  const [products, setProducts] = useState([]);
+  const getOrders = async () => {
+    try {
+      const getData = await Api.get("/orders/user");
+      const getProducts = getData.data.data;
+      if (!getProducts || !getData) {
+        setOrderValid(false);
+        throw new Error(`${getData.data.message}`);
+      }
+      setOrderValid(true);
+      setProducts(getProducts);
+    } catch (e) {
+      setOrderValid(false);
+      console.log(e);
+    }
+  };
+
+  useEffect(() => {
+    if (isExistToken()) {
+      getOrders();
+    }
+  }, []);
+
+
   return (
     <div className="myssg_sec">
       <div className="myssg_sec_conts" id="divMyOrderSecConts">
@@ -16,7 +45,9 @@ function MyPageOrder() {
           <ul className="myssg_process_list">
             <li>
               <span id="ordRcp" className="myssg_process_count ty_zero">
-                0
+                {
+                  products.length
+                }
               </span>
               <span id="ordRcpTxt" className="myssg_process_title">
                 주문접수

@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
-import { useRecoilState } from "recoil";
-import { totalPriceState } from "../../../store/atom/purchaseState";
+import { useRecoilState } from 'recoil';
+import { totalPriceState } from '../../../store/atom/purchaseState';
+import { addCommas } from '../../../store/utils/useful-funtions';
 
 function ProductPurchaseItem({
   purchase,

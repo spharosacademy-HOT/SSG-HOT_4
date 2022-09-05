@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import LikeButton from "../../components/common/widgets/button/LikeButton";
 import { getLike, postLike } from "../../store/apis/like";
-import { addCommas } from "../../store/utils/useful-funtions";
+import { addCommas } from "../../store/utils/useful-funtions"
 
 function ProductCard({ item, isWished }) {
   let navigate = useNavigate();
