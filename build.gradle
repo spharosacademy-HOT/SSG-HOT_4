@@ -43,8 +43,8 @@ dependencies {
 
 	testImplementation 'org.springframework.security:spring-security-test'
 	// 운영할 때 삭제
-	implementation 'com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.5.8'
-	developmentOnly('org.springframework.boot:spring-boot-devtools')
+//	implementation 'com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.5.8'
+//	developmentOnly('org.springframework.boot:spring-boot-devtools')
 	// https://mvnrepository.com/artifact/com.auth0/java-jwt
 	implementation group: 'com.auth0', name: 'java-jwt', version: '3.19.2'
 	// oauth
@@ -52,7 +52,11 @@ dependencies {
 
 	// sms 인증
 //	implementation group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.13'
-
+	// 배포
+	implementation group: 'org.springframework.boot', name: 'spring-boot-maven-plugin', version: '2.7.0'
+}
+jar {
+	enabled = false
 }
 
 tasks.named('test') {
@@ -79,6 +83,6 @@ compileQuerydsl.doFirst {
 
 //querydsl 추가 끝
 
-bootJar{
-	destinationDirectory = file("./target")
-}
+//bootJar{
+//	destinationDirectory = file("./target")
+//}

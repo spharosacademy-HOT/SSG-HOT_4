@@ -36,11 +36,11 @@ public class OrderController {
         return iOrderService.getAll();
     }
 
-    @GetMapping("/user/detail")
+    @GetMapping("/user/detail/{orderId}")
     @PreAuthorize("hasRole('ROLE_USER')")
-    public ResultDtoOutput<OrderDtoOutput> getOrderByUserIdAndOrderId(@RequestBody OrderDtoInputDetail orderDtoInputDetail, HttpServletRequest request){
+    public ResultDtoOutput<OrderDtoOutput> getOrderByUserIdAndOrderId(HttpServletRequest request,@PathVariable Long orderId){
         Long userId = iUserService.getUserByToken(request);
-        orderDtoInputDetail.setUserId(userId);
+        OrderDtoInputDetail orderDtoInputDetail = OrderDtoInputDetail.builder().id(orderId).userId(userId).build();
         return iOrderService.getOrdersByUserIdAndOrderId(orderDtoInputDetail);
     }
     @GetMapping("/user")

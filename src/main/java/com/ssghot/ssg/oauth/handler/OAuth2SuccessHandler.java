@@ -42,7 +42,7 @@ public class OAuth2SuccessHandler  extends SimpleUrlAuthenticationSuccessHandler
                 .withIssuer(request.getRequestURI().toString())
                 .sign(Algorithm.HMAC512(JwtProperties.SECRET));
 
-        String redirectUri = "http://localhost:3000/oauth/redirect";
+        String redirectUri = "https://ssghot.shop/oauth/redirect";
 
 
         String targetUrl = UriComponentsBuilder.fromUriString(redirectUri)

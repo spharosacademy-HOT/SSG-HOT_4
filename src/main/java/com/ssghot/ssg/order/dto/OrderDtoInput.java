@@ -23,6 +23,8 @@ public class OrderDtoInput {
 
     private List<OrderItemDtoInput> orderItems;
 
+
+    private String deliveryTaker;
     private String deliveryName;
     private String deliveryPhone;
     private String deliveryAddress;
@@ -37,6 +39,14 @@ public class OrderDtoInput {
     private Long userId;
     private Long couponId;
 
+    private String orderName;
+
+    private String orderPhone;
+
+    private String orderEmail;
+
+    private String orderInfo;
+
     public Order toEntity(UserCoupon userCoupon, User user){
         return Order.builder()
                 .userCoupon(userCoupon)
@@ -48,11 +58,16 @@ public class OrderDtoInput {
                 .deliveryPay(getDeliveryPay())
                 .deliveryPhone(getDeliveryPhone())
                 .deliveryAddress2(getDeliveryAddress2())
+                .deliveryTaker(getDeliveryTaker())
                 .deliveryZipcode(getDeliveryZipcode())
                 .envoice(getEnvoice())
                 .orderTotal(getOrderTotal())
                 .paymentOption(getPaymentOption())
                 .user(user)
+                .orderName(getOrderName())
+                .orderEmail(getOrderEmail())
+                .orderInfo(getOrderInfo())
+                .orderPhone(getOrderPhone())
                 .build();
     }
 }

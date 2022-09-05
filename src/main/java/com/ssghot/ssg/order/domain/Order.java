@@ -40,6 +40,9 @@ public class Order extends CommonDTO{
     // ---------배송지--------
 
     @NotNull
+    private String deliveryTaker;
+
+    @NotNull
     private String deliveryName;
 
     @NotNull
@@ -64,6 +67,16 @@ public class Order extends CommonDTO{
     @NotNull
     private String envoice;
     // ---------------------------
+
+    // ---------주문자 정보--------
+
+    private String orderName;
+
+    private String orderPhone;
+
+    private String orderEmail;
+
+    private String orderInfo;
 
     // 결제방법
     @Column(columnDefinition = "varchar(255) default '기타'")

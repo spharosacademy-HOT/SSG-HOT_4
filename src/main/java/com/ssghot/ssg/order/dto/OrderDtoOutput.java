@@ -18,6 +18,16 @@ public class OrderDtoOutput {
     private int amountPaid;
     private int orderTotal;
     private int deliveryPay;
+
+    private String orderName;
+
+    private String orderPhone;
+
+    private String orderEmail;
+
+    private String orderInfo;
+
+    private String deliveryTaker;
     private String deliveryName;
     private String deliveryPhone;
     private String deliveryAddress;

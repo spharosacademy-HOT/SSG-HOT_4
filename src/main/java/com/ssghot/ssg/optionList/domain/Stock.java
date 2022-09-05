@@ -2,10 +2,7 @@ package com.ssghot.ssg.optionList.domain;
 
 import com.ssghot.ssg.common.CommonDTO;
 import com.ssghot.ssg.product.domain.Product;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -14,6 +11,7 @@ import javax.persistence.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode(callSuper=false)
 public class Stock extends CommonDTO {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)

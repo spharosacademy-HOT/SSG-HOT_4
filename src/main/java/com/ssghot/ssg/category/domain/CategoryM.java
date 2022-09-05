@@ -28,6 +28,7 @@ public class CategoryM {
 
     @OneToMany(mappedBy = "categoryM")
     @JsonManagedReference
+    @Builder.Default
     private List<Product> productList = new ArrayList<>();
 
 //    @ManyToOne

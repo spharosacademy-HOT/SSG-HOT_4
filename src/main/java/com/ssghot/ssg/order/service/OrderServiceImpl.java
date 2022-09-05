@@ -75,11 +75,9 @@ public class OrderServiceImpl implements IOrderService{
 
     @Override
     public ResultsDtoOutput<List<OrderDtoOutputList>> getOrdersByUserId(Long userId) {
-
         // 날짜 업데이트
         iOrderItemService.bulkUpdate();
-
-        List<Order> orders = iOrderRepository.findAllByUserId(userId);
+        List<Order> orders = iOrderRepository.findAllByUserIdOrderByCreatedDateDesc(userId);
 
         if(orders.isEmpty()){
             return getOrderDtoOutputListByUserId(400,"주문정보를 가져오지 못했습니다.",null);
@@ -199,6 +197,11 @@ public class OrderServiceImpl implements IOrderService{
                 .deliveryInfo(order.getDeliveryInfo())
                 .deliveryName(order.getDeliveryName())
                 .deliveryPay(order.getDeliveryPay())
+                .deliveryTaker(order.getDeliveryTaker())
+                .orderName(order.getOrderName())
+                .orderEmail(order.getOrderEmail())
+                .orderInfo(order.getOrderInfo())
+                .orderPhone(order.getOrderPhone())
                 .orderItems(iOrderItemService.getOrderItemDtoOutputList(order.getOrderItems()))
                 .deliveryAddress2(order.getDeliveryAddress2())
                 .deliveryPhone(order.getDeliveryPhone())
