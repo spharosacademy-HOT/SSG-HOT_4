@@ -42,6 +42,8 @@ public class Product extends CommonDTO {
     private int viewCount; // 조회수
     @Column(nullable = true)
     private int sellCount; // 판매 개수
+//    @Column(nullable = true)
+//    private int reviewCount; // 리뷰 개수
     @Column(nullable = true)
     private String brandName; // 브랜드 이름
 //    @Column(nullable = true)
@@ -57,6 +59,10 @@ public class Product extends CommonDTO {
 
     @OneToMany
     private List<Review> reviewList;
+
+    public int searchReviewCount(){
+        return reviewList.size();
+    }
 
 //    @OneToMany
 //    private List<WishList> wishLists;

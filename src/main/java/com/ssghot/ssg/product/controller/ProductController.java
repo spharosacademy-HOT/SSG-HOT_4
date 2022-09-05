@@ -190,22 +190,37 @@ public class ProductController {
         return iProductService.getSearchNameAndBetweenDiscountPrice(name, minPrice, maxPrice, pageable);
     }
 
-    // 11-4. 상품 검색하기
+    // 11-4. 상품 검색하기 (유저 정보 X)
     @GetMapping("/product/search")
     public Page<ProductDtoOutputAll> getSearchNameAndPrice1(
-            String name, Long category, Integer minPrice, Integer maxPrice, @PageableDefault(size = 30) Pageable pageable){
-        // @PageableDefault(sort = "id", direction = Sort.Direction.DESC)
-        if(category == null && minPrice == null && maxPrice == null){
-            return iProductService.getSearchNameListPage(name, pageable);
-        } else if (category != null && minPrice == null && maxPrice == null) {
-//            System.out.println("category = " + category);
-            return iProductService.getSearchNameAndCategoryMIdListPage(name, category, pageable);
-        } else if (category == null) {
-            return iProductService.getSearchNameAndBetweenDiscountPrice(name, minPrice, maxPrice, pageable);
-        } else if (category != null && minPrice != null && maxPrice != null) {
-            return iProductService.getSearchNameAndCategoryMIdAndBetweenDiscountPrice(name, category, minPrice, maxPrice, pageable);
-        }
+            String name, Long category, Integer minPrice, Integer maxPrice, @PageableDefault(size = 30) Pageable pageable
+            , @RequestHeader HttpHeaders headers){
 
+        Long userId = iUserService.getUserByTokenFix(headers);
+
+        if(userId != null){
+            if(category == null && minPrice == null && maxPrice == null){
+                return iProductService.getSearchNameListPageWithUserWished(name, pageable, userId);
+            } else if (category != null && minPrice == null && maxPrice == null) {
+//            System.out.println("category = " + category);
+                return iProductService.getSearchNameAndCategoryMIdListPageWithUserWished(name, category, pageable, userId);
+            } else if (category == null) {
+                return iProductService.getSearchNameAndBetweenDiscountPriceWithUserWished(name, minPrice, maxPrice, pageable, userId);
+            } else if (category != null && minPrice != null && maxPrice != null) {
+                return iProductService.getSearchNameAndCategoryMIdAndBetweenDiscountPriceWithUserWished(name, category, minPrice, maxPrice, pageable, userId);
+            }
+        } else{
+            if(category == null && minPrice == null && maxPrice == null){
+                return iProductService.getSearchNameListPage(name, pageable);
+            } else if (category != null && minPrice == null && maxPrice == null) {
+//            System.out.println("category = " + category);
+                return iProductService.getSearchNameAndCategoryMIdListPage(name, category, pageable);
+            } else if (category == null) {
+                return iProductService.getSearchNameAndBetweenDiscountPrice(name, minPrice, maxPrice, pageable);
+            } else if (category != null && minPrice != null && maxPrice != null) {
+                return iProductService.getSearchNameAndCategoryMIdAndBetweenDiscountPrice(name, category, minPrice, maxPrice, pageable);
+            }
+        }
         return null;
     }
 

@@ -61,12 +61,27 @@ public interface IProductService {
     // 7-1. 상품 검색하기
 //    List<ProductDtoOutputAll> getSearchNameList(String keyword);
 
-    // 7-2. 상품 검색하기 (페이지)
+    // 7-2-1. 상품 검색하기 (페이징) - 이름만 (유저 정보 X)
     Page<ProductDtoOutputAll> getSearchNameListPage(String query, Pageable pageable);
 
+    // 7-2-2. 상품 검색하기 (페이징) - 이름만 (유저 정보 O)
+    Page<ProductDtoOutputAll> getSearchNameListPageWithUserWished(String query, Pageable pageable, Long userId);
+
+    // 7-3-1. 상품 검색하기 (페이징) - 이름, 카테고리 중분류 id (유저 정보 X)
     Page<ProductDtoOutputAll> getSearchNameAndCategoryMIdListPage(String query, Long id, Pageable pageable);
 
+    // 7-3-2. 상품 검색하기 (페이징) - 이름, 카테고리 중분류 id (유저 정보 O)
+    Page<ProductDtoOutputAll> getSearchNameAndCategoryMIdListPageWithUserWished(String query, Long id, Pageable pageable, Long userId);
+
+    // 7-4-1. 상품 검색하기 (페이징) - 이름, 가격대 (유저 정보 X)
     Page<ProductDtoOutputAll> getSearchNameAndBetweenDiscountPrice(String query, int minPrice, int maxPrice, Pageable pageable);
 
+    // 7-4-2. 상품 검색하기 (페이징) - 이름, 가격대 (유저 정보 O)
+    Page<ProductDtoOutputAll> getSearchNameAndBetweenDiscountPriceWithUserWished(String query, int minPrice, int maxPrice, Pageable pageable, Long userId);
+
+    // 7-5-1. 상품 검색하기 (페이징) - 이름, 가격대 (유저 정보 X)
     Page<ProductDtoOutputAll> getSearchNameAndCategoryMIdAndBetweenDiscountPrice(String keyword, Long id, int minPrice, int maxPrice, Pageable pageable);
+
+    // 7-5-2. 상품 검색하기 (페이징) - 이름, 가격대 (유저 정보 O)
+    Page<ProductDtoOutputAll> getSearchNameAndCategoryMIdAndBetweenDiscountPriceWithUserWished(String keyword, Long id, int minPrice, int maxPrice, Pageable pageable, Long userId);
 }
