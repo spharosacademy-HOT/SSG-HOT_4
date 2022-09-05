@@ -28,9 +28,11 @@ function Product() {
       setProductDatas(Response.data);
       const productId = Response.data.id;
 
-      postRecent(productId).then((res) => {
-        console.log(res, productId, "최근본아이템등록");
-      });
+      if (localStorage.getItem("token") !== null) {
+        postRecent(productId).then((res) => {
+          console.log(res, productId, "최근본아이템등록");
+        });
+      }
     });
   }, [url]);
   return (

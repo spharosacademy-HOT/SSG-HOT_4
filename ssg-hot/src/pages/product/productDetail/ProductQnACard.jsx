@@ -6,9 +6,9 @@ function ProductQnACard({ qaData, setQaData }) {
     <>
       {qaData &&
         qaData.map((qa) => (
-          <div className="product-qna-card">
+          <div className="product-qna-card" key={qa.id}>
             <div>
-              <ProductQnaItem data={qa} key={qa.id} />
+              <ProductQnaItem data={qa} />
             </div>
           </div>
         ))}

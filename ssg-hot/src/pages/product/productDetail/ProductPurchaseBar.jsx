@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import LikeButton from "../../../components/common/widgets/button/LikeButton";
 import ProductPurchaseItem from "./ProductPurchaseItem";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -36,11 +36,11 @@ function ProductPurchaseBar({ stockList }) {
   const [countData, setCountData] = useState(1);
   const [currKey, setCurrKey] = useState("");
   const [stockId, setStockId] = useState(0);
+  const navigate = useNavigate();
 
   // const totalPrice
   const handleShow = () => {
     setShow(true);
-    console.log(show);
   };
   const [barState, setBarState] = useState(0);
   const handlePresent = () => {
@@ -73,7 +73,6 @@ function ProductPurchaseBar({ stockList }) {
           console.log(e);
         }
         setSizeDatas(Response.data);
-        console.log(sizeDatas);
       });
   };
   const handleAppendStock = (itemId, itemName, item, price) => {
@@ -85,24 +84,26 @@ function ProductPurchaseBar({ stockList }) {
       : setPurChaseList([item, ...purchaseList]);
     setTotalPrice(totalPrice + price);
   };
-  console.log("현재 데이터", purchaseDatas);
+
   //장바구니 담고 장바구니 새로 가져오기
 
   const goCart = () => {
-    purchaseList.map((item) => {
-      const itemData = {
-        stockId: item.stockId,
-        count: item.count,
-      };
-      addMyCart(itemData).then((res) => {
-        console.log(res);
-        alert(res.data.message);
+    if (localStorage.getItem("token") !== null) {
+      purchaseList.map((item) => {
+        const itemData = {
+          stockId: item.stockId,
+          count: item.count,
+        };
+        addMyCart(itemData).then((res) => {
+          alert(res.data.message);
+        });
+        getMyCart().then((res) => {
+          setCartData(res.data);
+        });
       });
-      getMyCart().then((res) => {
-        setCartData(res.data);
-        console.log("다시가져오기");
-      });
-    });
+    } else {
+      navigate("/login");
+    }
   };
   useEffect(() => {
     const newPurchaseList = purchaseList.filter(
@@ -113,14 +114,10 @@ function ProductPurchaseBar({ stockList }) {
   useEffect(() => {
     // purchaseList.count = countData
     setPurChaseList(
-      purchaseList.map(
-        (item) =>
-          item.stockId === currKey ? { ...item, count: countData } : item
-        // item.stockId === currKey ? console.log('같음 : ', currKey, item.count, countData) : item
+      purchaseList.map((item) =>
+        item.stockId === currKey ? { ...item, count: countData } : item
       )
     );
-    console.log("카운터 데이터", countData, " ", currKey);
-    console.log("인덱스");
   }, [countData, currKey]);
 
   return (
