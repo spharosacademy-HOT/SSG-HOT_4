@@ -177,7 +177,7 @@ function EmailInhtmlFor() {
                 </label>
               </span>
               <a
-                href="https://member.ssg.com/policies/termsPopup.ssg?archive=ssg/20200228;"
+                href="#"
                 className="cmem_btn cmem_btn_blkline2"
                 title="새창 열림"
               >
@@ -203,7 +203,7 @@ function EmailInhtmlFor() {
                 </label>
               </span>
               <a
-                href="https://member.ssg.com/m/member/join/agreePrivacyDetail.ssg?type=privacy_email;"
+                href="#"
                 className="cmem_btn cmem_btn_blkline2"
                 title="새창 열림"
               >
@@ -446,7 +446,7 @@ function EmailInhtmlFor() {
               </label>
             </span>
             <a
-              href="https://member.ssg.com/m/member/join/agreePrivacyDetail.ssg?type=privacy_signup_terms_scom02&t=simple#;"
+              href="#"
               //   onClick={"window.open('/m/member/join/agreePrivacyDetail.ssg?type=privacy_signup_terms_scom02&t=simple');return false;"}
               title="새창열림"
               className="cmem_btn cmem_btn_blkline2"

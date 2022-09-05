@@ -38,7 +38,7 @@ function EmailA() {
                 </label>
               </span>
               <a
-                href="https://member.ssg.com/policies/termsPopup.ssg?archive=ssg/20200228;"
+                href="#"
                 className="cmem_btn cmem_btn_blkline2"
                 title="새창 열림"
               >
@@ -64,7 +64,7 @@ function EmailA() {
                 </label>
               </span>
               <a
-                href="https://member.ssg.com/m/member/join/agreePrivacyDetail.ssg?type=privacy_email;"
+                href="#"
                 className="cmem_btn cmem_btn_blkline2"
                 title="새창 열림"
               >
