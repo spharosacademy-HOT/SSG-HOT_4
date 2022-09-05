@@ -4,11 +4,11 @@ import { getRecent, getRecentSearch } from "../../store/apis/recent";
 import RecentModal from "./RecentModal";
 import RecentSearchItem from "./RecentSearchItem";
 export default function RecentItemList({ isChecked }) {
-  const [rcData, setRcData] = useState();
+  const [rcData, setRcData] = useState([]);
   const [isTrue, setIsTrue] = useState(false);
-  const [dataId, setDataId] = useState();
-  const [modalData, setModalData] = useState();
-  const [rcSearchData, setRcSearchData] = useState();
+  const [dataId, setDataId] = useState(0);
+  const [modalData, setModalData] = useState(null);
+  const [rcSearchData, setRcSearchData] = useState([]);
 
   useEffect(() => {
     getRecent()

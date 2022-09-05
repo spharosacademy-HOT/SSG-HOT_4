@@ -6,7 +6,7 @@ import SearchList from "./SearchList";
 import { getRecentSearch } from "../../store/apis/recent";
 
 export default function SearchContents() {
-  const [searchData, setSearchData] = useState();
+  const [searchData, setSearchData] = useState([]);
   useEffect(() => {
     getRecentSearch().then((res) => {
       console.log(res, "최근검색목록가져옴");

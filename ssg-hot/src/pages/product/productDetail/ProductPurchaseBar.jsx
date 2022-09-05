@@ -35,7 +35,7 @@ function ProductPurchaseBar({ stockList }) {
   const totalPurchasePrice = useRecoilValue(totalPriceState);
   const [countData, setCountData] = useState(1);
   const [currKey, setCurrKey] = useState("");
-  const [stockId, setStockId] = useState();
+  const [stockId, setStockId] = useState(0);
 
   // const totalPrice
   const handleShow = () => {

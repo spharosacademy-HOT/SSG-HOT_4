@@ -7,7 +7,7 @@ export function useScroll() {
   );
   const [scrollY, setScrollY] = useState(bodyOffset.top);
   const [scrollX, setScrollX] = useState(bodyOffset.left);
-  const [scrollDirection, setScrollDirection] = useState();
+  const [scrollDirection, setScrollDirection] = useState("");
 
   const listener = (e) => {
     setBodyOffset(document.body.getBoundingClientRect());
@@ -23,7 +23,6 @@ export function useScroll() {
       window.removeEventListener("scroll", listener);
 
       // console.log(scrollY);
-
     };
   });
 

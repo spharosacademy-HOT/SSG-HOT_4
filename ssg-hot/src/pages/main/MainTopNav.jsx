@@ -11,7 +11,7 @@ export default function MainTopNav() {
       <ul className="topnav_menu" role="navigation">
         <li className="topnav_item">
           <a
-            href="/page/home.ssg"
+            href="#"
             className="topnav_lnk on clickable"
             data-react-tarea="스와이프|매장클릭|홈"
           >
@@ -20,7 +20,7 @@ export default function MainTopNav() {
         </li>
         <li className="topnav_item">
           <a
-            href="/page/giftshop.ssg"
+            href="#"
             className="topnav_lnk clickable"
             data-react-tarea="스와이프|매장클릭|추석"
           >
@@ -33,7 +33,7 @@ export default function MainTopNav() {
         </li>
         <li className="topnav_item">
           <a
-            href="/page/ssgluxury.ssg"
+            href="#"
             className="topnav_lnk clickable"
             data-react-tarea="스와이프|매장클릭|명품관"
           >
@@ -42,7 +42,7 @@ export default function MainTopNav() {
         </li>
         <li className="topnav_item">
           <a
-            href="/page/happybuy.ssg"
+            href="#"
             className="topnav_lnk clickable"
             data-react-tarea="스와이프|매장클릭|해피라운지"
           >
@@ -51,7 +51,7 @@ export default function MainTopNav() {
         </li>
         <li className="topnav_item">
           <a
-            href="/page/best.ssg"
+            href="#"
             className="topnav_lnk clickable"
             data-react-tarea="스와이프|매장클릭|베스트"
           >
@@ -60,7 +60,7 @@ export default function MainTopNav() {
         </li>
         <li className="topnav_item">
           <a
-            href="/page/ssgdept.ssg"
+            href="#"
             className="topnav_lnk clickable"
             data-react-tarea="스와이프|매장클릭|백화점"
           >
@@ -69,7 +69,7 @@ export default function MainTopNav() {
         </li>
         <li className="topnav_item">
           <a
-            href="/page/brand.ssg"
+            href="#"
             className="topnav_lnk clickable"
             data-react-tarea="스와이프|매장클릭|브랜드"
           >

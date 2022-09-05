@@ -30,8 +30,10 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import SearchResult from "./pages/search/SearchResult";
 import OrderControl from "./pages/myPage/myOrder/OrderControl";
 import OrderFinalDetail from "./pages/myPage/myOrder/OrderFinalDetail";
+import Modal from "react-modal";
 
 function App() {
+  Modal.setAppElement("#root");
   return (
     <RecoilRoot>
       <BrowserRouter className="test">

@@ -6,7 +6,7 @@ import toolMenu from "../../../datas/js/toolBar";
 
 export default function ToolBar() {
   let pageUrl = useLocation();
-  const [pagePath, setPagePath] = useState();
+  const [pagePath, setPagePath] = useState("");
 
   useEffect(() => {
     setPagePath(pageUrl.pathname);
