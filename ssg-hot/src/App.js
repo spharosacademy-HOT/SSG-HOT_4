@@ -28,6 +28,8 @@ import KakaoRedirectHandler from "./pages/auth/oauth/KakaoRedirectHandler";
 import "./styles/styles.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import SearchResult from "./pages/search/SearchResult";
+import OrderControl from "./pages/myPage/myOrder/OrderControl";
+import OrderFinalDetail from "./pages/myPage/myOrder/OrderFinalDetail";
 
 function App() {
   return (
@@ -64,6 +66,8 @@ function App() {
           <Route path="/search" element={<SearchResult />}>
             <Route path=":productName" element={<SearchResult />} />
           </Route>
+          <Route path="/order/detail" element={<OrderFinalDetail />} />
+          <Route path="/order" element={<OrderControl />} />
         </Routes>
         <ToolBar />
         <Footer />
