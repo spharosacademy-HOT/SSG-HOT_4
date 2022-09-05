@@ -41,10 +41,7 @@ function SignUpInput() {
             </li>
           </ul>
           <div className="cmem_btn_area" style={{ margin: "30px 0" }}>
-            <a
-              href="https://member.ssg.com/m/member/join/auth.ssg"
-              className="cmem_btn cmem_btn_orange"
-            >
+            <a href="#" className="cmem_btn cmem_btn_orange">
               통합회원가입
             </a>
           </div>

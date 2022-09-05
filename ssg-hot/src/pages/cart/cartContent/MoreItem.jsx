@@ -4,7 +4,7 @@ export default function MoreItem() {
   return (
     <div className="mnodr_recomm_morebtn" style={{ marginBottom: 0 }}>
       <a
-        href="javascript:void(0);"
+        href=""
         className="mnodr_more layer_filter cartTracking"
         id="emptyBtn"
         style={{ textDecoration: "none" }}

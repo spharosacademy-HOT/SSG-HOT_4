@@ -20,10 +20,7 @@ export default function MainTemp3() {
             <ul className="smhero_bnlist" data-areaid="smhero" data-impyn="Y">
               <li>
                 <div className="smhero_bn gate_unit">
-                  <a
-                    className="smhero_bnlink"
-                    href="https://event.ssg.com/m/eventDetail.ssg?nevntId=1000000001510"
-                  >
+                  <a className="smhero_bnlink" href="#">
                     <div className="smhero_thumb">
                       <img
                         className="ssg_lazy"
@@ -51,10 +48,7 @@ export default function MainTemp3() {
               </li>
               <li>
                 <div className="smhero_bn gate_unit">
-                  <a
-                    className="smhero_bnlink"
-                    href="https://event.ssg.com/m/eventDetail.ssg?nevntId=1000000001476"
-                  >
+                  <a className="smhero_bnlink" href="#">
                     <div className="smhero_thumb">
                       <img
                         className="ssg_lazy"
@@ -82,10 +76,7 @@ export default function MainTemp3() {
               </li>
               <li>
                 <div className="smhero_bn gate_unit">
-                  <a
-                    className="smhero_bnlink"
-                    href="https://event.ssg.com/m/eventDetail.ssg?nevntId=1000000001481"
-                  >
+                  <a className="smhero_bnlink" href="#">
                     <div className="smhero_thumb">
                       <img
                         className="ssg_lazy"
