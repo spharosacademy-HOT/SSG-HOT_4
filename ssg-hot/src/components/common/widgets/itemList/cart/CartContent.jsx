@@ -69,7 +69,6 @@ export default function CartContent({
       <CartUtil id={id} />
       <CartTitle name={desc.name} info={desc.detail} productId={desc.id} />
       <CartOption optionFirst={optionFirst} optionSecond={optionSecond} />
-      {count}
       <div className="cartItemPrice">
         <div>
           <div className="oldPrice">

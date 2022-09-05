@@ -8,6 +8,13 @@ export default function SearchHeader() {
   const navigate = useNavigate();
   const [search, setSearch] = useState("");
 
+  const goCart = () => {
+    if (localStorage.getItem("token")) {
+      navigate("/cart");
+    } else {
+      navigate("/login");
+    }
+  };
   const onChangeSearch = (e) => {
     e.preventDefault();
     setSearch(e.target.value);
@@ -21,9 +28,11 @@ export default function SearchHeader() {
         searchKeyword: search,
         userId: sessionStorage.getItem("id"),
       };
-      postRecentSearch(recentData).then((res) => {
-        console.log(res, "최근검색어 등록");
-      });
+      if (localStorage.getItem("token") !== null) {
+        postRecentSearch(recentData).then((res) => {
+          console.log(res, "최근검색어 등록");
+        });
+      }
       navigate(`/search/${search}`);
     }
   };
@@ -50,9 +59,9 @@ export default function SearchHeader() {
         <img src={searchIcon} alt="검색아이콘" />
       </button>
 
-      <Link to="/cart" style={{ color: "black" }}>
+      <div onClick={goCart} style={{ color: "black" }}>
         <img src={cartLogo2} alt="장바구니" />
-      </Link>
+      </div>
     </form>
   );
 }

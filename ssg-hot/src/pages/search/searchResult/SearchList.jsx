@@ -10,14 +10,14 @@ export default function SearchList() {
 
   useEffect(() => {
     getSearch(params.productName).then((res) => {
-      console.log(res, "검색어 가져오기");
+      console.log(res);
       setSearchData(res);
     });
   }, []);
-  console.log(searchData);
 
   return (
     <>
+      <SearchFilter name={params.productName} setSearchData={setSearchData} />
       {searchData.length == 0 ? (
         <div style={{ padding: "20px" }}>
           <p>
@@ -27,7 +27,6 @@ export default function SearchList() {
         </div>
       ) : (
         <>
-          <SearchFilter />
           <div className="product-list">
             {searchData &&
               searchData.map((item, idx) => (

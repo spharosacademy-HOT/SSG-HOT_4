@@ -10,7 +10,14 @@ export default function CartToolBarBtn() {
         data-tracking-value="선물하기"
       >
         <i className="icon ty_md icon_gift" aria-hidden="true"></i>
-        <span className="mnodr_txt_gift">선물하기</span>
+        <span
+          className="mnodr_txt_gift"
+          onClick={() => {
+            alert("준비 중입니다.");
+          }}
+        >
+          선물하기
+        </span>
       </button>
       <button
         type="button"

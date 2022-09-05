@@ -10,17 +10,16 @@ function ProductQnA({ item }) {
   let params = useParams();
 
   const isLogin = localStorage.getItem("token");
-  const [qaData, setQaData] = useState();
+  const [qaData, setQaData] = useState([]);
   const getProductQna = () => {
     getQna(params.productId).then((res) => {
-      console.log(res, "???????????");
       setQaData(res.data.data);
     });
   };
   useEffect(() => {
     getProductQna();
   }, []);
-  console.log(item, "아이템 정보");
+
   return (
     <>
       <div className="product-qna">

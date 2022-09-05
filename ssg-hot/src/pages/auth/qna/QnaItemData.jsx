@@ -6,8 +6,8 @@ import { baseURL } from "../../../store/apis/apiClient";
 
 function QnaItemData() {
   // let params = useParams();
-// console.log(params)
-  const [qaData, setQaData] = useState();
+  // console.log(params)
+  const [qaData, setQaData] = useState([]);
 
   // useEffect(() => {
   //   axios.get(`${baseURL}/qna/${params}`).then((Response) => {

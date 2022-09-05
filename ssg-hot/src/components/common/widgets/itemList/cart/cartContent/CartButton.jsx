@@ -15,13 +15,12 @@ const customStyles = {
     width: "100%",
   },
 };
-Modal.setAppElement("#root");
 
 export default function CartButton({ optionList, productId, cartId }) {
   const [optionFirst, setOptionFirst] = useState(optionList.optionFirsts);
   const [optionSecond, setOptionSecond] = useState(optionList.optionSeconds);
-  const [option1, setOption1] = useState();
-  const [option2, setOption2] = useState();
+  const [option1, setOption1] = useState("");
+  const [option2, setOption2] = useState("");
 
   // const [cartData, setCartData] = useRecoilState(cartState);
 

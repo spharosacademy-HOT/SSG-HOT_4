@@ -20,7 +20,7 @@ function CartControlFooter({ changeExisted, changeExistedHandle }) {
             <button
               type="button"
               className="myodr_btn myodr_btn_gray"
-              onClick={() => alert("준비중입니다.")}
+              onClick={() => alert("준비 중입니다.")}
             >
               <span>이번만배송지 설정</span>
             </button>
@@ -47,7 +47,7 @@ function CartControlFooter({ changeExisted, changeExistedHandle }) {
       </div>
 
       <div className="myodr_banner">
-        <a href="http://m.ssg.com/service/eosPickup.ssg?salestrNo=2498">
+        <a href="#">
           <img
             src="//sui.ssgcdn.com/ui/m_ssg/img/cs/bn_pickup.jpg"
             alt="청계천점 PIXEL OPEN 온라인 주문하고 원하는 시간에 픽업을 쓱"

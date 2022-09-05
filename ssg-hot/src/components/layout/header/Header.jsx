@@ -15,7 +15,7 @@ export default function Header() {
   let params = useParams();
   const navigate = useNavigate();
 
-  const [pagePath, setPagePath] = useState();
+  const [pagePath, setPagePath] = useState("");
   const [cartData, setCartData] = useRecoilState(cartState);
   const [addressData, setAddressData] = useRecoilState(addressState);
 
@@ -69,6 +69,8 @@ export default function Header() {
           navigate("/cart");
         });
       });
+    } else {
+      navigate("/login");
     }
   };
 

@@ -53,7 +53,7 @@ function MyPageOrder() {
                 주문접수
               </span>
               <a
-                href="https://pay.ssg.com/m/myssg/orderInfo.ssg?searchType=6&searchCheckBox=%2C15"
+                href="#"
                 className="myssg_process_link"
                 data-react-tarea="MYSSG|M_MY_SSG_주문배송조회_주문접수"
               >
@@ -68,7 +68,7 @@ function MyPageOrder() {
                 결제완료
               </span>
               <a
-                href="https://pay.ssg.com/m/myssg/orderInfo.ssg?searchType=6&searchCheckBox=%2C11"
+                href="#"
                 className="myssg_process_link"
                 data-react-tarea="MYSSG|M_MY_SSG_주문배송조회_결제완료"
               >
@@ -83,7 +83,7 @@ function MyPageOrder() {
                 상품준비중
               </span>
               <a
-                href="https://pay.ssg.com/m/myssg/orderInfo.ssg?searchType=6&searchCheckBox=%2C12"
+                href="#"
                 className="myssg_process_link"
                 data-react-tarea="MYSSG|M_MY_SSG_주문배송조회_상품준비중"
               >
@@ -98,7 +98,7 @@ function MyPageOrder() {
                 배송중
               </span>
               <a
-                href="https://pay.ssg.com/m/myssg/orderInfo.ssg?searchType=6&searchCheckBox=%2C13"
+                href="#"
                 className="myssg_process_link"
                 data-react-tarea="MYSSG|M_MY_SSG_주문배송조회_배송중"
               >
@@ -119,7 +119,7 @@ function MyPageOrder() {
                 </button>
               </span>
               <a
-                href="https://pay.ssg.com/m/myssg/orderInfo.ssg?searchType=6&searchCheckBox=%2C14"
+                href="#"
                 className="myssg_process_link"
                 data-react-tarea="MYSSG|M_MY_SSG_주문배송조회_배송완료"
               >
@@ -135,7 +135,7 @@ function MyPageOrder() {
               00
             </span>
             <a
-              href="https://pay.ssg.com/m/myssg/orderInfo.ssg?searchType=6&searchCheckBox=%2C16"
+              href="#"
               className="myssg_claim_link"
               data-react-tarea="MYSSG|M_MY_SSG_주문배송조회_취소"
             >
@@ -148,7 +148,7 @@ function MyPageOrder() {
               00
             </span>
             <a
-              href="https://pay.ssg.com/m/myssg/orderInfo.ssg?searchType=6&searchCheckBox=%2C18"
+              href="#"
               className="myssg_claim_link"
               data-react-tarea="MYSSG|M_MY_SSG_주문배송조회_교환"
             >
@@ -161,7 +161,7 @@ function MyPageOrder() {
               00
             </span>
             <a
-              href="https://pay.ssg.com/m/myssg/orderInfo.ssg?searchType=6&searchCheckBox=%2C17"
+              href="#"
               className="myssg_claim_link"
               data-react-tarea="MYSSG|M_MY_SSG_주문배송조회_반품"
             >

@@ -12,27 +12,20 @@ import axios from "axios";
 import { baseURL } from "../../store/apis/apiClient";
 
 function Category() {
+  const [cateNumber, setCateNumber] = useState(0);
+  const [isClick, setIsClick] = useState(false);
+  const [rowData, setRowData] = useState(false);
+  const [cateDatas, setCateDates] = useState([]);
 
-  const [cateNumber , setCateNumber] = useState(0)
-  const [isClick, setIsClick] = useState(false)
-  const [rowData, setRowData] = useState(false)
-  const [cateDatas, setCateDates] =useState([])
-  
-
-  useEffect(()=>{
-    let setTrues = [ false, false, false, false ];
-    console.log(cateNumber)
-    setTrues[cateNumber]=true
-    console.log('상황',setTrues)
-  },[cateNumber])
-  useEffect(()=>{
-    axios
-      .get(`${baseURL}/category`)
-      .then((Response) =>{
-        setCateDates(Response.data)
-        console.log('cateDatas',cateDatas)
-      })
-  },[])
+  useEffect(() => {
+    let setTrues = [false, false, false, false];
+    setTrues[cateNumber] = true;
+  }, [cateNumber]);
+  useEffect(() => {
+    axios.get(`${baseURL}/category`).then((Response) => {
+      setCateDates(Response.data);
+    });
+  }, []);
 
   return (
     <div>
@@ -40,23 +33,21 @@ function Category() {
       {/* 카테고리 */}
       <div className="category">
         {/* 카테고리 하나하나 */}
-        {
-          cateDatas && cateDatas.map(cateData => (
+        {cateDatas &&
+          cateDatas.map((cateData) => (
             <CategoryGroup
               key={cateData.row}
               cateData={cateData}
               viewIsTrue={false}
-              cateNumber = {cateNumber}
+              cateNumber={cateNumber}
               setCateNumber={setCateNumber}
-              isClick={isClick} 
+              isClick={isClick}
               setIsClick={setIsClick}
-              cateId = {cateData.id}
-
+              cateId={cateData.id}
               setRowData={setRowData}
               rowData={rowData}
             />
-          ))
-        }
+          ))}
       </div>
       {/* 테마추천 */}
       <div>
@@ -67,7 +58,7 @@ function Category() {
       {/* SSG 서비스 추천 */}
       <div>
         <div className="category-ssg-service">
-          <ServiceRecommend/>
+          <ServiceRecommend />
         </div>
       </div>
       <footer className="category-footer">

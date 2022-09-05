@@ -1,15 +1,13 @@
-import React from 'react'
+import React from "react";
 function MyPageQuick() {
   return (
-    
     <div className="myssg_sec">
       <div className="myssg_sec_conts">
         <h3 className="myssg_sec_title">자주찾는 메뉴</h3>
         <ul className="myssg_quick_list">
-
           <li>
             <a
-              href="https://m.ssg.com/myssg/productMng/frequentlyOrderItem.ssg?_mpop=new"
+              href="#"
               className="myssg_quick_link clickable"
               data-react-tarea="MYSSG|메인|자주찾는메뉴_자주구매"
             >
@@ -19,7 +17,7 @@ function MyPageQuick() {
           </li>
           <li>
             <a
-              href="https://m.ssg.com/myssg/activityMng/itemNotiList.ssg?_mpop=new"
+              href="#"
               className="myssg_quick_link clickable"
               data-react-tarea="MYSSG|메인|자주찾는메뉴_입고알림"
             >
@@ -29,7 +27,7 @@ function MyPageQuick() {
           </li>
           <li>
             <a
-              href="https://member.ssg.com/m/myssg/ssgmoneyMng/giftSwapMain.ssg?_mpop=new"
+              href="#"
               className="myssg_quick_link clickable"
               data-react-tarea="MYSSG|메인|자주찾는메뉴_상품권전환"
             >
@@ -39,7 +37,7 @@ function MyPageQuick() {
           </li>
           <li>
             <a
-              href="https://m.ssg.com/myssg/gift/recvList.ssg?_mpop=new"
+              href="#"
               className="myssg_quick_link clickable"
               data-react-tarea="MYSSG|메인|자주찾는메뉴_선물함"
             >
@@ -49,7 +47,7 @@ function MyPageQuick() {
           </li>
           <li>
             <a
-              href="https://pay.ssg.com/m/myssg/orderInfoCoolerBagInfo.ssg?_mpop=new"
+              href="#"
               className="myssg_quick_link clickable"
               data-react-tarea="MYSSG|메인|자주찾는메뉴_알비백관리"
             >
@@ -59,7 +57,7 @@ function MyPageQuick() {
           </li>
           <li>
             <a
-              href="https://m.ssg.com/myssg/activityMng/eventEntryStatusList.ssg?_mpop=new"
+              href="#"
               className="myssg_quick_link clickable"
               data-react-tarea="MYSSG|메인|자주찾는메뉴_이벤트현황"
             >
@@ -69,7 +67,7 @@ function MyPageQuick() {
           </li>
           <li>
             <a
-              href="https://m.ssg.com/myssg/activityMng/postngQna.ssg?_mpop=new"
+              href="#"
               className="myssg_quick_link clickable"
               data-react-tarea="MYSSG|메인|자주찾는메뉴_상품Q&amp;A"
             >
@@ -79,7 +77,7 @@ function MyPageQuick() {
           </li>
           <li>
             <a
-              href="https://m.ssg.com/customer/main.ssg?_mpop=new"
+              href="#"
               className="myssg_quick_link clickable"
               data-react-tarea="MYSSG|메인|자주찾는메뉴_고객센터"
             >
@@ -89,7 +87,7 @@ function MyPageQuick() {
           </li>
           <li>
             <a
-              href="http://talk.ssg.com/webchat?gateType=cs&siteNo=6005');"
+              href="#"
               className="myssg_quick_link clickable"
               data-react-tarea="MYSSG|메인|자주찾는메뉴_고객센터톡"
             >
@@ -99,7 +97,7 @@ function MyPageQuick() {
           </li>
           <li>
             <a
-              href="https://m.ssg.com/myssg/activityMng/counselForm.ssg?_mpop=new&myssg=counselForm"
+              href="#"
               className="myssg_quick_link clickable"
               data-react-tarea="MYSSG|메인|자주찾는메뉴_이메일상담"
             >
@@ -109,7 +107,7 @@ function MyPageQuick() {
           </li>
           <li>
             <a
-              href="https://m.ssg.com/myssg/activityMng/counselList.ssg?_mpop=new&myssg=counselList"
+              href="#"
               className="myssg_quick_link clickable"
               data-react-tarea="MYSSG|메인|자주찾는메뉴_이메일답변"
             >
@@ -119,7 +117,7 @@ function MyPageQuick() {
           </li>
           <li>
             <a
-              href="https://member.ssg.com/m/member/infoRcvAgree.ssg?_mpop=new&myssg=infoRcvAgree"
+              href="#"
               className="myssg_quick_link clickable"
               data-react-tarea="MYSSG|메인|자주찾는메뉴_수신동의"
             >
@@ -135,10 +133,7 @@ function MyPageQuick() {
       </div>
       <div className="myssg_sec">
         <div className="myssg_sec_conts">
-          <a
-            href="https://m.ssg.com/myssg/activityMng/pdtEvalList.ssg?_mpop=new&quick=pdtEvalList&tabDiv=item"
-            className="myssg_sec_title"
-          >
+          <a href="#" className="myssg_sec_title">
             리뷰 작성
           </a>
           <p className="myssg_desc_text">
@@ -150,7 +145,7 @@ function MyPageQuick() {
           </p>
           <div className="myssg_premium_reivew">
             <a
-              href="https://m.ssg.com/event/eventDetail.ssg?promId=1100902115"
+              href="#"
               className="myssg_review_promotion"
               data-react-tarea="MYSSG|M_MY_SSG_배너_내상품평"
             >
@@ -161,10 +156,7 @@ function MyPageQuick() {
             </a>
           </div>
           <div className="myssg_writable_review">
-            <a
-              href="https://m.ssg.com/myssg/activityMng/pdtEvalList.ssg?tabDiv=item&_mpop=new"
-              className="myssg_writable_review_content"
-            >
+            <a href="#" className="myssg_writable_review_content">
               <strong className="myssg_writable_review_title">
                 지금 작성 가능한 리뷰
               </strong>

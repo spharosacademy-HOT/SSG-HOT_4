@@ -23,7 +23,7 @@ function ProductCardList() {
         });
     }
   }, []);
-  console.log(productDatas);
+
   return (
     <>
       <ProductCardFilter />

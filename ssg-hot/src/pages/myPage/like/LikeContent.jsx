@@ -3,7 +3,7 @@ import { getLike } from "../../../store/apis/like";
 import ProductCard from "../../product/ProductCard";
 import LikeProduct from "./LikeProduct";
 function LikeContnent() {
-  const [likeData, setLikeData] = useState();
+  const [likeData, setLikeData] = useState([]);
   const [size, setSize] = useState(0);
   useEffect(() => {
     getLike().then((res) => {

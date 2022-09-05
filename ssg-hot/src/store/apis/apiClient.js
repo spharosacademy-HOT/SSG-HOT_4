@@ -5,12 +5,12 @@ import { getToken, isExistToken } from "../utils/useful-funtions";
 export const baseURL = "https://ssghot.shop/api/api";
 // export const baseURL = "http://localhost:8080/api";
 
-const checkToken = ()=>{
-  if(isExistToken()){
-    return `Bearer ${getToken()}`
+const checkToken = () => {
+  if (isExistToken()) {
+    return `Bearer ${getToken()}`;
   }
   return ``;
-}
+};
 // 로컬에서 토큰 가져오기
 let ACCESS_TOKEN = checkToken();
 // console.log(ACCESS_TOKEN);
@@ -40,7 +40,7 @@ export const apiClient = axios.create({
 export const fileApiClient = axios.create({
   baseURL: baseURL,
   headers: {
-    Authorization:ACCESS_TOKEN,
+    Authorization: ACCESS_TOKEN,
     "Content-type": "multipart/form-data",
   },
 });
