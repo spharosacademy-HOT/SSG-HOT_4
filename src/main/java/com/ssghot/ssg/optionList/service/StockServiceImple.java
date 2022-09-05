@@ -159,6 +159,7 @@ public class StockServiceImple implements IStockService{
                             .stockId(stock.getId())
                             .optionSecond(stock.getOptionSecond())
                             .qty(stock.getQty())
+                            .regularPrice(stock.getProduct().getRegularPrice())
                             .discountPrice(stock.getProduct().getDiscountPrice())
                             .productId(stock.getProduct().getId())
                             .productName(stock.getProduct().getName())

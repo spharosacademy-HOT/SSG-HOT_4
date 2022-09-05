@@ -23,6 +23,8 @@ public class StockDtoOutputOptSecondQty {
 
     private String productDetail;
 
+    private int regularPrice;
+
     private int discountPrice;
 
     private String titleImgUrl;

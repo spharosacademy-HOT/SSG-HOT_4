@@ -7,11 +7,13 @@ import com.ssghot.ssg.product.dto.*;
 import com.ssghot.ssg.product.repository.IProductRepository;
 import com.ssghot.ssg.product.service.IProductService;
 import com.ssghot.ssg.product.service.IProductSubImgService;
+import com.ssghot.ssg.users.sevice.IUserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.HttpHeaders;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,6 +30,8 @@ public class ProductController {
     private final IStockRepository iStockRepository;
 
     private final IProductRepository iProductRepository;
+
+    private final IUserService iUserService;
 
     /*
         1. 상품 등록하기
@@ -90,11 +94,24 @@ public class ProductController {
         return productPage;
     }
 
+//    // 3-5. 상품 전체 조회하기 (슬라이스)
+//    @GetMapping("/product")
+//    public Slice<ProductDtoOutputAll> getAllProductSlice(Pageable pageable){
+//        Slice<ProductDtoOutputAll> productPage = iProductService.getProductAllSlice(pageable);
+////        Page<ProductDtoOutputAll> productDtoOutputAllList = iProductService.getProductAll(pageable);
+//        return productPage;
+//    }
+
     // 3-5. 상품 전체 조회하기 (슬라이스)
     @GetMapping("/product")
-    public Slice<ProductDtoOutputAll> getAllProductSlice(Pageable pageable){
+    public Slice<ProductDtoOutputAll> getAllProductSlice(Pageable pageable, @RequestHeader HttpHeaders headers){
+        Long userId = iUserService.getUserByTokenFix(headers);
+
+        if(userId != null){ // 유저 정보 있을 때
+            Slice<ProductDtoOutputAll> productPage = iProductService.getProductAllWithUserWishedSlice(pageable, userId);
+            return productPage;
+        } // 유저 정보 없을 떄
         Slice<ProductDtoOutputAll> productPage = iProductService.getProductAllSlice(pageable);
-//        Page<ProductDtoOutputAll> productDtoOutputAllList = iProductService.getProductAll(pageable);
         return productPage;
     }
 
