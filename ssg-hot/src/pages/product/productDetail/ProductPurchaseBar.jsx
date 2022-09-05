@@ -1,5 +1,4 @@
-import React, { useEffect } from "react";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import LikeButton from "../../../components/common/widgets/button/LikeButton";
 import ProductPurchaseItem from "./ProductPurchaseItem";
@@ -19,7 +18,7 @@ import {
 import { postLike } from "../../../store/apis/like";
 import { addCommas } from "../../../store/utils/useful-funtions";
 
-function ProductPurchaseBar({ stockList, isWished }) {
+function ProductPurchaseBar({ stockList, isWished, setIsWished }) {
   let params = useParams();
   const id = params.productId;
   const token = localStorage.getItem("token");
@@ -38,10 +37,8 @@ function ProductPurchaseBar({ stockList, isWished }) {
   const [countData, setCountData] = useState(1);
   const [currKey, setCurrKey] = useState("");
   const [stockId, setStockId] = useState(0);
-  const [isLike, setIsLike] = useState(isWished);
   const navigate = useNavigate();
 
-  // const totalPrice
   const handleShow = () => {
     setShow(true);
   };
@@ -119,6 +116,7 @@ function ProductPurchaseBar({ stockList, isWished }) {
       navigate("/login");
     }
   };
+
   useEffect(() => {
     const newPurchaseList = purchaseList.filter(
       (item) => item.stockId !== deleteId
@@ -148,7 +146,7 @@ function ProductPurchaseBar({ stockList, isWished }) {
           <li className="product-choice">
             {/* 찜하기 컴포넌트 만들어서 넣기 */}
             <div onClick={changeLike}>
-              <LikeButton isLike={isLike} setIsLike={setIsLike} />
+              <LikeButton isLike={isWished} setIsLike={setIsWished} />
             </div>
           </li>
           <li className="product-present">
