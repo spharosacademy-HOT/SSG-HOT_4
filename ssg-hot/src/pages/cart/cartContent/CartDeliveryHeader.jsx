@@ -1,11 +1,15 @@
 import React from "react";
 
-export default function CartDeliveryHeader() {
+export default function CartDeliveryHeader({ showAll }) {
   return (
     <div className="cartDeliveryHeader">
       <label htmlFor=""></label>
       <span>
-        <input type="checkbox" />
+        {showAll ? (
+          <input type="checkbox" checked />
+        ) : (
+          <input type="checkbox" />
+        )}
       </span>
       <div className="titleWrap">
         <div className="titleArea">

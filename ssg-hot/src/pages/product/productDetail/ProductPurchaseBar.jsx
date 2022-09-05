@@ -19,7 +19,7 @@ import {
 import { postLike } from "../../../store/apis/like";
 import { addCommas } from "../../../store/utils/useful-funtions";
 
-function ProductPurchaseBar({ stockList }) {
+function ProductPurchaseBar({ stockList, isWished }) {
   let params = useParams();
   const id = params.productId;
   const token = localStorage.getItem("token");
@@ -38,7 +38,7 @@ function ProductPurchaseBar({ stockList }) {
   const [countData, setCountData] = useState(1);
   const [currKey, setCurrKey] = useState("");
   const [stockId, setStockId] = useState(0);
-  const [isLike, setIsLike] = useState(false);
+  const [isLike, setIsLike] = useState(isWished);
   const navigate = useNavigate();
 
   // const totalPrice
