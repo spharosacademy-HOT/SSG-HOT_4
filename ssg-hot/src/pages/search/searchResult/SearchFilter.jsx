@@ -1,8 +1,69 @@
-import React from "react";
+import React, { useState } from "react";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import menuImg from "../../../assets/img/png/menu.png";
-export default function SearchFilter() {
+import * as Api from "../../../store/apis/address";
+import { categoryDatas, orderList } from "./SearchFilterData";
+
+export default function SearchFilter({ name, setSearchData }) {
+  const [orderby, setOrderby] = useState("전체");
+  const [categorOrderby, setCategoryOrderby] = useState("전체");
+
+  const selectChangeHandleSecond = async (eventKey) => {
+    setCategoryOrderby(eventKey);
+    try {
+      const getOrder = orderList.orderby.filter(
+        (item) => item.name === orderby
+      );
+      const getCategoryId = categoryDatas.categoryMList.filter(
+        (item) => item.name === eventKey
+      );
+
+      if (!getOrder || !getCategoryId) {
+        throw new Error(getOrder);
+      }
+      const sendOrderby = getOrder[0].id;
+      const sendCategory = getCategoryId[0].id;
+      const getSearch = await Api.get(
+        `/product/search?name=${name}&sort=${sendOrderby}&category=${sendCategory}`
+      );
+
+      if (!getSearch) {
+        throw new Error(getSearch);
+      }
+      setSearchData(getSearch.data.content);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+  const selectChangeHandleFirst = async (eventKey) => {
+    setOrderby(eventKey);
+
+    try {
+      const getOrder = orderList.orderby.filter(
+        (item) => item.name === eventKey
+      );
+      const getCategoryId = categoryDatas.categoryMList.filter(
+        (item) => item.name === categorOrderby
+      );
+
+      if (!getOrder || !getCategoryId) {
+        throw new Error(getOrder);
+      }
+      const sendOrderby = getOrder[0].id;
+      const sendCategory = getCategoryId[0].id;
+      const getSearch = await Api.get(
+        `/product/search?name=${name}&sort=${sendOrderby}&category=${sendCategory}`
+      );
+
+      if (!getSearch) {
+        throw new Error(getSearch);
+      }
+      setSearchData(getSearch.data.content);
+    } catch (e) {
+      console.log(e);
+    }
+  };
   return (
     <div className="searchToolBar">
       <div>
@@ -16,51 +77,91 @@ export default function SearchFilter() {
           title="백화점상품"
         >
           <Dropdown.Item>백화점상품</Dropdown.Item>
-          <Dropdown.Item>매장픽업</Dropdown.Item>
         </DropdownButton>
       </div>
       <div>
         <DropdownButton
           variant="light"
           id="dropdown-basic-button"
-          title="추천순"
+          title={orderby}
+          onSelect={selectChangeHandleFirst}
         >
-          <Dropdown.Item>추천순</Dropdown.Item>
-          <Dropdown.Item>판매량순</Dropdown.Item>
-          <Dropdown.Item>낮은가격순</Dropdown.Item>
-          <Dropdown.Item>높은가격순</Dropdown.Item>
-          <Dropdown.Item>할인율순</Dropdown.Item>
-          <Dropdown.Item>신상품순</Dropdown.Item>
-          <Dropdown.Item>리뷰많은순</Dropdown.Item>
+          <Dropdown.Item eventKey="전체">전체</Dropdown.Item>
+          <Dropdown.Item eventKey="낮은가격순">낮은가격순</Dropdown.Item>
+          <Dropdown.Item eventKey="높은가격순">높은가격순</Dropdown.Item>
+          <Dropdown.Item eventKey="할인율순">할인율순</Dropdown.Item>
         </DropdownButton>
       </div>
       <div>
-        <DropdownButton id="dropdown-basic-button" variant="light" title="필터">
+        <DropdownButton
+          id="dropdown-basic-button"
+          variant="light"
+          title={categorOrderby}
+        >
           <div className="searchToolBar">
             <div>카테고리</div>
             <DropdownButton
               id="dropdown-basic-button"
               variant="light"
-              title="전체"
+              title={categorOrderby}
+              onSelect={selectChangeHandleSecond}
             >
-              <Dropdown.Item>패션의류</Dropdown.Item>
-              <Dropdown.Item>명품/잡화/쥬얼리</Dropdown.Item>
-              <Dropdown.Item>뷰티</Dropdown.Item>
-              <Dropdown.Item>가구/인테리어</Dropdown.Item>
-              <Dropdown.Item>유아동</Dropdown.Item>
-              <Dropdown.Item>스포츠/레저</Dropdown.Item>
-            </DropdownButton>
-          </div>
-          <div className="searchToolBar">
-            <div>가격</div>
-            <DropdownButton
-              id="dropdown-basic-button"
-              variant="light"
-              title="전체"
-            >
-              <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-              <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-              <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+              <Dropdown.Item eventKey="전체">전체</Dropdown.Item>
+              <Dropdown.Item eventKey="명품/수입의류">
+                명품/수입의류
+              </Dropdown.Item>
+              <Dropdown.Item eventKey="여성브랜드패션">
+                여성브랜드패션
+              </Dropdown.Item>
+              <Dropdown.Item eventKey="여성트렌드패션">
+                여성트렌드패션
+              </Dropdown.Item>
+              <Dropdown.Item eventKey="남성패션">남성패션</Dropdown.Item>
+              <Dropdown.Item eventKey="캐주얼/유니섹스">
+                캐주얼/유니섹스
+              </Dropdown.Item>
+              <Dropdown.Item eventKey="가방/지갑">가방/지갑</Dropdown.Item>
+              <Dropdown.Item eventKey="모자/장갑/ACC">
+                모자/장갑/ACC
+              </Dropdown.Item>
+              <Dropdown.Item eventKey="슈즈/운동화">슈즈/운동화</Dropdown.Item>
+              <Dropdown.Item eventKey="가방/지갑">가방/지갑</Dropdown.Item>
+              <Dropdown.Item eventKey="명품잡화/아이웨어">
+                명품잡화/아이웨어
+              </Dropdown.Item>
+              <Dropdown.Item eventKey="스킨케어">스킨케어</Dropdown.Item>
+              <Dropdown.Item eventKey="메이크업">메이크업</Dropdown.Item>
+              <Dropdown.Item eventKey="헤어케어">헤어케어</Dropdown.Item>
+              <Dropdown.Item eventKey="바디케어">바디케어</Dropdown.Item>
+              <Dropdown.Item eventKey="향수">향수</Dropdown.Item>
+              <Dropdown.Item eventKey="기저귀/물티슈/분유/유아식">
+                기저귀/물티슈/분유/유아식
+              </Dropdown.Item>
+              <Dropdown.Item eventKey="출산/육아용품">
+                출산/육아용품
+              </Dropdown.Item>
+              <Dropdown.Item eventKey="       유모차/카시트/실내용품">
+                유모차/카시트/실내용품
+              </Dropdown.Item>
+              <Dropdown.Item eventKey="완구/교구">완구/교구</Dropdown.Item>
+              <Dropdown.Item eventKey="신생아/유아패">
+                신생아/유아패션
+              </Dropdown.Item>
+              <Dropdown.Item eventKey="스포츠웨어/용품">
+                스포츠웨어/용품
+              </Dropdown.Item>
+              <Dropdown.Item eventKey="등산/아웃도어">
+                등산/아웃도어
+              </Dropdown.Item>
+              <Dropdown.Item eventKey="캠핑/낚시용품">
+                캠핑/낚시용품
+              </Dropdown.Item>
+              <Dropdown.Item eventKey="골프웨어/용품/클럽">
+                골프웨어/용품/클럽
+              </Dropdown.Item>
+              <Dropdown.Item eventKey="자전거/스케이트/롤러">
+                자전거/스케이트/롤러
+              </Dropdown.Item>
             </DropdownButton>
           </div>
         </DropdownButton>

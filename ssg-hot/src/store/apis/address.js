@@ -1,5 +1,14 @@
 import { apiClient, baseURL } from "./apiClient";
 import axios from "axios";
+import { getToken, isExistToken } from "../utils/useful-funtions";
+
+const checkToken = () => {
+  if (isExistToken()) {
+    return `Bearer ${getToken()}`;
+  }
+  return ``;
+};
+let ACCESS_TOKEN = checkToken();
 // 주소 추가하기
 export const addAddress = async (myAddress) => {
   const res = await apiClient.post(`/address`, myAddress);
@@ -31,7 +40,7 @@ async function get(endpoint) {
     // JWT 토큰을 헤더에 담아 백엔드 서버에 보냄.
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${localStorage.getItem("token")}`,
+      Authorization: ACCESS_TOKEN,
     },
   });
 }
@@ -44,7 +53,7 @@ async function post(endpoint, data) {
   return axios.post(baseUrl + endpoint, bodyData, {
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${localStorage.getItem("token")}`,
+      Authorization: ACCESS_TOKEN,
     },
   });
 }
@@ -57,7 +66,7 @@ async function put(endpoint, data) {
   return axios.put(baseUrl + endpoint, bodyData, {
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${localStorage.getItem("token")}`,
+      Authorization: ACCESS_TOKEN,
     },
   });
 }
@@ -70,7 +79,7 @@ async function patch(endpoint, data) {
   return axios.patch(baseUrl + endpoint, bodyData, {
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${localStorage.getItem("token")}`,
+      Authorization: ACCESS_TOKEN,
     },
   });
 }
@@ -80,7 +89,7 @@ async function patch(endpoint, data) {
 async function del(endpoint) {
   return axios.delete(baseUrl + endpoint, {
     headers: {
-      Authorization: `Bearer ${localStorage.getItem("token")}`,
+      Authorization: ACCESS_TOKEN,
     },
   });
 }
