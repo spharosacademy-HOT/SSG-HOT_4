@@ -2,10 +2,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
 import React from "react";
 import { useState } from "react";
-import { deleteQna } from "../../store/apis/qna";
+import { deleteQna, getQna } from "../../store/apis/qna";
 
-export default function ProductQnaItem({ data }) {
+export default function ProductQnaItem({ data, setQaData, productId}) {
   const [open, setOpen] = useState(false);
+  const [qnaData, setQnaData] = useState(data)
 
   const handleOpen=()=>{
     setOpen(!open)
@@ -15,9 +16,14 @@ export default function ProductQnaItem({ data }) {
     .then((res)=>{
       console.log(res)
     })
+    productId && 
+    console.log('a',productId)
+    getQna(productId)
+    .then((res)=>{
+      console.log('asdfasdfasdf',res)
+      setQaData(res)
+    })
   }
-  console.log('asdfasdfasdf')
-  console.log(data)
 
   
   return (
@@ -28,7 +34,7 @@ export default function ProductQnaItem({ data }) {
           <span>{data.createdDate} &nbsp;</span>
           <span>{data.email} </span>
         </div>
-        <div onClick={handleDeleteQna}>
+        <div onClick={()=>handleDeleteQna()}>
           삭제
         </div>
       </div>
