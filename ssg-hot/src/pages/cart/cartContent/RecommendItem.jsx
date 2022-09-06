@@ -21,6 +21,7 @@ export default function RecommendItem() {
                 <div className="cmitem_goods  cmitem_status_soldout">
                   <div className="cmitem_thmb">
                     <a
+                    onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
                       href="#"
                       className="cmitem_thmb_link"
                       onclick="appBroswer('http://m.emart.ssg.com/item/itemView.ssg?itemId=1000043901189&amp;siteNo=6001&amp;salestrNo=2118','stack'); return false;"
@@ -66,6 +67,7 @@ export default function RecommendItem() {
                         </div>
                       </div>
                       <a
+                      onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
                         href="#"
                         className="cmitem_tx_thmb_link"
                         onclick="appBroswer('http://m.emart.ssg.com/item/itemView.ssg?itemId=1000043901189&amp;siteNo=6001&amp;salestrNo=2118','stack'); return false;"

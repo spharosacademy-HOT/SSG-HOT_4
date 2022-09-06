@@ -7,6 +7,7 @@ function MyPageQuick() {
         <ul className="myssg_quick_list">
           <li>
             <a
+              onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
               href="#"
               className="myssg_quick_link clickable"
               data-react-tarea="MYSSG|메인|자주찾는메뉴_자주구매"
@@ -17,6 +18,7 @@ function MyPageQuick() {
           </li>
           <li>
             <a
+              onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
               href="#"
               className="myssg_quick_link clickable"
               data-react-tarea="MYSSG|메인|자주찾는메뉴_입고알림"
@@ -27,6 +29,7 @@ function MyPageQuick() {
           </li>
           <li>
             <a
+              onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
               href="#"
               className="myssg_quick_link clickable"
               data-react-tarea="MYSSG|메인|자주찾는메뉴_상품권전환"
@@ -37,6 +40,7 @@ function MyPageQuick() {
           </li>
           <li>
             <a
+              onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
               href="#"
               className="myssg_quick_link clickable"
               data-react-tarea="MYSSG|메인|자주찾는메뉴_선물함"
@@ -47,6 +51,7 @@ function MyPageQuick() {
           </li>
           <li>
             <a
+              onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
               href="#"
               className="myssg_quick_link clickable"
               data-react-tarea="MYSSG|메인|자주찾는메뉴_알비백관리"
@@ -57,6 +62,7 @@ function MyPageQuick() {
           </li>
           <li>
             <a
+              onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
               href="#"
               className="myssg_quick_link clickable"
               data-react-tarea="MYSSG|메인|자주찾는메뉴_이벤트현황"
@@ -67,6 +73,7 @@ function MyPageQuick() {
           </li>
           <li>
             <a
+              onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
               href="#"
               className="myssg_quick_link clickable"
               data-react-tarea="MYSSG|메인|자주찾는메뉴_상품Q&amp;A"
@@ -77,6 +84,7 @@ function MyPageQuick() {
           </li>
           <li>
             <a
+              onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
               href="#"
               className="myssg_quick_link clickable"
               data-react-tarea="MYSSG|메인|자주찾는메뉴_고객센터"
@@ -87,6 +95,7 @@ function MyPageQuick() {
           </li>
           <li>
             <a
+              onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
               href="#"
               className="myssg_quick_link clickable"
               data-react-tarea="MYSSG|메인|자주찾는메뉴_고객센터톡"
@@ -97,6 +106,7 @@ function MyPageQuick() {
           </li>
           <li>
             <a
+              onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
               href="#"
               className="myssg_quick_link clickable"
               data-react-tarea="MYSSG|메인|자주찾는메뉴_이메일상담"
@@ -107,6 +117,7 @@ function MyPageQuick() {
           </li>
           <li>
             <a
+              onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
               href="#"
               className="myssg_quick_link clickable"
               data-react-tarea="MYSSG|메인|자주찾는메뉴_이메일답변"
@@ -117,6 +128,7 @@ function MyPageQuick() {
           </li>
           <li>
             <a
+              onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
               href="#"
               className="myssg_quick_link clickable"
               data-react-tarea="MYSSG|메인|자주찾는메뉴_수신동의"
@@ -133,7 +145,9 @@ function MyPageQuick() {
       </div>
       <div className="myssg_sec">
         <div className="myssg_sec_conts">
-          <a href="#" className="myssg_sec_title">
+          <a 
+          onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
+          href="#" className="myssg_sec_title">
             리뷰 작성
           </a>
           <p className="myssg_desc_text">
@@ -145,6 +159,7 @@ function MyPageQuick() {
           </p>
           <div className="myssg_premium_reivew">
             <a
+              onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
               href="#"
               className="myssg_review_promotion"
               data-react-tarea="MYSSG|M_MY_SSG_배너_내상품평"
@@ -156,7 +171,9 @@ function MyPageQuick() {
             </a>
           </div>
           <div className="myssg_writable_review">
-            <a href="#" className="myssg_writable_review_content">
+            <a 
+            onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
+            href="#" className="myssg_writable_review_content">
               <strong className="myssg_writable_review_title">
                 지금 작성 가능한 리뷰
               </strong>

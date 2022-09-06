@@ -24,7 +24,9 @@ function CartControlHeader() {
           <div className="myodr_tab">
             <ul className="myodr_tab_list" role="tablist">
               <li role="presentation" className="on">
-                <a href="#" role="tab" aria-selected="true">
+                <a 
+                onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
+                href="#" role="tab" aria-selected="true">
                   <span className="myodr_tab_tx">MY배송지</span>
                 </a>
               </li>

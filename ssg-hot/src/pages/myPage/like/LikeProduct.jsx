@@ -9,7 +9,9 @@ function LikeProduct() {
             <li className="cmitem_grid_item clip-chk">
               <div className="cmitem_goods">
                 <div className="cmitem_thmb">
-                  <a href="#" className="cmitem_thmb_link clickable">
+                  <a 
+                  onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
+                  href="#" className="cmitem_thmb_link clickable">
                     <div className="cmitem_thmb_imgbx">
                       <img
                         src="http://sitem.ssgcdn.com/24/19/29/item/2097001291924_i1_232.jpg"
@@ -42,7 +44,9 @@ function LikeProduct() {
                     ></span>
                   </div>
                 </div>
-                <a href="#" className="cmitem_tx_thmb_link clickable">
+                <a 
+                onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
+                href="#" className="cmitem_tx_thmb_link clickable">
                   <div className="cmitem_tit">
                     <span className="cm_mall_text">
                       <i className="em">이마트몰</i>
@@ -80,7 +84,9 @@ function LikeProduct() {
             <li className="cmitem_grid_item clip-chk">
               <div className="cmitem_goods">
                 <div className="cmitem_thmb">
-                  <a href="#" className="cmitem_thmb_link clickable">
+                  <a 
+                  onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
+                  href="#" className="cmitem_thmb_link clickable">
                     <div className="cmitem_thmb_imgbx">
                       <img
                         src="http://sitem.ssgcdn.com/66/47/83/item/1000349834766_i1_232.jpg"
@@ -113,7 +119,9 @@ function LikeProduct() {
                     ></span>
                   </div>
                 </div>
-                <a href="#" className="cmitem_tx_thmb_link clickable">
+                <a 
+                onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
+                href="#" className="cmitem_tx_thmb_link clickable">
                   <div className="cmitem_tit">
                     <span className="cm_mall_text">
                       <i className="em">신세계백화점</i>
@@ -187,7 +195,9 @@ function LikeProduct() {
                     ></span>
                   </div>
                 </div>
-                <a href="#" className="cmitem_tx_thmb_link clickable">
+                <a 
+                onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
+                href="#" className="cmitem_tx_thmb_link clickable">
                   <div className="cmitem_tit">
                     <span className="cm_mall_text">
                       <i className="em">신세계백화점</i>
@@ -225,7 +235,9 @@ function LikeProduct() {
             <li className="cmitem_grid_item clip-chk">
               <div className="cmitem_goods">
                 <div className="cmitem_thmb">
-                  <a href="#" className="cmitem_thmb_link clickable">
+                  <a 
+                  onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
+                  href="#" className="cmitem_thmb_link clickable">
                     <div className="cmitem_thmb_imgbx">
                       <img
                         src="//sitem.ssgcdn.com/55/71/81/item/1000225817155_i1_232.jpg"
@@ -258,7 +270,9 @@ function LikeProduct() {
                     ></span>
                   </div>
                 </div>
-                <a href="#" className="cmitem_tx_thmb_link clickable">
+                <a 
+                onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
+                href="#" className="cmitem_tx_thmb_link clickable">
                   <div className="cmitem_tit">
                     <span className="cm_mall_text">
                       <i className="em">신세계백화점</i>

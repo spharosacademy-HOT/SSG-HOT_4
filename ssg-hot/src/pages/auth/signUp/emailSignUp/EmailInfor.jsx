@@ -242,6 +242,7 @@ function EmailInhtmlFor() {
                 </label>
               </span>
               <a
+              onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
                 href="#"
                 className="cmem_btn cmem_btn_blkline2"
                 title="새창 열림"
@@ -268,6 +269,7 @@ function EmailInhtmlFor() {
                 </label>
               </span>
               <a
+              onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
                 href="#"
                 className="cmem_btn cmem_btn_blkline2"
                 title="새창 열림"
@@ -594,6 +596,7 @@ function EmailInhtmlFor() {
               </label>
             </span>
             <a
+            onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
               href="#"
               //   onClick={"window.open('/m/member/join/agreePrivacyDetail.ssg?type=privacy_signup_terms_scom02&t=simple');return false;"}
               title="새창열림"

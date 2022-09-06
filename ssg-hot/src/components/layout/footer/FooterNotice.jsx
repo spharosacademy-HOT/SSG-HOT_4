@@ -12,6 +12,7 @@ export default function FooterNotice() {
           통신판매업 신고번호: 제2022-서울강남-03751호
           <a
             href="#"
+            onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
             // onClick="appBroswer('https://www.ftc.go.kr/bizCommPop.do?wrkr_no=8708801143', 'stack');return false;"
             className="txt_link"
           >
@@ -28,6 +29,7 @@ export default function FooterNotice() {
         <p className="mcom_noti_tip">
           우리은행 채무지급보증 안내{" "}
           <a
+          onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
             href="#"
             // onClick="appBroswer('https://m.ssg.com/comm/popupWooriService.ssg', 'stack', 'Y'); return false;"
             className="txt_link"
@@ -46,6 +48,7 @@ export default function FooterNotice() {
         <ul className="mcom_cont_lst">
           <li>
             <a
+            onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
               href="#"
               title="새창열림"
               // onClick="appBroswer('https://company.ssg.com', 'stack', 'Y'); return false;"
@@ -55,6 +58,7 @@ export default function FooterNotice() {
           </li>
           <li>
             <a
+            onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
               href="#"
               title="새창열림"
               // onClick="appBroswer('https://m.ssg.com/comm/commInfo.ssg?type=clause&amp;_mpop=new','stack','Y'); return false;"
@@ -64,6 +68,7 @@ export default function FooterNotice() {
           </li>
           <li>
             <a
+            onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
               href="#"
               title="새창열림"
               // onClick="appBroswer('https://member.ssg.com/m/policies/tradeTerms.ssg', 'stack', 'Y'); return false;"
@@ -73,6 +78,7 @@ export default function FooterNotice() {
           </li>
           <li>
             <a
+            onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
               href="#"
               title="새창열림"
               // onClick="appBroswer('https://member.ssg.com/m/policies/privacy.ssg', 'stack', 'Y'); return false;"
@@ -82,6 +88,7 @@ export default function FooterNotice() {
           </li>
           <li>
             <a
+            onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
               href="#"
               title="새창열림"
               // onClick="appBroswer('https://member.ssg.com/m/policies/youthProtection.ssg', 'stack', 'Y'); return false;"
@@ -91,6 +98,7 @@ export default function FooterNotice() {
           </li>
           <li>
             <a
+            onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
               href="#"
               title="새창열림"
               // onClick="appBroswer('https://member.ssg.com/m/policies/consumerDispute.ssg', 'stack', 'Y'); return false;"
@@ -100,6 +108,7 @@ export default function FooterNotice() {
           </li>
           <li>
             <a
+            onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
               href="#"
               title="새창열림"
               // onClick="appBroswer('https://partners.ssgadm.com/m/', 'stack', 'Y'); return false;"

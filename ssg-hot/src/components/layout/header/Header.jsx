@@ -76,6 +76,7 @@ export default function Header() {
         });
       });
     } else {
+      alert("로그인 해주세요.");
       navigate("/login");
     }
   };

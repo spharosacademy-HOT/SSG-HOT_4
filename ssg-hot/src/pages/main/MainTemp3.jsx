@@ -20,7 +20,9 @@ export default function MainTemp3() {
             <ul className="smhero_bnlist" data-areaid="smhero" data-impyn="Y">
               <li>
                 <div className="smhero_bn gate_unit">
-                  <a className="smhero_bnlink" href="#">
+                  <a className="smhero_bnlink" 
+                  onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
+                  href="#">
                     <div className="smhero_thumb">
                       <img
                         className="ssg_lazy"
@@ -48,7 +50,9 @@ export default function MainTemp3() {
               </li>
               <li>
                 <div className="smhero_bn gate_unit">
-                  <a className="smhero_bnlink" href="#">
+                  <a className="smhero_bnlink" 
+                  onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
+                  href="#">
                     <div className="smhero_thumb">
                       <img
                         className="ssg_lazy"
@@ -76,7 +80,9 @@ export default function MainTemp3() {
               </li>
               <li>
                 <div className="smhero_bn gate_unit">
-                  <a className="smhero_bnlink" href="#">
+                  <a className="smhero_bnlink" 
+                  onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
+                  href="#">
                     <div className="smhero_thumb">
                       <img
                         className="ssg_lazy"

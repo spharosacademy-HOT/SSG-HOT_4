@@ -12,6 +12,7 @@ function OrderDate() {
         <div className="mnodr_control_tx ty_flthead">
           <div className="mnodr_selbox ty_flthead" data-o-selbox="">
             <a
+              onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
               href="#"
               className="mnodr_selbox_selected ty_flthead orderInfoTracking"
               data-tracking-cd="00014_000000096_t00060"
@@ -24,6 +25,7 @@ function OrderDate() {
             <ul className="mnodr_selbox_list ty_flthead">
               <li className="mnodr_selbox_item on">
                 <a
+                  onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
                   href="#"
                   name="searchTypePeriod"
                   data-search-type="6"
@@ -36,6 +38,7 @@ function OrderDate() {
               </li>
               <li className="mnodr_selbox_item ">
                 <a
+                  onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
                   href="#"
                   name="searchTypePeriod"
                   data-search-type="7"
@@ -48,6 +51,7 @@ function OrderDate() {
               </li>
               <li className="mnodr_selbox_item ">
                 <a
+                  onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
                   href="#"
                   name="searchTypePeriod"
                   data-search-type="8"
@@ -60,6 +64,7 @@ function OrderDate() {
               </li>
               <li className="mnodr_selbox_item ">
                 <a
+                  onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
                   href="#"
                   name="searchTypePeriod"
                   data-search-type="9"
@@ -76,6 +81,7 @@ function OrderDate() {
         <div className="mnodr_control_tx ty_flthead">
           <div className="mnodr_selbox ty_flthead" data-o-selbox="">
             <a
+              onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
               href="#"
               className="mnodr_selbox_selected ty_flthead orderInfoTracking"
               data-tracking-cd="00014_000000096_t00060"
@@ -86,6 +92,7 @@ function OrderDate() {
             <ul className="mnodr_selbox_list ty_flthead">
               <li className="mnodr_selbox_item on ">
                 <a
+                  onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
                   href="#"
                   name="searchTypeShpp"
                   data-search-type=""
@@ -97,6 +104,7 @@ function OrderDate() {
               </li>
               <li className="mnodr_selbox_item ">
                 <a
+                  onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
                   href="#"
                   name="searchTypeShpp"
                   data-search-type="01"
@@ -108,6 +116,7 @@ function OrderDate() {
               </li>
               <li className="mnodr_selbox_item ">
                 <a
+                  onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
                   href="#"
                   name="searchTypeShpp"
                   data-search-type="02"
@@ -119,6 +128,7 @@ function OrderDate() {
               </li>
               <li className="mnodr_selbox_item ">
                 <a
+                  onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
                   href="#"
                   name="searchTypeShpp"
                   data-search-type="03"

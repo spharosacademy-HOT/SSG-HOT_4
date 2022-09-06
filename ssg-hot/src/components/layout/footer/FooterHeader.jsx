@@ -12,16 +12,15 @@ export default function FooterHeader() {
           <span className="footerPhone">1577-3419 /</span>{" "}
           <span className="footerEmail">ssg@ssg.com</span>
         </p>
-        <div className="footerBtn">
-          <a
-            href="#"
+        <div className="footerBtn"
+        onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}>
+          <a 
             className="footerBtnArea clickable"
             data-react-tarea="푸터|전화연결"
           >
             <em>전화걸기</em>
           </a>
           <a
-            href="#"
             className="footerBtnArea clickable"
             data-react-tarea="푸터|고객상담톡"
           >
