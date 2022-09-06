@@ -28,7 +28,8 @@ function EmailInhtmlFor() {
   const [phoneCheck, setPhoneCheck] = useState("");
   const [phoneValid, setPhoneValid] = useState("");
   const [phoneValid2, setPhoneValid2] = useState(true);
-
+  const [timercount, setTimerCount] = useState(true);
+  const [timercountEmail, setTimerCountEmail] = useState(true);
   //라우터
   let navigate = useNavigate();
 
@@ -90,21 +91,30 @@ function EmailInhtmlFor() {
       }
       num--;
     }
-    const sendSMS = {
-      to: `010${userInfo.phone}`,
-      content: check.toString(),
-    };
+    if (timercount === true) {
+      const sendSMS = {
+        to: `010${userInfo.phone}`,
+        content: check.toString(),
+      };
 
-    try {
-      const result = await Api.post("/sms/send", sendSMS);
-      if (!result) {
-        throw new Error(result);
+      try {
+        const result = await Api.post("/sms/send", sendSMS);
+        if (!result) {
+          throw new Error(result);
+        }
+        time();
+        alert("인증번호가 발송되었습니다.");
+        setSendPhone(true);
+      } catch (e) {
+        console.log(e);
+      } finally {
+        setTimerCount(false);
+        setTimeout(() => {
+          setTimerCount(true);
+        }, 1000 * 60);
       }
-      time();
-      alert("인증번호가 발송되었습니다.");
-      setSendPhone(true);
-    } catch (e) {
-      console.log(e);
+    } else {
+      alert(`1분 후에 보내주세요`);
     }
   };
 
@@ -122,16 +132,40 @@ function EmailInhtmlFor() {
 
   // 이메일 중복체크 api
   const getCheckEmail = async () => {
-    const res = await basicApiClient.post(`/auth/email`, {
-      email: userInfo.email,
-    });
-    // console.log(res);
-    if (res.data.status == 200) {
-      alert("사용가능한 이메일입니다.");
-      setEmailCheck(true);
+    var regExp =
+      /([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+    // console.log("이메일 유효성 검사");
+
+    if (!regExp.test(userInfo.email)) {
+      alert("올바른 이메일을 입력하세요.");
+      return;
+    }
+    if (timercountEmail === true) {
+      try {
+        const res = await basicApiClient.post(`/auth/email`, {
+          email: userInfo.email,
+        });
+        if (!res) {
+          throw new Error(res);
+        }
+        // console.log(res);
+        if (res.data.status == 200) {
+          alert("사용가능한 이메일입니다.");
+          setEmailCheck(true);
+        } else {
+          alert("이미 사용중인 이메일입니다.");
+          setEmailCheck(false);
+        }
+      } catch (e) {
+        console.log(e);
+      } finally {
+        setTimerCountEmail(false);
+        setTimeout(() => {
+          setTimerCountEmail(true);
+        }, 1000 * 10);
+      }
     } else {
-      alert("이미 사용중인 이메일입니다.");
-      setEmailCheck(false);
+      alert("10초 후에 보내세요.");
     }
   };
 
@@ -242,7 +276,10 @@ function EmailInhtmlFor() {
                 </label>
               </span>
               <a
-              onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
+                onClick={(e) => {
+                  e.preventDefault();
+                  alert("준비 중입니다.");
+                }}
                 href="#"
                 className="cmem_btn cmem_btn_blkline2"
                 title="새창 열림"
@@ -269,7 +306,10 @@ function EmailInhtmlFor() {
                 </label>
               </span>
               <a
-              onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
+                onClick={(e) => {
+                  e.preventDefault();
+                  alert("준비 중입니다.");
+                }}
                 href="#"
                 className="cmem_btn cmem_btn_blkline2"
                 title="새창 열림"
@@ -596,7 +636,10 @@ function EmailInhtmlFor() {
               </label>
             </span>
             <a
-            onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
+              onClick={(e) => {
+                e.preventDefault();
+                alert("준비 중입니다.");
+              }}
               href="#"
               //   onClick={"window.open('/m/member/join/agreePrivacyDetail.ssg?type=privacy_signup_terms_scom02&t=simple');return false;"}
               title="새창열림"

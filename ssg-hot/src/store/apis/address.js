@@ -53,7 +53,7 @@ async function post(endpoint, data) {
   return axios.post(baseUrl + endpoint, bodyData, {
     headers: {
       "Content-Type": "application/json",
-      Authorization: ACCESS_TOKEN,
+      Authorization: checkToken(),
     },
   });
 }
