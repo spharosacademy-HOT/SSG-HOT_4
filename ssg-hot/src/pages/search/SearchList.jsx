@@ -1,6 +1,8 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { deleteRecentSearch, getRecentSearch } from "../../store/apis/recent";
 export default function SearchList({ searchData, setSearchData }) {
+  const navigate = useNavigate();
   const deleteSearch = (id) => {
     deleteRecentSearch(id).then((res) => {
       getRecentSearch().then((response) => {
@@ -15,7 +17,13 @@ export default function SearchList({ searchData, setSearchData }) {
         {searchData &&
           searchData.map((item) => (
             <li key={item.searchKeywordId}>
-              <a>{item.searchKeyword}</a>
+              <a
+                onClick={() => {
+                  navigate(`/search/${item.searchKeyword}`);
+                }}
+              >
+                {item.searchKeyword}
+              </a>
               <button onClick={() => deleteSearch(item.searchKeywordId)}>
                 x
               </button>

@@ -126,7 +126,9 @@ export default function Header() {
         ""
       ) : pagePath === "/like" ? (
         ""
-      ) : pagePath === '/order/completion' ? (
+      ) : pagePath === "/order/completion" ? (
+        ""
+      ) : pagePath == "/cart/order/completion" ? (
         ""
       ) : (
         <header
