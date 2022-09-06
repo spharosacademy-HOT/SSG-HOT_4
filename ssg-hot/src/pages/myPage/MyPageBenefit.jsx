@@ -6,6 +6,7 @@ function MyPageBenefit() {
       <div className="myssg_coupon_point myssg_layer_conts">
         <div className="myssg_coupon">
           <a
+            onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
             href="#"
             className="myssg_link clickable"
             data-react-tarea="MYSSG|M_MY_SSG_쿠폰"
@@ -19,7 +20,9 @@ function MyPageBenefit() {
           </a>
         </div>
         <div className="myssg_point">
-          <a href="#" className="myssg_link myssg_point_link">
+          <a 
+          onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
+          href="#" className="myssg_link myssg_point_link">
             <dl>
               <dt>신세계포인트</dt>
               <dd>
@@ -76,6 +79,7 @@ function MyPageBenefit() {
           <dl>
             <dt>
               <a
+                onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
                 href="#"
                 className="myssg_link myssg_ssgmoney_link"
                 data-react-tarea="MYSSG|M_MY_SSG_SSGMONEY"
@@ -85,7 +89,9 @@ function MyPageBenefit() {
               </a>
             </dt>
             <dd>
-              <a href="#">
+              <a 
+              onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
+              href="#">
                 <span className="myssg_benefit_score">0</span>원
               </a>
               <div

@@ -23,7 +23,7 @@ export default function TryLogin() {
             className="mnodr_info2_btn"
             type="button"
             name="loginBtn"
-            onClick={() => navigate("/login")}
+            onClick={() => {alert("로그인 해주세요."); navigate("/login")}}
           >
             로그인 하기
           </button>

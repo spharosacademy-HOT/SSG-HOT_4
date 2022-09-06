@@ -104,6 +104,7 @@ function ProductPurchaseBar({ stockList, isWished, setIsWished }) {
         });
       });
     } else {
+      alert("로그인 해주세요.");
       navigate("/login");
     }
   };
@@ -113,6 +114,7 @@ function ProductPurchaseBar({ stockList, isWished, setIsWished }) {
         console.log(res);
       });
     } else {
+      alert("로그인 해주세요.");
       navigate("/login");
     }
   };

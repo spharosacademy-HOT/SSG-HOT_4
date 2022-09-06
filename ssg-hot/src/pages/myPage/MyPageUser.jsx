@@ -29,6 +29,7 @@ function MyPageUser() {
           <div className="myssg_profile_info" style={{ padding: "10px 20px" }}>
             <div className="myssg_user_name">
               <a
+                onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
                 href="#"
                 className="clickable"
                 data-react-tarea="MYSSG|M_MY_SSG_회원명"
@@ -42,7 +43,9 @@ function MyPageUser() {
               data-react-unit-id=""
               data-react-unit-text='[{"type":"tarea_addt_val","defaultValue": "FRIENDS"}]'
             >
-              <a href="#" className="clickable">
+              <a 
+              onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
+              href="#" className="clickable">
                 <p style={{ marginBottom: "0px" }}>
                   <strong className="myssg_primary_text">
                     {userData.memberLevel}
@@ -58,7 +61,9 @@ function MyPageUser() {
         className="myssg_membership_info"
         data-react-tarea-cd="00040_000000233"
       >
-        <a href="#" className="clickable">
+        <a 
+        onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
+        href="#" className="clickable">
           <div className="myssg_membership_header">
             <div className="myssg_membership_header_title justify_center">
               <i className="badge">
@@ -93,6 +98,7 @@ function MyPageUser() {
           <span className="myssg_manage_text ty_devliery">배송지 관리</span>
         </button>
         <a
+          onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
           href="#"
           className="clickable"
           data-react-tarea="MYSSG|M_MY_SSG_PUSH메세지함"

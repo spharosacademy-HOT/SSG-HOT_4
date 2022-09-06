@@ -30,7 +30,7 @@ function ProductQnA({ item }) {
               문의하기
             </button>
           ) : (
-            <button onClick={() => navigate(`/login`)}>문의하기</button>
+            <button onClick={() => {alert("로그인 해주세요."); navigate(`/login`)}}>문의하기</button>
           )}
         </div>
         <hr />

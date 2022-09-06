@@ -13,6 +13,7 @@ export default function LogIn() {
       <LogInSns />
       <div>
         <a
+        onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
           href="#"
           className="cmem_nomemarea .cmem_nomem_btn"
           style={{

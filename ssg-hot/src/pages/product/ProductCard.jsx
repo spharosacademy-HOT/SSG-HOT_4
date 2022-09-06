@@ -15,6 +15,7 @@ function ProductCard({ item, isWished }) {
     if (localStorage.getItem("token")) {
       postLike(id).then((res) => console.log(res, "좋아요요청"));
     } else {
+      alert("로그인 해주세요.");
       navigate("/login");
     }
   };

@@ -38,6 +38,7 @@ function EmailA() {
                 </label>
               </span>
               <a
+              onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
                 href="#"
                 className="cmem_btn cmem_btn_blkline2"
                 title="새창 열림"
@@ -64,6 +65,7 @@ function EmailA() {
                 </label>
               </span>
               <a
+              onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
                 href="#"
                 className="cmem_btn cmem_btn_blkline2"
                 title="새창 열림"

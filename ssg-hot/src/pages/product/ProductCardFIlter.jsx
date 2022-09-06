@@ -29,7 +29,9 @@ function ProductCardFilter() {
             </li>
             <li className="cmft_cell cmft_sort_rank">
               <div className="">
-                <a href="#" className="cmft_sort_tit cmft_sel_curent">
+                <a 
+                onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
+                href="#" className="cmft_sort_tit cmft_sel_curent">
                   <span className="cmft_txt">추천순</span>
                 </a>
                 <ul className="cmft_sel_lst">
@@ -41,6 +43,7 @@ function ProductCardFilter() {
             </li>
             <li className="cmft_cell cmft_sort_srch ">
               <a
+                onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
                 href="#"
                 className="cmft_sort_tit clickable"
                 data-react-tarea="카테고리|바닥필터|필터더보기_선택"
