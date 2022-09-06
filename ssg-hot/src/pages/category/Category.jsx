@@ -18,10 +18,6 @@ function Category() {
   const [cateDatas, setCateDates] = useState([]);
 
   useEffect(() => {
-    let setTrues = [false, false, false, false];
-    setTrues[cateNumber] = true;
-  }, [cateNumber]);
-  useEffect(() => {
     axios.get(`${baseURL}/category`).then((Response) => {
       setCateDates(Response.data);
     });

@@ -19,3 +19,13 @@ export const totalProductCntState = atom({
     key:"totalProductCntState",
     default:0
 })
+
+export const categoryState = atom({
+    key:"categoryState",
+    default:0
+})
+
+export const categoryMState = atom({
+    key:"categoryMState",
+    default:0
+})

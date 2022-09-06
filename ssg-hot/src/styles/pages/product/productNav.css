@@ -1,11 +1,9 @@
-.previous a{
-    text-decoration: none;
-}
-.mcom_tit_renew{
+.product-nav{
     display: flex;
-    justify-content: space-between;
 }
-.current .btn_more{
-    display: flex;
-    align-items: center;
+.product-nav :nth-child(2){
+    padding: 0 30px 0 40px;
+}
+.product-nav :nth-child(3){
+    font-weight: bold;
 }

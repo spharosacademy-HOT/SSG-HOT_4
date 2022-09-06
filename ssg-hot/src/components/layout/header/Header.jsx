@@ -120,6 +120,8 @@ export default function Header() {
         ""
       ) : pagePath === "/like" ? (
         ""
+      ) : pagePath === '/order/completion' ? (
+        ""
       ) : (
         <header
           id="m_header"

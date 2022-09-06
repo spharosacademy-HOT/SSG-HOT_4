@@ -87,13 +87,16 @@
 }
 /* 결제하기 */
 .product-paying .pay-button{
-    width: 100%;
     background-color: #ff3e3e;
     color: white;
     height: 52px;
     display: flex;
     align-items: center;
-    margin: 0 20px -20px -20px;
+    margin: 0 -20px -20px -20px;
+    border-radius: 0 0 10px 10px;
+    align-items: center;
+    justify-content: center;
+    
 }
 /* 주문자 정보 */
 .product-my-info .title-line{
@@ -151,4 +154,80 @@
 }
 .product-delivery-item .product-qty{
     color: #777;
+}
+.purchase-bar{
+    width: 100%;
+    height: 52px;
+    box-sizing: content-box;
+    position: fixed;
+    bottom: 0;
+    z-index: 3000;
+    padding: 0;
+    margin: 0;
+    background-color: #ff3e3e;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 주문완료 */
+.order-complete{
+    background-color: #e0e0e0;
+}
+.order-complete .order-title{
+    display: flex;
+    background-color: white;
+}
+.order-complete .older-complete-text{
+    margin: 5px 0;
+    background-color: white;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.order-complete .recipient-infomation{
+    margin: 5px 0;
+    background-color: white;
+    padding: 20px;
+}
+.order-complete .recipient-infomation :nth-child(1){
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+.order-complete .recipient-infomation :nth-child(2){
+    font-weight: bold;
+}
+.order-complete .payment-amount{
+    margin: 5px 0;
+    background-color: white;
+    padding: 20px;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+.order-complete .shopping-button{
+    margin: 5px 0;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+}
+.order-complete .shopping-button a :nth-child(1){
+    padding: 5px 10px;
+    background-color: #333;
+    border-radius: 20px;
+    color: white;
+    width: 160px;
+    text-align: center;
+    margin: 20px;
+}
+.order-complete .shopping-button a :nth-child(2){
+    padding: 5px 10px;
+    border: #333 1px solid;
+    border-radius: 20px;
+    width: 160px;
+    text-align: center;
+    margin: 20px;
 }
