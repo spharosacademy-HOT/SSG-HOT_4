@@ -2,6 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
 import React from "react";
 import { useState } from "react";
+import { deleteQna } from "../../store/apis/qna";
 
 export default function ProductQnaItem({ data }) {
   const [open, setOpen] = useState(false);
@@ -9,23 +10,27 @@ export default function ProductQnaItem({ data }) {
   const handleOpen=()=>{
     setOpen(!open)
   }
+  const handleDeleteQna=()=>{
+    deleteQna(data.id)
+    .then((res)=>{
+      console.log(res)
+    })
+  }
   console.log('asdfasdfasdf')
   console.log(data)
 
   
   return (
     <div className="qna-box">
-      <div
-        // style={{
-        //   display: "flex",
-        //   justifyContent: "space-between",
-        //   alignItems: "center",
-        // }}
-        
-      >
-        <span className="waiting-answer">답변대기 &nbsp;</span>
-        <span>{data.createdDate} &nbsp;</span>
-        <span>{data.email} </span>
+      <div className="qna-info">
+        <div>
+          <span className="waiting-answer">답변대기 &nbsp;</span>
+          <span>{data.createdDate} &nbsp;</span>
+          <span>{data.email} </span>
+        </div>
+        <div onClick={handleDeleteQna}>
+          삭제
+        </div>
       </div>
       <div>
         <span className="blind">문의내용</span>

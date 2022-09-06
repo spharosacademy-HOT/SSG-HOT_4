@@ -12,3 +12,9 @@ export const getQna = async (id) => {
   const res = await apiClient.get(`qna/product/${id}`);
   return res;
 };
+
+// qna 지우기
+export const deleteQna = async (id) => {
+  const res = await apiClient.delete(`qna/${id}`);
+  return res;
+}

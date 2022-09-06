@@ -1,6 +1,7 @@
 import React from "react";
 import { useRecoilValue } from "recoil";
 import { cartOrderPriceState } from "../../../store/atom/cartState";
+import { addCommas } from "../../../store/utils/useful-funtions"
 
 export default function CartTotalPrice() {
   const cartPrice = useRecoilValue(cartOrderPriceState);
@@ -28,7 +29,7 @@ export default function CartTotalPrice() {
           </dt>
           <dd>
             <span className="pricePrimary">
-              -<em>{cartPrice.discountPrice}</em>
+              -<em>{addCommas(cartPrice.discountPrice)}</em>
               <span>원</span>
             </span>
           </dd>

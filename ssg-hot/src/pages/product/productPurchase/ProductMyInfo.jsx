@@ -1,6 +1,17 @@
 import React from 'react'
+import { getUserDetail } from '../../../store/apis/user';
+import { useState } from 'react';
+import { useEffect } from 'react';
 
 function ProductMyInfo() {
+    const [userData, setUserData] = useState([])
+
+    useEffect(()=>{
+        getUserDetail()
+        .then((res)=>{
+            setUserData(res)
+        })
+    },[])
     return ( 
         <>
             <div className='purchase-card-box product-my-info'>
@@ -12,15 +23,15 @@ function ProductMyInfo() {
                     <ul>
                         <li>
                             <div>주문자명</div>
-                            <div>박수아</div>
+                            <div>{userData.name}</div>
                         </li>
                         <li>
                             <div>연락처</div>
-                            <div>010-5771-2714</div>
+                            <div>{userData.phone}</div>
                         </li>
                         <li>
                             <div>이메일</div>
-                            <div>tndk4997@naver.com</div>
+                            <div>{userData.email}</div>
                         </li>
                         <li>
                             <div>품절시 환불</div>

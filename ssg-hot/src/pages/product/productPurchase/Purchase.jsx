@@ -13,13 +13,14 @@ import { purchaseState, totalPriceState } from "../../../store/atom/purchaseStat
 import { purchaseProduct } from '../../../store/apis/product';
 import { useEffect } from 'react';
 import { getAddress } from '../../../store/apis/address';
+import { getUserDetail } from '../../../store/apis/user';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
 
 function Purchase() {
     const totalDiscountPrice = useRecoilValue(totalPriceState)
     const purchaseProductData = useRecoilValue(purchaseState)
     const [deliveryData,setDeliveryData] = useState([])
+    const [userData, setUserData] = useState([])
     // const [purchaseList,setPurchaseList] = useState([])
 
     const purchaseData = {
@@ -39,15 +40,20 @@ function Purchase() {
         couponId:1,
     
         orderInfo:"주문 시 결제수단으로 환불받기",
-        orderName:"박찬흠",
-        orderPhone:"01012341234",
-        orderEmail:"33cks1423@naver.com",
+        orderName:userData.name,
+        orderPhone:userData.phone,
+        orderEmail:userData.email,
     }
 
     useEffect(()=>{
         getAddress()
         .then((res)=>{
             setDeliveryData(res.data.data[0])
+        })
+        getUserDetail()
+        .then((res)=>{
+            console.log('asdfasdf',res)
+            setUserData(res)
         })
     },[])
 
@@ -61,13 +67,16 @@ function Purchase() {
             }
             return product;
         })
-        purchaseData.orderItems=result;
-        console.log('보낼데이터',purchaseData)
-        purchaseProduct(purchaseData)
-        .then((res) =>{
-            console.log(res.data)
-        })
-        .catch((err)=>console.log(err))
+        if(window.confirm("구매하시겠습니까?") === true){
+            purchaseData.orderItems=result;
+            purchaseProduct(purchaseData)
+            .then((res) =>{
+                console.log(res.data)
+            })
+            .catch((err)=>console.log(err))
+            window.location="/order/completion"
+        }
+
     }
     return ( 
         <>  
@@ -82,9 +91,7 @@ function Purchase() {
                 <ProductShippingRequest/>
                 <ProductDeliveryItems/>
                 <div className='purchase-bar' onClick={handlePurchase}>
-                    <Link to='/order/completion'>
-                        결제하기
-                    </Link>
+                    결제하기
                 </div>
             </div>
         </>
