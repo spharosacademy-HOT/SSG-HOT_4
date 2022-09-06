@@ -33,6 +33,7 @@ export default function FooterMenu() {
 
           <li>
             <a
+            onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
               // href="https://m.ssg.com/comm/app/appLink.ssg?mobilAppSvcNo=3"
               className="clickable"
               data-react-tarea="푸터|앱다운로드"
@@ -42,6 +43,7 @@ export default function FooterMenu() {
           </li>
           <li>
             <a
+            onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
               // href="#"
               className="clickable"
               data-react-tarea="푸터|PC버전"

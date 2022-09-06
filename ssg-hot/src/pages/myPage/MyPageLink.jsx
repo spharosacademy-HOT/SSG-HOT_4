@@ -18,6 +18,7 @@ function MyPageLink() {
             </li>
             <li>
               <a
+                onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
                 href="#"
                 className="clickable"
                 data-react-tarea="MYSSG|M_MY_SSG_카테고리_온라인매장구매내역"
@@ -27,6 +28,7 @@ function MyPageLink() {
             </li>
             <li>
               <a
+                onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
                 href="#"
                 className="clickable"
                 data-react-tarea="MYSSG|M_MY_SSG_카테고리_자주구매상품"
@@ -36,6 +38,7 @@ function MyPageLink() {
             </li>
             <li>
               <a
+                onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
                 href="#"
                 className="clickable"
                 data-react-tarea="MYSSG|M_MY_SSG_카테고리_정기배송설정관리"
@@ -45,6 +48,7 @@ function MyPageLink() {
             </li>
             <li>
               <a
+                onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
                 href="#"
                 className="clickable"
                 data-react-tarea="MYSSG|M_MY_SSG_카테고리_항공권예약조회"
@@ -54,6 +58,7 @@ function MyPageLink() {
             </li>
             <li>
               <a
+                onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
                 href="#"
                 className="clickable"
                 data-react-tarea="MYSSG|M_MY_SSG_카테고리_호텔예약조회"
@@ -68,6 +73,7 @@ function MyPageLink() {
           <ul className="myssg_manage_list">
             <li>
               <a
+                onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
                 href="#"
                 className="clickable"
                 data-react-tarea="MYSSG|M_MY_SSG_카테고리_쿠폰"
@@ -77,6 +83,7 @@ function MyPageLink() {
             </li>
             <li>
               <a
+                onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
                 href="#"
                 className="clickable"
                 data-react-tarea="MYSSG|M_MY_SSG_카테고리_SSGMONEY"
@@ -86,6 +93,7 @@ function MyPageLink() {
             </li>
             <li>
               <a
+                onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
                 href="#"
                 className="clickable"
                 data-react-tarea="MYSSG|M_MY_SSG_카테고리_신세계포인트"
@@ -95,6 +103,7 @@ function MyPageLink() {
             </li>
             <li>
               <a
+                onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
                 href="#"
                 className="clickable"
                 data-react-tarea="MYSSG|M_MY_SSG_카테고리_국민용돈"
@@ -104,6 +113,7 @@ function MyPageLink() {
             </li>
             <li>
               <a
+                onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
                 href="#"
                 className="clickable"
                 data-react-tarea="MYSSG|M_MY_SSG_카테고리_맘키즈클럽관리"
@@ -113,6 +123,7 @@ function MyPageLink() {
             </li>
             <li>
               <a
+                onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
                 href="#"
                 className="clickable"
                 data-react-tarea="MYSSG|M_MY_SSG_카테고리_SSG VOUCHER"
@@ -130,6 +141,7 @@ function MyPageLink() {
             </li>
             <li>
               <a
+                onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
                 href="#"
                 className="clickable"
                 data-react-tarea="MYSSG|M_MY_SSG_카테고리_내상품평"
@@ -139,6 +151,7 @@ function MyPageLink() {
             </li>
             <li>
               <a
+                onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
                 href="#"
                 className="clickable"
                 data-react-tarea="MYSSG|M_MY_SSG_카테고리_새벽배송알비백관리"
@@ -148,6 +161,7 @@ function MyPageLink() {
             </li>
             <li>
               <a
+                onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
                 href="#"
                 className="clickable"
                 data-react-tarea="MYSSG|M_MY_SSG_카테고리_스탬프내역"
@@ -157,6 +171,7 @@ function MyPageLink() {
             </li>
             <li>
               <a
+                onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
                 href="#"
                 className="clickable"
                 data-react-tarea="MYSSG|M_MY_SSG_카테고리_이벤트참여현황"
@@ -166,6 +181,7 @@ function MyPageLink() {
             </li>
             <li>
               <a
+                onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
                 href="#"
                 className="clickable"
                 data-react-tarea="MYSSG|M_MY_SSG_카테고리_EMAIL답변확인"
@@ -175,6 +191,7 @@ function MyPageLink() {
             </li>
             <li>
               <a
+                onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
                 href="#"
                 className="clickable"
                 data-react-tarea="MYSSG|M_MY_SSG_카테고리_상품Q&A"
@@ -184,6 +201,7 @@ function MyPageLink() {
             </li>
             <li>
               <a
+                onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
                 href="#"
                 className="clickable"
                 data-react-tarea="MYSSG|M_MY_SSG_카테고리_입고알림내역"
@@ -193,6 +211,7 @@ function MyPageLink() {
             </li>
             <li>
               <a
+                onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
                 href="#"
                 className="clickable"
                 data-react-tarea="MYSSG|M_MY_SSG_카테고리_우르르앵콜내역"
@@ -202,6 +221,7 @@ function MyPageLink() {
             </li>
             <li>
               <a
+                onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
                 href="#"
                 className="clickable"
                 data-react-tarea="MYSSG|M_MY_SSG_카테고리_행사알림내역"
@@ -216,6 +236,7 @@ function MyPageLink() {
           <ul className="myssg_manage_list">
             <li>
               <a
+                onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
                 href="#"
                 className="clickable"
                 data-react-tarea="MYSSG|M_MY_SSG_카테고리_받은선물"
@@ -225,6 +246,7 @@ function MyPageLink() {
             </li>
             <li>
               <a
+                onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
                 href="#"
                 className="clickable"
                 data-react-tarea="MYSSG|M_MY_SSG_카테고리_보낸선물"
@@ -234,6 +256,7 @@ function MyPageLink() {
             </li>
             <li>
               <a
+                onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
                 href="#"
                 className="clickable"
                 data-react-tarea="MYSSG|M_MY_SSG_카테고리_히스토리"
@@ -248,6 +271,7 @@ function MyPageLink() {
           <ul className="myssg_manage_list">
             <li>
               <a
+                onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
                 href="#"
                 className="clickable"
                 data-react-tarea="MYSSG|M_MY_SSG_카테고리_회원정보변경"
@@ -257,6 +281,7 @@ function MyPageLink() {
             </li>
             <li>
               <a
+                onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
                 href="#"
                 className="clickable"
                 data-react-tarea="MYSSG|M_MY_SSG_카테고리_비밀번호변경"
@@ -266,6 +291,7 @@ function MyPageLink() {
             </li>
             <li>
               <a
+                onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
                 href="#"
                 className="clickable"
                 data-react-tarea="MYSSG|M_MY_SSG_카테고리_배송지관리"
@@ -275,6 +301,7 @@ function MyPageLink() {
             </li>
             <li>
               <a
+                onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
                 href="#"
                 className="clickable"
                 data-react-tarea="MYSSG|M_MY_SSG_카테고리_결제수단관리"
@@ -284,6 +311,7 @@ function MyPageLink() {
             </li>
             <li>
               <a
+                onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
                 href="#"
                 className="clickable"
                 data-react-tarea="MYSSG|M_MY_SSG_카테고리_신발사이즈설정"
@@ -293,6 +321,7 @@ function MyPageLink() {
             </li>
             <li>
               <a
+                onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
                 href="#"
                 className="clickable"
                 data-react-tarea="MYSSG|M_MY_SSG_카테고리_이메일문자수신동의"
@@ -302,6 +331,7 @@ function MyPageLink() {
             </li>
             <li>
               <a
+                onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
                 href="#"
                 className="clickable"
                 data-react-tarea="MYSSG|M_MY_SSG_카테고리_개인정보제3자제공동의"
@@ -311,6 +341,7 @@ function MyPageLink() {
             </li>
             <li>
               <a
+                onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
                 href="#"
                 className="clickable"
                 data-react-tarea="MYSSG|M_MY_SSG_카테고리_제휴멤버십관리"
@@ -320,6 +351,7 @@ function MyPageLink() {
             </li>
             <li>
               <a
+                onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
                 href="#"
                 data-react-tarea="MYSSG|M_MY_SSG_카테고리_자동로그인 관리"
                 className="clickable"
@@ -329,6 +361,7 @@ function MyPageLink() {
             </li>
             <li>
               <a
+                onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
                 href="#"
                 className="clickable"
                 data-react-tarea="MYSSG|M_MY_SSG_카테고리_SNS연결설정"
@@ -338,6 +371,7 @@ function MyPageLink() {
             </li>
             <li>
               <a
+                onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
                 href="#"
                 className="clickable"
                 data-react-tarea="MYSSG|M_MY_SSG_카테고리_회원탈퇴"
@@ -350,7 +384,9 @@ function MyPageLink() {
       </div>
 
       <div className="myssg_banner ty_img">
-        <a href="#" className="myssg_banner_link">
+        <a 
+        onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
+        href="#" className="myssg_banner_link">
           <img
             src="//sui.ssgcdn.com/ui/m_ssg/img/common/banner_omni_agree.jpg"
             alt="자주구매 / FOR YOU / 맘키즈 / VIP 혜택을 받는 가장 빠른 방법 옴니서비스 동의하러가기"

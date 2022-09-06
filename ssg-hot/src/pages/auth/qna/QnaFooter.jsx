@@ -35,7 +35,9 @@ function QnaFooter({ title, content, productId, type }) {
         <li className="lst">
           배송, 결제, 교환/반품에 대한 문의는 고객센터 E-mail 상담을 이용해
           주세요.{" "}
-          <a href="#" className="btn_lnk">
+          <a 
+          onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
+          href="#" className="btn_lnk">
             고객센터 바로가기
           </a>
         </li>

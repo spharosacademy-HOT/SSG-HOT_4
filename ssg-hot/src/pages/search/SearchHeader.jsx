@@ -19,6 +19,7 @@ export default function SearchHeader() {
       setCartProductList([]);
       navigate("/cart");
     } else {
+      alert("로그인 해주세요.");
       navigate("/login");
     }
   };

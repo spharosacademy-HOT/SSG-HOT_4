@@ -5,6 +5,7 @@ function OrderReserve() {
     <ul className="mnodr_tab">
       <li className="on ty2">
         <a
+          onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
           href="#"
           className="orderInfoTracking"
           data-tracking-cd="00014_000000095_t00060"
@@ -15,6 +16,7 @@ function OrderReserve() {
       </li>
       <li className="ty2">
         <a
+          onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
           href="#"
           name="btnGoHotelOrderInfo"
           className="orderInfoTracking"
@@ -26,6 +28,7 @@ function OrderReserve() {
       </li>
       <li className="ty2">
         <a
+          onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
           href="#"
           name="btnGoTripOrderInfo"
           className="orderInfoTracking"

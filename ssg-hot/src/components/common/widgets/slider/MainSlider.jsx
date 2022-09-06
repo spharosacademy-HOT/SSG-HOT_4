@@ -30,11 +30,15 @@ export default function MainSlider() {
               data-advertbilngtypecd="10"
               data-advertkindcd="50"
             >
-              <div className="cmitem_tt_adinfo ssg-tooltip-wrap">
-                <a href="#" className="cmitem_btn_tt_adinfo ssg-tooltip">
+              <div className="cmitem_tt_adinfo ssg-tooltip-wrap"
+              onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}>
+                <a 
+                
+                className="cmitem_btn_tt_adinfo ssg-tooltip">
                   <span className="blind">광고 안내 툴팁</span>
                 </a>
-                <div className="cmitem_tt_adinfo_layer ssg-tooltip-layer">
+                <div className="cmitem_tt_adinfo_layer ssg-tooltip-layer"
+                onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}>
                   검색어와 관련된 상품으로 입찰가순으로 전시됩니다.
                   <button
                     type="button"
@@ -79,7 +83,8 @@ export default function MainSlider() {
             style={{ width: "375px" }}
           >
             <div className="smhero_bn gate_unit">
-              <a className="smhero_bnlink" href="#">
+              <a className="smhero_bnlink" href="#"
+              onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}>
                 <div className="smhero_thumb">
                   <img
                     className="swiper-lazy swiper-lazy-loaded"
@@ -110,7 +115,8 @@ export default function MainSlider() {
             style={{ width: "375px" }}
           >
             <div className="smhero_bn gate_unit">
-              <a className="smhero_bnlink" href="#">
+              <a className="smhero_bnlink" href="#"
+              onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}>
                 <div className="smhero_thumb">
                   <img
                     className="swiper-lazy swiper-lazy-loaded"

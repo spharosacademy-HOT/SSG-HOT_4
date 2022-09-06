@@ -23,6 +23,7 @@ function EmailAd() {
               </label>
             </span>
             <a
+            onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
               href="#"
               //   onClick={"window.open('/m/member/join/agreePrivacyDetail.ssg?type=privacy_signup_terms_scom02&t=simple');return false;"}
               title="새창열림"
@@ -67,7 +68,9 @@ function EmailAd() {
         </div>
 
         <div className="cmem_btn_area">
-          <a href="#" id="btnSubmit" className="cmem_btn cmem_btn_orange2">
+          <a 
+          onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
+          href="#" id="btnSubmit" className="cmem_btn cmem_btn_orange2">
             확인
           </a>
         </div>

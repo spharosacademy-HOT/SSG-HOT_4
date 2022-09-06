@@ -27,6 +27,7 @@ export default function MainContent() {
                 <ul className="cmitem_quick_lst">
                   <li>
                     <a
+                    onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
                       href="#"
                       className="clickable"
                       rel="nofollow"
@@ -46,6 +47,7 @@ export default function MainContent() {
                   </li>
                   <li>
                     <a
+                    onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
                       href="#"
                       className="clickable"
                       rel="nofollow"
@@ -65,6 +67,7 @@ export default function MainContent() {
                   </li>
                   <li>
                     <a
+                    onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
                       href="#"
                       className="clickable"
                       rel="nofollow"
@@ -84,6 +87,7 @@ export default function MainContent() {
                   </li>
                   <li>
                     <a
+                    onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
                       href="#"
                       className="clickable"
                       rel="nofollow"
@@ -114,7 +118,9 @@ export default function MainContent() {
                 </p>
               </div>
               <div className="cmtit_txtbtn">
-                <a href="#" className="cmtit_txtbtn_link">
+                <a 
+                onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
+                href="#" className="cmtit_txtbtn_link">
                   전체보기
                 </a>
               </div>
@@ -130,6 +136,7 @@ export default function MainContent() {
                 <div className="cmitem_gridbx ty_rect">
                   <div className="cmitem_thmb">
                     <a
+                    onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
                       href="#"
                       className="cmitem_thmb_link clickable"
                       data-react-tarea="홈|해피라운지_상품|상품_클릭|(남성) 22 S/S 시즌오프 30% &amp; Best Item 50종을 한 눈에 쓱~~"
@@ -147,7 +154,9 @@ export default function MainContent() {
                   <div className="cmitem_other">
                     <ul className="cmitem_other_list ty_full">
                       <li>
-                        <a href="#">
+                        <a 
+                        onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
+                        href="#">
                           <div className="cmitem_other_thmb">
                             <img
                               src="https://sitem.ssgcdn.com/13/55/82/item/1000312825513_i1_150.jpg"
@@ -158,7 +167,9 @@ export default function MainContent() {
                         </a>
                       </li>
                       <li>
-                        <a href="#">
+                        <a 
+                        onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
+                        href="#">
                           <div className="cmitem_other_thmb">
                             <img
                               src="https://sitem.ssgcdn.com/28/54/26/item/1000301265428_i1_150.jpg"
@@ -169,7 +180,9 @@ export default function MainContent() {
                         </a>
                       </li>
                       <li>
-                        <a href="#">
+                        <a 
+                        onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
+                        href="#">
                           <div className="cmitem_other_thmb">
                             <img
                               src="https://sitem.ssgcdn.com/41/60/21/item/1000299216041_i1_150.jpg"
@@ -181,6 +194,7 @@ export default function MainContent() {
                       </li>
                       <li>
                         <a
+                          onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
                           href="#"
                           className="clickable"
                           data-react-tarea="홈|해피라운지_상품|상품_클릭|(남성) 22 S/S 시즌오프 30% &amp; Best Item 50종을 한 눈에 쓱~~"
@@ -200,6 +214,7 @@ export default function MainContent() {
                 <div className="cmitem_detailbx ty_deal_text2">
                   <div className="cmitem_tx_thmb">
                     <a
+                    onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
                       href="#"
                       className="cmitem_tx_thmb_link clickable"
                       data-react-tarea="홈|해피라운지_상품|상품_클릭|(남성) 22 S/S 시즌오프 30% &amp; Best Item 50종을 한 눈에 쓱~~"
@@ -317,6 +332,7 @@ export default function MainContent() {
                 <div className="cmitem_gridbx ty_rect">
                   <div className="cmitem_thmb">
                     <a
+                      onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
                       href="#"
                       className="cmitem_thmb_link clickable"
                       data-react-tarea="홈|해피라운지_상품|상품_클릭|[WOMEN] 주간PICK! SSG 특별혜택★간절기 신상 오픈! 니트/원피스/가디건 外"
@@ -345,7 +361,9 @@ export default function MainContent() {
                         </a>
                       </li>
                       <li>
-                        <a href="#">
+                        <a 
+                        onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
+                        href="#">
                           <div className="cmitem_other_thmb">
                             <img
                               src="https://sitem.ssgcdn.com/78/02/16/item/1000331160278_i1_150.jpg"
@@ -356,7 +374,9 @@ export default function MainContent() {
                         </a>
                       </li>
                       <li>
-                        <a href="#">
+                        <a 
+                        onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
+                        href="#">
                           <div className="cmitem_other_thmb">
                             <img
                               src="https://sitem.ssgcdn.com/35/65/79/item/1000379796535_i1_150.jpg"
@@ -368,6 +388,7 @@ export default function MainContent() {
                       </li>
                       <li>
                         <a
+                          onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
                           href="#"
                           className="clickable"
                           data-react-tarea="홈|해피라운지_상품|상품_클릭|[WOMEN] 주간PICK! SSG 특별혜택★간절기 신상 오픈! 니트/원피스/가디건 外"
@@ -387,6 +408,7 @@ export default function MainContent() {
                 <div className="cmitem_detailbx ty_deal_text2">
                   <div className="cmitem_tx_thmb">
                     <a
+                      onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
                       href="#"
                       className="cmitem_tx_thmb_link clickable"
                       data-react-tarea="홈|해피라운지_상품|상품_클릭|[WOMEN] 주간PICK! SSG 특별혜택★간절기 신상 오픈! 니트/원피스/가디건 外"
@@ -528,6 +550,7 @@ export default function MainContent() {
                     <div className="ssg-tooltip-wrap sr_toggle cmitem_tt_adinfo">
                       <em className="blind">광고</em>
                       <a
+                        onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
                         href="#"
                         className="ssg-tooltip cmitem_btn_tt_adinfo   clickable"
                         role="button"
@@ -559,7 +582,9 @@ export default function MainContent() {
                   <div className="cmitem_other">
                     <ul className="cmitem_other_list ty_full">
                       <li>
-                        <a href="#">
+                        <a 
+                        onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
+                        href="#">
                           <div className="cmitem_other_thmb">
                             <img
                               src="https://sitem.ssgcdn.com/11/65/17/item/1000192176511_i1_150.jpg"
@@ -570,7 +595,9 @@ export default function MainContent() {
                         </a>
                       </li>
                       <li>
-                        <a href="#">
+                        <a 
+                        onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
+                        href="#">
                           <div className="cmitem_other_thmb">
                             <img
                               src="https://sitem.ssgcdn.com/67/80/43/item/1000266438067_i1_150.jpg"
@@ -581,7 +608,9 @@ export default function MainContent() {
                         </a>
                       </li>
                       <li>
-                        <a href="#">
+                        <a 
+                        onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
+                        href="#">
                           <div className="cmitem_other_thmb">
                             <img
                               src="https://sitem.ssgcdn.com/90/53/59/item/1000240595390_i1_150.jpg"
@@ -761,6 +790,7 @@ export default function MainContent() {
                       >
                         <div className="cmitem_tt_adinfo ssg-tooltip-wrap">
                           <a
+                            onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
                             href="#"
                             className="cmitem_btn_tt_adinfo ssg-tooltip"
                           >
@@ -820,6 +850,7 @@ export default function MainContent() {
                       >
                         <div className="cmitem_tt_adinfo ssg-tooltip-wrap">
                           <a
+                            onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
                             href="#"
                             className="cmitem_btn_tt_adinfo ssg-tooltip"
                           >
@@ -876,6 +907,7 @@ export default function MainContent() {
                       >
                         <div className="cmitem_tt_adinfo ssg-tooltip-wrap">
                           <a
+                            onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
                             href="#"
                             className="cmitem_btn_tt_adinfo ssg-tooltip"
                           >
@@ -972,6 +1004,7 @@ export default function MainContent() {
                           <div className="cmhero_bn">
                             <div className="cmitem_tt_adinfo ssg-tooltip-wrap">
                               <a
+                                onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
                                 href="#"
                                 className="cmitem_btn_tt_adinfo ssg-tooltip"
                               >
@@ -991,6 +1024,7 @@ export default function MainContent() {
                               </div>
                             </div>
                             <a
+                              onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
                               href="#"
                               className="cmhero_bnlnk clickable"
                               data-react-tarea-dtl-cd="t00001"
@@ -1010,6 +1044,7 @@ export default function MainContent() {
                           <div className="cmhero_bn">
                             <div className="cmitem_tt_adinfo ssg-tooltip-wrap">
                               <a
+                                onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
                                 href="#"
                                 className="cmitem_btn_tt_adinfo ssg-tooltip"
                               >
@@ -1029,6 +1064,7 @@ export default function MainContent() {
                               </div>
                             </div>
                             <a
+                              onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
                               href="#"
                               className="cmhero_bnlnk clickable"
                               data-react-tarea-dtl-cd="t00001"
@@ -1048,6 +1084,7 @@ export default function MainContent() {
                           <div className="cmhero_bn">
                             <div className="cmitem_tt_adinfo ssg-tooltip-wrap">
                               <a
+                                onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
                                 href="#"
                                 className="cmitem_btn_tt_adinfo ssg-tooltip"
                               >
@@ -1067,6 +1104,7 @@ export default function MainContent() {
                               </div>
                             </div>
                             <a
+                              onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
                               href="#"
                               className="cmhero_bnlnk clickable"
                               data-react-tarea-dtl-cd="t00001"
@@ -1121,6 +1159,7 @@ export default function MainContent() {
                       <div className="cmhero_bn">
                         <a
                           className="cmhero_bnlnk"
+                          onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
                           href="#"
                           data-react-tarea="홈|신규서비스_배너|배너_클릭|명절"
                         >
@@ -1133,6 +1172,7 @@ export default function MainContent() {
                       <div className="cmhero_tit">
                         <a
                           className="cmhero_titlnk"
+                          onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
                           href="#"
                           data-react-tarea="홈|신규서비스_배너|배너_클릭|명절"
                         >
@@ -1156,6 +1196,7 @@ export default function MainContent() {
                       <div className="cmhero_bn">
                         <a
                           className="cmhero_bnlnk"
+                          onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
                           href="#"
                           data-react-tarea="홈|신규서비스_배너|배너_클릭|먼데이문"
                         >
@@ -1168,6 +1209,7 @@ export default function MainContent() {
                       <div className="cmhero_tit">
                         <a
                           className="cmhero_titlnk"
+                          onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
                           href="#"
                           data-react-tarea="홈|신규서비스_배너|배너_클릭|먼데이문"
                         >
@@ -1191,6 +1233,7 @@ export default function MainContent() {
                       <div className="cmhero_bn">
                         <a
                           className="cmhero_bnlnk"
+                          onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
                           href="#"
                           data-react-tarea="홈|신규서비스_배너|배너_클릭|명품관"
                         >
@@ -1203,6 +1246,7 @@ export default function MainContent() {
                       <div className="cmhero_tit">
                         <a
                           className="cmhero_titlnk"
+                          onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
                           href="#"
                           data-react-tarea="홈|신규서비스_배너|배너_클릭|명품관"
                         >
@@ -1254,6 +1298,7 @@ export default function MainContent() {
                           <div className="cmhero_bn">
                             <a
                               className="cmhero_bnlnk"
+                              onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
                               href="#"
                               data-react-tarea="홈|신규서비스_배너|배너_클릭|명절"
                             >
@@ -1269,6 +1314,7 @@ export default function MainContent() {
                           <div className="cmhero_tit">
                             <a
                               className="cmhero_titlnk"
+                              onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
                               href="#"
                               data-react-tarea="홈|신규서비스_배너|배너_클릭|명절"
                             >
@@ -1289,6 +1335,7 @@ export default function MainContent() {
                           <div className="cmhero_bn">
                             <a
                               className="cmhero_bnlnk"
+                              onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
                               href="#"
                               data-react-tarea="홈|신규서비스_배너|배너_클릭|먼데이문"
                             >
@@ -1324,6 +1371,7 @@ export default function MainContent() {
                           <div className="cmhero_bn">
                             <a
                               className="cmhero_bnlnk"
+                              onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
                               href="#"
                               data-react-tarea="홈|신규서비스_배너|배너_클릭|명품관"
                             >
@@ -1339,6 +1387,7 @@ export default function MainContent() {
                           <div className="cmhero_tit">
                             <a
                               className="cmhero_titlnk"
+                              onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
                               href="#"
                               data-react-tarea="홈|신규서비스_배너|배너_클릭|명품관"
                             >
@@ -1368,6 +1417,7 @@ export default function MainContent() {
                 <ul className="cmitem_quick_lst ty_view5 is_moreset">
                   <li>
                     <a
+                      onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
                       href="#"
                       className="clickable"
                       data-react-tarea="홈|서비스퀵링크|배너_클릭|명절"
@@ -1387,6 +1437,7 @@ export default function MainContent() {
 
                   <li>
                     <a
+                      onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
                       href="#"
                       className="clickable"
                       data-react-tarea="홈|서비스퀵링크|배너_클릭|해피라운지"
@@ -1406,6 +1457,7 @@ export default function MainContent() {
 
                   <li>
                     <a
+                      onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
                       href="#"
                       className="clickable"
                       data-react-tarea="홈|서비스퀵링크|배너_클릭|공식브랜드관"
@@ -1429,6 +1481,7 @@ export default function MainContent() {
 
                   <li>
                     <a
+                      onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
                       href="#"
                       className="clickable"
                       data-react-tarea="홈|서비스퀵링크|배너_클릭|백화점(N)"
@@ -1448,6 +1501,7 @@ export default function MainContent() {
 
                   <li>
                     <a
+                      onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
                       href="#"
                       className="clickable"
                       data-react-tarea="홈|서비스퀵링크|배너_클릭|SSG럭셔리"
@@ -1467,6 +1521,7 @@ export default function MainContent() {
 
                   <li>
                     <a
+                      onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
                       href="#"
                       className="clickable"
                       data-react-tarea="홈|서비스퀵링크|배너_클릭|스마일클럽 ( 7/18 ~ 뉴 딱지 제거 )"
@@ -1486,6 +1541,7 @@ export default function MainContent() {
 
                   <li>
                     <a
+                      onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
                       href="#"
                       className="clickable"
                       data-react-tarea="홈|서비스퀵링크|배너_클릭|이벤트"
@@ -1505,6 +1561,7 @@ export default function MainContent() {
 
                   <li>
                     <a
+                      onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
                       href="#"
                       className="clickable"
                       data-react-tarea="홈|서비스퀵링크|배너_클릭|선물하기"
@@ -1524,6 +1581,7 @@ export default function MainContent() {
 
                   <li>
                     <a
+                      onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
                       href="#"
                       className="clickable"
                       data-react-tarea="홈|서비스퀵링크|배너_클릭|베스트"
@@ -1543,6 +1601,7 @@ export default function MainContent() {
 
                   <li>
                     <a
+                      onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
                       href="#"
                       className="clickable"
                       data-react-tarea="홈|서비스퀵링크|배너_클릭|신상품"
@@ -1577,6 +1636,7 @@ export default function MainContent() {
             <div className="cmbnr_promo">
               <div className="cmbnr_promo_bn">
                 <a
+                  onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
                   href="#"
                   className="cmbnr_lnk clickable"
                   data-react-tarea="홈|신세계백화점랜딩배너|배너_클릭|백화점 배너"
@@ -1627,6 +1687,7 @@ export default function MainContent() {
                     style={{ backgroundColor: "#363635" }}
                   >
                     <a
+                      onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
                       href="#"
                       className="clickable"
                       data-react-tarea="홈|카드행사_배너|배너_클릭|SSG.COM카드 ED2 220718~_banrId=2003185343"
@@ -1662,6 +1723,7 @@ export default function MainContent() {
                     style={{ backgroundColor: "#006bff" }}
                   >
                     <a
+                      onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
                       href="#"
                       className="clickable"
                       data-react-tarea="홈|카드행사_배너|배너_클릭|SSG.COM삼성카드_220801~_banrId=2002761841"
@@ -1697,6 +1759,7 @@ export default function MainContent() {
                     style={{ backgroundColor: "#006bff" }}
                   >
                     <a
+                      onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
                       href="#"
                       className="clickable"
                       data-react-tarea="홈|카드행사_배너|배너_클릭|삼성카드 SSGPAY 8% 청구할인 (8/8)_banrId=2001408606"

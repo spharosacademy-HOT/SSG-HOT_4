@@ -173,8 +173,12 @@ function LogInInput() {
               </button>
             </div>
             <div className="cmem_login_support">
-              <a href="#">아이디 찾기|</a>
-              <a href="#">비밀번호 찾기|</a>
+              <a 
+              onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
+              href="#">아이디 찾기|</a>
+              <a 
+              onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
+              href="#">비밀번호 찾기|</a>
               <Link to="/signup">회원가입</Link>
             </div>
           </fieldset>

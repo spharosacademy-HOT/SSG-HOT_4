@@ -5,7 +5,9 @@ export default function MainChange() {
     <div className="ly_change ">
       <div className="tit_change">
         <h3>대체 상품</h3>
-        <a href="#" className="btn_close">
+        <a 
+        onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
+        href="#" className="btn_close">
           <span className="blind">닫기</span>
         </a>
       </div>
