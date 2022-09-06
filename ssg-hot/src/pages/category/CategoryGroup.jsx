@@ -11,7 +11,7 @@ function CategoryGroup({cateData, viewIsTrue,cateNumber, setCateNumber, isClick,
         
         let tempData = false;
         cateData.category.map((item) => {
-            if(item?.id == getNum){
+            if(item?.id === getNum){
                 tempData = item?.categoryMList;
             }
         });

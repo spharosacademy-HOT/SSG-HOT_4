@@ -31,6 +31,7 @@ import SearchResult from "./pages/search/SearchResult";
 import OrderControl from "./pages/myPage/myOrder/OrderControl";
 import OrderFinalDetail from "./pages/myPage/myOrder/OrderFinalDetail";
 import Modal from "react-modal";
+import OrderComplete from "./pages/product/productPurchase/OrderComplete";
 
 function App() {
   Modal.setAppElement("#root");
@@ -70,6 +71,7 @@ function App() {
           </Route>
           <Route path="/order/detail" element={<OrderFinalDetail />} />
           <Route path="/order" element={<OrderControl />} />
+          <Route path="/order/completion" element={<OrderComplete/>}/>
         </Routes>
         <ToolBar />
         <Footer />

@@ -4,6 +4,9 @@ import{
     faCaretDown,
 
 } from "@fortawesome/free-solid-svg-icons";
+import { useRecoilValue } from 'recoil';
+import { categoryMState, categoryState } from '../../store/atom/purchaseState';
+import { useNavigate } from 'react-router-dom';
 
 function ProductNav() {
     // const [isClick, setIsTrue] = useState(false)
@@ -12,7 +15,9 @@ function ProductNav() {
     //     setIsTrue(!isClick)
     //     console.log(isClick)
     // }
-
+    const categoryMName = useRecoilValue(categoryMState)
+    const categoryName = useRecoilValue(categoryState)
+    const navigate = useNavigate();
     return ( 
         <>
             {/* <div className="mcom_tit_renew  react-area">
@@ -36,9 +41,11 @@ function ProductNav() {
                 </div>
                 </div> */}
                 <div className='product-nav'>
-                    <div>뒤로</div>
-                    <div>명품/잡화/쥬얼리</div>
-                    <div>가방/지갑</div>
+                    <div className="backBtn">
+                        <button type="button" onClick={() => navigate(-1)}></button>
+                    </div>
+                    <div>{categoryName}</div>
+                    <div>{categoryMName}</div>
                 </div>
                 <div className='product-nav-list'>
                     <div></div>

@@ -14,6 +14,7 @@ import { purchaseProduct } from '../../../store/apis/product';
 import { useEffect } from 'react';
 import { getAddress } from '../../../store/apis/address';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 function Purchase() {
     const totalDiscountPrice = useRecoilValue(totalPriceState)
@@ -81,7 +82,9 @@ function Purchase() {
                 <ProductShippingRequest/>
                 <ProductDeliveryItems/>
                 <div className='purchase-bar' onClick={handlePurchase}>
-                    결제하기
+                    <Link to='/order/completion'>
+                        결제하기
+                    </Link>
                 </div>
             </div>
         </>
