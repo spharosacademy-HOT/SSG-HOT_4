@@ -17,6 +17,7 @@ import {
 } from "../../../store/atom/purchaseState";
 import { postLike } from "../../../store/apis/like";
 import { addCommas } from "../../../store/utils/useful-funtions";
+import { getAddress } from '../../../store/apis/address';
 
 function ProductPurchaseBar({ stockList, isWished, setIsWished }) {
   let params = useParams();
@@ -37,6 +38,7 @@ function ProductPurchaseBar({ stockList, isWished, setIsWished }) {
   const [countData, setCountData] = useState(1);
   const [currKey, setCurrKey] = useState("");
   const [stockId, setStockId] = useState(0);
+  const [deilveryData, setDeliveryData] = useState([])
   const navigate = useNavigate();
 
   const handleShow = () => {
@@ -132,6 +134,12 @@ function ProductPurchaseBar({ stockList, isWished, setIsWished }) {
       )
     );
   }, [countData, currKey]);
+  useEffect(() =>{
+    getAddress()
+    .then((res)=>{
+        setDeliveryData(res.data.data[0])
+    })
+  },[])
 
   return (
     <>
@@ -165,7 +173,9 @@ function ProductPurchaseBar({ stockList, isWished, setIsWished }) {
           <li className="product-buy">
             <div>
               {token ? (
-                <Link to={`/product/purchase`}>바로구매</Link>
+                deilveryData ?
+                (<Link to={`/product/purchase`}>바로구매</Link>) :
+                (<Link to={`/cartcontrol`}>바로구매</Link>)
               ) : (
                 <Link to={`/login`}>바로구매</Link>
               )}
