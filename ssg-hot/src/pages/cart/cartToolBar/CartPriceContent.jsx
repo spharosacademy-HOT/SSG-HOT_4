@@ -1,16 +1,26 @@
 import React from "react";
-import { useRecoilValue } from "recoil";
-import { cartState } from "../../../store/atom/cartState";
+import { useEffect } from "react";
+import { useState } from "react";
+import { useRecoilState, useRecoilValue } from "recoil";
+import {
+  cartOrderPriceState,
+  cartPurchaseState,
+  cartState,
+} from "../../../store/atom/cartState";
 
 export default function CartPriceContent() {
-  const cartData = useRecoilValue(cartState);
+  // const cartData = useRecoilValue(cartState);
+  const [cartPriceData, setCartPriceData] = useRecoilState(cartOrderPriceState);
+  const cartProductData = useRecoilValue(cartPurchaseState);
+  const [priceData, setPriceData] = useState({});
+  const cartCnt = cartProductData.length;
+
   let originPrice = 0;
   let discountPrice = 0;
   let deliveryPrice = 0;
-  const cartCnt = cartData.length;
 
   const sumPrice = () => {
-    cartData.map((item) => {
+    cartProductData.map((item) => {
       originPrice += item.stock.product.regularPrice * item.count;
       discountPrice +=
         item.stock.product.regularPrice *
@@ -18,20 +28,30 @@ export default function CartPriceContent() {
         item.count;
       deliveryPrice += item.stock.product.shippingFee;
     });
+    //console.log(originPrice, discountPrice, deliveryPrice);/
   };
-  sumPrice();
+  useEffect(() => {
+    sumPrice();
+    setCartPriceData({
+      originPrice: originPrice,
+      discountPice: discountPrice,
+      amountPaid: originPrice - discountPrice + deliveryPrice,
+      orderTotal: originPrice - discountPrice,
+      deliveryPay: deliveryPrice,
+    });
+  }, [cartProductData]);
 
   return (
     <div className="mnodr_toolbar_cont">
       <p className="mnodr_tx_desc" id="bar_price" style={{ marginTop: "1rem" }}>
         <span className="mnodr_cnt">전체상품 {cartCnt}개 </span>
         <span className="ssg_tx" id="toolbarCst">
-          {originPrice - discountPrice}원 + 배송비 {deliveryPrice}원 =
+          {cartPriceData.orderTotal}원 + 배송비 {cartPriceData.deliveryPay}원 =
         </span>
         <span className="mnodr_tx_total">
           <span className="ssg_tx" id="toolbarTotCst">
             {" "}
-            {originPrice - discountPrice + deliveryPrice}원
+            {cartPriceData.amountPaid}원
           </span>
         </span>
       </p>

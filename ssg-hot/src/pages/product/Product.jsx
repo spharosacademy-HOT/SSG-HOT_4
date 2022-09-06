@@ -12,7 +12,8 @@ import ProductGuide from "./productDetail/ProductGuide";
 import EventBanner from "./productDetail/EventBanner";
 import StoreInfo from "./productDetail/StoreInfo";
 import { useParams } from "react-router-dom";
-import axios from "axios";
+// import axios from "axios";
+import * as Api from "../../store/apis/address";
 import ProductPurchaseBar from "./productDetail/ProductPurchaseBar";
 import { baseURL } from "../../store/apis/apiClient";
 import { postRecent } from "../../store/apis/recent";
@@ -23,13 +24,13 @@ function Product() {
   const param = useParams();
   const url = `${baseURL}/product/${param.productId}`;
   const [productDatas, setProductDatas] = useState([]);
+  const [isWished, setIsWished] = useState(false);
 
   useEffect(() => {
-    axios.get(url).then((Response) => {
+    Api.get(`/product/${param.productId}`).then((Response) => {
       setProductDatas(Response.data);
       const productId = Response.data.id;
-      console.log(Response, "kdjKsljkl");
-
+      setIsWished(Response.data.isWished);
       if (localStorage.getItem("token") !== null) {
         postRecent(productId).then((res) => {
           // console.log(res, productId, "최근본아이템등록");
@@ -56,18 +57,11 @@ function Product() {
           <StoreInfo />
           <ProductPurchaseBar
             stockList={productDatas.optionFirst}
-            isWished={productDatas.isWished}
+            isWished={isWished}
+            setIsWished={setIsWished}
           />
         </>
       )}
-
-      {/* 추천 상품 */}
-      {/* <div>함께보면 좋은 상품</div>
-      <div className="product-list">
-        {productDatas && productDatas.map((item) => 
-          <ProductCard item={item} key={item.id} />
-        )}
-      </div> */}
     </>
   );
 }

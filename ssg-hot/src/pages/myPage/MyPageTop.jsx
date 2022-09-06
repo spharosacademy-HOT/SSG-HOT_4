@@ -3,7 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { getMyCart } from "../../store/apis/cart";
 import * as Api from "../../store/apis/address";
 import { useRecoilState } from "recoil";
-import { cartState } from "../../store/atom/cartState";
+import { cartPurchaseState, cartState } from "../../store/atom/cartState";
 import { addressState } from "../../store/atom/addressState";
 import { useState } from "react";
 import Badge from "@mui/material/Badge";
@@ -12,7 +12,8 @@ function MyPageTop() {
   const [cartData, setCartData] = useRecoilState(cartState);
   const [addressData, setAddressData] = useRecoilState(addressState);
   const [changeExisted, setChangeExisted] = useState(0);
-
+  const [cartProductList, setCartProductList] =
+    useRecoilState(cartPurchaseState);
   const navigate = useNavigate();
 
   const getAxiosAddress = async () => {
@@ -55,7 +56,7 @@ function MyPageTop() {
       // console.log(localStorage.getItem("token"));
       getAxiosAddress().then((res) => {
         getMyCart().then((res) => {
-          // console.log("장바구니가져오기", res);
+          setCartProductList([]);
           setCartData(res.data);
           navigate("/cart");
         });

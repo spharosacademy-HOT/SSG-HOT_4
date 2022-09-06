@@ -1,9 +1,16 @@
 import React, { useEffect, useState } from "react";
 import Modal from "react-modal";
-import { useRecoilState } from "recoil";
+import { useNavigate } from "react-router-dom";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { getMyCart } from "../../../../../../store/apis/cart";
 import { getOption1, putOption } from "../../../../../../store/apis/option";
-import { cartState } from "../../../../../../store/atom/cartState";
+import { purchaseProduct } from "../../../../../../store/apis/product";
+import { addressState } from "../../../../../../store/atom/addressState";
+import {
+  cartOrderPriceState,
+  cartState,
+} from "../../../../../../store/atom/cartState";
+import { userState } from "../../../../../../store/atom/user";
 
 const customStyles = {
   content: {
@@ -17,14 +24,40 @@ const customStyles = {
   },
 };
 
-export default function CartButton({ optionList, productId, cartId }) {
+export default function CartButton({ optionList, productId, cartId, item }) {
   const [optionFirst, setOptionFirst] = useState(optionList.optionFirsts);
   const [optionSecond, setOptionSecond] = useState(optionList.optionSeconds);
   const [option1, setOption1] = useState("");
   const [option2, setOption2] = useState("");
   const isOption = useState(optionFirst.length * optionSecond.length);
   const [cartData, setCartData] = useRecoilState(cartState);
+  const deliveryData = useRecoilValue(addressState);
+  const priceData = useRecoilValue(cartOrderPriceState);
+  const userData = useRecoilValue(userState);
 
+  const navigate = useNavigate();
+
+  const purchaseData = {
+    amountPaid:
+      item.stock.product.discountPrice * item.count +
+      item.stock.product.shippingFee,
+    orderTotal: item.stock.product.discountPrice * item.count,
+    deliveryPay: item.stock.product.shippingFee,
+    deliveryTaker: deliveryData[0].taker,
+    deliveryName: deliveryData[0].alias,
+    deliveryPhone: deliveryData[0].phone,
+    deliveryAddress: deliveryData[0].city,
+    deliveryAddress2: deliveryData[0].street,
+    deliveryZipcode: deliveryData[0].zipcode,
+    deliveryInfo: "택배함에 넣어주세요",
+    envoice: "송장번호",
+    paymentOption: "카드",
+    couponId: 1,
+    orderInfo: "주문 시 결제수단으로 환불받기",
+    orderName: userData.name,
+    orderPhone: userData.phone,
+    orderEmail: userData.email,
+  };
   // let subtitle;
   const [modalIsOpen, setIsOpen] = useState(false);
 
@@ -73,7 +106,23 @@ export default function CartButton({ optionList, productId, cartId }) {
       closeModal();
     });
   };
-  // console.log(optionSecond);
+  const handlePurchase = () => {
+    const product = {
+      stockId: item.stock.id,
+      stockCount: item.count,
+      stockPrice: item.stock.product.discountPrice,
+    };
+
+    purchaseData.orderItems = [product];
+    //console.log("보낼데이터", purchaseData);
+    purchaseProduct(purchaseData)
+      .then((res) => {
+        // console.log(res.data);
+        alert("성공적으로 주문완료하였습니다.");
+        navigate(`/order`);
+      })
+      .catch((err) => console.log(err));
+  };
 
   return (
     <>
@@ -85,7 +134,7 @@ export default function CartButton({ optionList, productId, cartId }) {
         ) : (
           <></>
         )}
-        <button type="button">
+        <button type="button" onClick={handlePurchase}>
           <span>바로구매</span>
         </button>
       </div>
@@ -130,7 +179,7 @@ export default function CartButton({ optionList, productId, cartId }) {
                 >
                   {optionFirst &&
                     optionFirst.map((option) => (
-                      <option key={option.stockId} value={option.id}>
+                      <option key={option.id} value={option.id}>
                         {option.name}
                       </option>
                     ))}

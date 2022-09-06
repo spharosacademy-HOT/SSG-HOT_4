@@ -9,24 +9,22 @@ import { useRecoilState } from "recoil";
 import { cartState } from "../../../../../store/atom/cartState";
 import { useNavigate } from "react-router-dom";
 
-export default function CartItem({ showAll }) {
+export default function CartItem() {
   const [cartData, setCartData] = useRecoilState(cartState);
   const navigate = useNavigate();
   // console.log("여기보시오", cartData);
 
   return (
     <div className="cartItemTotal">
-      <CartDeliveryHeader showAll={showAll} />
+      <CartDeliveryHeader />
       <ul className="cartUl">
         {cartData &&
           cartData.map((item, idx) => (
             <div className="cartUnit" key={item.id}>
               <li style={{ display: "flex" }} className="cartItemList">
-                <CartImg
-                  imgUrl={item.stock.product.titleImgUrl}
-                  showAll={showAll}
-                />
+                <CartImg imgUrl={item.stock.product.titleImgUrl} item={item} />
                 <CartContent
+                  item={item}
                   idx={idx}
                   id={item.id}
                   desc={item.stock.product}

@@ -1,15 +1,20 @@
 import React from "react";
+import { useState } from "react";
+import { useRecoilValue } from "recoil";
+import { cartShowAllState } from "../../../store/atom/cartState";
 
-export default function CartDeliveryHeader({ showAll }) {
+export default function CartDeliveryHeader() {
+  const showAll = useRecoilValue(cartShowAllState);
+  const [isShow, setIsShow] = useState(showAll);
   return (
     <div className="cartDeliveryHeader">
       <label htmlFor=""></label>
       <span>
-        {showAll ? (
-          <input type="checkbox" checked />
-        ) : (
-          <input type="checkbox" />
-        )}
+        <input
+          type="checkbox"
+          checked={isShow}
+          onChange={() => setIsShow(!isShow)}
+        />
       </span>
       <div className="titleWrap">
         <div className="titleArea">
