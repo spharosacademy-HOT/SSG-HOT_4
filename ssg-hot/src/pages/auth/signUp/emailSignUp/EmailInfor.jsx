@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { basicApiClient } from "../../../../store/apis/apiClient";
 import { useNavigate } from "react-router-dom";
-
+import { rand } from "./phoneUtils";
+import * as Api from "../../../../store/apis/address";
 function EmailInhtmlFor() {
   //유저정보
   const [userInfo, setUserInfo] = useState({
@@ -10,7 +11,7 @@ function EmailInhtmlFor() {
     name: "",
     phone: "",
   });
-
+  const { phone } = userInfo;
   const [pwConfirm, setPwConfirm] = useState("");
 
   //유효성검사변수
@@ -19,6 +20,14 @@ function EmailInhtmlFor() {
   const [phoneTest, setPhoneTest] = useState(false);
   const [pwConfirmTest, setPwConfirmTest] = useState(false);
   const [emailChek, setEmailCheck] = useState(false);
+  const [phoneValidCheck, setPhoneValidCheck] = useState(false);
+  const [sendPhone, setSendPhone] = useState(false);
+  const [phoneDisabled, setPhoneDisabled] = useState(false);
+  const [phoneSendDisabled, setPhoneSendDisabled] = useState(true);
+  const [phoneCount, setPhoneCount] = useState("");
+  const [phoneCheck, setPhoneCheck] = useState("");
+  const [phoneValid, setPhoneValid] = useState("");
+  const [phoneValid2, setPhoneValid2] = useState(true);
 
   //라우터
   let navigate = useNavigate();
@@ -43,7 +52,61 @@ function EmailInhtmlFor() {
     phoneTest &&
     pwConfirmTest &&
     pwTest &&
-    userInfo.name;
+    userInfo.name &&
+    phoneValidCheck;
+
+  const phoneHandle = async (e) => {
+    e.preventDefault();
+
+    var regExp = /(?:\d{3}|\d{4})-\d{4}$/;
+    // 숫자만 입력시
+    var regExp2 = /(?:\d{3}|\d{4})\d{4}$/;
+    var test1 = regExp.test(phone);
+    var test2 = regExp2.test(phone);
+    setPhoneTest(test1 || test2);
+    if (!(test1 || test2)) {
+      alert("정확한 휴대폰 번호를 입력하세요.");
+      return;
+    }
+    const check = rand(100000, 999999);
+    setPhoneCheck(check);
+    setPhoneValid2(true);
+    var num = 60 * 3; // 몇분을 설정할지의 대한 변수 선언
+    var myVar;
+    function time() {
+      myVar = setInterval(alertFunc, 1000);
+    }
+
+    function alertFunc() {
+      var min = num / 60;
+      min = Math.floor(min);
+      var sec = num - 60 * min;
+      setPhoneCount(`남은시간:  0${min}:${sec}`);
+
+      if (num == 0) {
+        clearInterval(myVar);
+        setPhoneCount("재전송 해주세요.");
+        setPhoneValid2(false);
+      }
+      num--;
+    }
+    const sendSMS = {
+      to: `010${userInfo.phone}`,
+      content: check.toString(),
+    };
+
+    try {
+      const result = await Api.post("/sms/send", sendSMS);
+      if (!result) {
+        throw new Error(result);
+      }
+      time();
+      alert("인증번호가 발송되었습니다.");
+      setSendPhone(true);
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   // 이메일 유효성 검사
   const checkEmail = (e) => {
@@ -125,18 +188,21 @@ function EmailInhtmlFor() {
         phone: e.target.value,
       }));
     }
+
     // console.log("휴대폰 유효성 검사", test1 || test2);
   };
 
   //회원가입 api 요청
   const postSignUp = async () => {
+    // console.log(userInfo);
     if (
       !isDisabled &&
       emailChek &&
       phoneTest &&
       pwConfirmTest &&
       pwTest &&
-      userInfo.name
+      userInfo.name &&
+      phoneValidCheck
     ) {
       const res = await basicApiClient.post(`/auth`, userInfo);
       if (res.status == 200) {
@@ -399,7 +465,11 @@ function EmailInhtmlFor() {
                       id="mobileNoStr"
                       title="휴대폰 번호 뒷자리"
                       placeholder="휴대폰 뒷자리"
-                      onBlur={checkPhone}
+                      // onBlur={checkPhone}
+                      onChange={checkPhone}
+                      value={phone}
+                      maxLength="8"
+                      disabled={phoneDisabled}
                     />
                   </span>
                 </div>
@@ -410,17 +480,96 @@ function EmailInhtmlFor() {
                   : "정확한 휴대폰 번호를 입력해주세요."}
               </span>
               <div>
-                <button
-                  id="btnReqOtp"
-                  type="button"
-                  className="cmem_btn cmem_btn_gray3"
-                  //   onClick={"reqOtp(); return false;"}
-                  href="#;"
-                  style={{ marginTop: "10px" }}
-                >
-                  인증번호 발송
-                </button>
+                {phoneSendDisabled ? (
+                  <button
+                    id="btnReqOtp"
+                    type="button"
+                    className="cmem_btn cmem_btn_gray3"
+                    onClick={phoneHandle}
+                    style={{ marginTop: "10px" }}
+                  >
+                    인증번호 발송
+                  </button>
+                ) : (
+                  ""
+                )}
               </div>
+              {sendPhone ? (
+                <>
+                  <span className="cmem_inp_txt">
+                    <input
+                      id="otpNo"
+                      name="otpNo"
+                      type="text"
+                      title="인증번호"
+                      placeholder="인증번호 입력"
+                      onChange={(e) => {
+                        const { name, value } = e.target;
+
+                        //만든 변수를 seInput으로 변경해준다.
+                        setPhoneValid(value);
+                      }}
+                      value={phoneValid}
+                    />
+                  </span>
+
+                  <span className="cmem_noti otpNoWrap">
+                    <em
+                      id="remainTime"
+                      className="auth_code_noti"
+                      value={phoneCount}
+                    >
+                      {phoneCount}
+                    </em>
+                  </span>
+                  <div className="cmem_btn_area otpNoWrap">
+                    <ul>
+                      <li>
+                        <button
+                          type="button"
+                          className="cmem_btn cmem_btn_blkline"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            setSendPhone(false);
+                          }}
+                        >
+                          <span className="notranslate">취소</span>
+                        </button>
+                      </li>
+                      <li>
+                        <button
+                          type="button"
+                          className="cmem_btn cmem_btn_gray"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            // 인증번호를 입력해주세요.
+                            // 인증번호가 다릅니다.
+                            //휴대폰번호 인증에 성공하였습니다.
+                            if (!phoneValid2) {
+                              alert("다시 재전송 해주세요.");
+                              return;
+                            }
+                            if (phoneValid == phoneCheck) {
+                              alert("휴대폰번호 인증에 성공하였습니다.");
+                              setSendPhone(false);
+                              setPhoneDisabled(true);
+                              setPhoneSendDisabled(false);
+                              setPhoneValidCheck(true);
+
+                              return;
+                            }
+                            alert("인증번호가 다릅니다.");
+                          }}
+                        >
+                          <span className="notranslate">확인</span>
+                        </button>
+                      </li>
+                    </ul>
+                  </div>
+                </>
+              ) : (
+                ""
+              )}
             </div>
           </div>
         </div>
