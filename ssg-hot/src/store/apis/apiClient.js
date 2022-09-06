@@ -2,8 +2,8 @@ import axios from "axios";
 import { getToken, isExistToken } from "../utils/useful-funtions";
 
 //baseurl
-export const baseURL = "https://ssghot.shop/api/api";
-// export const baseURL = "http://localhost:8080/api";
+// export const baseURL = "https://ssghot.shop/api/api";
+export const baseURL = "http://localhost:8080/api";
 
 const checkToken = () => {
   if (isExistToken()) {
@@ -18,13 +18,16 @@ let ACCESS_TOKEN = checkToken();
 //토큰 필요 없는 json 타입 요청시
 export const basicApiClient = axios.create({
   baseURL: baseURL,
-  headers: { "Content-type": "application/json" },
+  headers: { "Content-type": "application/json", Authorization: ACCESS_TOKEN },
 });
 
 //토큰 필요 없는 멀티타입 요청시
 export const basicFileApiClient = axios.create({
   baseURL: baseURL,
-  headers: { "Content-type": "multipart/form-data" },
+  headers: {
+    "Content-type": "multipart/form-data",
+    Authorization: ACCESS_TOKEN,
+  },
 });
 
 // //json 타입 요청시

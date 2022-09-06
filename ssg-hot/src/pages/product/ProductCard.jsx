@@ -11,7 +11,7 @@ function ProductCard({ item, isWished }) {
   const [isLike, setIsLike] = useState(isWished);
   const addWish = (id, e) => {
     e.preventDefault();
-    // console.log(id);
+
     if (localStorage.getItem("token")) {
       postLike(id).then((res) => console.log(res, "좋아요요청"));
     } else {
@@ -33,15 +33,52 @@ function ProductCard({ item, isWished }) {
         >
           <LikeButton isLike={isLike} setIsLike={setIsLike} />
         </div>
+
         <Link to={`/product/${item.id}`}>
-          <div className="product-image">
+          <div className="product-image" style={{ width: "100%" }}>
             <img src={item.titleImgUrl} alt="" />
             <div></div>
           </div>
           <div className="product-info">
-            <div className="product-name">{item.name}</div>
-            <div className="product-text">{item.detail}</div>
-
+            <div className="product-name">신세계몰</div>
+            <div
+              className="product-name"
+              style={{
+                display: "block",
+                whiteSpace: "nowrap",
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+              }}
+            >
+              {item.brandName}
+            </div>
+            <div
+              className="product-text"
+              style={{
+                width: "100%",
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+                display: "-webkit-box",
+                WebkitLineClamp: 2,
+                WebkitBoxOrient: "vertical",
+              }}
+            >
+              {item.name}
+            </div>
+            <div
+              className="old_price"
+              style={{ height: "16px", lineHeight: "16px", color: "#888" }}
+            >
+              <del>
+                <span className="blind">정상가격</span>
+                <em className="ssg_price" style={{ fontSize: "12px" }}>
+                  479,000
+                </em>
+                <span className="ssg_tx" style={{ fontSize: "12px" }}>
+                  원
+                </span>
+              </del>
+            </div>
             <div className="price">
               <div>
                 <div>{addCommas(item.discountPrice)}원</div>

@@ -30,7 +30,11 @@ export default function SearchList() {
           <div className="product-list">
             {searchData &&
               searchData.map((item, idx) => (
-                <ProductCard item={item} key={item.id} />
+                <ProductCard
+                  item={item}
+                  key={item.id}
+                  isWished={item.isWished}
+                />
               ))}
           </div>
         </>
