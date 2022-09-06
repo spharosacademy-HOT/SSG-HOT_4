@@ -30,7 +30,6 @@ function MyPageOrder() {
     }
   }, []);
 
-
   return (
     <div className="myssg_sec">
       <div className="myssg_sec_conts" id="divMyOrderSecConts">
@@ -45,9 +44,7 @@ function MyPageOrder() {
           <ul className="myssg_process_list">
             <li>
               <span id="ordRcp" className="myssg_process_count ty_zero">
-                {
-                  products.length
-                }
+                {products.length}
               </span>
               <span id="ordRcpTxt" className="myssg_process_title">
                 주문접수

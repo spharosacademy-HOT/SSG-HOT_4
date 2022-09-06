@@ -36,7 +36,7 @@ export default function RecentItemList({ isChecked }) {
       />
 
       <div className="recentItem">
-        {isChecked && rcSearchData ? (
+        {isChecked && rcSearchData.length > 0 ? (
           <div>
             {rcSearchData.map((data) => (
               <RecentSearchItem
@@ -50,7 +50,7 @@ export default function RecentItemList({ isChecked }) {
         ) : (
           ""
         )}
-        {rcData ? (
+        {rcData.length > 0 ? (
           <div>
             <ul>
               {rcData.map((data) => (

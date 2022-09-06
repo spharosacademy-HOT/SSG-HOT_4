@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { useRecoilState } from "recoil";
-import { cartState } from "../../../../../store/atom/cartState";
+import {
+  cartPurchaseState,
+  cartState,
+} from "../../../../../store/atom/cartState";
 import CartButton from "./cartContent/CartButton";
 import CartInfo from "./cartContent/CartInfo";
 import CartOption from "./cartContent/CartOption";
@@ -26,6 +29,8 @@ export default function CartContent({
   const [cartData, setCartData] = useRecoilState(cartState);
   const cartCnt = cartData[idx].count;
   const { count, start, stop, reset } = UseCounter(0, 500);
+  const [cartPurchaseProductData, setCartPurchaseProductData] =
+    useRecoilState(cartPurchaseState);
 
   const updateCartCnt = (id, count) => {
     changeCartCnt(id, count).then((res) => {
@@ -33,8 +38,6 @@ export default function CartContent({
     });
   };
   const handleCount = (num) => {
-    // console.log(num, idx);
-    // console.log(cartData);
     const newCnt = cartData[idx].count + num;
     if (newCnt > qty) {
       alert(`최대 구매 수량은 ${qty}개 입니다.`);
@@ -48,6 +51,12 @@ export default function CartContent({
     setCartData(
       cartData.map((cart) =>
         cart.id === id ? { ...cart, count: newCnt } : cart
+      )
+    );
+
+    setCartPurchaseProductData(
+      cartPurchaseProductData.map((data) =>
+        data.id === id ? { ...data, count: newCnt } : data
       )
     );
 
@@ -67,7 +76,7 @@ export default function CartContent({
   return (
     <div className="cartContent">
       <CartInfo comName={desc.brandName} />
-      <CartUtil id={id} />
+      <CartUtil id={id} item={item} />
       <CartTitle name={desc.name} info={desc.detail} productId={desc.id} />
       <CartOption optionFirst={optionFirst} optionSecond={optionSecond} />
       <div className="cartItemPrice">

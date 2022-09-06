@@ -1,9 +1,20 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useRecoilState, useResetRecoilState } from "recoil";
+import { addressState } from "../../../store/atom/addressState";
+import { cartState } from "../../../store/atom/cartState";
+import { userState } from "../../../store/atom/user";
 
 export default function FooterMenu() {
   const token = localStorage.getItem("token");
+  const resetAddress = useResetRecoilState(addressState);
+  const resetCart = useResetRecoilState(cartState);
+  const resetUser = useResetRecoilState(userState);
+
   const logout = () => {
+    resetAddress();
+    resetCart();
+    resetUser();
     localStorage.removeItem("token");
     sessionStorage.removeItem("name");
     sessionStorage.removeItem("username");

@@ -3,16 +3,11 @@ import { Link } from "react-router-dom";
 import { basicApiClient } from "../../../store/apis/apiClient";
 import jwt_decode from "jwt-decode";
 import { useNavigate } from "react-router-dom";
-import { useRecoilState } from "recoil";
-import { cartState } from "../../../store/atom/cartState";
-// import { getMyCart } from "../../../store/apis/cart";
 
 function LogInInput() {
   let navigate = useNavigate();
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
-
-  // const [cartData, setCartData] = useRecoilState(cartState);
 
   const checkUserName = (e) => {
     setUserName(e.target.value);
@@ -47,11 +42,8 @@ function LogInInput() {
 
           alert(`${decoded.name}님 반갑습니다.`);
 
-          // getMyCart().then((res) => {
-          //   setCartData(res.data);
-          // });
-
           navigate(-1);
+          window.location.replace("/");
         })
         .catch((err) => {
           alert(
