@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { getUserDetail } from "../../store/apis/user";
 import { useNavigate, Link } from "react-router-dom";
+import { useRecoilState } from "recoil";
+import { userState } from "../../store/atom/user";
 function MyPageUser() {
-  const [userData, setUserData] = useState({});
+  const [userData, setUserData] = useRecoilState(userState);
   const navigate = useNavigate();
+
   useEffect(() => {
     if (localStorage.getItem("token") !== null) {
       getUserDetail().then((res) => {

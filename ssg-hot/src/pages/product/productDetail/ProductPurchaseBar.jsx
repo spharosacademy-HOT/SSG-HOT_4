@@ -93,16 +93,18 @@ function ProductPurchaseBar({ stockList, isWished, setIsWished }) {
 
   const goCart = () => {
     if (localStorage.getItem("token") !== null) {
-      purchaseList.map((item) => {
+      purchaseList.map((item, idx) => {
         const itemData = {
           stockId: item.stockId,
           count: item.count,
         };
         addMyCart(itemData).then((res) => {
-          alert(res.data.message);
           getMyCart().then((res) => {
             setCartData(res.data);
           });
+          if (idx == purchaseDatas.length - 1) {
+            alert(res.data.message);
+          }
         });
       });
     } else {

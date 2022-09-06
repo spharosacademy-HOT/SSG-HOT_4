@@ -27,6 +27,11 @@ function MyPageTop() {
       const getAddress = getData.data.data;
       setChangeExisted(getData.data.data.id);
       setAddressData([]);
+      if (getAddress.length < 1) {
+        alert("배송지를 추가해주세요");
+        navigate("/cartcontrol");
+        return;
+      }
       getAddress.forEach((address) => {
         // console.log(address, "주소~~~");
         setAddressData((addressList) => [
@@ -55,11 +60,13 @@ function MyPageTop() {
     if (localStorage.getItem("token") !== null) {
       // console.log(localStorage.getItem("token"));
       getAxiosAddress().then((res) => {
-        getMyCart().then((res) => {
-          setCartProductList([]);
-          setCartData(res.data);
-          navigate("/cart");
-        });
+        if (addressData.length > 0) {
+          getMyCart().then((res) => {
+            setCartProductList([]);
+            setCartData(res.data);
+            navigate("/cart");
+          });
+        }
       });
     } else {
       alert("로그인 해주세요.");

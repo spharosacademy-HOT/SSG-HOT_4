@@ -25,7 +25,6 @@ export default function Header() {
     useRecoilState(cartPurchaseState);
 
   const cartSize = cartData.length;
-
   const [changeExisted, setChangeExisted] = useState(0);
 
   const getAxiosAddress = async () => {
@@ -39,8 +38,12 @@ export default function Header() {
       const getAddress = getData.data.data;
       setChangeExisted(getData.data.data.id);
       setAddressData([]);
+      if (getAddress.length < 1) {
+        alert("배송지를 추가해주세요");
+        navigate("/cartcontrol");
+        return;
+      }
       getAddress.forEach((address) => {
-        // console.log(address, "주소~~~");
         setAddressData((addressList) => [
           ...addressList,
           {
@@ -68,12 +71,14 @@ export default function Header() {
     if (localStorage.getItem("token") !== null) {
       // console.log(localStorage.getItem("token"));
       getAxiosAddress().then((res) => {
-        getMyCart().then((res) => {
-          // console.log("장바구니가져오기", res);
-          setCartData(res.data);
-          setCartProductList([]);
-          navigate("/cart");
-        });
+        if (addressData.length > 0) {
+          getMyCart().then((res) => {
+            // console.log("장바구니가져오기", res);
+            setCartData(res.data);
+            setCartProductList([]);
+            navigate("/cart");
+          });
+        }
       });
     } else {
       alert("로그인 해주세요.");
