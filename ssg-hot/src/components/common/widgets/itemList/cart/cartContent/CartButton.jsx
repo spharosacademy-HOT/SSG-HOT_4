@@ -8,6 +8,7 @@ import { purchaseProduct } from "../../../../../../store/apis/product";
 import { addressState } from "../../../../../../store/atom/addressState";
 import {
   cartOrderPriceState,
+  cartPurchaseState,
   cartState,
 } from "../../../../../../store/atom/cartState";
 import { userState } from "../../../../../../store/atom/user";
@@ -34,6 +35,8 @@ export default function CartButton({ optionList, productId, cartId, item }) {
   const deliveryData = useRecoilValue(addressState);
   const priceData = useRecoilValue(cartOrderPriceState);
   const userData = useRecoilValue(userState);
+  const [cartPurchaseProductData, setCartPurchaseProductData] =
+    useRecoilState(cartPurchaseState);
 
   const navigate = useNavigate();
 
@@ -115,11 +118,10 @@ export default function CartButton({ optionList, productId, cartId, item }) {
 
     purchaseData.orderItems = [product];
     //console.log("보낼데이터", purchaseData);
+    setCartPurchaseProductData([...cartPurchaseProductData, item]);
     purchaseProduct(purchaseData)
       .then((res) => {
-        // console.log(res.data);
-        alert("성공적으로 주문완료하였습니다.");
-        navigate(`/order`);
+        navigate(`/cart/purchase`);
       })
       .catch((err) => console.log(err));
   };

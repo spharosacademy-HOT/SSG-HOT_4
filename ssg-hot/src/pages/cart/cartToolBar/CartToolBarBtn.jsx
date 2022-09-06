@@ -51,9 +51,7 @@ export default function CartToolBarBtn() {
       // console.log("보낼데이터", purchaseData);
       purchaseProduct(purchaseData)
         .then((res) => {
-          // console.log(res.data);
-          alert("성공적으로 주문완료하였습니다.");
-          navigate(`/order`);
+          navigate(`/cart/purchase`);
         })
         .catch((err) => console.log(err));
     } else {

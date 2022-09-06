@@ -32,6 +32,8 @@ import OrderControl from "./pages/myPage/myOrder/OrderControl";
 import OrderFinalDetail from "./pages/myPage/myOrder/OrderFinalDetail";
 import Modal from "react-modal";
 import OrderComplete from "./pages/product/productPurchase/OrderComplete";
+import CartPurchase from "./pages/cart/cartPurchase/CartPurchase";
+import CartOrderComplete from "./pages/cart/cartPurchase/CartOrderComplete";
 
 function App() {
   Modal.setAppElement("#root");
@@ -56,6 +58,9 @@ function App() {
           <Route path="/product/purchase" element={<Purchase />}>
             <Route path=":productId" element={<Purchase />} />
           </Route>
+          <Route path="/cart/purchase" element={<CartPurchase />}>
+            <Route path=":productId" element={<CartPurchase />} />
+          </Route>
           <Route path="/mypage" element={<MyPage />} />
           <Route path="/signUp" element={<SignUp />} />
           <Route path="/emailsignup" element={<EmailSignUp />} />
@@ -71,7 +76,11 @@ function App() {
           </Route>
           <Route path="/order/detail" element={<OrderFinalDetail />} />
           <Route path="/order" element={<OrderControl />} />
-          <Route path="/order/completion" element={<OrderComplete/>}/>
+          <Route path="/order/completion" element={<OrderComplete />} />
+          <Route
+            path="/cart/order/completion"
+            element={<CartOrderComplete />}
+          />
         </Routes>
         <ToolBar />
         <Footer />

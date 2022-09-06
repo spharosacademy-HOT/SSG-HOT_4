@@ -1,6 +1,10 @@
 import React from "react";
+import { useRecoilValue } from "recoil";
+import { cartOrderPriceState } from "../../../store/atom/cartState";
 
-function ProductAmountPaid({ totalDiscountPrice }) {
+export default function CartProductAmountPaid() {
+  const priceData = useRecoilValue(cartOrderPriceState);
+  console.log(priceData);
   return (
     <>
       <div className="purchase-card-box product-amount-paid">
@@ -9,21 +13,19 @@ function ProductAmountPaid({ totalDiscountPrice }) {
           <ul>
             <li>
               <div>주문금액</div>
-              {/* <div>+ {totalPricee}</div> */}
+              <div>+ {priceData.originPrice}</div>
             </li>
             <li>
               <div>할인금액</div>
-              {/* <div>- {totalDiscountPrice}</div> */}
+              <div>- {priceData.discountPice}</div>
             </li>
           </ul>
         </div>
         <div>
           <div>총 결제예정금액</div>
-          <div>+ {totalDiscountPrice}원</div>
+          <div>+ {priceData.amountPaid}원</div>
         </div>
       </div>
     </>
   );
 }
-
-export default ProductAmountPaid;
