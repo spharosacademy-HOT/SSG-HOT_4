@@ -6,9 +6,11 @@ import Badge from "@mui/material/Badge";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { getMyCart } from "../../../store/apis/cart";
 import { addressState } from "../../../store/atom/addressState";
-import { cartState } from "../../../store/atom/cartState";
+import { cartPurchaseState, cartState } from "../../../store/atom/cartState";
 
 import HomeLogo from "../../common/ui/logo/HomeLogo";
+import { getUserDetail } from "../../../store/apis/user";
+import { userState } from "../../../store/atom/user";
 
 export default function Header() {
   let pageUrl = useLocation();
@@ -16,8 +18,11 @@ export default function Header() {
   const navigate = useNavigate();
 
   const [pagePath, setPagePath] = useState("");
+  const [userData, setUserData] = useRecoilState(userState);
   const [cartData, setCartData] = useRecoilState(cartState);
   const [addressData, setAddressData] = useRecoilState(addressState);
+  const [cartProductList, setCartProductList] =
+    useRecoilState(cartPurchaseState);
 
   const cartSize = cartData.length;
 
@@ -66,6 +71,7 @@ export default function Header() {
         getMyCart().then((res) => {
           // console.log("장바구니가져오기", res);
           setCartData(res.data);
+          setCartProductList([]);
           navigate("/cart");
         });
       });
@@ -84,6 +90,11 @@ export default function Header() {
         setCartData(res.data);
       });
     }
+  }, []);
+  useEffect(() => {
+    getUserDetail().then((res) => {
+      setUserData(res);
+    });
   }, []);
   return (
     <>

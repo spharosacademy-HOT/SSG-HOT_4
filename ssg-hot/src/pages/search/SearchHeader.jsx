@@ -5,15 +5,18 @@ import Badge from "@mui/material/Badge";
 
 import { Link, useNavigate } from "react-router-dom";
 import { postRecentSearch } from "../../store/apis/recent";
-import { useRecoilValue } from "recoil";
-import { cartState } from "../../store/atom/cartState";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { cartPurchaseState, cartState } from "../../store/atom/cartState";
 export default function SearchHeader() {
   const navigate = useNavigate();
   const [search, setSearch] = useState("");
   const cartData = useRecoilValue(cartState);
+  const [cartProductList, setCartProductList] =
+    useRecoilState(cartPurchaseState);
 
   const goCart = () => {
     if (localStorage.getItem("token")) {
+      setCartProductList([]);
       navigate("/cart");
     } else {
       navigate("/login");

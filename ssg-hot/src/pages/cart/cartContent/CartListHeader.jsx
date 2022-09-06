@@ -1,11 +1,18 @@
 import React from "react";
+import { useRecoilState } from "recoil";
+import { cartShowAllState } from "../../../store/atom/cartState";
 
-export default function CartListHeader({ showAll, setShowAll }) {
+export default function CartListHeader() {
+  const [showAll, setShowAll] = useRecoilState(cartShowAllState);
   return (
     <div className="cartListHeader cartControl">
       <div className="cartControlGroup">
         <span className="cartControlCheck">
-          <input type="checkbox" onClick={() => setShowAll(!showAll)} />
+          <input
+            type="checkbox"
+            checked={showAll}
+            onChange={() => setShowAll(!showAll)}
+          />
         </span>
         <label htmlFor="">
           <span>전체</span>

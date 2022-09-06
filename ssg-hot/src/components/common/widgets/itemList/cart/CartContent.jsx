@@ -21,6 +21,7 @@ export default function CartContent({
   oldPrice,
   newPrice,
   idx,
+  item,
 }) {
   const [cartData, setCartData] = useRecoilState(cartState);
   const cartCnt = cartData[idx].count;
@@ -109,7 +110,12 @@ export default function CartContent({
       </div>
       <CartOrderState qty={qty} />
 
-      <CartButton optionList={optionList} cartId={id} productId={desc.id} />
+      <CartButton
+        optionList={optionList}
+        cartId={id}
+        productId={desc.id}
+        item={item}
+      />
     </div>
   );
 }

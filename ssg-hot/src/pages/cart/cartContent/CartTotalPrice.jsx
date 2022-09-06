@@ -1,25 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useRecoilValue } from "recoil";
-import { cartState } from "../../../store/atom/cartState";
+import { cartOrderPriceState } from "../../../store/atom/cartState";
 
 export default function CartTotalPrice() {
-  const cartData = useRecoilValue(cartState);
-  let originPrice = 0;
-  let discountPrice = 0;
-  let deliveryPrice = 0;
-
-  const sumPrice = () => {
-    cartData.map((item) => {
-      originPrice += item.stock.product.regularPrice * item.count;
-      discountPrice +=
-        item.stock.product.regularPrice *
-        (item.stock.product.discountRate / 100) *
-        item.count;
-      deliveryPrice += item.stock.product.shippingFee;
-    });
-  };
-
-  sumPrice();
+  const cartPrice = useRecoilValue(cartOrderPriceState);
 
   return (
     <div>
@@ -33,7 +17,7 @@ export default function CartTotalPrice() {
           </dt>
           <dd>
             <span className="pricePrimary">
-              +<em>{originPrice}</em>
+              +<em>{cartPrice.originPrice}</em>
               <span>원</span>
             </span>
           </dd>
@@ -44,7 +28,7 @@ export default function CartTotalPrice() {
           </dt>
           <dd>
             <span className="pricePrimary">
-              -<em>{discountPrice}</em>
+              -<em>{cartPrice.discountPrice}</em>
               <span>원</span>
             </span>
           </dd>
@@ -55,7 +39,7 @@ export default function CartTotalPrice() {
           </dt>
           <dd>
             <span className="pricePrimary">
-              +<em>{deliveryPrice}</em>
+              +<em>{cartPrice.deliveryPay}</em>
               <span>원</span>
             </span>
           </dd>
@@ -66,7 +50,7 @@ export default function CartTotalPrice() {
           </dt>
           <dd>
             <span className="priceTotal">
-              <em>{originPrice + deliveryPrice - discountPrice}</em>
+              <em>{cartPrice.amountPaid}</em>
               <span>원</span>
             </span>
           </dd>
