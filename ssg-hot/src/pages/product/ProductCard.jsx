@@ -66,15 +66,15 @@ function ProductCard({ item, isWished }) {
               {item.name}
             </div>
             <div
-              class="old_price"
+              className="old_price"
               style={{ height: "16px", lineHeight: "16px", color: "#888" }}
             >
               <del>
-                <span class="blind">정상가격</span>
-                <em class="ssg_price" style={{ fontSize: "12px" }}>
+                <span className="blind">정상가격</span>
+                <em className="ssg_price" style={{ fontSize: "12px" }}>
                   479,000
                 </em>
-                <span class="ssg_tx" style={{ fontSize: "12px" }}>
+                <span className="ssg_tx" style={{ fontSize: "12px" }}>
                   원
                 </span>
               </del>
