@@ -36,6 +36,7 @@ export const deleteAddress = async (id) => {
 const baseUrl = baseURL;
 
 async function get(endpoint) {
+  console.log(checkToken());
   return axios.get(baseUrl + endpoint, {
     // JWT 토큰을 헤더에 담아 백엔드 서버에 보냄.
     headers: {
