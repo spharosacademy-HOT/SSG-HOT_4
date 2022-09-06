@@ -19,6 +19,7 @@ function QnaFooter({ title, content, productId, type }) {
       .then((res) => {
         console.log(res);
         alert("신청 완료되었습니다.")
+        navigate(-1)
       })
       .catch((err) => console.log(qnaData));
   };

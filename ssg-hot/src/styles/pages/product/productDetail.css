@@ -295,6 +295,10 @@
 .product-qna-card div ul li{
     display: flex;
 }
+.qna-box .qna-info{
+    display: flex;
+    justify-content: space-between;
+}
 .waiting-answer{
     border-radius: 10px;
     background-color: blue;

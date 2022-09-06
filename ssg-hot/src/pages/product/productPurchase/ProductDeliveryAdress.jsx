@@ -65,9 +65,10 @@ function ProductDeliveryAdress() {
                 .slice(0, 3)}
             <div className="purchase-more-delivery">더보기</div>
           </div>
-          <div className="change-button">변경하기</div>
+          
         </Modal.Body>
       </Modal>
+      <div className={show?'change-button':'change-button-none'}>변경하기</div>
     </>
   );
 }
