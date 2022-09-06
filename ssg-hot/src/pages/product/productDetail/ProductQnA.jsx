@@ -19,7 +19,7 @@ function ProductQnA({ item }) {
   useEffect(() => {
     getProductQna();
   }, []);
-
+  console.log('ID',params.productId)
   return (
     <>
       <div className="product-qna">
@@ -35,7 +35,7 @@ function ProductQnA({ item }) {
         </div>
         <hr />
         <div>
-          <ProductQnACard qaData={qaData} setQaData={setQaData} />
+          <ProductQnACard qaData={qaData} setQaData={setQaData} productId={params.productId} />
         </div>
       </div>
     </>

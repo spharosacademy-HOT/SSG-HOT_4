@@ -4,6 +4,7 @@ import ProductQnaItem from "../ProductQnaItem";
 function ProductQnACard({ qaData, setQaData, productId }) {
 
   console.log(qaData)
+  console.log('ID',productId)
   return (
     <>
       {qaData.length > 0 &&

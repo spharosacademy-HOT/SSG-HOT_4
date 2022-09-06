@@ -29,6 +29,7 @@
     color: #777;
 }
 .change-button{
+    display: flex;
     width: 100vw;
     background-color: #ff3e3e;
     color: white;
@@ -36,8 +37,13 @@
     text-align: center;
     position: fixed;
     left: 0;
-    bottom: 20px;
-    z-index: 3000;
+    bottom: 0;
+    z-index: 5000;
+    align-items: center;
+    justify-content: center;
+}
+.change-button-none{
+    display: none;
 }
 /* 배송지 */
 .product-delivery-adress div{
@@ -54,6 +60,7 @@
 .purchase-delivery-my-address{
     border: 1px solid #e0e0e0;
     padding: 20px;
+    width: 100vw;
 }
 .purchase-delivery-my-address-clicked{
     border: 1px solid #000;

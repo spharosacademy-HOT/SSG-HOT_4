@@ -16,13 +16,15 @@ export default function ProductQnaItem({ data, setQaData, productId}) {
     .then((res)=>{
       console.log(res)
     })
-    productId && 
-    console.log('a',productId)
-    getQna(productId)
-    .then((res)=>{
-      console.log('asdfasdfasdf',res)
-      setQaData(res)
-    })
+    .then(
+      console.log('a',productId),
+      getQna(productId)
+      .then((res)=>{
+        console.log('asdfasdfasdf',res)
+        setQaData(res)
+      })
+    )
+
   }
 
   

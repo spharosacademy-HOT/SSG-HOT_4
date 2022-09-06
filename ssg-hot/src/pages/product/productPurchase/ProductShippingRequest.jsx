@@ -26,14 +26,16 @@ function ProductShippingRequest() {
             </div>
             <div>
                 <Modal show={show} fullscreen={fullscreen} onHide={() => setShow(false)}>
-                    <Modal.Header closeButton>
-                        <Modal.Title>Modal</Modal.Title>
-                    </Modal.Header>
+                <Modal.Header>
+                    <div className="backBtn">
+                        <button type="button" onClick={() => setShow(false)}></button>
+                    </div>
+                    <div className="title-style">수령위치 선택</div>
+                </Modal.Header>
                     <div>
                         수령위치 선택
                     </div>
                     <div className='shipping-modal'>
-                        <div className='purchase-title-style'>택배배송 요청사항</div>
                         <ul>
                             <li>
                                 <input type="radio" name='ship' id='message1'/>
@@ -63,11 +65,12 @@ function ProductShippingRequest() {
                             <p className='small-font'>편리한 배송을 위해 배송 목적에 한해 사용하겠습니다</p>
                         </div>
                     </div>
-                    <div className='change-button'>
-                        변경하기
-                    </div>
+                    
                     
                 </Modal>
+                <div className={show?'change-button':'change-button-none'}>
+                        변경하기
+                </div>
             </div>
         </>
      );
