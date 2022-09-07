@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 import ToolBarButton from "../../common/widgets/button/ToolBarButton";
 import { toolMenu, toolMenu2 } from "../../../datas/js/toolBar";
@@ -32,22 +32,26 @@ export default function ToolBar() {
           <ul className="toolUl">
             {localStorage.getItem("token") !== null ? (
               <>
-                {" "}
                 {toolMenu &&
                   toolMenu.map((menu) => (
-                    <Link to={menu.url} key={menu.id}>
-                      <ToolBarButton name={menu.name} icon={menu.icon} />
-                    </Link>
+                    <ToolBarButton
+                      key={menu.id}
+                      name={menu.name}
+                      icon={menu.icon}
+                      url={menu.url}
+                    />
                   ))}
               </>
             ) : (
               <>
-                {" "} 
                 {toolMenu2 &&
                   toolMenu2.map((menu) => (
-                    <Link to={menu.url} key={menu.id}>
-                      <ToolBarButton name={menu.name} icon={menu.icon} />
-                    </Link>
+                    <ToolBarButton
+                      key={menu.id}
+                      name={menu.name}
+                      icon={menu.icon}
+                      url={menu.url}
+                    />
                   ))}
               </>
             )}
