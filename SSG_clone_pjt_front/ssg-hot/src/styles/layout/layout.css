@@ -1,0 +1,23 @@
+@import url("./footer.css");
+@import url("./header.css");
+@import url("./toolBar.css");
+
+a {
+  text-decoration: none !important;
+}
+ul {
+  list-style: none !important;
+  padding-left: 0 !important;
+}
+h1 {
+  margin: 0 !important;
+}
+h2 {
+  margin: 0 !important;
+}
+p {
+  margin-bottom: 0 !important;
+}
+button {
+  cursor: pointer;
+}

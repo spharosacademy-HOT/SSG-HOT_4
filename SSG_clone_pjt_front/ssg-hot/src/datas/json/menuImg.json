@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "name": "명품",
+    "imgUrl": "https://sui.ssgcdn.com/cmpt/banner/202207/2022072216460396994225724522_92.png"
+  },
+  {
+    "id": 2,
+    "name": "패션",
+    "imgUrl": "https://sui.ssgcdn.com/cmpt/banner/202207/2022072216423296939917157991_956.png"
+  },
+  {
+    "id": 3,
+    "name": "뷰티",
+    "imgUrl": "https://sui.ssgcdn.com/cmpt/banner/202207/2022072216431332432781237278_289.png"
+  },
+  {
+    "id": 4,
+    "name": "라이프",
+    "imgUrl": "https://sui.ssgcdn.com/cmpt/banner/202207/2022072216435453442063698206_435.png"
+  }
+]
