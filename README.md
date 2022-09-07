@@ -1,4 +1,4 @@
-## 🏖 SSG.COM CLONE PJT BY HOT
+## 💛 SSG.COM CLONE PJT BY HOT
 
 ---
 
@@ -19,7 +19,7 @@
 4. [ER Diagram](#***🔗***-ER-Diagram)
 5. [Git Branch](#***🌿***-Git-Branch)
 6. [Commit 규칙](#✔-Commit-규칙)
-7. [팀원소개](#🍩-강알리-등킨드나쓰-팀원)
+7. [팀원소개](#🔥-강알리-등킨드나쓰-팀원)
 
 <br/>
 
@@ -364,7 +364,7 @@
 
 <br/>
 
-### 🍩 HOT 팀원
+### 🔥 HOT 팀원
 
 ---
 
