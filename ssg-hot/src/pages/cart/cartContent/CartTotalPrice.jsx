@@ -18,7 +18,7 @@ export default function CartTotalPrice() {
           </dt>
           <dd>
             <span className="pricePrimary">
-              +<em>{cartPrice.originPrice}</em>
+              +<em>{addCommas(cartPrice.originPrice)}</em>
               <span>원</span>
             </span>
           </dd>
