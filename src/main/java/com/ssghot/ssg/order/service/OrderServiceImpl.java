@@ -1,5 +1,6 @@
 package com.ssghot.ssg.order.service;
 
+import com.ssghot.ssg.cart.repository.ICartRepository;
 import com.ssghot.ssg.common.ResultDtoOutput;
 import com.ssghot.ssg.common.ResultsDtoOutput;
 import com.ssghot.ssg.optionList.domain.Stock;
@@ -35,6 +36,7 @@ public class OrderServiceImpl implements IOrderService{
     private final IUserCouponRepository iUserCouponRepository;
     private final IOrderItemService iOrderItemService;
     private final IStockRepository iStockRepository;
+    private final ICartRepository iCartRepository;
     @Override
     public ResultDtoOutput<OrderDtoOutput> addOrder(OrderDtoInput orderDtoInput) {
         Optional<User> user = iUserRepository.findById(orderDtoInput.getUserId());
@@ -140,6 +142,8 @@ public class OrderServiceImpl implements IOrderService{
             Stock stock = iOrderItemService.findStockByStockId(orderItem.getStockId());
             if(stock.getQty()>=orderItem.getStockCount())
             {
+                // 기존 카트 삭제
+                iCartRepository.deleteByUserIdAndStockId(orderDtoInput.getUserId(), stock.getId());
 
                 OrderItem item = orderItem.toEntity(stock);
                 int result = iStockRepository.replaceStockCountDec(stock.getId(), orderItem.getStockCount());
