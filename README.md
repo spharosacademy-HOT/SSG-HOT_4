@@ -49,7 +49,7 @@
 </br>
 
 <p align="center">
-  <img src="/image/main.gif" alt="text" width="number" />
+  <img src="./image/로그인.gif" alt="text" width="number" />
 </p>
 
 </br>
@@ -65,9 +65,12 @@
 </br>
 
 <p align="center">
-  <img src="/image/main.gif" alt="text" width="number" />
+  <img src="./image/이메일회원가입.gif" alt="text" width="number" />
 </p>
-
+</br>
+<p align="center">
+  <img src="./image/소셜회원가입.gif" alt="text" width="number" />
+</p>
 </br>
 
 ### 1. 사용자에게 입력 데이터를 받아 회원가입을 할 수 있다.
@@ -93,7 +96,7 @@
 </br>
 
 <p align="center">
-  <img src="/image/naillist.gif" alt="text" width="number" />
+  <img src="./image/카테고리상품.gif" alt="text" width="number" />
 </p>
 
 </br>
@@ -102,23 +105,11 @@
 
 ### 2. 대분류 선택시 하단에 중분류 카테고리를 확인할 수 있다.
 
-</br></br>
+### 3. 선택한 카테고리의 아이템 목록을 카드형식으로 확인할 수 있다.
 
-## 상품목록 페이지
+### 4. 아이템의 이름, 가격, 이미지 등을 미리 확인할 수 있다.
 
-</br>
-
-<p align="center">
-  <img src="/image/naildetail.gif" alt="text" width="number" />
-</p>
-
-</br>
-
-### 1. 선택한 카테고리의 아이템 목록을 카드형식으로 확인할 수 있다.
-
-### 2. 아이템의 이름, 가격, 이미지 등을 미리 확인할 수 있다.
-
-### 3. 좋아요 버튼을 통해 찜 관리를 할 수 있다.
+### 5. 좋아요 버튼을 통해 찜 관리를 할 수 있다.
 
 </br></br>
 
@@ -127,7 +118,12 @@
 </br>
 
 <p align="center">
-  <img src="/image/reservation.gif" alt="text" width="number" />
+  <img src="./image/상품상세.gif" alt="text" width="number" />
+</p>
+
+</br>
+<p align="center">
+  <img src="./image/QnA.gif" alt="text" width="number" />
 </p>
 
 </br>
@@ -155,7 +151,7 @@
 </br>
 
 <p align="center">
-  <img src="/image/designerList.gif" alt="text" width="number" />
+  <img src="./image/카트.gif" alt="text" width="number" />
 </p>
 
 </br>
@@ -185,7 +181,7 @@
 </br>
 
 <p align="center">
-  <img src="/image/designerList.gif" alt="text" width="number" />
+  <img src="./image/주문.gif" alt="text" width="number" />
 </p>
 
 </br>
@@ -213,7 +209,12 @@
 </br>
 
 <p align="center">
-  <img src="/image/mypage_user.gif" alt="text" width="number" />
+  <img src="./image/좋아요페이지.gif" alt="text" width="number" />
+</p>
+
+</br>
+<p align="center">
+  <img src="./image/주문내역페이지.gif" alt="text" width="number" />
 </p>
 
 </br>
@@ -231,9 +232,12 @@
 </br>
 
 <p align="center">
-  <img src="/image/mypage_user.gif" alt="text" width="number" />
+  <img src="./image/배송지추가.gif" alt="text" width="number" />
 </p>
-
+</br>
+<p align="center">
+  <img src="./image/배송지수정삭제.gif" alt="text" width="number" />
+</p>
 </br>
 
 ### 1. 배송지를 추가, 수정, 삭제할 수 있다.
@@ -253,7 +257,7 @@
 </br>
 
 <p align="center">
-  <img src="/image/search.gif" alt="text" width="number" />
+  <img src="./image/메인서치.gif" alt="text" width="number" />
 </p>
 
 </br>
@@ -277,7 +281,7 @@
 </br>
 
 <p align="center">
-  <img src="/image/search.gif" alt="text" width="number" />
+  <img src="./image/최근본.gif" alt="text" width="number" />
 </p>
 
 </br>
