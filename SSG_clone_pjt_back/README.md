@@ -325,7 +325,7 @@
 
 ---
 
-![architecture](./image/structure.png)
+![architecture](../image/structure.png)
 
 <br/>
 
@@ -333,7 +333,7 @@
 
 ---
 
-![ERD](./image/erd.png)
+![ERD](../image/erd.png)
 
 <br/>
 
