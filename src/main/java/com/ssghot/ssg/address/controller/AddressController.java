@@ -23,11 +23,14 @@ public class AddressController {
     private final IAddressService iAddressService;
     private final IUserService iUserService;
 
-    @PostMapping("")
-    @PreAuthorize("hasRole('ROLE_USER')")
+    @PostMapping
     public AddressDtoOutput addAddress(@RequestBody AddressDtoInput addressDtoInput, HttpServletRequest request) {
         Long userId = iUserService.getUserByToken(request);
+        if(userId==null){
+            return null;
+        }
         addressDtoInput.setUserId(userId);
+
         return iAddressService.addAddress(addressDtoInput);
     }
     @GetMapping("/user/existed")
