@@ -301,7 +301,7 @@
 }
 .waiting-answer{
     border-radius: 10px;
-    background-color: blue;
+    background-color: #98dacb;
     color: white;
     margin-right: 5px;
     text-align: center;
@@ -318,7 +318,7 @@
     display: none;
 }
 .mndtl_qna_desc_clicked{
-
+    
 }
 
 /* 이벤트 배너 */
