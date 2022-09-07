@@ -1,67 +1,33 @@
-# SSG.COM CLONE PJT BY HOT
+## 🏖 SSG.COM CLONE PJT BY HOT
+
+---
+
+### **SSG.COM 클론 프로젝트 (신세계몰)**
 
 <p align="center">
   <img src="https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Fc3021f6a-bee5-47be-8bb8-e21f68744613%2F1.png?table=block&id=e366ed02-14f7-45b2-9d12-8555d5592a42&spaceId=732f2096-4e0e-4e08-b9d6-5555f1b75fe9&width=2000&userId=43dee452-56cb-4831-aa42-6675a8be6a01&cache=v2" alt="HOT" width="number" />
 </p>
-
 </br></br>
 
-## 한 줄 소개
+### **_📌_** 차례
 
-</br>
+---
 
-### **SSG.COM 클론 프로젝트 (신세계몰)**
+1. [서비스 소개](#🎞-서비스-소개)
+2. [주요 기술 스택](#***⚙***-주요-기술-스택)
+3. [아키텍쳐](#***🔨***-아키텍쳐)
+4. [ER Diagram](#***🔗***-ER-Diagram)
+5. [Git Branch](#***🌿***-Git-Branch)
+6. [Commit 규칙](#✔-Commit-규칙)
+7. [팀원소개](#🍩-강알리-등킨드나쓰-팀원)
 
-</br></br>
+### 🎞 서비스 소개
 
-## 기획의도
+---
 
-</br>
+### Auth
 
-- 서비스분석을 바탕으로 쇼핑몰 클론코딩 프로젝트 수행 능력 향상
-- 팀 프로젝트를 수행하며, SW 개발 뿐만 아니라 팀원들과 함께 문제를 해결하기 위한 협업 역량을 배양
-
-</br></br>
-
-## 프로젝트 팀원
-
-</br>
-<p align="center">
-  <img src="./image/team.png" alt="text" width="number" />
-</p>
-
-</br></br>
-
-## 프로젝트 기간
-
-</br>
-
-### 2022.07.25 ~ 2022.09.08(35일/280시간)
-
-</br></br>
-
-## 주요 협업 툴
-
-</br>
-
-- [Github](https://github.com/spharosacademy-HOT)
-- [Notion](https://www.notion.so/e366ed0214f745b29d128555d5592a42)
-
-</br></br>
-
-## 서비스 아키텍쳐
-
-</br>
-
-<p align="center">
-  <img src="./image/structure.png" alt="text" width="number" />
-</p>
-
-</br></br>
-
-# Auth
-
-</br>
+---
 
 ## 로그인페이지
 
@@ -101,7 +67,9 @@
 
 </br></br>
 
-# 상품
+### 상품
+
+---
 
 </br>
 
@@ -163,7 +131,9 @@
 
 </br></br>
 
-# 장바구니
+### 장바구니
+
+---
 
 ## 장바구니페이지
 
@@ -191,7 +161,9 @@
 
 </br></br>
 
-# 주문
+### 주문
+
+---
 
 ## 주문페이지
 
@@ -215,7 +187,9 @@
 
 </br></br>
 
-# 유저
+### 유저
+
+---
 
 </br>
 
@@ -255,7 +229,11 @@
 
 </br></br>
 
-# 검색페이지
+### 검색
+
+---
+
+## 검색페이지
 
 </br>
 
@@ -275,7 +253,11 @@
 
 </br></br>
 
-# 최근본페이지
+### 최근
+
+---
+
+## 최근본페이지
 
 </br>
 
@@ -295,7 +277,11 @@
 
 </br></br>
 
-# 빌드 및 배포에 필요한 정보
+### **_⚙_** 주요 기술 스택
+
+---
+
+<img src="https://img.shields.io/badge/SpringBoot-6DB33F?style=flat-square&logo=SpringBoot&logoColor=ffffff" /><img src="https://img.shields.io/badge/MySQL-4479A1?style=flat-square&logo=MySQL&logoColor=ffffff" /><img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=React&logoColor=ffffff"/><img src="https://img.shields.io/badge/redux-764ABC?style=flat-square&logo=react&logoColor=ffffff"/><img src="https://img.shields.io/badge/Typescript-3178C6?style=flat&logo=typescript&logoColor=ffffff"/><img src="https://img.shields.io/badge/Django-092E20?style=flat-square&logo=Django&logoColor=ffffff" /><img src="https://img.shields.io/badge/Jupyter-F37626?style=flat-square&logo=Jupyter&logoColor=ffffff" />
 
 ## 1. 주요 버전
 
@@ -314,10 +300,98 @@
     - SpringBoot : build.gradle
 ```
 
+**[Backend]**
+
+- **SpringBoot** (2.6.4) : Restful API 구현
+- **JPA** : ORM 기술을 활용하여 객체 지향적이고 생산성이 높은 개발을 추구함
+- **QueryDSL** (5.0.0) : 컴파일 타임에 에러를 잡고 동적 쿼리를 사용하기 위해 사용
+- **MySQL** (8.0.28) : RDBMS로 서비스에 필요한 데이터들을 저장
+- **Redis** (3.0.504) : 비회원이 조회하는 인기 맛집 및 여행지(이하 장소) 데이터처럼 자주 접근하는 쿼리를 캐싱하여 효율성을 높이고 리프레시 토큰에 TTL을 적용하여 보다 나은 보안성을 추구함.
+- **Elasticsearch** (7.10.1) : 장소 검색을 위한 검색 엔진으로 사용하고 geo_distance 쿼리를 이용하여 근처에 위치한 장소를 검색하기 위해 사용
+- **Docker** (20.10.13) : 각 프로젝트를 컨테이너로 관리하여 빌드-배포
+- **Jenkins** (:lts) : pipeline을 이용한 빌드 및 배포 자동화
+
 <br/>
 
-# ERD
+**[Frontend]**
+
+- **React** (17.0.2) : SPA구현
+- **Redux** (4.1.2) : 글로벌 변수관리과 상태관리를 위해 리덕스 사용
+- **TypeScript** (4.6.2) : 변수의 타입을 명확히 하여 버그를 사전에 방지하기 위해 사용
+
+<br/>
+
+### **_🔨_** 아키텍쳐
+
+---
+
+![architecture](./image/structure.png)
+
+<br/>
+
+### **_🔗_** ER Diagram
+
+---
 
 ![ERD](./image/erd.png)
 
-</br></br>
+<br/>
+
+### **_🌿_** Git Branch
+
+---
+
+> ✨ (main) → (backend / frontend) → (feature/<BE / FE>/<feature>)
+
+- `main` : release branch
+
+- `backend` : backend branch
+
+- `frontend` : frontend branch
+
+- `feature/<BE/FE>/<feature>` : 개별 개발 branch
+
+<br/>
+
+### ✔ Commit 규칙
+
+---
+
+> ✨ 형태 : git commit -m '#[깃이슈번호] [git 컨벤션]: [작업내용]'
+>
+> 예시 ) `git commit -m '#[깃이슈번호] feat 페이지네이션 기능 추가'`
+
+- git commit -m '#[깃이슈번호] style: 버튼 스타일링'
+
+- git commit -m '#[깃이슈번호] fix: 팝업 버그 수정'
+
+- git commit -m '#[깃이슈번호] docs: 리드미 수정'
+
+<br/>
+
+> **Git 컨벤션**
+
+- feat : 새로운 기능
+- fix : 버그 수정
+- docs : 문서 (문서 추가, 수정, 삭제)
+- style : 포맷팅, 세미콜론 추가, etc) 코드 변화 없을 때
+- refactor : 코드 리팩토링
+- test : 테스트 추가, 테스트 리팩토링
+- chore: 빌드 업무 수정, 패키지 매니지 수정
+
+<br/>
+
+### 🍩 HOT 팀원
+
+---
+
+- **박찬흠** \- _PM, data analysis -_ [DoZZang](https://github.com/DHKim95)
+  - [tbvjdkrak2@gmail.com](mailto:tbvjdkrak2@gmail.com)
+- **박수아** \- _frontend -_ [PrincessOk](https://github.com/okdongdong)
+  - [kjch6411@gmail.com](mailto:kjch6411@gmail.com)
+- **양진기** \- _data analysis -_ [xogxog](https://github.com/xogxog)
+  - [nasa0939@gmail.com](mailto:nasa0939@gmail.com)
+- **이창현** \- _backend -_ [KkoBug](https://github.com/kkobug)
+  - [kelvin9149@gmail.com](mailto:kelvin9149@gmail.com)
+- **전호정** \- _frontend -_ [hoho](https://github.com/hojeong33)
+  - [jhj20071@gmail.com](mailto:jhj20071@gmail.com)
