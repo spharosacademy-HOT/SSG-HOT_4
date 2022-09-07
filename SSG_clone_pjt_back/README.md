@@ -49,7 +49,7 @@
 </br>
 
 <p align="center">
-  <img src="./image/로그인.gif" alt="text" width="number" />
+  <img src="../image/로그인.gif" alt="text" width="number" />
 </p>
 
 </br>
@@ -65,11 +65,11 @@
 </br>
 
 <p align="center">
-  <img src="./image/이메일회원가입.gif" alt="text" width="number" />
+  <img src="../image/이메일회원가입.gif" alt="text" width="number" />
 </p>
 </br>
 <p align="center">
-  <img src="./image/소셜회원가입.gif" alt="text" width="number" />
+  <img src="../image/소셜회원가입.gif" alt="text" width="number" />
 </p>
 </br>
 
@@ -96,7 +96,7 @@
 </br>
 
 <p align="center">
-  <img src="./image/카테고리상품.gif" alt="text" width="number" />
+  <img src="../image/카테고리상품.gif" alt="text" width="number" />
 </p>
 
 </br>
@@ -118,12 +118,12 @@
 </br>
 
 <p align="center">
-  <img src="./image/상품상세.gif" alt="text" width="number" />
+  <img src="../image/상품상세.gif" alt="text" width="number" />
 </p>
 
 </br>
 <p align="center">
-  <img src="./image/QnA.gif" alt="text" width="number" />
+  <img src="../image/QnA.gif" alt="text" width="number" />
 </p>
 
 </br>
@@ -151,7 +151,7 @@
 </br>
 
 <p align="center">
-  <img src="./image/카트.gif" alt="text" width="number" />
+  <img src="../image/카트.gif" alt="text" width="number" />
 </p>
 
 </br>
@@ -181,7 +181,7 @@
 </br>
 
 <p align="center">
-  <img src="./image/주문.gif" alt="text" width="number" />
+  <img src="../image/주문.gif" alt="text" width="number" />
 </p>
 
 </br>
@@ -209,12 +209,12 @@
 </br>
 
 <p align="center">
-  <img src="./image/좋아요페이지.gif" alt="text" width="number" />
+  <img src="../image/좋아요페이지.gif" alt="text" width="number" />
 </p>
 
 </br>
 <p align="center">
-  <img src="./image/주문내역페이지.gif" alt="text" width="number" />
+  <img src="../image/주문내역페이지.gif" alt="text" width="number" />
 </p>
 
 </br>
@@ -232,11 +232,11 @@
 </br>
 
 <p align="center">
-  <img src="./image/배송지추가.gif" alt="text" width="number" />
+  <img src="../image/배송지추가.gif" alt="text" width="number" />
 </p>
 </br>
 <p align="center">
-  <img src="./image/배송지수정삭제.gif" alt="text" width="number" />
+  <img src="../image/배송지수정삭제.gif" alt="text" width="number" />
 </p>
 </br>
 
@@ -257,7 +257,7 @@
 </br>
 
 <p align="center">
-  <img src="./image/메인서치.gif" alt="text" width="number" />
+  <img src="../image/메인서치.gif" alt="text" width="number" />
 </p>
 
 </br>
@@ -281,7 +281,7 @@
 </br>
 
 <p align="center">
-  <img src="./image/최근본.gif" alt="text" width="number" />
+  <img src="../image/최근본.gif" alt="text" width="number" />
 </p>
 
 </br>
