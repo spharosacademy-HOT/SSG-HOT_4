@@ -10,6 +10,7 @@ import ProductPaymentMethod from "./ProductPaymentMethod";
 import ProductPoint from "./ProductPoint";
 import ProductShippingRequest from "./ProductShippingRequest";
 import {
+  originPriceState,
   purchaseState,
   totalPriceState,
 } from "../../../store/atom/purchaseState";
@@ -21,14 +22,15 @@ import { useState } from "react";
 
 function Purchase() {
   const totalDiscountPrice = useRecoilValue(totalPriceState);
+  const originPrice = useRecoilValue(originPriceState)
   const purchaseProductData = useRecoilValue(purchaseState);
   const [deliveryData, setDeliveryData] = useState([]);
   const [userData, setUserData] = useState([]);
   const [isChecked, setIsChecked] = useState(false);
 
   const purchaseData = {
-    amountPaid: totalDiscountPrice,
-    orderTotal: 10000,
+    amountPaid: originPrice,
+    orderTotal: totalDiscountPrice,
     deliveryPay: 3000,
 
     deliveryTaker: deliveryData.taker,
@@ -86,7 +88,7 @@ function Purchase() {
     <>
       <div className="purchase-background">
         <ProductDeliveryAdress />
-        <ProductDiscountOffer />
+        <ProductDiscountOffer totalDiscountPrice={totalDiscountPrice} />
         <ProductPoint />
         <ProductPaymentMethod setIsChecked={setIsChecked} />
         <ProductAmountPaid totalDiscountPrice={totalDiscountPrice} />
