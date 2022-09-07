@@ -1,4 +1,4 @@
-## 🏖 SSG.COM CLONE PJT BY HOT
+## 💛 SSG.COM CLONE PJT BY HOT
 
 ---
 
@@ -383,7 +383,7 @@ $ npm install
 $ npm start
 ```
 
-### 🍩 HOT 팀원
+### 🔥 HOT 팀원
 
 ---
 
