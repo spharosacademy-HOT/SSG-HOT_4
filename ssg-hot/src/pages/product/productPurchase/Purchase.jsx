@@ -10,6 +10,7 @@ import ProductPaymentMethod from "./ProductPaymentMethod";
 import ProductPoint from "./ProductPoint";
 import ProductShippingRequest from "./ProductShippingRequest";
 import {
+  originPriceState,
   purchaseState,
   totalPriceState,
 } from "../../../store/atom/purchaseState";
@@ -18,17 +19,20 @@ import { useEffect } from "react";
 import { getAddress } from "../../../store/apis/address";
 import { getUserDetail } from "../../../store/apis/user";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Purchase() {
   const totalDiscountPrice = useRecoilValue(totalPriceState);
+  const originPrice = useRecoilValue(originPriceState)
   const purchaseProductData = useRecoilValue(purchaseState);
   const [deliveryData, setDeliveryData] = useState([]);
   const [userData, setUserData] = useState([]);
   const [isChecked, setIsChecked] = useState(false);
+  const navigate = useNavigate()
 
   const purchaseData = {
-    amountPaid: totalDiscountPrice,
-    orderTotal: 10000,
+    amountPaid: originPrice,
+    orderTotal: totalDiscountPrice,
     deliveryPay: 3000,
 
     deliveryTaker: deliveryData.taker,
@@ -79,14 +83,14 @@ function Purchase() {
           console.log(res.data);
         })
         .catch((err) => console.log(err));
-      window.location = "/order/completion";
+        navigate('/order/completion')
     }
   };
   return (
     <>
       <div className="purchase-background">
         <ProductDeliveryAdress />
-        <ProductDiscountOffer />
+        <ProductDiscountOffer totalDiscountPrice={totalDiscountPrice} />
         <ProductPoint />
         <ProductPaymentMethod setIsChecked={setIsChecked} />
         <ProductAmountPaid totalDiscountPrice={totalDiscountPrice} />

@@ -12,6 +12,7 @@ import axios from "axios";
 import { baseURL } from "../../../store/apis/apiClient";
 import { addOption } from "../../../store/apis/product";
 import {
+  originPriceState,
   purchaseState,
   totalPriceState,
 } from "../../../store/atom/purchaseState";
@@ -34,6 +35,7 @@ function ProductPurchaseBar({ stockList, isWished, setIsWished }) {
   const purchaseDatas = useRecoilValue(purchaseState);
   const [deleteId, setDeleteId] = useState("");
   const [totalPrice, setTotalPrice] = useRecoilState(totalPriceState);
+  const [originPrice, setOriginPrice] = useRecoilState(originPriceState)
   const totalPurchasePrice = useRecoilValue(totalPriceState);
   const [countData, setCountData] = useState(1);
   const [currKey, setCurrKey] = useState("");
@@ -79,14 +81,14 @@ function ProductPurchaseBar({ stockList, isWished, setIsWished }) {
         setSizeDatas(Response.data);
       });
   };
-  const handleAppendStock = (itemId, itemName, item, price) => {
+  const handleAppendStock = (itemId, itemName, item, price, regularPrice) => {
     setSizeChoice(!sizeChoice);
     setStockId(itemId);
     setSizeName(itemName);
     purchaseList.includes(item)
       ? alert("동일한 옵션 상품이 이미 선택되어 있습니다.")
       : setPurChaseList([item, ...purchaseList]) ||
-        setTotalPrice(totalPrice + price);
+        setTotalPrice(totalPrice + price) || setOriginPrice(originPrice + regularPrice)
   };
 
   //장바구니 담고 장바구니 새로 가져오기
@@ -267,7 +269,8 @@ function ProductPurchaseBar({ stockList, isWished, setIsWished }) {
                           item.stockId,
                           item.optionSecond.name,
                           item,
-                          item.discountPrice
+                          item.discountPrice,
+                          item.regularPrice
                         );
                       }
                     : undefined
