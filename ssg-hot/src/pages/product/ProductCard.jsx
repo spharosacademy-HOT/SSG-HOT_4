@@ -72,7 +72,7 @@ function ProductCard({ item, isWished }) {
               <del>
                 <span className="blind">정상가격</span>
                 <em className="ssg_price" style={{ fontSize: "12px" }}>
-                  479,000
+                  {item.regularPrice}
                 </em>
                 <span className="ssg_tx" style={{ fontSize: "12px" }}>
                   원

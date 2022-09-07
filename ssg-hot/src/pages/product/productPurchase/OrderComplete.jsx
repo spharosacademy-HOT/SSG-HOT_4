@@ -5,15 +5,17 @@ import { getAddress } from '../../../store/apis/address';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { totalPriceState } from '../../../store/atom/purchaseState';
-import { useRecoilValue } from 'recoil';
+import { useRecoilState } from 'recoil';
+import { addCommas } from '../../../store/utils/useful-funtions'
 
 
 function OrderComplete() {
     const navigate = useNavigate();
     const [userData, setUserData] = useState([])
     const [deliveryData,setDeliveryData] = useState([])
-    const totalPrice = useRecoilValue(totalPriceState)
-
+    const [payPrice, setPayPrice] = useRecoilState(totalPriceState)
+    console.log(payPrice,"kk")
+    
     useEffect(()=>{
         getUserDetail()
         .then((res)=>{
@@ -49,7 +51,7 @@ function OrderComplete() {
                     </div>
                 </div>
                 <div className='payment-amount'>
-                    결제금액 : {totalPrice}원
+                    결제금액 : {addCommas(payPrice)}원
                 </div>
                 <div className='shopping-button'>
                     <Link to="/">

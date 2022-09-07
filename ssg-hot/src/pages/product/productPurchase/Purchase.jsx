@@ -19,6 +19,7 @@ import { useEffect } from "react";
 import { getAddress } from "../../../store/apis/address";
 import { getUserDetail } from "../../../store/apis/user";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Purchase() {
   const totalDiscountPrice = useRecoilValue(totalPriceState);
@@ -27,6 +28,7 @@ function Purchase() {
   const [deliveryData, setDeliveryData] = useState([]);
   const [userData, setUserData] = useState([]);
   const [isChecked, setIsChecked] = useState(false);
+  const navigate = useNavigate()
 
   const purchaseData = {
     amountPaid: originPrice,
@@ -81,7 +83,7 @@ function Purchase() {
           console.log(res.data);
         })
         .catch((err) => console.log(err));
-      window.location = "/order/completion";
+        navigate('/order/completion')
     }
   };
   return (
