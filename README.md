@@ -7,7 +7,19 @@
 <p align="center">
   <img src="https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Fc3021f6a-bee5-47be-8bb8-e21f68744613%2F1.png?table=block&id=e366ed02-14f7-45b2-9d12-8555d5592a42&spaceId=732f2096-4e0e-4e08-b9d6-5555f1b75fe9&width=2000&userId=43dee452-56cb-4831-aa42-6675a8be6a01&cache=v2" alt="HOT" width="number" />
 </p>
-</br></br>
+
+### 목표
+
+- 서비스분석을 바탕으로 쇼핑몰 클론코딩 프로젝트 수행 능력 향상
+- 팀 프로젝트를 수행하며, SW 개발 뿐만 아니라 팀원들과 함께 문제를 해결하기 위한 협업 역량을 배양
+  </br></br>
+
+### 프로젝트
+
+- 2022.07.25 ~ 2022.09.08(35일/280시간)
+- [Github](https://github.com/spharosacademy-HOT)
+- [Notion](https://www.notion.so/e366ed0214f745b29d128555d5592a42)
+  </br></br>
 
 ### **_📌_** 차례
 
