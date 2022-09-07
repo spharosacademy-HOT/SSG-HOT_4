@@ -15,6 +15,11 @@ export const totalPriceState = atom({
     default:0
 })
 
+export const originPriceState = atom({
+    key:"originPriceState",
+    default:0
+})
+
 export const totalProductCntState = atom({
     key:"totalProductCntState",
     default:0

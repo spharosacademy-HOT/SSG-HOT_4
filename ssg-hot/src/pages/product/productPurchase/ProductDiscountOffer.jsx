@@ -1,6 +1,11 @@
 import React from 'react';
+import { useRecoilValue } from 'recoil';
+import { originPriceState, totalPriceState } from '../../../store/atom/purchaseState';
+import { addCommas } from '../../../store/utils/useful-funtions'
 
 function ProductDiscountOffer() {
+    const payPrice = useRecoilValue(totalPriceState)
+    const originPrice = useRecoilValue(originPriceState)
     return ( 
         <>
             <div className='purchase-card-box product-discount-offer'>
@@ -8,7 +13,7 @@ function ProductDiscountOffer() {
                 <div>
                     <div>
                         <p>상품할인</p>
-                        <p>- 27,600원</p>
+                        <p>- {addCommas(originPrice - payPrice)}원</p>
                     </div>
                     <div>
                         <p>결제할인(쿠폰 0장 보유)</p>
