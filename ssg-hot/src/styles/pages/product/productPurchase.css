@@ -1,0 +1,240 @@
+.purchase-background{
+    background-color: #f5f5f5;
+}
+.purchase-card-box{
+    background-color: white;
+    border: 1px solid #d8d8d8;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 20px;
+}
+.purchase-title-style{
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+.purchase-change-button{
+    border: #d8d8d8 1px solid;
+    padding: 2px 10px;
+    font-size: 0.8rem;
+}
+.emart-color{
+    color: #ff3e3e;
+    font-weight: bold;
+}
+.emart-color input{
+    margin-right: 10px;
+}
+.small-font{
+    font-size: 0.8rem;
+    color: #777;
+}
+.change-button{
+    display: flex;
+    width: 100vw;
+    background-color: #ff3e3e;
+    color: white;
+    height: 52px;
+    text-align: center;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    z-index: 5000;
+    align-items: center;
+    justify-content: center;
+}
+.change-button-none{
+    display: none;
+}
+/* 배송지 */
+.product-delivery-adress div{
+    display: flex;
+    justify-content: space-between;
+}
+.product-delivery-adress .user-phone-number{
+    padding: 10px 0;
+    color:#888
+}
+.new-delivery-add{
+    padding: 10px 0;
+}
+.purchase-delivery-my-address{
+    border: 1px solid #e0e0e0;
+    padding: 20px;
+    width: 100vw;
+}
+.purchase-delivery-my-address-clicked{
+    border: 1px solid #000;
+    padding: 20px;
+}
+.my-delivery-title{
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+.my-delivery-info{
+    font-size: 0.8rem;
+    color: #888;
+}
+.purchase-more-delivery{
+    text-align: center;
+}
+/* 할인혜택 */
+.product-discount-offer div div{
+    display: flex;
+}
+/* 포인트 */
+.product-point div{
+    display: flex;
+    justify-content:space-between;
+}
+/* 결제방법 */
+/* 결제 예정금액 */
+.product-amount-paid ul li{
+    display: flex;
+    justify-content: space-between;
+}
+/* 결제하기 */
+.product-paying .pay-button{
+    background-color: #ff3e3e;
+    color: white;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    margin: 0 -20px -20px -20px;
+    border-radius: 0 0 10px 10px;
+    align-items: center;
+    justify-content: center;
+    
+}
+/* 주문자 정보 */
+.product-my-info .title-line{
+    display: flex;
+    justify-content: space-between;
+}
+.product-my-info ul li{
+    display: flex;
+}
+/* 배송 요청사항 */
+.product-shipping-request .title-line{
+    display: flex;
+    justify-content: space-between;
+}
+.product-shipping-request .sub-line{
+    display: flex;
+    font-size: 0.9rem;
+    padding: 10px 0;
+}
+.product-shipping-request .sub-line  :nth-child(1){
+    color: #777;
+}
+.shipping-modal{
+    padding: 20px;
+}
+/* 택배배송 */
+.product-delivery-item{
+    display: flex;
+}
+
+.delivery-item-image img{
+    width: 85px;
+    border-radius: 10px;
+}
+.product-delivery-item > div > div{
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    margin-left: 10px
+}
+.product-delivery-item > div > div > div{
+    display: flex;
+}
+.purchase-info-box{
+    padding: 10px 0;
+}
+.product-delivery-item .reguler-price{
+    text-decoration:line-through;
+    color: #777;
+}
+.product-delivery-item .pay-price{
+    font-size: 0.9rem;
+    font-weight: bold;
+    padding-left: 5px;
+}
+.product-delivery-item .product-qty{
+    color: #777;
+}
+.purchase-bar{
+    width: 100%;
+    height: 52px;
+    box-sizing: content-box;
+    position: fixed;
+    bottom: 0;
+    z-index: 3000;
+    padding: 0;
+    margin: 0;
+    background-color: #ff3e3e;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 주문완료 */
+.order-complete{
+    background-color: #e0e0e0;
+}
+.order-complete .order-title{
+    display: flex;
+    background-color: white;
+}
+.order-complete .older-complete-text{
+    margin: 5px 0;
+    background-color: white;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.order-complete .recipient-infomation{
+    margin: 5px 0;
+    background-color: white;
+    padding: 20px;
+}
+.order-complete .recipient-infomation :nth-child(1){
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+.order-complete .recipient-infomation :nth-child(2){
+    font-weight: bold;
+}
+.order-complete .payment-amount{
+    margin: 5px 0;
+    background-color: white;
+    padding: 20px;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+.order-complete .shopping-button{
+    margin: 5px 0;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+}
+.order-complete .shopping-button a :nth-child(1){
+    padding: 5px 10px;
+    background-color: #333;
+    border-radius: 20px;
+    color: white;
+    width: 160px;
+    text-align: center;
+    margin: 20px;
+}
+.order-complete .shopping-button a :nth-child(2){
+    padding: 5px 10px;
+    border: #333 1px solid;
+    border-radius: 20px;
+    width: 160px;
+    text-align: center;
+    margin: 20px;
+}

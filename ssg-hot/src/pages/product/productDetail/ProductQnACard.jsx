@@ -1,34 +1,22 @@
-import React from 'react'
+import React from "react";
+import ProductQnaItem from "../ProductQnaItem";
 
-function ProductQnACard() {
-    return ( 
-        <>
-            <div className='product-qna-card'>
-                <div>
-                    <ul>
-                        <li>
-                            <div>Q</div>
-                            <div>답변완료</div>
-                        </li>
-                        <li>2022.08.08</li>
-                        <li>| nick********</li>
-                    </ul>
-                </div>
-                <div className='qna-title'>
-                    <div>
-                        2단계문의
-                    </div>
-                    <div>
-                        <button>+</button>
-                    </div>
-                </div>
-                {/* 클릭해야 열리는거 */}
-                {/* <div className='qna-content'>
-                    2단계도 무전분 제품인거죠?
-                </div> */}
+function ProductQnACard({ qaData, setQaData, productId }) {
+
+  console.log(qaData)
+  console.log('ID',productId)
+  return (
+    <>
+      {qaData.length > 0 &&
+        qaData.map((qa) => (
+          <div className="product-qna-card" key={qa.id}>
+            <div>
+              <ProductQnaItem data={qa} setQaData={setQaData} productId={productId} />
             </div>
-        </>
-     );
+          </div>
+        )).slice(0, 4)}
+    </>
+  );
 }
 
 export default ProductQnACard;

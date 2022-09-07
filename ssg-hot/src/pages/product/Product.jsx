@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import ProductDetailInfo from "./productDetail/ProductDetailInfo";
 import ProductMainImg from "./productDetail/ProductMainImg";
 import ProductInfo from "./productDetail/ProductInfo";
@@ -11,32 +11,56 @@ import ProductQnA from "./productDetail/ProductQnA";
 import ProductGuide from "./productDetail/ProductGuide";
 import EventBanner from "./productDetail/EventBanner";
 import StoreInfo from "./productDetail/StoreInfo";
-
-import ProductCard from "./ProductCard";
-import productDatas from "../../datas/js/productDatas";
+import { useParams } from "react-router-dom";
+// import axios from "axios";
+import * as Api from "../../store/apis/address";
+import ProductPurchaseBar from "./productDetail/ProductPurchaseBar";
+import { baseURL } from "../../store/apis/apiClient";
+import { postRecent } from "../../store/apis/recent";
+import { useScroll } from "../../components/common/ui/UseScroll";
+import { RESPONSE } from "../auth/oauth";
 
 function Product() {
+  const param = useParams();
+  const url = `${baseURL}/product/${param.productId}`;
+  const [productDatas, setProductDatas] = useState([]);
+  const [isWished, setIsWished] = useState(false);
+
+  useEffect(() => {
+    Api.get(`/product/${param.productId}`).then((Response) => {
+      setProductDatas(Response.data);
+      const productId = Response.data.id;
+      setIsWished(Response.data.isWished);
+      if (localStorage.getItem("token") !== null) {
+        postRecent(productId).then((res) => {
+          // console.log(res, productId, "최근본아이템등록");
+        });
+      }
+    });
+  }, [url]);
+  console.log(productDatas, "1!!!!!!!!!!!!!");
   return (
     <>
-      <ProductMainImg />
-      <ProductInfo />
-      <SmileClub />
-      <ProductSimpleReview />
-      <ProductEvent />
-      <ProductDetailInfo />
-      <ProductDetailImg />
-      <ProductReiew />
-      <ProductQnA />
-      <ProductGuide />
-      <EventBanner />
-      <StoreInfo />
-
-      {/* 추천 상품 */}
-      <div>함께보면 좋은 상품</div>
-      <div className="product-list">
-        {productDatas &&
-          productDatas.map((item) => <ProductCard item={item} key={item.id} />)}
-      </div>
+      {productDatas && (
+        <>
+          <ProductMainImg productDatas={productDatas.titleImgUrl} />
+          <ProductInfo productDatas={productDatas} />
+          <SmileClub />
+          <ProductSimpleReview reviewDatas={productDatas.reviewList} />
+          <ProductEvent />
+          <ProductDetailInfo />
+          <ProductDetailImg imgNum={productDatas.productSubImgList} />
+          <ProductReiew reviewDatas={productDatas.reviewList} />
+          <ProductQnA item={productDatas} />
+          <ProductGuide />
+          <EventBanner />
+          <ProductPurchaseBar
+            stockList={productDatas.optionFirst}
+            isWished={isWished}
+            setIsWished={setIsWished}
+          />
+        </>
+      )}
     </>
   );
 }

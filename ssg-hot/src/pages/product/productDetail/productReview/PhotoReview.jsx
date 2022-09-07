@@ -1,9 +1,17 @@
 import React from 'react'
+import PhoteReviewCard from './PhotoReviewCard';
+import reviewPhotoData from '../../../../datas/js/reviewPhotoData';
 
-function PhotoReview() {
+function PhotoReview({item}) {
     return ( 
         <>
-            <h1>사진리뷰</h1>
+            {
+                item &&
+                <>
+                    <img src={item.imgUrl} alt="" />
+                </>
+            }
+
         </>
      );
 }

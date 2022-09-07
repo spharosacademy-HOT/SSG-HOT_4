@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 import ToolBarButton from "../../common/widgets/button/ToolBarButton";
-import toolMenu from "../../../datas/js/toolBar";
+import { toolMenu, toolMenu2 } from "../../../datas/js/toolBar";
 
 export default function ToolBar() {
   let pageUrl = useLocation();
-  const [pagePath, setPagePath] = useState();
+  const [pagePath, setPagePath] = useState("");
 
   useEffect(() => {
     setPagePath(pageUrl.pathname);
@@ -17,15 +17,44 @@ export default function ToolBar() {
         ""
       ) : pagePath === "/mainsearch" ? (
         ""
+      ) : pagePath === "/signup" ? (
+        ""
+      ) : pagePath === "/emailsignup" ? (
+        ""
+      ) : pagePath === "/qna" ? (
+        ""
+      ) : pagePath === "/cartcontrol" ? (
+        ""
+      ) : pagePath === "/plusship" ? (
+        ""
       ) : (
         <div className="toolBar">
           <ul className="toolUl">
-            {toolMenu &&
-              toolMenu.map((menu) => (
-                <Link to={menu.url} key={menu.id}>
-                  <ToolBarButton name={menu.name} icon={menu.icon} />
-                </Link>
-              ))}
+            {localStorage.getItem("token") !== null ? (
+              <>
+                {toolMenu &&
+                  toolMenu.map((menu) => (
+                    <ToolBarButton
+                      key={menu.id}
+                      name={menu.name}
+                      icon={menu.icon}
+                      url={menu.url}
+                    />
+                  ))}
+              </>
+            ) : (
+              <>
+                {toolMenu2 &&
+                  toolMenu2.map((menu) => (
+                    <ToolBarButton
+                      key={menu.id}
+                      name={menu.name}
+                      icon={menu.icon}
+                      url={menu.url}
+                    />
+                  ))}
+              </>
+            )}
           </ul>
         </div>
       )}

@@ -1,59 +1,69 @@
-.product-list{
-    display: flex;
-    flex-wrap: wrap;
+.product-list {
+  display: flex;
+  flex-wrap: wrap;
 }
-.product-thumbnail-card{
-    width: 50%;
-    padding: 5px;
+.product-thumbnail-card {
+  width: 50%;
+  padding: 5px;
 }
-.product-thumbnail-card a{
-    text-decoration: none;
-    color: #333;
+.product-thumbnail-card a {
+  text-decoration: none;
+  color: #333;
 }
-.product-thumbnail-card .product-info{
-    padding: 10px;
+.product-thumbnail-card .product-info {
+  padding: 10px;
 }
-.product-image{
-    position: relative;
+.product-image {
+  position: relative;
 }
-.product-image img{
-    width: 100%;
+.product-image img {
+  width: 100%;
 }
-.product-image div{
-    position: absolute;
-    right: 15px;
-    bottom: 15px;
+.product-image div {
+  position: absolute;
+  right: 15px;
+  bottom: 15px;
 }
-.product-info div{
-    padding: 0;
-    margin: 0;
-    display: flex;
-    margin-right: 5px;
+.product-info div {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  margin-right: 5px;
+  font-size: 12px;
+  align-items: center;
 }
-.product-info .product-name{
-    font-weight: bold;
+.product-info .product-name {
+  font-weight: bold;
+  font-size: 0.8rem;
 }
-.product-info .product-text{
-    color: #666;
+.product-info .product-text {
+  color: #666;
+  font-size: 0.8rem;
 }
-.product-info div .price{
-    font-weight: bold;
-    font-size: 1.25rem;
+.product-info .price div div {
+  font-size: 1.08rem;
 }
-.product-event{
-    color: #666;
-    padding: 5px;
+.product-info .price div {
+  display: flex;
+  justify-content: space-between;
 }
-.product-event div{
-    border: 1px solid;
-    padding: 3px;
-    font-size: 0.8rem;
+.product-info .price div :nth-child(2) {
+  color: red;
 }
-.cmft_sort_count{
-    padding: 0;
-    margin: 0;
+.product-event {
+  color: #666;
+  padding: 5px;
 }
-.cmft_sort_tit{
-    padding: 0;
-    margin-bottom: 50px;
+.product-event div {
+  border: 1px solid;
+  padding: 3px;
+  font-size: 0.8rem;
+}
+.cmft_sort_count {
+  padding: 0;
+  margin: 0;
+}
+.cmft_sort_tit {
+  padding: 0;
+  margin-bottom: 50px;
 }

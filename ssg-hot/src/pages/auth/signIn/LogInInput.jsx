@@ -1,6 +1,63 @@
-import React from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { basicApiClient } from "../../../store/apis/apiClient";
+import jwt_decode from "jwt-decode";
+import { useNavigate } from "react-router-dom";
 
 function LogInInput() {
+  let navigate = useNavigate();
+  const [userName, setUserName] = useState("");
+  const [password, setPassword] = useState("");
+
+  const checkUserName = (e) => {
+    setUserName(e.target.value);
+  };
+  const checkPassword = (e) => {
+    setPassword(e.target.value);
+  };
+  const onKeyDownEnter = (e) => {
+    if (e.key === "Enter") {
+      postLogin();
+    }
+  };
+  const postLogin = async () => {
+    if (userName && password) {
+      const res = await basicApiClient
+        .post(`/login`, {
+          username: userName,
+          password: password,
+        })
+        .then((res) => {
+          // console.log(res);
+          const ACCESS_TOKEN = res.data.access_token;
+          const decoded = jwt_decode(ACCESS_TOKEN);
+
+          //토큰 localStorage에 저장
+          localStorage.setItem("token", ACCESS_TOKEN);
+
+          //SessionStotage에 저장
+          sessionStorage.setItem("id", decoded.id);
+          sessionStorage.setItem("name", decoded.name);
+          sessionStorage.setItem("username", decoded.username);
+
+          alert(`${decoded.name}님 반갑습니다.`);
+
+          navigate(-1);
+          window.location.replace("/");
+        })
+        .catch((err) => {
+          alert(
+            "아이디(로그인 전용 아이디) 또는 비밀번호를 잘못 입력했습니다."
+          );
+        });
+    } else if (!userName) {
+      alert("아이디를 입력해주세요");
+      return;
+    } else {
+      alert("비밀번호를 입력해주세요");
+      return;
+    }
+  };
   return (
     <div id="m_content" className="ssglogin">
       <div className="cmem_login_form">
@@ -21,6 +78,7 @@ function LogInInput() {
                   autoCapitalize="off"
                   spellCheck="false"
                   maxLength="50"
+                  onBlur={checkUserName}
                 />
                 <button type="button" className="inp_clear">
                   <span className="sp_cmem_login cmem_ico_clear">
@@ -37,6 +95,8 @@ function LogInInput() {
                   id="inp_pw"
                   name="password"
                   placeholder="비밀번호"
+                  onChange={checkPassword}
+                  onKeyDown={onKeyDownEnter}
                 />
                 <button type="button" className="inp_clear">
                   <span className="sp_cmem_login cmem_ico_clear">
@@ -95,23 +155,23 @@ function LogInInput() {
             </div>
             <div className="cmem_btn_area">
               <button
-                type="submit"
+                type="button"
+                // type="submit"
                 className="cmem_btn cmem_btn_orange3"
                 id="loginBtn"
+                onClick={postLogin}
               >
                 로그인
               </button>
             </div>
             <div className="cmem_login_support">
-              <a href="https://member.ssg.com/m/member/findIdPw.ssg">
-                아이디 찾기|
-              </a>
-              <a href="https://member.ssg.com/m/member/findIdPw.ssg?tabType=pw">
-                비밀번호 찾기|
-              </a>
-              <a href="https://member.ssg.com/m/member/join/simpleJoinIntro.ssg">
-                회원가입
-              </a>
+              <a 
+              onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
+              href="#">아이디 찾기|</a>
+              <a 
+              onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
+              href="#">비밀번호 찾기|</a>
+              <Link to="/signup">회원가입</Link>
             </div>
           </fieldset>
         </form>

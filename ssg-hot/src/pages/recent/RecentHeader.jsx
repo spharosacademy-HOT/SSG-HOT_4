@@ -1,9 +1,9 @@
-import React, { Fragment } from "react";
+import React from "react";
 import Title from "../../components/common/ui/title/Title";
 import RecentButton from "../../components/common/widgets/button/RecentButton";
 
 import menuDatas from "../../datas/json/recentNames.json";
-export default function RecentHeader() {
+export default function RecentHeader({ setIsChecked }) {
   return (
     <div className="recentHeader">
       <div className="recentTitle">
@@ -14,7 +14,7 @@ export default function RecentHeader() {
         {menuDatas &&
           menuDatas.map((menu) => (
             <li key={menu.id}>
-              <RecentButton name={menu.name} />
+              <RecentButton name={menu.name} setIsChecked={setIsChecked} />
             </li>
           ))}
       </ul>

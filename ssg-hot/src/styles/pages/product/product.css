@@ -2,3 +2,25 @@
 @import url("./productList.css");
 @import url("./productNav.css");
 @import url("./productDetail.css");
+@import url("./productPurchase.css");
+
+.product-gray-box{
+    background-color: #f5f5f5;
+    padding: 10px;
+}
+.is-important-info{
+    font-weight: bold;
+}
+.product-head-box{
+    padding-top: 50px;
+}
+.title-style{
+    font-size:1.2rem;
+    font-weight: bold;
+    padding: auto;
+    margin: auto;
+}
+.modal-header{
+    text-align: center;
+    padding: 0;
+}

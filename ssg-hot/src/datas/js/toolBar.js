@@ -6,7 +6,7 @@ import {
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
 
-const toolMenu = [
+export const toolMenu2 = [
   {
     id: 1,
     url: "/category",
@@ -33,10 +33,40 @@ const toolMenu = [
   },
   {
     id: 5,
+    url: "/login",
+    name: "최근본",
+    icon: faEye,
+  },
+];
+export const toolMenu = [
+  {
+    id: 1,
+    url: "/category",
+    name: "카테고리",
+    icon: faBars,
+  },
+  {
+    id: 2,
+    url: "/mainsearch",
+    name: "통합검색",
+    icon: faMagnifyingGlass,
+  },
+  {
+    id: 3,
+    url: "/",
+    name: "홈",
+    icon: faHouse,
+  },
+  {
+    id: 4,
+    url: "/mypage",
+    name: "MY",
+    icon: faUser,
+  },
+  {
+    id: 5,
     url: "/recent",
     name: "최근본",
     icon: faEye,
   },
 ];
-
-export default toolMenu;

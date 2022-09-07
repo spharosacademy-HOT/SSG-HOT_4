@@ -1,27 +1,57 @@
 import React from "react";
+import { useState } from "react";
+import { useEffect } from "react";
+import { Link } from "react-router-dom";
+import * as Api from "../../store/apis/address";
+import { isExistToken } from "../../store/utils/useful-funtions";
 
 function MyPageOrder() {
+  const [orderValid, setOrderValid] = useState(false);
+  const [products, setProducts] = useState([]);
+  const getOrders = async () => {
+    try {
+      const getData = await Api.get("/orders/user");
+      const getProducts = getData.data.data;
+      if (!getProducts || !getData) {
+        setOrderValid(false);
+        throw new Error(`${getData.data.message}`);
+      }
+      setOrderValid(true);
+      setProducts(getProducts);
+    } catch (e) {
+      setOrderValid(false);
+      console.log(e);
+    }
+  };
+
+  useEffect(() => {
+    if (isExistToken()) {
+      getOrders();
+    }
+  }, []);
+
   return (
     <div className="myssg_sec">
       <div className="myssg_sec_conts" id="divMyOrderSecConts">
-        <a
-          href="https://pay.ssg.com/m/myssg/orderInfo.ssg?_mpop=new"
+        <Link
+          to="/order"
           className="myssg_sec_title ty_order clickable"
           data-react-tarea="MYSSG|M_MY_SSG_주문배송조회"
         >
           주문/배송 조회
-        </a>
+        </Link>
         <div className="myssg_order_process">
           <ul className="myssg_process_list">
             <li>
               <span id="ordRcp" className="myssg_process_count ty_zero">
-                0
+                {products.length}
               </span>
               <span id="ordRcpTxt" className="myssg_process_title">
                 주문접수
               </span>
               <a
-                href="https://pay.ssg.com/m/myssg/orderInfo.ssg?searchType=6&searchCheckBox=%2C15"
+                onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
+                href="#"
                 className="myssg_process_link"
                 data-react-tarea="MYSSG|M_MY_SSG_주문배송조회_주문접수"
               >
@@ -36,7 +66,8 @@ function MyPageOrder() {
                 결제완료
               </span>
               <a
-                href="https://pay.ssg.com/m/myssg/orderInfo.ssg?searchType=6&searchCheckBox=%2C11"
+                onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
+                href="#"
                 className="myssg_process_link"
                 data-react-tarea="MYSSG|M_MY_SSG_주문배송조회_결제완료"
               >
@@ -51,7 +82,8 @@ function MyPageOrder() {
                 상품준비중
               </span>
               <a
-                href="https://pay.ssg.com/m/myssg/orderInfo.ssg?searchType=6&searchCheckBox=%2C12"
+                onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
+                href="#"
                 className="myssg_process_link"
                 data-react-tarea="MYSSG|M_MY_SSG_주문배송조회_상품준비중"
               >
@@ -66,7 +98,8 @@ function MyPageOrder() {
                 배송중
               </span>
               <a
-                href="https://pay.ssg.com/m/myssg/orderInfo.ssg?searchType=6&searchCheckBox=%2C13"
+                onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
+                href="#"
                 className="myssg_process_link"
                 data-react-tarea="MYSSG|M_MY_SSG_주문배송조회_배송중"
               >
@@ -87,7 +120,8 @@ function MyPageOrder() {
                 </button>
               </span>
               <a
-                href="https://pay.ssg.com/m/myssg/orderInfo.ssg?searchType=6&searchCheckBox=%2C14"
+                onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
+                href="#"
                 className="myssg_process_link"
                 data-react-tarea="MYSSG|M_MY_SSG_주문배송조회_배송완료"
               >
@@ -103,7 +137,8 @@ function MyPageOrder() {
               00
             </span>
             <a
-              href="https://pay.ssg.com/m/myssg/orderInfo.ssg?searchType=6&searchCheckBox=%2C16"
+              onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
+              href="#"
               className="myssg_claim_link"
               data-react-tarea="MYSSG|M_MY_SSG_주문배송조회_취소"
             >
@@ -116,7 +151,8 @@ function MyPageOrder() {
               00
             </span>
             <a
-              href="https://pay.ssg.com/m/myssg/orderInfo.ssg?searchType=6&searchCheckBox=%2C18"
+              onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
+              href="#"
               className="myssg_claim_link"
               data-react-tarea="MYSSG|M_MY_SSG_주문배송조회_교환"
             >
@@ -129,7 +165,8 @@ function MyPageOrder() {
               00
             </span>
             <a
-              href="https://pay.ssg.com/m/myssg/orderInfo.ssg?searchType=6&searchCheckBox=%2C17"
+              onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
+              href="#"
               className="myssg_claim_link"
               data-react-tarea="MYSSG|M_MY_SSG_주문배송조회_반품"
             >

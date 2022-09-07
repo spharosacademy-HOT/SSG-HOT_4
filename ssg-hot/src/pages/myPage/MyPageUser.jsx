@@ -1,26 +1,43 @@
-import React from "react";
-
+import React, { useEffect, useState } from "react";
+import { getUserDetail } from "../../store/apis/user";
+import { useNavigate, Link } from "react-router-dom";
+import { useRecoilState } from "recoil";
+import { userState } from "../../store/atom/user";
 function MyPageUser() {
+  const [userData, setUserData] = useRecoilState(userState);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (localStorage.getItem("token") !== null) {
+      getUserDetail().then((res) => {
+        // console.log(res);
+        setUserData(res);
+      });
+    }
+  }, []);
+
   return (
     <div id="m_content" className="myssg_main react-area">
-      <div className="myssg_user_sec">
-        <div className="mc">
+      <div className="myssg_user_sec" style={{ padding: "10px 20px 0px" }}>
+        <div className="mc" style={{ display: "flex", alignItems: "center" }}>
           <img
             src="//sui.ssgcdn.com/ui/m_ssg/img/@100x100.png"
             alt="프로필사진"
             id="talkImgMain"
+            style={{ borderRadius: "50px", width: "50px", height: "50px" }}
           />
           <span className="myssg_profile_setting">
             <span className="blind">프로필편집</span>
           </span>
-          <div className="myssg_profile_info">
+          <div className="myssg_profile_info" style={{ padding: "10px 20px" }}>
             <div className="myssg_user_name">
               <a
-                href="https://member.ssg.com/m/myssg/myinfoMng/main.ssg?_mpop=new"
+                onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
+                href="#"
                 className="clickable"
                 data-react-tarea="MYSSG|M_MY_SSG_회원명"
               >
-                이창현 님
+                {userData.name} 님
               </a>
             </div>
             <div
@@ -29,12 +46,13 @@ function MyPageUser() {
               data-react-unit-id=""
               data-react-unit-text='[{"type":"tarea_addt_val","defaultValue": "FRIENDS"}]'
             >
-              <a
-                href="https://m.ssg.com/event/couponInfo.ssg?myssg=couponInfo"
-                className="clickable"
-              >
-                <p>
-                  <strong className="myssg_primary_text">FRIENDS</strong>{" "}
+              <a 
+              onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
+              href="#" className="clickable">
+                <p style={{ marginBottom: "0px" }}>
+                  <strong className="myssg_primary_text">
+                    {userData.memberLevel}
+                  </strong>{" "}
                   등급입니다.
                 </p>
               </a>
@@ -46,10 +64,9 @@ function MyPageUser() {
         className="myssg_membership_info"
         data-react-tarea-cd="00040_000000233"
       >
-        <a
-          href="https://member.ssg.com/m/membership/gate.ssg"
-          className="clickable"
-        >
+        <a 
+        onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
+        href="#" className="clickable">
           <div className="myssg_membership_header">
             <div className="myssg_membership_header_title justify_center">
               <i className="badge">
@@ -70,21 +87,21 @@ function MyPageUser() {
         </a>
       </div>
       <div className="myssg_user_manage">
-        <a
-          href="https://m.ssg.com/myssg/myClip/main.ssg?_mpop=new"
-          className="clickable"
-          data-react-tarea="MYSSG|M_MY_SSG_MY클립"
-        >
+        <Link to="/like">
           <span className="myssg_manage_text ty_like">좋아요</span>
-        </a>
-        <a
-          href="https://member.ssg.com/m/comm/shpplocList.ssg?_mpop=new"
+        </Link>
+
+        <button
+          onClick={() => {
+            navigate("/cartcontrol");
+          }}
           className="clickable"
           data-react-tarea="MYSSG|M_MY_SSG_배송지관리"
         >
           <span className="myssg_manage_text ty_devliery">배송지 관리</span>
-        </a>
+        </button>
         <a
+          onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
           href="#"
           className="clickable"
           data-react-tarea="MYSSG|M_MY_SSG_PUSH메세지함"

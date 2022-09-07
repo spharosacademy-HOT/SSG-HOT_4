@@ -2,11 +2,12 @@ import React from "react";
 
 function MyPageBenefit() {
   return (
-    <div className="myssg_user_benefit">
+    <div className="myssg_user_benefit" style={{ margin: "2rem 0" }}>
       <div className="myssg_coupon_point myssg_layer_conts">
         <div className="myssg_coupon">
           <a
-            href="https://m.ssg.com/myssg/moneyMng/memberCpnOwnList.ssg?_mpop=new"
+            onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
+            href="#"
             className="myssg_link clickable"
             data-react-tarea="MYSSG|M_MY_SSG_쿠폰"
           >
@@ -19,10 +20,9 @@ function MyPageBenefit() {
           </a>
         </div>
         <div className="myssg_point">
-          <a
-            href="https://m.ssg.com/myssg/moneyMng/spointMain.ssg?_mpop=new"
-            className="myssg_link myssg_point_link"
-          >
+          <a 
+          onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
+          href="#" className="myssg_link myssg_point_link">
             <dl>
               <dt>신세계포인트</dt>
               <dd>
@@ -44,8 +44,7 @@ function MyPageBenefit() {
               <input
                 type="hidden"
                 name="pointCardNo"
-                i
-                d="pointCardNo"
+                id="pointCardNo"
                 value="9350130365567609"
               />
               <span className="myssg_point_layer_tit_tx">
@@ -80,7 +79,8 @@ function MyPageBenefit() {
           <dl>
             <dt>
               <a
-                href="https://m.ssg.com/myssg/ssgmoneyMng/ssgmoneySavedList.ssg?menu=smoneySavedList"
+                onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
+                href="#"
                 className="myssg_link myssg_ssgmoney_link"
                 data-react-tarea="MYSSG|M_MY_SSG_SSGMONEY"
               >
@@ -89,7 +89,9 @@ function MyPageBenefit() {
               </a>
             </dt>
             <dd>
-              <a href="https://m.ssg.com/myssg/ssgmoneyMng/ssgmoneySavedList.ssg?menu=smoneySavedList">
+              <a 
+              onClick={(e) => { e.preventDefault(); alert("준비 중입니다."); }}
+              href="#">
                 <span className="myssg_benefit_score">0</span>원
               </a>
               <div

@@ -1,0 +1,11 @@
+.label_noraml {
+  font-size: 12px;
+}
+.isDisabled {
+  height: 48px;
+  border: 1px solid #8e8e8e;
+  background: #8e8e8e;
+  color: #fff;
+  font-size: 18px;
+  line-height: 48px;
+}
