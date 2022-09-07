@@ -21,6 +21,8 @@
 6. [Commit 규칙](#✔-Commit-규칙)
 7. [팀원소개](#🍩-강알리-등킨드나쓰-팀원)
 
+<br/>
+
 ### 🎞 서비스 소개
 
 ---
@@ -281,7 +283,7 @@
 
 ---
 
-<img src="https://img.shields.io/badge/SpringBoot-6DB33F?style=flat-square&logo=SpringBoot&logoColor=ffffff" /><img src="https://img.shields.io/badge/MySQL-4479A1?style=flat-square&logo=MySQL&logoColor=ffffff" /><img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=React&logoColor=ffffff"/><img src="https://img.shields.io/badge/redux-764ABC?style=flat-square&logo=react&logoColor=ffffff"/><img src="https://img.shields.io/badge/Typescript-3178C6?style=flat&logo=typescript&logoColor=ffffff"/><img src="https://img.shields.io/badge/Django-092E20?style=flat-square&logo=Django&logoColor=ffffff" /><img src="https://img.shields.io/badge/Jupyter-F37626?style=flat-square&logo=Jupyter&logoColor=ffffff" />
+<img src="https://img.shields.io/badge/SpringBoot-6DB33F?style=flat-square&logo=SpringBoot&logoColor=ffffff" /><img src="https://img.shields.io/badge/MySQL-4479A1?style=flat-square&logo=MySQL&logoColor=ffffff" /><img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=React&logoColor=ffffff"/><img src="https://img.shields.io/badge/recoil-764ABC?style=flat-square&logo=react&logoColor=ffffff"/><img src="https://img.shields.io/badge/Javascript-F7DF1E?style=flat-square&logo=Javascript&logoColor=white"/>
 
 ## 1. 주요 버전
 
@@ -299,25 +301,6 @@
     - React : package.json
     - SpringBoot : build.gradle
 ```
-
-**[Backend]**
-
-- **SpringBoot** (2.6.4) : Restful API 구현
-- **JPA** : ORM 기술을 활용하여 객체 지향적이고 생산성이 높은 개발을 추구함
-- **QueryDSL** (5.0.0) : 컴파일 타임에 에러를 잡고 동적 쿼리를 사용하기 위해 사용
-- **MySQL** (8.0.28) : RDBMS로 서비스에 필요한 데이터들을 저장
-- **Redis** (3.0.504) : 비회원이 조회하는 인기 맛집 및 여행지(이하 장소) 데이터처럼 자주 접근하는 쿼리를 캐싱하여 효율성을 높이고 리프레시 토큰에 TTL을 적용하여 보다 나은 보안성을 추구함.
-- **Elasticsearch** (7.10.1) : 장소 검색을 위한 검색 엔진으로 사용하고 geo_distance 쿼리를 이용하여 근처에 위치한 장소를 검색하기 위해 사용
-- **Docker** (20.10.13) : 각 프로젝트를 컨테이너로 관리하여 빌드-배포
-- **Jenkins** (:lts) : pipeline을 이용한 빌드 및 배포 자동화
-
-<br/>
-
-**[Frontend]**
-
-- **React** (17.0.2) : SPA구현
-- **Redux** (4.1.2) : 글로벌 변수관리과 상태관리를 위해 리덕스 사용
-- **TypeScript** (4.6.2) : 변수의 타입을 명확히 하여 버그를 사전에 방지하기 위해 사용
 
 <br/>
 
@@ -385,13 +368,13 @@
 
 ---
 
-- **박찬흠** \- _PM, data analysis -_ [DoZZang](https://github.com/DHKim95)
-  - [tbvjdkrak2@gmail.com](mailto:tbvjdkrak2@gmail.com)
-- **박수아** \- _frontend -_ [PrincessOk](https://github.com/okdongdong)
-  - [kjch6411@gmail.com](mailto:kjch6411@gmail.com)
-- **양진기** \- _data analysis -_ [xogxog](https://github.com/xogxog)
-  - [nasa0939@gmail.com](mailto:nasa0939@gmail.com)
-- **이창현** \- _backend -_ [KkoBug](https://github.com/kkobug)
-  - [kelvin9149@gmail.com](mailto:kelvin9149@gmail.com)
+- **박찬흠** \- _backend -_ [fineman999](https://github.com/fineman999)
+  - [33cks1423@naver.com](mailto:33cks1423@naver.com)
+- **박수아** \- _frontend -_ [pakrsua](https://github.com/pakrsua)
+  - [tndk4997@naver.com](mailto:tndk4997@naver.com)
+- **양진기** \- _backend -_ [82User](https://github.com/82User)
+  - [zxcvc9999@gmail.com](mailto:zxcvc9999@gmail.com)
+- **이창현** \- _frontend -_ [ckdtns5262](https://github.com/ckdtns5262)
+  - [ckdgus5262@gmail.com](mailto:ckdgus5262@gmail.com)
 - **전호정** \- _frontend -_ [hoho](https://github.com/hojeong33)
   - [jhj20071@gmail.com](mailto:jhj20071@gmail.com)
