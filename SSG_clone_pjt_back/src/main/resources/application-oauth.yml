@@ -3,15 +3,15 @@ spring:
     oauth2.client:
       registration:
         google:
-          clientId: 250367849554-p8043nvjop13nvgjp4c6re5qjcdqj1ou.apps.googleusercontent.com
-          clientSecret: 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
+          clientId: "Client_ID"
+          clientSecret: "Client_Secret"
           scope:
             - email
             - profile
           redirect-uri: https://ssghot.shop/api/login/oauth2/code/google
         naver:
-          client-id: PZYVhA2vsSBeEKhw0f0Y
-          client-secret: ZOqyVtdWjc
+          client-id: "Client_ID"
+          client-secret: "Client_Secret"
           scope:
             - name
             - email
@@ -20,8 +20,8 @@ spring:
           authorization-grant-type: authorization_code
           redirect-uri: https://ssghot.shop/api/login/oauth2/code/naver
         kakao:
-          clientId: 82662a6dc7085a2a3ef6a3f789996fa5
-          clientSecret: 4uF4s8dqUzViXuaNPiqj3I6tix27w2Jv
+          clientId: "Client_ID"
+          clientSecret: "Client_Secret"
           clientAuthenticationMethod: post
           authorizationGrantType: authorization_code
           redirectUri: https://ssghot.shop/api/login/oauth2/code/kakao
